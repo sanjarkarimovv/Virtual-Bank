@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "104832389658",
+    "project_id": "virtual-bank-20dcc",
+    "storage_bucket": "virtual-bank-20dcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104832389658:android:4c7d09d5df084e26f7f7a3",
+        "android_client_info": {
+          "package_name": "uz.androbeck.virtualbank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnyaq4zLOvxwUM0ACHbv6slUbeut-ZEQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
