@@ -1,7 +1,8 @@
-package uz.androbeck.virtualbank
+package uz.androbeck.virtualbank.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import uz.androbeck.virtualbank.R
 
 class MainActivity : AppCompatActivity() {
 

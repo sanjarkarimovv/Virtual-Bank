@@ -17,7 +17,8 @@ navigationUiKtx = "2.7.7"
 hilt = "2.49"
 coil = "2.6.0"
 retrofit = "2.11.0"
-okhttp="4.12.0"
+okhttp = "4.12.0"
+viewbinding = "1.5.9"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +38,7 @@ coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+view-binding = { group = "com.github.kirich1409", name = "viewbindingpropertydelegate-full", version.ref = "viewbinding" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
