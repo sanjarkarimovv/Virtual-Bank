@@ -3,7 +3,7 @@ package uz.androbeck.virtualbank.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import uz.androbeck.virtualbank.R
-
+//Bug fixed
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
