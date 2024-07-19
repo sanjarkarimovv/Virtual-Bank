@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mainFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/bottom_item_title_home" />
+    <item
+        android:id="@+id/transferFragment"
+        android:icon="@drawable/ic_transfer"
+        android:title="@string/bottom_item_title_transfer" />
+    <!--TODO static text-->
+    <item
+        android:id="@+id/cardsFragment"
+        android:icon="@drawable/ic_cards"
+        android:title="Cards" />
+    <!--TODO static text-->
+    <item
+        android:id="@+id/historyFragment"
+        android:icon="@drawable/ic_history"
+        android:title="History" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_profile"
+        android:title="Profile" />
+</menu>

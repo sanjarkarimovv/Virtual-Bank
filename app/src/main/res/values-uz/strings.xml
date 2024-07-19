@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bottom_item_title_home">Bosh sahifa</string>
+    <string name="bottom_item_title_transfer">Transfer</string>
+</resources>

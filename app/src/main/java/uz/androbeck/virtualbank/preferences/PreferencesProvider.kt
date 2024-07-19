@@ -6,7 +6,7 @@ import javax.inject.Inject
 class PreferencesProvider @Inject constructor(
     private val preferences: SharedPreferences
 ) {
-    val token: String by preferences.string()
+    var token: String by preferences.string()
 
     fun clear() {
         preferences.edit().clear().apply()
