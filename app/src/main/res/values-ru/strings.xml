@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bottom_item_title_home">Основной</string>
-    <string name="bottom_item_title_transfer">Transfer</string>
+    <string name="bottom_item_title_transfer">Переводы</string>
+    <string name="bottom_item_title_cards">Карты</string>
+    <string name="bottom_item_title_history">История</string>
+    <string name="bottom_item_title_profile">Профиль</string>
 </resources>

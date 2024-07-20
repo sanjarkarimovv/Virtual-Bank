@@ -2,4 +2,7 @@
     <string name="app_name" translatable="false">Virtual Bank</string>
     <string name="bottom_item_title_home">Home</string>
     <string name="bottom_item_title_transfer">Transfer</string>
+    <string name="bottom_item_title_cards">Cards</string>
+    <string name="bottom_item_title_history">History</string>
+    <string name="bottom_item_title_profile">Profile</string>
 </resources>

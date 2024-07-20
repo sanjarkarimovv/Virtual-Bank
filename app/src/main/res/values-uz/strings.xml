@@ -2,4 +2,7 @@
 <resources>
     <string name="bottom_item_title_home">Bosh sahifa</string>
     <string name="bottom_item_title_transfer">Transfer</string>
+    <string name="bottom_item_title_cards">Kartalar</string>
+    <string name="bottom_item_title_history">Tarix</string>
+    <string name="bottom_item_title_profile">Profil</string>
 </resources>
