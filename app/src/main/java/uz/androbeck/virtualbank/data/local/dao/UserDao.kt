@@ -1,11 +1,11 @@
-package uz.androbeck.virtualbank.model.dao
+package uz.androbeck.virtualbank.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import uz.androbeck.virtualbank.model.entity.UserEntity
+import uz.androbeck.virtualbank.data.local.entity.UserEntity
 
 
 @Dao

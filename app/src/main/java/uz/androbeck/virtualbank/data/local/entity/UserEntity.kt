@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.model.entity
+package uz.androbeck.virtualbank.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

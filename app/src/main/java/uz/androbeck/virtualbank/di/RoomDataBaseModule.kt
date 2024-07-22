@@ -9,8 +9,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import uz.androbeck.virtualbank.model.dao.UserDao
-import uz.androbeck.virtualbank.model.entity.UserEntity
+import uz.androbeck.virtualbank.data.local.dao.UserDao
+import uz.androbeck.virtualbank.data.local.entity.UserEntity
 import javax.inject.Singleton
 
 const val DATABASE_NAME = "virtual_bank_database"
@@ -20,7 +20,7 @@ const val DATABASE_NAME = "virtual_bank_database"
 object RoomDataBaseModule {
 
     @Database(entities = [UserEntity::class], version = 1)
-     abstract class AppDatabase : RoomDatabase() {
+    abstract class AppDatabase : RoomDatabase() {
         abstract fun userDao(): UserDao
     }
 
@@ -35,4 +35,10 @@ object RoomDataBaseModule {
             //.addMigrations() migratsiya qoshamizmi?
             .build()
     }
+
+    @Provides
+    fun provideUserDao(roomDatabase: AppDatabase): UserDao {
+        return roomDatabase.userDao()
+    }
+
 }
