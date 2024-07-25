@@ -20,7 +20,7 @@
     <color name="colorTertiaryFixedDim">#EFB8C8</color>
     <color name="colorOnPrimaryFixed">#21005D</color>
     <color name="colorOnSecondaryFixed">#1D192B</color>
-    <color name="colorOnTertiaryFixed">##31111D</color>
+    <color name="colorOnTertiaryFixed">#31111D</color>
     <color name="colorOnPrimaryFixedVariant">#4F378B</color>
     <color name="colorOnSecondaryFixedVariant">#4A4458</color>
     <color name="colorOnTertiaryFixedVariant">#633B48</color>
