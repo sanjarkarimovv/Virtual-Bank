@@ -9,6 +9,7 @@ import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -22,8 +23,9 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     override fun setup() {
         binding.btnRegister.setOnClickListener {
-            prefsProvider.token = "Bearer token"
-            sharedVM.setNavGraphEvent(NavGraphEvent.Main)
+            val token = "hellothisistoken"
+            prefsProvider.token = token
+            sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
         }
     }
 }

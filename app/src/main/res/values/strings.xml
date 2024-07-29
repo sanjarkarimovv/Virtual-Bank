@@ -2,4 +2,10 @@
     <string name="app_name" translatable="false">Virtual Bank</string>
     <string name="bottom_item_title_home">Home</string>
     <string name="bottom_item_title_transfer">Transfer</string>
+    <string name="pin_code_page_enter_pin">Enter PIN</string>
+    <string name="pin_code_page_confirm_pin">Confirm PIN</string>
+    <string name="pin_code_page_logout">Logout</string>
+    <string name="pin_code_page_confirm">Confirm</string>
+    <string name="pin_mismatch_message">PIN does not match.\n%1$d attempts left.</string>
+    <string name="too_many_attempts_message">Too many failed attempts. Please try again in 1 minute.</string>
 </resources>
