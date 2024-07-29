@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.remote.dto
+package uz.androbeck.virtualbank.data.dto
 
 data class UserModel(
     val id: Int?,

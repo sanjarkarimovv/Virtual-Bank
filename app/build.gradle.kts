@@ -27,6 +27,10 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"http://195.158.16.140/mobile-bank/v1/\"")
+        }
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://195.158.16.140/mobile-bank/v1/\"")
         }
     }
     compileOptions {
@@ -38,6 +42,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
