@@ -98,4 +98,8 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.serialization.converter)
+
+    //Chucker interceptor
+    debugImplementation(libs.chucker.interceptor)
+    releaseImplementation(libs.chucker.interceptor.no.op)
 }
