@@ -1,5 +1,7 @@
 package uz.androbeck.virtualbank.domain.useCase.authentication
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import uz.androbeck.virtualbank.data.repository.AuthenticationRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
@@ -12,8 +14,8 @@ class SignUpUseCase @Inject constructor(
     private val tokenMapper: TokenMapper,
     private val signUpMapper: SignUpMapper
 ) {
-    suspend operator fun invoke(uiReqModel: SignUpReqUIModel): TokenUIModel {
+    operator fun invoke(uiReqModel: SignUpReqUIModel): Flow<TokenUIModel> {
         val request = signUpMapper.toDTO(uiReqModel)
-        return tokenMapper.toUIModel(authenticationRepository.signUp(request))
+        return authenticationRepository.signUp(request).map { tokenMapper.toUIModel(it) }
     }
 }

@@ -4,6 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TokenResDto(
-    @SerialName("token") val token: String? = null,
+class ErrorResDto(
+    @SerialName("code") val code: Int? = null,
+    @SerialName("message") val message: String? = null,
 )

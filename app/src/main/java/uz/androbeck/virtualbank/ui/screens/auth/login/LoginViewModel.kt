@@ -6,6 +6,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.domain.ui_models.common.TokenUIModel
@@ -32,10 +34,14 @@ class LoginViewModel @Inject constructor(
                 password = "1234qweR",
                 firstName = "Sanjar",
                 lastName = "Karimov",
-                "213243243243",
-                "1"
+                bornDate = "213243243243",
+                gender = "1"
             )
-            _signUpEvent.value = signUpUseCase(signUpReqUIModel)
+            signUpUseCase(signUpReqUIModel)
+                .onEach {
+                    println(":::AAAA -> $it")
+                }
+                .launchIn(viewModelScope)
         }
     }
 }
