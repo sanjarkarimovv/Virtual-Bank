@@ -22,7 +22,10 @@ okhttp = "4.12.0"
 viewbinding = "1.5.9"
 securityCryptoKtx = "1.1.0-alpha06"
 redmadrobot = "7.2.4"
-roomVertion ="2.5.1"
+roomVertion = "2.5.1"
+interceptor = "4.12.0"
+serialization-json = "1.2.2"
+serialization-converter ="0.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,9 +49,12 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 view-binding = { group = "com.github.kirich1409", name = "viewbindingpropertydelegate-full", version.ref = "viewbinding" }
 androidx-security-crypto-ktx = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "securityCryptoKtx" }
 input-redmadrobot = { group = "com.redmadrobot", name = "input-mask-android", version.ref = "redmadrobot" }
-androidx-room ={group="androidx.room",name="room-runtime",version.ref="roomVertion"}
-androidx-room-compiler ={group="androidx.room",name="room-compiler",version.ref="roomVertion"}
-androidx-room-kapt ={group="androidx.room",name="room-ktx",version.ref="roomVertion"}
+androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVertion" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVertion" }
+androidx-room-kapt = { group = "androidx.room", name = "room-ktx", version.ref = "roomVertion" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref ="serialization-json"}
+kotlinx-serialization-converter ={group="com.jakewharton.retrofit",name="retrofit2-kotlinx-serialization-converter",version.ref="serialization-converter"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
