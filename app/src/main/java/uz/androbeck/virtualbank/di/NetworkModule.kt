@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.di
 
 import android.util.Log
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -54,6 +55,7 @@ object NetworkModule {
                 chain.proceed(request)
             }
             .addInterceptor(
+                // ChuckerInterceptor(context)
                 HttpLoggingInterceptor { message ->
                     Log.d("OkHttp", message)
                 }.apply {
