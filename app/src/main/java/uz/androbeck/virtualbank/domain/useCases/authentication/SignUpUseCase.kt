@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.domain.useCase.authentication
+package uz.androbeck.virtualbank.domain.useCases.authentication
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
