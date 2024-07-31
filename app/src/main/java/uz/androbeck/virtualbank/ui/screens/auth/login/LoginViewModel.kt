@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.domain.ui_models.common.TokenUIModel
-import uz.androbeck.virtualbank.domain.useCase.authentication.SignUpUseCase
+import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -36,7 +36,7 @@ class LoginViewModel @Inject constructor(
                 lastName = "Karimov",
                 bornDate = "213243243243",
                 gender = "1"
-            )
+            )// operator ->
             signUpUseCase(signUpReqUIModel)
                 .onEach {
                     println(":::AAAA -> $it")
