@@ -15,7 +15,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
-import uz.androbeck.virtualbank.data.api.FullInfoService
+import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
@@ -89,7 +89,7 @@ object NetworkModule {
     @Singleton
     fun provideMainService(
         retrofit: Retrofit
-    ): FullInfoService = retrofit.create(FullInfoService::class.java)
+    ): HomeService = retrofit.create(HomeService::class.java)
 
     @Provides
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {

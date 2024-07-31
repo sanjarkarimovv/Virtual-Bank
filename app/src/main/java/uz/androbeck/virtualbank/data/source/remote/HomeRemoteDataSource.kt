@@ -3,6 +3,6 @@ package uz.androbeck.virtualbank.data.source.remote
 import kotlinx.coroutines.flow.Flow
 import uz.androbeck.virtualbank.data.dto.request.FullInfoDto
 
-interface FullInfoRemoteDataSource {
+interface HomeRemoteDataSource {
     fun getFullInfo(token:String?):Flow<FullInfoDto>
 }
