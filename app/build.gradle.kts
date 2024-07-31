@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.cli.jvm.main
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -89,6 +91,7 @@ dependencies {
     //MaskedEditText
     implementation(libs.input.redmadrobot)
 
+  
     //room
     implementation(libs.androidx.room)
     kapt(libs.androidx.room.compiler)
