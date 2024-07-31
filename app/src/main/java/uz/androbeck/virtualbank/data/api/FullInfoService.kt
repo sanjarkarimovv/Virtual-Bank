@@ -4,7 +4,7 @@ import retrofit2.http.GET
 import uz.androbeck.virtualbank.data.dto.request.FullInfoDto
 import uz.androbeck.virtualbank.utils.Constants
 
-interface HomeService {
+interface FullInfoService {
 
     @GET(Constants.Endpoint.FULL_INFO)
     // Header() impl

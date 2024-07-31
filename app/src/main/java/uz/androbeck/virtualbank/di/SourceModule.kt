@@ -5,7 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uz.androbeck.virtualbank.data.api.AuthenticationService
-import uz.androbeck.virtualbank.data.api.HomeService
+import uz.androbeck.virtualbank.data.api.FullInfoService
 import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSourceImpl
 import uz.androbeck.virtualbank.data.source.remote.HomeRemoteDataSource
@@ -27,7 +27,7 @@ object SourceModule {
     @Singleton
     @Provides
     fun provideMainRemoteDataSource(
-        service: HomeService
+        service: FullInfoService
     ): HomeRemoteDataSource {
         return HomeRemoteDataSourceImpl(service)
     }
