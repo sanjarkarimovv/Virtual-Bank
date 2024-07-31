@@ -6,4 +6,5 @@ import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
 
 interface AuthenticationRepository {
     fun signUp(request: SignUpReqDto): Flow<TokenResDto>
+
 }

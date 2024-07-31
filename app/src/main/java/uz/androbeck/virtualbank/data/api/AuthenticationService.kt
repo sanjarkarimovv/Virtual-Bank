@@ -11,4 +11,6 @@ interface AuthenticationService {
     suspend fun signUp(
         @Body request: SignUpReqDto
     ): TokenResDto
+
+
 }

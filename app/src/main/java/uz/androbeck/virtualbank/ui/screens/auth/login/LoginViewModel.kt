@@ -20,6 +20,22 @@ class LoginViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
 ) : BaseViewModel() {
 
+
+
+
+    private val _signInEvent = MutableStateFlow(TokenUIModel())
+    val signInEvent: StateFlow<TokenUIModel> = _signInEvent.asStateFlow()
+
+    init{
+        singIn()
+    }
+
+    private fun singIn() {
+        viewModelScope.launch(Dispatchers.IO) {
+
+        }
+    }
+
     private val _signUpEvent = MutableStateFlow(TokenUIModel())
     val signUpEvent: StateFlow<TokenUIModel> = _signUpEvent.asStateFlow()
 
