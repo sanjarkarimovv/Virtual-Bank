@@ -1,6 +1,5 @@
 package uz.androbeck.virtualbank.data.dto.request
 
-import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

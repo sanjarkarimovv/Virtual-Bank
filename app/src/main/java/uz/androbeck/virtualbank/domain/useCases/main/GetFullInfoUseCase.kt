@@ -1,7 +1,7 @@
 package uz.androbeck.virtualbank.domain.useCases.main
 
 import kotlinx.coroutines.flow.map
-import uz.androbeck.virtualbank.data.repository.mainRepository.HomeRepository
+import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.main.FullInfoMapper
 import uz.androbeck.virtualbank.domain.ui_models.main.FullInfoUIModel
 import javax.inject.Inject

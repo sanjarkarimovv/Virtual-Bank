@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 class FullInfoMapper @Inject constructor() : BaseMapper<FullInfoDto, FullInfoUIModel> {
-    override fun toUIModel(dto: FullInfoDto): FullInfoUIModel = dto.run {
+    override fun toUIModel(dto: FullInfoDto) = dto.run {
         FullInfoUIModel(
             firstName = first_name,
             lastName = last_name,
@@ -17,7 +17,7 @@ class FullInfoMapper @Inject constructor() : BaseMapper<FullInfoDto, FullInfoUIM
             gender = gender
         )
     }
-    override fun toDTO(uiModel: FullInfoUIModel): FullInfoDto = uiModel.run {
+    override fun toDTO(uiModel: FullInfoUIModel) = uiModel.run {
         FullInfoDto(
             first_name = firstName,
             last_name = lastName,

@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.repository.mainRepository
+package uz.androbeck.virtualbank.data.repository.home
 
 import kotlinx.coroutines.flow.Flow
 import uz.androbeck.virtualbank.data.dto.request.FullInfoDto
@@ -9,7 +9,6 @@ class HomeRepositoryImpl @Inject constructor(
     private val homeRemoteDataSource: HomeRemoteDataSource,
 
     ) : HomeRepository {
-    override fun getFullInfo(token: String?): Flow<FullInfoDto> =
+    override fun getFullInfo(token: String?) =
         homeRemoteDataSource.getFullInfo(token)
-
 }
