@@ -12,3 +12,5 @@ class MainViewModel @Inject constructor(
 
     fun getToken() = prefsProvider.token
 }
+
+// Presentation <-> ViewModel <-> UseCase <-> Repository <-> DataSource -> Local And Remote
