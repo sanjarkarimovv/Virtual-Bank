@@ -6,7 +6,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import uz.androbeck.virtualbank.data.repository.AuthenticationRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.SignUpResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
+import uz.androbeck.virtualbank.domain.useCase.authentication.SignUpResendUseCase
 import uz.androbeck.virtualbank.domain.useCase.authentication.SignUpUseCase
 
 @Module
@@ -19,4 +21,11 @@ object UseCaseModule {
         tokenMapper: TokenMapper,
         signUpMapper: SignUpMapper
     ) = SignUpUseCase(authenticationRepository, tokenMapper, signUpMapper)
+
+    @Provides
+    fun provideSignUpResendUseCase(
+        authenticationRepository: AuthenticationRepository,
+        tokenMapper: TokenMapper,
+        signUpResendMapper: SignUpResendMapper
+    ) = SignUpResendUseCase(authenticationRepository, tokenMapper, signUpResendMapper)
 }
