@@ -11,6 +11,6 @@ class AuthenticationRepositoryImpl @Inject constructor(
     override fun signUp(request: SignUpReqDto) =
         remoteDataSource.signUp(request)
 
-    override fun signInResend(request: SingInResendReqDto) =
-        remoteDataSource.signInResend(request)
+    override fun signInResend(request: SingInResendReqDto) = remoteDataSource.signInResend(request)
+
 }

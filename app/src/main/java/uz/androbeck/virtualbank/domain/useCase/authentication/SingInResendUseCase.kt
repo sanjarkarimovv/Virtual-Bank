@@ -13,13 +13,11 @@ class SingInResendUseCase @Inject constructor(
     private val authenticationRepository: AuthenticationRepository,
     private val tokenMapper: TokenMapper,
     private val singInResendMapper: SingInResendMapper
-){
-    operator fun invoke(uiReqModel: SingInResendReqUiModel) : Flow<TokenUIModel> {
+) {
+    operator fun invoke(uiReqModel: SingInResendReqUiModel): Flow<TokenUIModel> {
         val request = singInResendMapper.toDTO(uiReqModel)
         return authenticationRepository.signInResend(request).map {
             tokenMapper.toUIModel(it)
         }
     }
-
-
 }
