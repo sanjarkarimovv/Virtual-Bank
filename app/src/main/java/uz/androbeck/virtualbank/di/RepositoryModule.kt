@@ -4,13 +4,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import uz.androbeck.virtualbank.data.repository.AuthenticationRepository
-import uz.androbeck.virtualbank.data.repository.AuthenticationRepositoryImpl
+import uz.androbeck.virtualbank.data.repository.authenticationRepository.AuthenticationRepository
+import uz.androbeck.virtualbank.data.repository.authenticationRepository.AuthenticationRepositoryImpl
 import uz.androbeck.virtualbank.data.repository.mainRepository.MainRepository
 import uz.androbeck.virtualbank.data.repository.mainRepository.MainRepositoryImpl
 import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.MainRemoteDataSource
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module

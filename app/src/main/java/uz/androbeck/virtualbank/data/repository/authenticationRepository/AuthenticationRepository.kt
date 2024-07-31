@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.repository
+package uz.androbeck.virtualbank.data.repository.authenticationRepository
 
 import kotlinx.coroutines.flow.Flow
 import uz.androbeck.virtualbank.data.dto.common.response.TokenResDto

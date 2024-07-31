@@ -9,9 +9,9 @@ import javax.inject.Inject
 class MainRemoteDataSourceImpl @Inject constructor(
     private val mainService: MainService
 ) : MainRemoteDataSource {
-    override fun getFullInfo(): Flow<MainFullInfoDto>{
+    override fun getFullInfo(token:String?): Flow<MainFullInfoDto>{
         return flow {
-            emit(mainService.getFullInfo())
+            emit(mainService.getFullInfo(token))
         }
     }
 }
