@@ -1,9 +1,7 @@
 package uz.androbeck.virtualbank.di
 
 import android.util.Log
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.redmadrobot.inputmask.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +13,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
+import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
-import uz.androbeck.virtualbank.data.api.MainService
+import uz.androbeck.virtualbank.data.api.FullInfoService
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
@@ -56,7 +55,6 @@ object NetworkModule {
                 chain.proceed(request)
             }
             .addInterceptor(
-                // ChuckerInterceptor(context)
                 HttpLoggingInterceptor { message ->
                     Log.d("OkHttp", message)
                 }.apply {
@@ -74,7 +72,7 @@ object NetworkModule {
         callFactory: ErrorHandlingCallAdapterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(uz.androbeck.virtualbank.BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(converter)
             .addCallAdapterFactory(callFactory)
@@ -91,7 +89,7 @@ object NetworkModule {
     @Singleton
     fun provideMainService(
         retrofit: Retrofit
-    ): MainService = retrofit.create(MainService::class.java)
+    ): FullInfoService = retrofit.create(FullInfoService::class.java)
 
     @Provides
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {

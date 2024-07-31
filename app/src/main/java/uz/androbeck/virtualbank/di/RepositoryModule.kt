@@ -6,10 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uz.androbeck.virtualbank.data.repository.authenticationRepository.AuthenticationRepository
 import uz.androbeck.virtualbank.data.repository.authenticationRepository.AuthenticationRepositoryImpl
-import uz.androbeck.virtualbank.data.repository.mainRepository.MainRepository
-import uz.androbeck.virtualbank.data.repository.mainRepository.MainRepositoryImpl
+import uz.androbeck.virtualbank.data.repository.mainRepository.FullInfoRepository
+import uz.androbeck.virtualbank.data.repository.mainRepository.FullInfoRepositoryImpl
 import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSource
-import uz.androbeck.virtualbank.data.source.remote.MainRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.FullInfoRemoteDataSource
 import javax.inject.Singleton
 
 @Module
@@ -27,9 +27,9 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideMainRepository(
-        mainRemoteDataSource: MainRemoteDataSource
-    ):MainRepository{
-        return MainRepositoryImpl(mainRemoteDataSource)
+        fullInfoRemoteDataSource: FullInfoRemoteDataSource
+    ):FullInfoRepository{
+        return FullInfoRepositoryImpl(fullInfoRemoteDataSource)
     }
 
 }

@@ -1,15 +1,12 @@
 package uz.androbeck.virtualbank.data.dto.request
 
-import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MainFullInfoDto(
+data class FullInfoDto(
     @SerialName("phone")
     val phone: String? = null,
-    @SerialName("password")
-    val password: String? = null,
     @SerialName("first-name")
     val first_name: String? = null,
     @SerialName("last-name")
