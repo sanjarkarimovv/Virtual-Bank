@@ -1,10 +1,13 @@
 package uz.androbeck.virtualbank.di
 
+import android.content.Context
 import android.util.Log
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -15,12 +18,11 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
-import uz.androbeck.virtualbank.data.api.FullInfoService
+import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
 import javax.inject.Singleton
-
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -42,18 +44,18 @@ object NetworkModule {
     }
 
     @[Provides Singleton]
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder().apply {
-                    // headers
                     addHeader("accept", "application/json")
                 }
                     .method(original.method, original.body)
                     .build()
                 chain.proceed(request)
             }
+            .addInterceptor(ChuckerInterceptor(context))
             .addInterceptor(
                 HttpLoggingInterceptor { message ->
                     Log.d("OkHttp", message)
@@ -89,7 +91,7 @@ object NetworkModule {
     @Singleton
     fun provideMainService(
         retrofit: Retrofit
-    ): FullInfoService = retrofit.create(FullInfoService::class.java)
+    ): HomeService = retrofit.create(HomeService::class.java)
 
     @Provides
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {
