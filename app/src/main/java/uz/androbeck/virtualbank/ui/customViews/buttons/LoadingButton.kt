@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.customViews
+package uz.androbeck.virtualbank.ui.customViews.buttons
 
 import android.annotation.SuppressLint
 import android.content.Context

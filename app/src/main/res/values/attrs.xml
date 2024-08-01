@@ -8,9 +8,8 @@
             <enum name="datetime" value="3" />
         </attr>
         <attr name="helperText" format="string" />
+        <attr name="passwordToggleEnabled" format="boolean" />
         <attr name="endIcon" format="reference" />
-
-
         <attr name="hintText" format="string" />
         <attr name="startIcon" format="reference" />
         <attr name="boxBackgroundColor" format="color" />
@@ -20,10 +19,13 @@
         <attr name="boxStrokeColor" format="color" />
         <attr name="maxLength" format="integer" />
         <attr name="scrollHorizontally" format="boolean" />
-
-
-
-
     </declare-styleable>
 
+    <declare-styleable name="LoadingButton">
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+        <!--        <attr name="cornerRadius" format="integer" />-->
+        <attr name="progressBarTintColor" format="color" />
+    </declare-styleable>
 </resources>

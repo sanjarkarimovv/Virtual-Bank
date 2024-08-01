@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.custom_views.filled
+package uz.androbeck.virtualbank.ui.customViews.edit_texts
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -29,24 +29,24 @@ class CustomFilledTextField @JvmOverloads constructor(
 
         attrs?.let {
             val typedArray: TypedArray =
-                context.obtainStyledAttributes(it, R.styleable.CustomFilledTextField)
-            val hintText = typedArray.getString(R.styleable.CustomFilledTextField_hintText)
-            val inputType = typedArray.getInt(R.styleable.CustomFilledTextField_inputType, 0)
-            val maxLength = typedArray.getInt(R.styleable.CustomFilledTextField_maxLength, -1)
-            val helperText = typedArray.getString(R.styleable.CustomFilledTextField_helperText)
-            val endIcon = typedArray.getResourceId(R.styleable.CustomFilledTextField_endIcon, 0)
-            val errorText = typedArray.getString(R.styleable.CustomFilledTextField_errorText)
-            val clearable = typedArray.getBoolean(R.styleable.CustomFilledTextField_clearable, false)
+                context.obtainStyledAttributes(it, R.styleable.CustomTextField)
+            val hintText = typedArray.getString(R.styleable.CustomTextField_hintText)
+            val inputType = typedArray.getInt(R.styleable.CustomTextField_inputType, 0)
+            val maxLength = typedArray.getInt(R.styleable.CustomTextField_maxLength, -1)
+            val helperText = typedArray.getString(R.styleable.CustomTextField_helperText)
+            val endIcon = typedArray.getResourceId(R.styleable.CustomTextField_endIcon, 0)
+            val errorText = typedArray.getString(R.styleable.CustomTextField_errorText)
+            val clearable = typedArray.getBoolean(R.styleable.CustomTextField_clearable, false)
             val boxBackgroundColor = typedArray.getColor(
-                R.styleable.CustomFilledTextField_boxBackgroundColor,
+                R.styleable.CustomTextField_boxBackgroundColor,
                 ContextCompat.getColor(context, android.R.color.white)
             )
             val boxStrokeColor = typedArray.getColor(
-                R.styleable.CustomFilledTextField_boxStrokeColor,
+                R.styleable.CustomTextField_boxStrokeColor,
                 ContextCompat.getColor(context, android.R.color.holo_purple)
             )
             val hintTextColor = typedArray.getColor(
-                R.styleable.CustomFilledTextField_hintTextColor,
+                R.styleable.CustomTextField_hintTextColor,
                 ContextCompat.getColor(context, android.R.color.holo_purple)
             )
             textInputLayout.hint = hintText
