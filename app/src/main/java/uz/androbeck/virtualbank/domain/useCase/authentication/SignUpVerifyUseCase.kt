@@ -14,8 +14,7 @@ class SignUpVerifyUseCase @Inject constructor(
     private val tokenMapper: SignUpVerifyTokenMapper,
     private val signUpVerifyMapper: SignUpVerifyMapper,
 ) {
-    operator fun invoke(uiReqModel: SignUpVerifyReqUIModel): Flow<SignUpVerifyTokenUIModel> {
-        val request = signUpVerifyMapper.toDTO(uiReqModel)
-        return authenticationRepository.signUpVerify(request).map { tokenMapper.toUIModel(it) }
-    }
+    operator fun invoke(uiReqModel: SignUpVerifyReqUIModel) =
+        authenticationRepository.signUpVerify(signUpVerifyMapper.toDTO(uiReqModel))
+            .map { tokenMapper.toUIModel(it) }
 }

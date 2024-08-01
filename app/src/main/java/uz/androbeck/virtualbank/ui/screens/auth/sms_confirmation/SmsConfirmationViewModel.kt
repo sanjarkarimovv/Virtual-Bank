@@ -30,7 +30,7 @@ class SmsConfirmationViewModel @Inject constructor(
     private fun signUpVerify() {
         viewModelScope.launch(Dispatchers.IO) {
             val signUpVerifyReqUIModel = SignUpVerifyReqUIModel(
-                token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwOi8vMTQzLjE5OC40OC4yMjI6ODQvdjEvbW9iaWxlLWJhbmsvYXV0aCIsImNvZGUiOiIxMTgzNjciLCJwaG9uZSI6Iis5OTg5OTM5NDYyODAiLCJpc3MiOiJodHRwOi8vMTQzLjE5OC40OC4yMjI6ODQvdjEvbW9iaWxlLWJhbmsiLCJib2R5IjoiTXVoYW1tYWRhbGkjUmFoaW1iZXJnYW5vdiNxd2VydHkjOTY5ODIyMDAwMDAwIzAjIiwiZXhwIjoxNjcxMTA3NzA2fQ.FDQAdueKD8gsWwlekOoezWhNixPNUKj5NElbfbRSOxM",
+                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjgwODQvbW9iaWxlLWJhbmsvdjEvYXV0aCIsImlzcyI6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4NC9tb2JpbGUtYmFuayIsInBob25lIjoiOTcxNzE0MjQwIiwiY29kZSI6IjM4MTIwNiIsImJvZHkiOiJTYW5qYXIjS2FyaW1vdiMxMjM0cXdlUiMyMTMyNDMyNDMyNDMjMSMiLCJleHAiOjE3MjI1MTMxOTN9.MjbWO2aDLBXKnW9gsXmUKWekVcdNUwkizQUf8oSdXzk",
                 code = "118367"
             )
             signUpVerifyUseCase(signUpVerifyReqUIModel)
