@@ -14,7 +14,6 @@ class SingInResendMapper @Inject constructor() :
             token = token
         )
     }
-
     override fun toDTO(uiModel: SingInResendReqUiModel) = uiModel.run {
         SingInResendReqDto(
             token = token
