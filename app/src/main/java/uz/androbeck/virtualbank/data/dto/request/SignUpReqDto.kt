@@ -1,21 +1,13 @@
 package uz.androbeck.virtualbank.data.dto.request
 
-import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class SignUpReqDto(
-    @SerialName("phone")
     val phone: String? = null,
-    @SerialName("password")
     val password: String? = null,
-    @SerialName("first-name")
-    val first_name: String? = null,
-    @SerialName("last-name")
-    val last_name: String? = null,
-    @SerialName("born-date")
-    val born_date: String? = null,
-    @SerialName("gender")
+    val firstName: String? = null,
+    val lastName: String? = null,
+    val bornDate: String? = null,
     val gender: String? = null
 )

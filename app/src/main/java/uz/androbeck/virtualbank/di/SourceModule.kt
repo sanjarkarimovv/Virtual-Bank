@@ -12,13 +12,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object SourceModule {
-
     @Singleton
     @Provides
-    fun provideAuthenticationRemoteDataSource(
+     fun provideAuthenticationRemoteDataSource(
         service: AuthenticationService
     ): AuthenticationRemoteDataSource {
         return AuthenticationRemoteDataSourceImpl(service)
     }
-
 }

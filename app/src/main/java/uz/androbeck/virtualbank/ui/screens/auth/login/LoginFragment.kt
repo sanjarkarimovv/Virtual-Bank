@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentLoginBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -23,8 +22,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
 
-        vm.signUpEvent.onEach {
-            println(":::AAAA -> $it")
+        vm.signInEvent.onEach {
+            println(":::BBBBBBBBBB -> $it")
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.btnLogin.OnClick = {

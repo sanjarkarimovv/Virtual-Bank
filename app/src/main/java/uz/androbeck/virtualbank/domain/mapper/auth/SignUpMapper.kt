@@ -7,25 +7,25 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SignUpMapper @Inject constructor() : BaseMapper<SignUpReqDto, SignUpReqUIModel> {
+class  SignUpMapper @Inject constructor() : BaseMapper<SignUpReqDto, SignUpReqUIModel> {
     override fun toUIModel(dto: SignUpReqDto) = dto.run {
         SignUpReqUIModel(
-            firstName = first_name,
-            lastName = last_name,
+            firstName = firstName,
+            lastName = lastName,
             password = password,
             phone = phone,
-            bornDate = born_date,
+            bornDate = bornDate,
             gender = gender
         )
     }
 
     override fun toDTO(uiModel: SignUpReqUIModel) = uiModel.run {
         SignUpReqDto(
-            first_name = firstName,
-            last_name = lastName,
+            firstName = firstName,
+            lastName = lastName,
             password = password,
             phone = phone,
-            born_date = bornDate,
+            bornDate = bornDate,
             gender = gender
         )
     }
