@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.custom_views.outlined
+package uz.androbeck.virtualbank.ui.customViews.edit_texts
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -31,23 +31,23 @@ class CustomOutlinedTextField @JvmOverloads constructor(
 
         attrs1?.let {
             val typedArray: TypedArray =
-                context.obtainStyledAttributes(it, R.styleable.CustomOutlinedTextField)
-            val hintText = typedArray.getString(R.styleable.CustomOutlinedTextField_hintText)
-            val helperText = typedArray.getString(R.styleable.CustomOutlinedTextField_helperText)
-            val startIcon = typedArray.getResourceId(R.styleable.CustomOutlinedTextField_startIcon, 0)
+                context.obtainStyledAttributes(it, R.styleable.CustomTextField)
+            val hintText = typedArray.getString(R.styleable.CustomTextField_hintText)
+            val helperText = typedArray.getString(R.styleable.CustomTextField_helperText)
+            val startIcon = typedArray.getResourceId(R.styleable.CustomTextField_startIcon, 0)
             val boxBackgroundColor = typedArray.getColor(
-                R.styleable.CustomOutlinedTextField_boxBackgroundColor,
+                R.styleable.CustomTextField_boxBackgroundColor,
                 ContextCompat.getColor(context, android.R.color.white)
             )
             val hintTextColor = typedArray.getColor(
-                R.styleable.CustomOutlinedTextField_hintTextColor,
+                R.styleable.CustomTextField_hintTextColor,
                 ContextCompat.getColor(context, android.R.color.holo_purple)
             )
-            val errorText = typedArray.getString(R.styleable.CustomOutlinedTextField_errorText)
-            val clearable = typedArray.getBoolean(R.styleable.CustomOutlinedTextField_clearable, false)
-            val boxStrokeColor = typedArray.getColor(R.styleable.CustomOutlinedTextField_boxStrokeColor, ContextCompat.getColor(context, android.R.color.holo_purple))
-            val maxLength = typedArray.getInt(R.styleable.CustomOutlinedTextField_maxLength, -1)
-            val scrollHorizontally = typedArray.getBoolean(R.styleable.CustomOutlinedTextField_scrollHorizontally, false)
+            val errorText = typedArray.getString(R.styleable.CustomTextField_errorText)
+            val clearable = typedArray.getBoolean(R.styleable.CustomTextField_clearable, false)
+            val boxStrokeColor = typedArray.getColor(R.styleable.CustomTextField_boxStrokeColor, ContextCompat.getColor(context, android.R.color.holo_purple))
+            val maxLength = typedArray.getInt(R.styleable.CustomTextField_maxLength, -1)
+            val scrollHorizontally = typedArray.getBoolean(R.styleable.CustomTextField_scrollHorizontally, false)
 
             textInputLayout.hint = hintText
             textInputLayout.helperText = helperText
