@@ -1,23 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <ProgressBar
-        android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <uz.androbeck.virtualbank.ui.customViews.edit_texts.CustomOutlinedTextField
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_centerInParent="true"
-        android:text="Login" />
+        android:layout_marginHorizontal="24dp"
+        app:boxBackgroundColor="#EBEBEB"
+        app:clearable="true"
+        app:helperText="Supporting text"
+        app:hintText="Phone number"
+        app:scrollHorizontally="true" />
 
-    <uz.androbeck.virtualbank.ui.customViews.LoadingButton
+    <uz.androbeck.virtualbank.ui.customViews.edit_texts.CustomOutlinedTextField
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_phone"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="8dp"
+        app:boxBackgroundColor="#EBEBEB"
+        app:clearable="true"
+        app:helperText="Supporting text"
+        app:hintText="Password"
+        app:scrollHorizontally="true" />
+
+
+    <uz.androbeck.virtualbank.ui.customViews.buttons.LoadingButton
+        android:id="@+id/btn_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_login"
+        android:layout_centerInParent="true"
+        app:backgroundColor="@color/colorSurfaceContainerLow"
+        app:text="Sign up"
+        app:textColor="@color/colorPrimary" />
+
+    <uz.androbeck.virtualbank.ui.customViews.buttons.LoadingButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:text="Login"
-        app:textColor="@android:color/white"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"/>
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        app:text="Login" />
+
 
 </RelativeLayout>
