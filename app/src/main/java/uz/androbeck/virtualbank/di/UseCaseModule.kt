@@ -24,7 +24,7 @@ object UseCaseModule {
     ) = SignUpUseCase(authenticationRepository, tokenMapper, signUpMapper)
 
     @Provides
-    fun provideMainUseCase(
+    fun provideGetFullInfoUseCase(
         homeRepository: HomeRepository,
         fullInfoMapper: FullInfoMapper
     ) = GetFullInfoUseCase(homeRepository,fullInfoMapper)

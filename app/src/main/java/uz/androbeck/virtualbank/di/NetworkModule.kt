@@ -89,7 +89,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMainService(
+    fun provideHomeService(
         retrofit: Retrofit
     ): HomeService = retrofit.create(HomeService::class.java)
 
