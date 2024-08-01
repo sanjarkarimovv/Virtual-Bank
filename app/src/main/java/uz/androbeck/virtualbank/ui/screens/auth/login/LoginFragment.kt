@@ -13,9 +13,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private val binding: FragmentLoginBinding by viewBinding()
     private val vm: LoginViewModel by viewModels()
     override fun setup() {
-
-
-        binding.btnLogin.OnClick = {
+        binding.btnLogin.onClickProgress(isProgress = true) {
             findNavController().navigate(
                 R.id.action_loginFragment_to_registrationFragment
             )

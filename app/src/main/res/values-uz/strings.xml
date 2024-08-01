@@ -2,4 +2,12 @@
 <resources>
     <string name="bottom_item_title_home">Bosh sahifa</string>
     <string name="bottom_item_title_transfer">Transfer</string>
+    <string name="str_first_name">Ism</string>
+    <string name="str_last_name">Last name</string>
+    <string name="str_confirm_password">Confirm password</string>
+    <string name="str_password">Password</string>
+    <string name="str_phone_number">Phone number</string>
+    <string name="str_born_date">Born date</string>
+    <string name="str_gender">Gender</string>
+    <string name="str_sign_up">Sign Up</string>
 </resources>

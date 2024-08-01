@@ -15,9 +15,7 @@ import uz.androbeck.virtualbank.utils.extentions.visible
 
 @SuppressLint("Recycle", "ResourceType")
 class LoadingButton @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val binding by lazy {
@@ -25,6 +23,26 @@ class LoadingButton @JvmOverloads constructor(
     }
 
     var OnClick: (() -> Unit)? = null
+
+    fun onClickProgress(isProgress: Boolean = false, onClick: () -> Unit) {
+        if (isProgress) {
+            binding.btnCall.setOnClickListener {
+                it.isEnabled = false
+                it.isClickable = false
+                binding.btnCall.text = ""
+                binding.progressBar.visible()
+                onClick()
+            }
+        } else {
+            binding.btnCall.setOnClickListener {
+                onClick()
+            }
+        }
+    }
+
+    fun enableButton(isEnabled: Boolean = false) {
+        binding.btnCall.isEnabled = isEnabled
+    }
 
     private var text: String? = null
         set(value) {
@@ -34,13 +52,6 @@ class LoadingButton @JvmOverloads constructor(
 
     init {
         with(binding) {
-            btnCall.setOnClickListener {
-                btnCall.isEnabled = false
-                btnCall.isClickable = false
-                btnCall.text = ""
-                progressBar.visible()
-                OnClick?.invoke()
-            }
             attrs?.let {
                 val defaultWhiteColor = context.color(ColorRes.colorOnSecondary)
                 val typedArray: TypedArray =
@@ -48,21 +59,16 @@ class LoadingButton @JvmOverloads constructor(
                 val text = typedArray.getString(R.styleable.LoadingButton_text)
                 this@LoadingButton.text = text
                 val textColor = typedArray.getColor(
-                    R.styleable.LoadingButton_textColor,
-                    defaultWhiteColor
+                    R.styleable.LoadingButton_textColor, defaultWhiteColor
                 )
                 btnCall.setTextColor(textColor)
-                val progressBarTintColor =
-                    typedArray.getColor(
-                        R.styleable.LoadingButton_progressBarTintColor,
-                        defaultWhiteColor
-                    )
+                val progressBarTintColor = typedArray.getColor(
+                    R.styleable.LoadingButton_progressBarTintColor, defaultWhiteColor
+                )
                 //progressBar.progressTintList = context.colorStateList(progressBarTintColor)
-                val btnBackgroundColor =
-                    typedArray.getColor(
-                        R.styleable.LoadingButton_backgroundColor,
-                        context.color(ColorRes.colorPrimary)
-                    )
+                val btnBackgroundColor = typedArray.getColor(
+                    R.styleable.LoadingButton_backgroundColor, context.color(ColorRes.colorPrimary)
+                )
                 btnCall.setBackgroundColor(btnBackgroundColor)
                 typedArray.recycle()
             }
