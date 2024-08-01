@@ -15,5 +15,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     override fun setup() {
 
 
+        binding.btnLogin.OnClick = {
+            findNavController().navigate(
+                R.id.action_loginFragment_to_registrationFragment
+            )
+        }
     }
 }
