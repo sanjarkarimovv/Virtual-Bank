@@ -3,7 +3,6 @@ package uz.androbeck.virtualbank.ui.screens.auth.registration
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -72,22 +71,21 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
                         return@onEach
                     }
                     if (isAccess) {
-                        btnSignUp.onClickProgress(isProgress = true) { }
+                        btnSignUp.buttonState(isProgress = true)
                         requestModel?.let(vm::signUp)
                     }
                 }.launchIn(this)
 
                 signUpEvent.onEach {
-                    if (it) findNavController().popBackStack()
+                    btnSignUp.buttonState(isProgress = false)
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
                 }.launchIn(this)
             }
         }
 
-        messageController
-            .observeMessage()
-            .onEach {
-                toast(it)
-            }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+        messageController.observeMessage().onEach {
+            btnSignUp.buttonState(isProgress = false)
+            toast(it)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 }

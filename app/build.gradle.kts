@@ -89,6 +89,10 @@ dependencies {
     //MaskedEditText
     implementation(libs.input.redmadrobot)
 
+    //chucker
+    debugImplementation(libs.chucker.library)
+    releaseImplementation(libs.chucker.library.no.op)
+
     //room
     implementation(libs.androidx.room)
     kapt(libs.androidx.room.compiler)

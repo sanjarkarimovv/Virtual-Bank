@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.LayoutLoadingButtonBinding
@@ -22,26 +23,25 @@ class LoadingButton @JvmOverloads constructor(
         LayoutLoadingButtonBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
-    var OnClick: (() -> Unit)? = null
+    var OnClick: ((isProgress: Boolean) -> Unit)? = null
 
     fun onClickProgress(isProgress: Boolean = false, onClick: () -> Unit) {
-        if (isProgress) {
-            binding.btnCall.setOnClickListener {
-                it.isEnabled = false
-                it.isClickable = false
-                binding.btnCall.text = ""
-                binding.progressBar.visible()
-                onClick()
-            }
-        } else {
-            binding.btnCall.setOnClickListener {
-                onClick()
-            }
+        binding.btnCall.setOnClickListener {
+            buttonState(isProgress)
+            onClick()
         }
     }
 
-    fun enableButton(isEnabled: Boolean = false) {
-        binding.btnCall.isEnabled = isEnabled
+    fun buttonState(isProgress: Boolean) = with(binding) {
+        btnCall.isEnabled = !isProgress
+        btnCall.isClickable = !isProgress
+        if (isProgress) {
+            btnCall.text = ""
+            progressBar.visible()
+        } else {
+            progressBar.gone()
+            btnCall.text = this@LoadingButton.text
+        }
     }
 
     private var text: String? = null
