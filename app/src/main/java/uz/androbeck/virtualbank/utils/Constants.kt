@@ -8,6 +8,7 @@ object Constants {
     object Endpoint {
         const val SIGN_UP = "auth/sign-up"
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
+        const val SIGN_IN_RESEND = "auth/sign-in/resend"
     }
 
     object Header {
