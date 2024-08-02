@@ -17,6 +17,6 @@ object UseCaseModule {
     fun provideSignUpUseCase(
         authenticationRepository: AuthenticationRepository,
         tokenMapper: TokenMapper,
-        signUpMapper: SignUpMapper
+        signUpMapper: SignUpMapper,
     ) = SignUpUseCase(authenticationRepository, tokenMapper, signUpMapper)
 }

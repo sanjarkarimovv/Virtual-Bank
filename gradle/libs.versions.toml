@@ -1,5 +1,5 @@
 [versions]
-agp = "8.4.2"
+agp = "8.4.0"
 kotlin = "1.9.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -23,6 +23,7 @@ viewbinding = "1.5.9"
 securityCryptoKtx = "1.1.0-alpha06"
 redmadrobot = "7.2.4"
 roomVertion ="2.5.1"
+chucker-library = "4.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -49,6 +50,8 @@ input-redmadrobot = { group = "com.redmadrobot", name = "input-mask-android", ve
 androidx-room ={group="androidx.room",name="room-runtime",version.ref="roomVertion"}
 androidx-room-compiler ={group="androidx.room",name="room-compiler",version.ref="roomVertion"}
 androidx-room-kapt ={group="androidx.room",name="room-ktx",version.ref="roomVertion"}
+chucker-library = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker-library" }
+chucker-library-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker-library" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
