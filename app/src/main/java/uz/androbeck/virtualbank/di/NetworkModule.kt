@@ -107,7 +107,7 @@ object NetworkModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         converter: Converter.Factory,
-        callFactory: ErrorHandlingCallAdapterFactory
+        callFactory: ErrorHandlingCallAdapterFactory,
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
@@ -120,7 +120,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthService(
-        retrofit: Retrofit
+        retrofit: Retrofit,
     ): AuthenticationService = retrofit.create(AuthenticationService::class.java)
 
     @Provides

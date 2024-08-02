@@ -20,5 +20,4 @@ object SourceModule {
     ): AuthenticationRemoteDataSource {
         return AuthenticationRemoteDataSourceImpl(service)
     }
-
 }
