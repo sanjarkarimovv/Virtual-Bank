@@ -27,4 +27,9 @@
         <!--        <attr name="cornerRadius" format="integer" />-->
         <attr name="progressBarTintColor" format="color" />
     </declare-styleable>
+    <declare-styleable name="CustomEnterCodeEditText">
+        <attr name="exampleAttribute" format="string"/>
+        <attr name="verifyBoxBackgroundColor" format="color" />
+        <attr name="verifyBoxStrokeColor" format="color" />
+    </declare-styleable>
 </resources>

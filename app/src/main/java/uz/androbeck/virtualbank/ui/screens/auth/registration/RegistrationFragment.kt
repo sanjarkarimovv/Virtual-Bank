@@ -13,6 +13,7 @@ import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.ui.customViews.dialogs.dialog_enter_verify_code.CustomEnterVerifyCodeDialog
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
@@ -39,7 +40,9 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     override fun clicks(): Unit = with(binding) {
         btnSignUp.onClickProgress(isProgress = false) {
-            accessSignUp()
+//            accessSignUp()
+            val dialog = CustomEnterVerifyCodeDialog()
+            dialog.show(parentFragmentManager, "CustomDialog")
         }
     }
 
