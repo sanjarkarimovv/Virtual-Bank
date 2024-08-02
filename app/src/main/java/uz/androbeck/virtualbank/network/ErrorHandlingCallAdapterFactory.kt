@@ -15,16 +15,15 @@ import uz.androbeck.virtualbank.network.errors.HttpResponseException
 import uz.androbeck.virtualbank.network.errors.IncorrectCredentialsException
 import uz.androbeck.virtualbank.network.errors.IncorrectEndTimeProvidedException
 import uz.androbeck.virtualbank.network.errors.NetworkException
-import uz.androbeck.virtualbank.network.errors.OtherNetworkException
 import uz.androbeck.virtualbank.network.errors.ParseErrorResponseException
 import uz.androbeck.virtualbank.network.errors.UnauthorizedException
 import uz.androbeck.virtualbank.network.errors.UnknownException
 import uz.androbeck.virtualbank.network.errors.UserNotVerified
 import java.io.IOException
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 import javax.inject.Inject
 import javax.inject.Singleton
-import java.lang.reflect.Type
-import java.lang.reflect.ParameterizedType
 
 @Singleton
 class ErrorHandlingCallAdapterFactory @Inject constructor(
@@ -97,7 +96,8 @@ internal class HttpErrorToThrowableCall<T>(
                 } else if (response.code() == 401) {
                     callback.onFailure(call, UnauthorizedException())
                 } else {
-                    callback.onFailure(call, getApiError(response.errorBody()?.string()))
+                    getApiError(response.errorBody()?.string())?.let{
+                    callback.onFailure(call, it)}
                 }
             }
 
@@ -113,6 +113,7 @@ internal class HttpErrorToThrowableCall<T>(
     }
 
     private fun getApiError(body: String?): HttpResponseException {
+        println("::body $body")
         body ?: return ErrorResponseEmptyException()
         val errorResponse = try {
             json.decodeFromString(ErrorResDto.serializer(), body)
@@ -126,8 +127,7 @@ internal class HttpErrorToThrowableCall<T>(
             ApiErrorType.INCORRECT_END_TIME_PROVIDED -> IncorrectEndTimeProvidedException(
                 errorResponse.message.orEmpty()
             )
-
-            null -> OtherNetworkException(errorResponse.code ?: -1)
+            null -> null!!
             ApiErrorType.ERROR_RESPONSE_EMPTY -> ErrorResponseEmptyException()
         }
     }

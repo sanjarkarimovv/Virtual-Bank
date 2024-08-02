@@ -16,8 +16,5 @@ interface AuthenticationService {
     @POST(Constants.Endpoint.SIGN_IN)
     suspend fun signIn(
         @Body request: SignInReqDto
-    ):TokenResDto
-
-
-
+    ): TokenResDto
 }

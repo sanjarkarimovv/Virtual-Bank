@@ -30,8 +30,8 @@ class LoginViewModel @Inject constructor(
     private fun signIn() {
         viewModelScope.launch(Dispatchers.IO) {
             val singInReqUIModel = SignInReqUIModel(
-                phone = "+998900081712",// or "+998971714240",
-                password = "Qwerty1234" // or "1234qweR"
+                phone = "+998971714240",// or "+998971714240",
+                password = "1234qweR" // or "1234qweR"
             )
             signInUseCase.invoke(singInReqUIModel)
                 .onEach {
