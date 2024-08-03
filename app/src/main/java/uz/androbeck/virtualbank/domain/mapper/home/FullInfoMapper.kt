@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.domain.mapper.fullInfo
+package uz.androbeck.virtualbank.domain.mapper.home
 
 import uz.androbeck.virtualbank.data.dto.request.FullInfoDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
