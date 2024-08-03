@@ -19,7 +19,7 @@ class CustomFilledTextField @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var textInputLayout: TextInputLayout
-    private var textInputEditText: TextInputEditText
+     private var textInputEditText: TextInputEditText
 
     init {
         LayoutInflater.from(context).inflate(R.layout.custom_filled_text_field, this, true)

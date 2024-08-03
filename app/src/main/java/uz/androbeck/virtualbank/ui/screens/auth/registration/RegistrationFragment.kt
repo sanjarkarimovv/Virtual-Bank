@@ -1,5 +1,7 @@
 package uz.androbeck.virtualbank.ui.screens.auth.registration
 
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +16,10 @@ import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.ui.screens.auth.login.logics.WEText
+import uz.androbeck.virtualbank.utils.extentions.invisible
 import uz.androbeck.virtualbank.utils.extentions.toast
+import uz.androbeck.virtualbank.utils.extentions.visible
 import javax.inject.Inject
 
 // +99899-856-42-50
@@ -33,59 +38,50 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     @Inject
     lateinit var messageController: MessageController
 
-    override fun setup() {
 
+    override fun setup() {
+        binding.btnSignUp.invisible()
+        WEText(
+            listOf(
+                binding.etFirstName,
+                binding.etLastName,
+                binding.etPassword,
+                binding.etConfirmPassword,
+                binding.etPhoneNumber,
+                binding.etDate
+            )
+        ).listener().observe(viewLifecycleOwner) {
+            when (it) {
+                is WEText.ETEvent.Success -> {
+                    binding.btnSignUp.visible()
+                    toast(it.massage)
+                }
+                is WEText.ETEvent.Error -> {
+                    toast(it.massage) //berilgan index dagi view ni qaytaradi
+                }
+
+                is WEText.ETEvent.SuccessItem -> {
+                    toast(it.massage) //berilgan index dagi view ni qaytaradi
+                }
+            }
+        }
     }
 
     override fun clicks(): Unit = with(binding) {
         btnSignUp.onClickProgress(isProgress = false) {
-            accessSignUp()
-        }
-    }
+            if (binding.etConfirmPassword.text.toString() == binding.etPassword.text.toString()) {
+                // success ruxsat bor
+                toast("ruxsat bor")
+              //  accessSignUp()
 
-    private fun accessSignUp() = with(binding) {
-        val firstName = etFirstName.text?.toString().orEmpty()
-        val lastName = etLastName.text?.toString().orEmpty()
-        val password = etPassword.text?.toString().orEmpty()
-        val confirmPassword = etConfirmPassword.text?.toString().orEmpty()
-        val phoneNumber = etPhoneNumber.text?.toString().orEmpty()
-        val bornDate = etDate.text?.toString().orEmpty()
-        val gender = if (cbGender.isChecked) 0 else 1
-        val requestModel = SignUpReqUIModel(
-            firstName = firstName,
-            lastName = lastName,
-            password = password,
-            phone = phoneNumber,
-            bornDate = bornDate,
-            gender = gender
-        )
-        vm.accessSignUp(requestModel, confirmPassword)
-    }
-
-    override fun observe(): Unit = with(binding) {
-        with(vm) {
-            with(viewLifecycleOwner.lifecycleScope) {
-                accessSignUp.onEach { (isAccess, message, requestModel) ->
-                    if (!isAccess && message.isNotEmpty()) {
-                        toast(message)
-                        return@onEach
-                    }
-                    if (isAccess) {
-                        btnSignUp.buttonState(isProgress = true)
-                        requestModel?.let(vm::signUp)
-                    }
-                }.launchIn(this)
-
-                signUpEvent.onEach {
-                    btnSignUp.buttonState(isProgress = false)
-                    requireActivity().onBackPressedDispatcher.onBackPressed()
-                }.launchIn(this)
+            } else {
+                Toast.makeText(requireContext(), "ikkinchi patol xato", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
-
-        messageController.observeMessage().onEach {
-            btnSignUp.buttonState(isProgress = false)
-            toast(it)
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
+
+
+    override fun observe() {}
+
 }
