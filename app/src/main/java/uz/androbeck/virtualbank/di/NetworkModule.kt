@@ -2,7 +2,9 @@ package uz.androbeck.virtualbank.di
 
 import android.content.Context
 import android.util.Log
+import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -22,7 +24,10 @@ import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
+import uz.androbeck.virtualbank.utils.Constants
 import javax.inject.Singleton
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -33,6 +38,26 @@ object NetworkModule {
         return json.asConverterFactory("application/json".toMediaType())
     }
 
+    @Provides
+    @Singleton
+    fun provideChuckerCollector(context: Context) = ChuckerCollector(
+        context = context,
+        showNotification = true,
+        retentionPeriod = RetentionManager.Period.ONE_HOUR
+    )
+
+    @Provides
+    @Singleton
+    fun provideChuckerInterceptor(
+        context: Context,
+        collector: ChuckerCollector
+    ) = ChuckerInterceptor.Builder(context)
+        .collector(collector)
+        .maxContentLength(250_000L)
+        .redactHeaders(Constants.Header.TOKEN_TITLE, Constants.Header.TOKEN_TYPE)
+        .alwaysReadResponseBody(true)
+        .createShortcut(true)
+        .build()
 
     @[Provides Singleton]
     fun provideJsonSerializer(): Json {
@@ -44,18 +69,29 @@ object NetworkModule {
     }
 
     @[Provides Singleton]
-    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
+    fun provideOkHttpClient(
+        prefsProvider: PreferencesProvider,
+        @ApplicationContext context: Context
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder().apply {
-                    addHeader("accept", "application/json")
+                    if (prefsProvider.token.isNotEmpty()){
+                        addHeader(
+                            Constants.Header.TOKEN_TITLE,
+                            Constants.Header.TOKEN_TYPE + " " + prefsProvider.token
+                        )
+                    }
+                    addHeader(
+                        Constants.Header.ACCEPT_TITLE,
+                        Constants.Header.APPLICATION_JSON_VALUE
+                    )
                 }
                     .method(original.method, original.body)
                     .build()
                 chain.proceed(request)
             }
-            .addInterceptor(ChuckerInterceptor(context))
             .addInterceptor(
                 HttpLoggingInterceptor { message ->
                     Log.d("OkHttp", message)
@@ -63,6 +99,7 @@ object NetworkModule {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             )
+            .addInterceptor(ChuckerInterceptor(context))
             .build()
     }
 
@@ -71,7 +108,7 @@ object NetworkModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         converter: Converter.Factory,
-        callFactory: ErrorHandlingCallAdapterFactory
+        callFactory: ErrorHandlingCallAdapterFactory,
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
@@ -84,7 +121,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthService(
-        retrofit: Retrofit
+        retrofit: Retrofit,
     ): AuthenticationService = retrofit.create(AuthenticationService::class.java)
 
     @Provides

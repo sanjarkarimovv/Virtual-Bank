@@ -15,7 +15,7 @@ class SignUpMapper @Inject constructor() : BaseMapper<SignUpReqDto, SignUpReqUIM
             password = password,
             phone = phone,
             bornDate = born_date,
-            gender = gender
+            gender = gender?.toInt()
         )
     }
 
@@ -26,7 +26,7 @@ class SignUpMapper @Inject constructor() : BaseMapper<SignUpReqDto, SignUpReqUIM
             password = password,
             phone = phone,
             born_date = bornDate,
-            gender = gender
+            gender = gender.toString()
         )
     }
 }

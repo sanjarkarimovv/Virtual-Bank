@@ -15,10 +15,14 @@ abstract class BaseFragment(
         super.onViewCreated(view, savedInstanceState)
         setBackgroundColorToScreen(view)
         setup()
+        clicks()
+        observe()
     }
 
     abstract fun setup()
     open fun setup(view: View) {}
+    open fun clicks() {}
+    open fun observe() {}
     open fun setBackgroundColorToScreen(view: View, color: Int = R.color.colorSurface) {
         view.setBackgroundColor(color(color))
     }
