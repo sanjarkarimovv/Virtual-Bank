@@ -10,4 +10,5 @@ class HomeRepositoryImpl @Inject constructor(
     private val homeRemoteDataSource: HomeRemoteDataSource,
     ) : HomeRepository {
     override fun getFullInfo(): Flow<FullInfoDto> = homeRemoteDataSource.getFullInfo()
+    override fun getTotalBalance()= homeRemoteDataSource.getTotalBalance()
 }

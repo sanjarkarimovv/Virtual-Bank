@@ -7,10 +7,13 @@ import uz.androbeck.virtualbank.data.dto.request.FullInfoDto
 import javax.inject.Inject
 
 class HomeRemoteDataSourceImpl @Inject constructor(
-    private val fullInfoService: HomeService
+    private val fullInfoService: HomeService,
 ) : HomeRemoteDataSource {
     override fun getFullInfo(): Flow<FullInfoDto> = flow {
-            emit(fullInfoService.getFullInfo())
-        }
+        emit(fullInfoService.getFullInfo())
+    }
 
+    override fun getTotalBalance() = flow {
+        emit(fullInfoService.getTotalBalance())
+    }
 }
