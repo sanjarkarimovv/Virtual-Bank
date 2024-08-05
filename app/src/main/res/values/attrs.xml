@@ -27,4 +27,15 @@
         <!--        <attr name="cornerRadius" format="integer" />-->
         <attr name="progressBarTintColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="VirtualBankProgressButton">
+        <attr name="android:text" />
+    </declare-styleable>
+
+    <declare-styleable name="VirtualBankInputSimple">
+        <attr name="hintText"/>
+        <attr name="helperText" />
+        <attr name="errorEnabled" />
+    </declare-styleable>
+
 </resources>

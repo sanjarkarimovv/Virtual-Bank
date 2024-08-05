@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <uz.androbeck.virtualbank.ui.customViews.edit_texts.CustomOutlinedTextField
+    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
         android:id="@+id/et_phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -17,7 +17,7 @@
         app:hintText="Phone number"
         app:scrollHorizontally="true" />
 
-    <uz.androbeck.virtualbank.ui.customViews.edit_texts.CustomOutlinedTextField
+    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -32,24 +32,24 @@
         app:scrollHorizontally="true" />
 
 
-    <uz.androbeck.virtualbank.ui.customViews.buttons.LoadingButton
+    <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankButton
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_login"
-        android:layout_centerInParent="true"
-        app:backgroundColor="@color/colorSurfaceContainerLow"
-        app:text="Sign up"
-        app:textColor="@color/colorPrimary" />
+        android:text="Sign in"
+        style="@style/VirtualBankButton.Filled"
+        android:layout_centerInParent="true" />
 
-    <uz.androbeck.virtualbank.ui.customViews.buttons.LoadingButton
+    <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        style="@style/VirtualBankButton.Filled"
         android:layout_marginBottom="30dp"
-        app:text="Login" />
+        android:text="Login" />
 
 
 </RelativeLayout>

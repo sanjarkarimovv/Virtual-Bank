@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankButton
+        android:id="@+id/button"
+        style="@style/VirtualBankButton.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@android:color/transparent"
+        android:indeterminate="true"
+        app:indicatorColor="@color/static_white"
+        app:indicatorSize="24dp"
+        app:trackThickness="2dp" />
+
+</FrameLayout>

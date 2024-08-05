@@ -33,6 +33,7 @@
     <color name="colorSurfaceContainerHigh">#2B2930</color>
     <color name="colorSurfaceContainerHighest">#36343B</color>
     <color name="colorOnSurface">#E6E0E9</color>
+    <color name="colorOnSurface12">#1FE6E0E9</color>
     <color name="colorOnSurfaceVar">#CAC4D0</color>
     <color name="colorOutline">#938F99</color>
     <color name="colorOutlineVariant">#49454F</color>
