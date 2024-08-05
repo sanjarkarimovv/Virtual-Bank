@@ -7,6 +7,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         android:layout_gravity="center">
 
         <LinearLayout
@@ -16,47 +17,59 @@
             android:layout_marginHorizontal="16dp"
             android:orientation="vertical">
 
-            <EditText
+            <uz.androbeck.virtualbank.ui.customViews.inputs.VirtualBankInputSimple
                 android:id="@+id/et_first_name"
+                style="@style/VirtualBankInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/str_first_name"
-                android:inputType="text" />
+                android:inputType="text"
+                app:errorEnabled="false"
+                app:hintText="@string/str_first_name" />
 
-            <EditText
+            <uz.androbeck.virtualbank.ui.customViews.inputs.VirtualBankInputSimple
                 android:id="@+id/et_last_name"
+                style="@style/VirtualBankInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/str_last_name"
-                android:inputType="text" />
+                android:inputType="text"
+                app:errorEnabled="false"
+                app:hintText="@string/str_last_name" />
 
-            <EditText
+            <uz.androbeck.virtualbank.ui.customViews.inputs.VirtualBankInputSimple
                 android:id="@+id/et_password"
+                style="@style/VirtualBankInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/str_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                app:errorEnabled="false"
+                app:hintText="@string/str_password" />
 
-            <EditText
+            <uz.androbeck.virtualbank.ui.customViews.inputs.VirtualBankInputSimple
                 android:id="@+id/et_confirm_password"
+                style="@style/VirtualBankInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/str_confirm_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                app:errorEnabled="false"
+                app:hintText="@string/str_confirm_password" />
 
-            <EditText
+            <uz.androbeck.virtualbank.ui.customViews.inputs.VirtualBankInputSimple
                 android:id="@+id/et_phone_number"
+                style="@style/VirtualBankInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/str_phone_number"
-                android:inputType="number" />
+                android:inputType="number"
+                app:errorEnabled="false"
+                app:hintText="@string/str_phone_number" />
 
-            <EditText
+            <uz.androbeck.virtualbank.ui.customViews.inputs.VirtualBankInputSimple
                 android:id="@+id/et_date"
+                style="@style/VirtualBankInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/str_born_date"
-                android:inputType="date" />
+                android:inputType="date"
+                app:errorEnabled="false"
+                app:hintText="@string/str_born_date" />
 
             <CheckBox
                 android:id="@+id/cb_gender"
@@ -64,11 +77,14 @@
                 android:layout_height="wrap_content"
                 android:text="Male" />
 
-            <uz.androbeck.virtualbank.ui.customViews.buttons.LoadingButton
+            <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankProgressButton
                 android:id="@+id/btn_sign_up"
+                style="@style/VirtualBankButton.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:text="@string/str_sign_up" />
+                android:layout_marginTop="32dp"
+                android:enabled="true"
+                android:text="@string/str_sign_up" />
 
         </LinearLayout>
     </ScrollView>
