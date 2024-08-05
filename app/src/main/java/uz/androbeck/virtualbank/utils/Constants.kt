@@ -8,6 +8,7 @@ object Constants {
     object Endpoint {
         const val SIGN_UP = "auth/sign-up"
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
+        const val UPDATE_TOKEN = "auth/update-token"
     }
 
     object Header {
@@ -15,5 +16,9 @@ object Constants {
         const val ACCEPT_TITLE = "accept"
         const val APPLICATION_JSON_VALUE = "application/json"
         const val TOKEN_TYPE = "Bearer"
+    }
+
+    object Sggggvs{
+        const val UPDATE_TOKEN = "auth/update-token"
     }
 }
