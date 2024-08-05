@@ -14,7 +14,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getUserFullInfo(){
-        getFullInfoUseCase.invoke().onEach {
+        getFullInfoUseCase().onEach {
             println(it)
         }.launchIn(viewModelScope)
     }
