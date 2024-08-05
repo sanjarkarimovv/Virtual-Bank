@@ -12,5 +12,6 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val binding: FragmentMainBinding by viewBinding()
     override fun setup() {
         viewModel.getUserFullInfo()
+        viewModel.putUpdateInfo()
     }
 }
