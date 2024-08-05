@@ -77,7 +77,7 @@ object NetworkModule {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder().apply {
-                    if (prefsProvider.token.isNotEmpty()){
+                    if (prefsProvider.token.isNotEmpty()) {
                         addHeader(
                             Constants.Header.TOKEN_TITLE,
                             Constants.Header.TOKEN_TYPE + " " + prefsProvider.token

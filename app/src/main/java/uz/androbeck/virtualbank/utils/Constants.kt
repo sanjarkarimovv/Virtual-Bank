@@ -11,6 +11,7 @@ object Constants {
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
         const val FULL_INFO = "/home/user-info/details"
         const val UPDATE_INFO = "home/user-info"
+        const val BASIC_INFO ="/home/user-info"
     }
 
     object Header {
