@@ -6,6 +6,8 @@ import javax.inject.Inject
 class HomeRepositoryImpl @Inject constructor(
     private val homeRemoteDataSource: HomeRemoteDataSource,
 ) : HomeRepository {
-    override fun getFullInfo() =
-        homeRemoteDataSource.getFullInfo()
+    override fun getFullInfo() = homeRemoteDataSource.getFullInfo()
+
+    override fun getBasicInfo() = homeRemoteDataSource.getBasicInfo()
+
 }

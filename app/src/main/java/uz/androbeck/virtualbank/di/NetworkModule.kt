@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.di
 
+import android.content.Context
 import android.util.Log
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -76,7 +77,7 @@ object NetworkModule {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder().apply {
-                    if (prefsProvider.token.isNotEmpty()){
+                    if (prefsProvider.token.isNotEmpty()) {
                         addHeader(
                             Constants.Header.TOKEN_TITLE,
                             Constants.Header.TOKEN_TYPE + " " + prefsProvider.token
