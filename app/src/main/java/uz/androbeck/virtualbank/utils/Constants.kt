@@ -8,6 +8,7 @@ object Constants {
 
     object Endpoint {
         const val SIGN_UP = "auth/sign-up"
+        const val SIGN_IN = "auth/sign-in"
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
         const val FULL_INFO = "/home/user-info/details"
         const val UPDATE_INFO = "home/user-info"

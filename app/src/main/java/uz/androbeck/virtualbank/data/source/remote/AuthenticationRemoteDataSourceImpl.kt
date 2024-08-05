@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpVerifyReqDto
+import uz.androbeck.virtualbank.data.dto.request.sign_in_request.SignInReqDto
 import javax.inject.Inject
 
 class AuthenticationRemoteDataSourceImpl @Inject constructor(
@@ -13,7 +14,11 @@ class AuthenticationRemoteDataSourceImpl @Inject constructor(
         emit(service.signUp(request))
     }
 
-    override fun signUpVerify(request: SignUpVerifyReqDto)= flow {
+    override fun signUpVerify(request: SignUpVerifyReqDto) = flow {
         emit(service.signUpVerify(request))
+    }
+
+    override fun signIn(request: SignInReqDto) = flow {
+        emit(service.signIn(request))
     }
 }

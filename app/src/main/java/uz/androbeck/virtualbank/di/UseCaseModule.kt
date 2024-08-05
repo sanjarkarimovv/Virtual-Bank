@@ -8,6 +8,9 @@ import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRep
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
+import uz.androbeck.virtualbank.domain.useCase.authentication.SignInUseCase
+import uz.androbeck.virtualbank.domain.useCase.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
@@ -25,6 +28,13 @@ object UseCaseModule {
         tokenMapper: TokenMapper,
         signUpMapper: SignUpMapper,
     ) = SignUpUseCase(authenticationRepository, tokenMapper, signUpMapper)
+
+    @Provides
+    fun provideSignInUseCase(
+        authenticationRepository: AuthenticationRepository,
+        tokenMapper: TokenMapper,
+        signInMapper: SignInMapper,
+    ) = SignInUseCase(authenticationRepository, tokenMapper, signInMapper)
 
     @Provides
     fun provideGetFullInfoUseCase(
