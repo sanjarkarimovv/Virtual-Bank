@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SingInResendReqDto(
+data class SingInResendTokenReqDto(
     @SerialName("token")
     val token: String? = null
 )
