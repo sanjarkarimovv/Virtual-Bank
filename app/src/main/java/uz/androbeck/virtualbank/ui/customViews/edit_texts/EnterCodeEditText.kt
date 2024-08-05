@@ -3,12 +3,12 @@ package uz.androbeck.virtualbank.ui.customViews.edit_texts
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomEnterCodeEditTextBinding
 
@@ -44,29 +44,17 @@ class EnterCodeEditText @JvmOverloads constructor(
                 typedArray.recycle()
             }
 
-            binding.nameEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int,
-                ) {
+            binding.nameEditText.addTextChangedListener { s ->
+                if (s?.length == 1) {
+                    nextEditText?.requestFocus()
+                } else if (s?.length == 0) {
+                    previousEditText?.requestFocus()
                 }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-                override fun afterTextChanged(s: Editable?) {
-                    if (s?.length == 1) {
-                        nextEditText?.requestFocus()
-                    } else if (s?.length == 0) {
-                        previousEditText?.requestFocus()
-                    }
-                }
-            })
+            }
         }
     }
 
-    fun addTextChangedListener(watcher: TextWatcher) {
+    fun addTextChangedListeners(watcher: TextWatcher) {
         binding.nameEditText.addTextChangedListener(watcher)
     }
 }

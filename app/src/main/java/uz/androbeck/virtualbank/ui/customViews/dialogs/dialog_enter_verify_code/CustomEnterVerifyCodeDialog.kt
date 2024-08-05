@@ -64,7 +64,7 @@ class CustomEnterVerifyCodeDialog : DialogFragment() {
         }
 
         editTextList.forEachIndexed { index, editText ->
-            editText.addTextChangedListener(object : TextWatcher {
+            editText.addTextChangedListeners(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
