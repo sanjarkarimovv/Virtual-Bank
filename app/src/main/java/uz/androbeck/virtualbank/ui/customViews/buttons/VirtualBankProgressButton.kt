@@ -23,6 +23,13 @@ class VirtualBankProgressButton @JvmOverloads constructor(
             binding.button.onClick = value
         }
 
+    var isEnable: Boolean = false
+        set(value) {
+            field = value
+            binding.button.isClickable = value
+            binding.button.isEnabled = value
+        }
+
     var text: CharSequence? = null
         set(value) {
             field = value

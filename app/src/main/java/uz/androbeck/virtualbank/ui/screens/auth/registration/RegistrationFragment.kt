@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.auth.registration
 
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -33,22 +34,36 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     @Inject
     lateinit var messageController: MessageController
 
-    override fun setup() {
+    private var requestModel: SignUpReqUIModel? = null
 
+    override fun setup() {
+        binding.btnSignUp.isEnable = false
     }
 
     override fun clicks(): Unit = with(binding) {
-//        btnSignUp.onClickProgress(isProgress = false) {
-//            accessSignUp()
-//        }
-
         btnSignUp.onClick = {
-            println(":::AAA clicked")
             btnSignUp.isProgress = true
-            lifecycleScope.launch {
-                delay(5000L)
-                btnSignUp.isProgress = false
-            }
+            requestModel?.let(vm::signUp)
+            requestModel = null
+        }
+
+        etFirstName.editText.addTextChangedListener {
+            accessSignUp()
+        }
+        etLastName.editText.addTextChangedListener {
+            accessSignUp()
+        }
+        etPassword.editText.addTextChangedListener {
+            accessSignUp()
+        }
+        etConfirmPassword.editText.addTextChangedListener {
+            accessSignUp()
+        }
+        etPhoneNumber.editText.addTextChangedListener {
+            accessSignUp()
+        }
+        etDate.editText.addTextChangedListener {
+            accessSignUp()
         }
     }
 
@@ -75,26 +90,31 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         with(vm) {
             with(viewLifecycleOwner.lifecycleScope) {
                 accessSignUp.onEach { (isAccess, message, requestModel) ->
+                    btnSignUp.isEnable = isAccess
                     if (!isAccess && message.isNotEmpty()) {
-                        toast(message)
+                        println(message)
                         return@onEach
                     }
                     if (isAccess) {
-//                        btnSignUp.buttonState(isProgress = true)
-//                        requestModel?.let(vm::signUp)
+                        this@RegistrationFragment.requestModel = requestModel
                     }
                 }.launchIn(this)
 
                 signUpEvent.onEach {
-//                    btnSignUp.buttonState(isProgress = false)
+                    btnSignUp.isProgress = false
                     requireActivity().onBackPressedDispatcher.onBackPressed()
                 }.launchIn(this)
             }
         }
 
         messageController.observeMessage().onEach {
-//            btnSignUp.buttonState(isProgress = false)
+            btnSignUp.isProgress = false
             toast(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requestModel = null
     }
 }
