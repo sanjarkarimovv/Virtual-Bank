@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.data.repository
 
+import uz.androbeck.virtualbank.data.dto.request.SignInVerifyReqDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpVerifyReqDto
 import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSource
@@ -10,6 +11,9 @@ class AuthenticationRepositoryImpl @Inject constructor(
 ) : AuthenticationRepository {
     override fun signUp(request: SignUpReqDto) =
         remoteDataSource.signUp(request)
+    override fun signInVerify(request: SignInVerifyReqDto) =
+        remoteDataSource.signInVerify(request)
+
 
     override fun signUpVerify(request: SignUpVerifyReqDto)=
         remoteDataSource.signUpVerify(request)
