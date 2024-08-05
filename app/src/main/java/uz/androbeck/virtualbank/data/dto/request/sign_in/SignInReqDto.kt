@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.dto.request.sign_in_request
+package uz.androbeck.virtualbank.data.dto.request.sign_in
 
 import kotlinx.serialization.SerialName
 

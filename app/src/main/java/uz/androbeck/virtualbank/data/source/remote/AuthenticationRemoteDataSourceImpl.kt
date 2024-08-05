@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpVerifyReqDto
-import uz.androbeck.virtualbank.data.dto.request.sign_in_request.SignInReqDto
+import uz.androbeck.virtualbank.data.dto.request.sign_in.SignInReqDto
 import uz.androbeck.virtualbank.data.dto.request.TokenReqDto
 import javax.inject.Inject
 
