@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.di
 
+import android.content.Context
 import android.util.Log
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor

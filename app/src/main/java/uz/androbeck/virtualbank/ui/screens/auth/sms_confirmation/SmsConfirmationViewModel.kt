@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpVerifyReqUIModel
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpVerifyTokenUIModel
-import uz.androbeck.virtualbank.domain.useCase.authentication.SignUpVerifyUseCase
+import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpVerifyUseCase
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import javax.inject.Inject
 

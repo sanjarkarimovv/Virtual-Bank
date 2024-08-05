@@ -2,7 +2,7 @@ package uz.androbeck.virtualbank.domain.useCases.home
 
 import kotlinx.coroutines.flow.map
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
-import uz.androbeck.virtualbank.domain.mapper.fullInfo.FullInfoMapper
+import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import javax.inject.Inject
 
 class GetFullInfoUseCase @Inject constructor(
