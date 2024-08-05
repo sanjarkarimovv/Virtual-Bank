@@ -38,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_login"
         android:text="Sign in"
+        android:layout_marginBottom="16dp"
+        android:layout_marginHorizontal="16dp"
         style="@style/VirtualBankButton.Filled"
         android:layout_centerInParent="true" />
 
@@ -47,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:layout_marginHorizontal="16dp"
         style="@style/VirtualBankButton.Filled"
         android:layout_marginBottom="30dp"
         android:text="Login" />
