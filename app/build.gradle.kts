@@ -99,7 +99,13 @@ dependencies {
     implementation(libs.androidx.room)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.kapt)
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+
+    //logging interceptor, serialization json,serialization converter
+    implementation(libs.logging.interceptor)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.converter)
+
+    //Chucker interceptor
+    debugImplementation(libs.chucker.interceptor)
+    releaseImplementation(libs.chucker.interceptor.no.op)
 }

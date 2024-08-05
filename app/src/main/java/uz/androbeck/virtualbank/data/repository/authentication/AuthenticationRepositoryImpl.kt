@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.repository
+package uz.androbeck.virtualbank.data.repository.authentication
 
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpVerifyReqDto
