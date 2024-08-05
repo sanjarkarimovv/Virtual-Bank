@@ -3,7 +3,7 @@ package uz.androbeck.virtualbank.data.source.remote
 import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
-import uz.androbeck.virtualbank.data.dto.request.SignUpResendReqDto
+import uz.androbeck.virtualbank.data.dto.request.TokenReqDto
 import javax.inject.Inject
 
 class AuthenticationRemoteDataSourceImpl @Inject constructor(
@@ -13,7 +13,7 @@ class AuthenticationRemoteDataSourceImpl @Inject constructor(
         emit(service.signUp(request))
     }
 
-    override fun signUpResend(request: SignUpResendReqDto) = flow {
+    override fun signUpResend(request: TokenReqDto) = flow {
         emit(service.signUpResend(request))
     }
 }

@@ -4,7 +4,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import uz.androbeck.virtualbank.data.dto.common.response.TokenResDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
-import uz.androbeck.virtualbank.data.dto.request.SignUpResendReqDto
+import uz.androbeck.virtualbank.data.dto.request.TokenReqDto
 import uz.androbeck.virtualbank.utils.Constants
 
 interface AuthenticationService {
@@ -15,6 +15,6 @@ interface AuthenticationService {
 
     @POST(Constants.Endpoint.SIGN_UP_RESEND)
     suspend fun signUpResend(
-        @Body request: SignUpResendReqDto
+        @Body request: TokenReqDto
     ) : TokenResDto
 }

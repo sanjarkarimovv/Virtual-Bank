@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.map
 import uz.androbeck.virtualbank.data.repository.AuthenticationRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
-import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpResendReqUIModel
+import uz.androbeck.virtualbank.domain.ui_models.authentication.TokenReqUIModel
 import uz.androbeck.virtualbank.domain.ui_models.common.TokenUIModel
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class SignUpResendUseCase @Inject constructor(
     private val tokenMapper: TokenMapper,
     private val signUpResendMapper: SignUpResendMapper
 ) {
-    operator fun invoke(uiReqModel: SignUpResendReqUIModel): Flow<TokenUIModel> {
+    operator fun invoke(uiReqModel: TokenReqUIModel): Flow<TokenUIModel> {
         val request = signUpResendMapper.toDTO(uiReqModel)
         return authenticationRepository.signUpResend(request).map { tokenMapper.toUIModel(it) }
     }
