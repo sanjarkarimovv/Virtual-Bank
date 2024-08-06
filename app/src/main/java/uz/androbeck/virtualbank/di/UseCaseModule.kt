@@ -7,6 +7,7 @@ import dagger.hilt.android.components.ViewModelComponent
 import uz.androbeck.virtualbank.data.repository.AuthenticationRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.SignUpResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.SingInResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
@@ -17,6 +18,7 @@ import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
+import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
@@ -67,4 +69,11 @@ object UseCaseModule {
         signInResendMapper: SingInResendMapper,
         tokenMapper: TokenMapper,
     ) = SingInResendUseCase(authenticationRepository, signInResendMapper, tokenMapper)
+
+    @Provides
+    fun provideSignUpResendUseCase(
+        authenticationRepository: AuthenticationRepository,
+        signUpResendMapper: SignUpResendMapper,
+        tokenMapper: TokenMapper,
+    ) = SignUpResendUseCase(authenticationRepository, tokenMapper, signUpResendMapper)
 }

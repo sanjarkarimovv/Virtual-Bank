@@ -1,26 +1,25 @@
 package uz.androbeck.virtualbank.ui.screens.auth.registration
 
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentRegistrationBinding
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
 
-//Hello Virtual Bank
 @AndroidEntryPoint
 class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
@@ -35,6 +34,8 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     lateinit var messageController: MessageController
 
     private var requestModel: SignUpReqUIModel? = null
+
+    private var enterVerifyCodeDialog: EnterVerifyCodeDialogFragment? = null
 
     override fun setup() {
         binding.btnSignUp.isEnable = false
@@ -102,7 +103,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
                 signUpEvent.onEach {
                     btnSignUp.isProgress = false
-                    //TODO Sanjar sign up verify dialogni open qilasiz
+                    showVerifyCodeDialog(it)
                 }.launchIn(this)
             }
         }
@@ -113,8 +114,26 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
+    private fun showVerifyCodeDialog(token : String) {
+        enterVerifyCodeDialog = EnterVerifyCodeDialogFragment()
+        enterVerifyCodeDialog?.arguments = bundleOf(
+            TOKEN_FOR_VERIFY to token
+        )
+        enterVerifyCodeDialog?.show(
+            childFragmentManager,
+            EnterVerifyCodeDialogFragment::class.java.simpleName
+        )
+        enterVerifyCodeDialog?.onSuccessVerify = {
+            toast("Pin code ochilsin")
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         requestModel = null
+    }
+
+    companion object{
+        const val TOKEN_FOR_VERIFY = "token_for_verify"
     }
 }

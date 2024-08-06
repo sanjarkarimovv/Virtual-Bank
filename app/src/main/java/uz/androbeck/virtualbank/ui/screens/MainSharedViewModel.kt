@@ -22,7 +22,7 @@ class MainSharedViewModel @Inject constructor(
 
     fun setNavGraphEvent() {
         if (prefsProvider.token.isNotEmpty()) {
-            _navGraphEvent.value = NavGraphEvent.Main
+            _navGraphEvent.value = NavGraphEvent.PinCode
         } else {
             _navGraphEvent.value = NavGraphEvent.Auth
         }

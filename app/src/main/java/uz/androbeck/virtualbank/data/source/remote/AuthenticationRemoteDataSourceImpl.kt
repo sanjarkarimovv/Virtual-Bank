@@ -33,4 +33,8 @@ class AuthenticationRemoteDataSourceImpl @Inject constructor(
     override fun signInResend(request: TokenReqDto) = flow {
         emit(service.signInResend(request))
     }
+
+    override fun signUpResend(request: TokenReqDto) = flow {
+        emit(service.signUpResend(request))
+    }
 }

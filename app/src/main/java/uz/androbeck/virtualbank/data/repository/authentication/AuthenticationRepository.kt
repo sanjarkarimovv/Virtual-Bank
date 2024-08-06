@@ -15,4 +15,5 @@ interface AuthenticationRepository {
     fun updateToken(request: UpdateTokenReqDto): Flow<TokensResDto>
     fun signIn(request: SignInReqDto): Flow<TokenResDto>
     fun singInResend(request: TokenReqDto): Flow<TokenResDto>
+    fun signUpResend(request: TokenReqDto) : Flow<TokenResDto>
 }

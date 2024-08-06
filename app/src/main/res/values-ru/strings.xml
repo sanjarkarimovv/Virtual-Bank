@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bottom_item_title_home">Основной</string>
-    <string name="bottom_item_title_transfer">Transfer</string>
+    <string name="bottom_item_title_transfer">Перевод</string>
+    <string name="pin_code_page_enter_pin">Введите PIN-код</string>
+    <string name="pin_code_page_confirm_pin">Подтвердите PIN-код</string>
+    <string name="pin_code_page_logout">Выйти</string>
+    <string name="pin_code_page_confirm">Подтвердить</string>
+    <string name="pin_mismatch_message">PIN-код не соответствует.\nОсталось %1$d попыток.</string>
+    <string name="too_many_attempts_message">Слишком много неудачных попыток. Пожалуйста, повторите попытку через 1 минуту.</string>
     <string name="str_first_name">First name</string>
     <string name="str_last_name">Last name</string>
     <string name="str_confirm_password">Confirm password</string>
@@ -10,4 +16,7 @@
     <string name="str_born_date">Born date</string>
     <string name="str_gender">Gender</string>
     <string name="str_sign_up">Sign Up</string>
+    <string name="str_refresh_code">Kodni qayta olish</string>
+    <string name="str_confirm">Tastiqlash</string>
+    <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
 </resources>
