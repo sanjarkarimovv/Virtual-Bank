@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.customViews.edit_texts
+package uz.androbeck.virtualbank.ui.customViews.inputs
 
 import android.annotation.SuppressLint
 import android.content.Context

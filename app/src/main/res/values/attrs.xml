@@ -32,4 +32,15 @@
         <attr name="verifyBoxBackgroundColor" format="color" />
         <attr name="verifyBoxStrokeColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="VirtualBankProgressButton">
+        <attr name="android:text" />
+    </declare-styleable>
+
+    <declare-styleable name="VirtualBankInputSimple">
+        <attr name="hintText"/>
+        <attr name="helperText" />
+        <attr name="errorEnabled" />
+    </declare-styleable>
+
 </resources>

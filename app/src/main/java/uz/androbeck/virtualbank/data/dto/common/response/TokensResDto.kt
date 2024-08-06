@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.dto.common.response.sing_up_verify_response
+package uz.androbeck.virtualbank.data.dto.common.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

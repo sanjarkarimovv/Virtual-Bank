@@ -1,6 +1,6 @@
 package uz.androbeck.virtualbank.domain.mapper.auth.segn_up_verify
 
-import uz.androbeck.virtualbank.data.dto.common.response.sing_up_verify_response.TokensResDto
+import uz.androbeck.virtualbank.data.dto.common.response.TokensResDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpVerifyTokenUIModel
 import javax.inject.Inject

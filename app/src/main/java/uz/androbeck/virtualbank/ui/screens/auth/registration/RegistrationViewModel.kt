@@ -9,9 +9,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
-import uz.androbeck.virtualbank.domain.useCase.authentication.SignUpUseCase
+import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel

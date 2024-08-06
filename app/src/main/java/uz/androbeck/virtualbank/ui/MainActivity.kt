@@ -18,6 +18,7 @@ import uz.androbeck.virtualbank.utils.extentions.visible
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    // I check this commit
 
     private lateinit var binding: ActivityMainBinding
     private val vm: MainViewModel by viewModels()
