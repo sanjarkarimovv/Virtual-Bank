@@ -1,7 +1,9 @@
 package uz.androbeck.virtualbank.data.source.remote
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.AuthenticationService
+import uz.androbeck.virtualbank.data.dto.common.response.TokenResDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpVerifyReqDto
 import uz.androbeck.virtualbank.data.dto.request.sign_in.SignInReqDto
@@ -25,5 +27,9 @@ class AuthenticationRemoteDataSourceImpl @Inject constructor(
 
     override fun signInResend(request: TokenReqDto) = flow {
         emit(service.signInResend(request))
+    }
+
+    override fun signUpResend(request: TokenReqDto) = flow {
+        emit(service.signUpResend(request))
     }
 }

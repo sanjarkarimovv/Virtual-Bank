@@ -30,4 +30,8 @@ interface AuthenticationService {
         @Body request: TokenReqDto
     ): TokenResDto
 
+    @POST(Constants.Endpoint.SIGN_UP_RESEND)
+    suspend fun signUpResend(
+        @Body request: TokenReqDto
+    ) : TokenResDto
 }

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bottom_item_title_home">Bosh sahifa</string>
-    <string name="bottom_item_title_transfer">Transfer</string>
+    <string name="bottom_item_title_transfer">O\'tkazma</string>
+    <string name="pin_code_page_enter_pin">PIN kodni kiriting</string>
+    <string name="pin_code_page_confirm_pin">PIN kodni tasdiqlang</string>
+    <string name="pin_code_page_logout">Chiqish</string>
+    <string name="pin_code_page_confirm">Tasdiqlash</string>
+    <string name="pin_mismatch_message">PIN kod mos emas.\n%1$d ta urinish qoldi.</string>
+    <string name="too_many_attempts_message">Juda ko\'p muvaffaqiyatsiz urinishlar. 1 daqiqadan so‘ng qayta urinib ko‘ring.</string>
     <string name="str_first_name">Ism</string>
     <string name="str_last_name">Last name</string>
     <string name="str_confirm_password">Confirm password</string>
