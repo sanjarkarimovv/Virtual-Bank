@@ -1,5 +1,5 @@
 package uz.androbeck.virtualbank.domain.ui_models.authentication
 
-data class SingInResendReqUiModel(
+data class TokenReqUiModel(
     val token: String? = null
 )
