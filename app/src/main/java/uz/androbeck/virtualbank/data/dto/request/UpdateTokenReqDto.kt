@@ -6,7 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UpdateTokenReqDto(
     @SerialName("refresh-token")
-    val refresh_token: String? = null,
-    @SerialName("access-token")
-    val access_token: String? = null
+    val refresh_token: String? = null
 )

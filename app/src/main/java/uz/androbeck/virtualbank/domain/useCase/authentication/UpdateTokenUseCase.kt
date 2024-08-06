@@ -16,8 +16,8 @@ class UpdateTokenUseCase @Inject constructor(
     private val tokenMapper: TokenMapper,
     private val updateTokenMapper: UpdateTokenMapper
 ) {
-//    operator fun invoke(uiReqModel: UpdateTokenReqUIModel): Flow<TokenUIModel> {
-//        val request = updateTokenMapper.toDTO(uiReqModel)
-//        return authenticationRepository.updateToken(request).map { tokenMapper.toUIModel(it) }
-//    }
+    operator fun invoke(uiReqModel: UpdateTokenReqUIModel): Flow<TokenUIModel> {
+        val request = updateTokenMapper.toDTO(uiReqModel)
+        return authenticationRepository.updateToken(request).map { tokenMapper.toUIModel(it) }
+    }
 }

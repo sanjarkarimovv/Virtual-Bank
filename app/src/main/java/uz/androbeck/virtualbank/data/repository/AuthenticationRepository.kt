@@ -10,5 +10,5 @@ import uz.androbeck.virtualbank.data.dto.request.UpdateTokenReqDto
 interface AuthenticationRepository {
     fun signUp(request: SignUpReqDto): Flow<TokenResDto>
     fun signUpVerify(request: SignUpVerifyReqDto): Flow<TokensResDto>
-    fun updateToken(request: UpdateTokenReqDto): Flow<TokensResDto>
+    fun updateToken(request: UpdateTokenReqDto): Flow<TokenResDto>
 }
