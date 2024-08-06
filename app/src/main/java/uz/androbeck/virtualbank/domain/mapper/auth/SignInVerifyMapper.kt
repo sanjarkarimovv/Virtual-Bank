@@ -9,15 +9,15 @@ class SignInVerifyMapper @Inject constructor() :
     BaseMapper<SignInVerifyReqDto, SignInVerifyReqUIModel> {
     override fun toUIModel(dto: SignInVerifyReqDto) = dto.run {
         SignInVerifyReqUIModel(
-            token = dto.token,
-            code = dto.code
+            accessToken = dto.accessToken,
+            refreshToken = dto.refreshToken
         )
     }
 
     override fun toDTO(uiModel: SignInVerifyReqUIModel) = uiModel.run {
         SignInVerifyReqDto(
-            token = uiModel.token,
-            code = uiModel.code
+            accessToken = uiModel.accessToken,
+            refreshToken = uiModel.refreshToken
         )
     }
 }

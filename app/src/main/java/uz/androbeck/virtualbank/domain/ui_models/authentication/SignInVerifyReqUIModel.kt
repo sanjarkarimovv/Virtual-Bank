@@ -1,6 +1,6 @@
 package uz.androbeck.virtualbank.domain.ui_models.authentication
 
 data class SignInVerifyReqUIModel(
-    val token: String? = null,
-    val code: String? = null
+    val accessToken: String? = null,
+    val refreshToken: String? = null
 )
