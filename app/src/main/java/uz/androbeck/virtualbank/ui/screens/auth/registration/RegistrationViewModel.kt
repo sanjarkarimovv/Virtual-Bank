@@ -12,18 +12,16 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
-import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
-    private val preferencesProvider: PreferencesProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
-    private val _signUpEvent = Channel<Unit>()
+    private val _signUpEvent = Channel<String>()
     val signUpEvent = _signUpEvent.consumeAsFlow()
 
     private val _accessSignUp =
@@ -65,9 +63,8 @@ class RegistrationViewModel @Inject constructor(
     fun signUp(requestModel: SignUpReqUIModel) {
         signUpUseCase(requestModel).onEach {
             it.token?.let { token ->
-                preferencesProvider.token = token
+                _signUpEvent.trySend(token)
             }
-            _signUpEvent.trySend(Unit)
         }.catch {
             errorHandler.handleError(it)
         }.launchIn(viewModelScope)

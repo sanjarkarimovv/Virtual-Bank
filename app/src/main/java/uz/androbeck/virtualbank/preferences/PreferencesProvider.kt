@@ -7,6 +7,7 @@ class PreferencesProvider @Inject constructor(
     private val preferences: SharedPreferences
 ) {
     var token: String by preferences.string()
+    var refreshToken: String by preferences.string()
 
     fun clear() {
         preferences.edit().clear().apply()

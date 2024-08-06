@@ -13,7 +13,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomEnterCodeEditTextBinding
 
 @SuppressLint("Recycle", "ResourceType", "CustomViewStyleable")
-class EnterCodeEditText @JvmOverloads constructor(
+class VirtualBankEnterCodeInput @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -21,8 +21,8 @@ class EnterCodeEditText @JvmOverloads constructor(
     private val binding by lazy {
         CustomEnterCodeEditTextBinding.inflate(LayoutInflater.from(context), this, true)
     }
-    var nextEditText: EnterCodeEditText? = null
-    var previousEditText: EnterCodeEditText? = null
+    var nextEditText: VirtualBankEnterCodeInput? = null
+    var previousEditText: VirtualBankEnterCodeInput? = null
 
     init {
         attrs?.let {

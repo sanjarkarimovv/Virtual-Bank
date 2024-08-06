@@ -12,37 +12,37 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <uz.androbeck.virtualbank.ui.customViews.edit_texts.EnterCodeEditText
+        <uz.androbeck.virtualbank.ui.customViews.edit_texts.VirtualBankEnterCodeInput
             android:id="@+id/ecet_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <uz.androbeck.virtualbank.ui.customViews.edit_texts.EnterCodeEditText
+        <uz.androbeck.virtualbank.ui.customViews.edit_texts.VirtualBankEnterCodeInput
             android:id="@+id/ecet_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <uz.androbeck.virtualbank.ui.customViews.edit_texts.EnterCodeEditText
+        <uz.androbeck.virtualbank.ui.customViews.edit_texts.VirtualBankEnterCodeInput
             android:id="@+id/ecet_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <uz.androbeck.virtualbank.ui.customViews.edit_texts.EnterCodeEditText
+        <uz.androbeck.virtualbank.ui.customViews.edit_texts.VirtualBankEnterCodeInput
             android:id="@+id/ecet_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <uz.androbeck.virtualbank.ui.customViews.edit_texts.EnterCodeEditText
+        <uz.androbeck.virtualbank.ui.customViews.edit_texts.VirtualBankEnterCodeInput
             android:id="@+id/ecet_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <uz.androbeck.virtualbank.ui.customViews.edit_texts.EnterCodeEditText
+        <uz.androbeck.virtualbank.ui.customViews.edit_texts.VirtualBankEnterCodeInput
             android:id="@+id/ecet_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

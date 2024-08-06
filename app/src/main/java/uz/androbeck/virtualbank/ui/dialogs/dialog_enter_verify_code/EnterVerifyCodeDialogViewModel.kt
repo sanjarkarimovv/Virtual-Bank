@@ -1,12 +1,32 @@
-package uz.androbeck.virtualbank.ui.customViews.dialogs.dialog_enter_verify_code
+package uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code
 
 import android.annotation.SuppressLint
 import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpVerifyReqUIModel
+import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpVerifyUseCase
+import uz.androbeck.virtualbank.network.errors.ErrorHandler
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
+import javax.inject.Inject
 
-class CustomDialogViewModel : ViewModel() {
+@HiltViewModel
+class EnterVerifyCodeDialogViewModel @Inject constructor(
+    private val signUpVerifyUseCase: SignUpVerifyUseCase,
+    private val preferencesProvider: PreferencesProvider,
+    private val errorHandler: ErrorHandler
+) : ViewModel() {
+
+    private val _signUpVerifyEvent = MutableStateFlow(false)
+    val signUpVerifyEvent = _signUpVerifyEvent.asStateFlow()
 
     private val _timerText = MutableLiveData<String>()
     val timerText: LiveData<String> get() = _timerText
@@ -26,6 +46,26 @@ class CustomDialogViewModel : ViewModel() {
         _editTextValues.value = List(6) { "" }
         _allFieldsFilled.value = false
         startTimer()
+    }
+
+    fun signUpVerify(code: String?, token: String?) {
+        code?.let {
+            if (token == null) {
+                return
+            }
+            signUpVerifyUseCase(
+                SignUpVerifyReqUIModel(
+                    token = token,
+                    code = it
+                )
+            ).onEach { uiModel ->
+                preferencesProvider.token = uiModel.accessToken.orEmpty()
+                preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
+                _signUpVerifyEvent.value = true
+            }.catch { th ->
+                errorHandler.handleError(th)
+            }.launchIn(viewModelScope)
+        }
     }
 
     private fun startTimer(durationInMillis: Long = 30000) {
