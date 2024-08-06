@@ -4,12 +4,15 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
+import uz.androbeck.virtualbank.data.repository.AuthenticationRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.SingInResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.common.TokensMapper
+import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
@@ -31,6 +34,14 @@ object UseCaseModule {
         tokenMapper: TokenMapper,
         signUpMapper: SignUpMapper,
     ) = SignUpUseCase(authenticationRepository, tokenMapper, signUpMapper)
+
+    @Provides
+    fun provideUpdateTokenUseCase(
+        authenticationRepository: AuthenticationRepository,
+        tokensMapper: TokensMapper,
+        updateTokenMapper: UpdateTokenMapper
+    ) = UpdateTokenUseCase(authenticationRepository, tokensMapper, updateTokenMapper)
+
 
     @Provides
     fun provideSignInUseCase(

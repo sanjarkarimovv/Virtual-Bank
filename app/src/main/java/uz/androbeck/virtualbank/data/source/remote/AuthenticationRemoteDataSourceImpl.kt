@@ -6,6 +6,7 @@ import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.dto.common.response.TokenResDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
 import uz.androbeck.virtualbank.data.dto.request.SignUpVerifyReqDto
+import uz.androbeck.virtualbank.data.dto.request.UpdateTokenReqDto
 import uz.androbeck.virtualbank.data.dto.request.sign_in.SignInReqDto
 import uz.androbeck.virtualbank.data.dto.request.TokenReqDto
 import javax.inject.Inject
@@ -19,6 +20,10 @@ class AuthenticationRemoteDataSourceImpl @Inject constructor(
 
     override fun signUpVerify(request: SignUpVerifyReqDto) = flow {
         emit(service.signUpVerify(request))
+    }
+
+    override fun updateToken(request: UpdateTokenReqDto)= flow{
+        emit(service.updateToken(request))
     }
 
     override fun signIn(request: SignInReqDto) = flow {

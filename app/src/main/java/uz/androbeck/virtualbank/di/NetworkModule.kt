@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
+import retrofit2.Converter 
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
@@ -119,6 +119,7 @@ object NetworkModule {
     }
 
     @Provides
+
     @Singleton
     fun provideAuthService(
         retrofit: Retrofit,

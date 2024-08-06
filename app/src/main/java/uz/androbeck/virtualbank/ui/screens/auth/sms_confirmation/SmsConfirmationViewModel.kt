@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpVerifyReqUIModel
-import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpVerifyTokenUIModel
+import uz.androbeck.virtualbank.domain.ui_models.common.TokensUIModel
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpVerifyUseCase
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import javax.inject.Inject
@@ -20,8 +20,8 @@ class SmsConfirmationViewModel @Inject constructor(
     private val signUpVerifyUseCase: SignUpVerifyUseCase,
 ) : BaseViewModel() {
 
-    private val _signUpVerifyEvent = MutableStateFlow(SignUpVerifyTokenUIModel())
-    val signUpVerifyEvent: StateFlow<SignUpVerifyTokenUIModel> = _signUpVerifyEvent.asStateFlow()
+    private val _signUpVerifyEvent = MutableStateFlow(TokensUIModel())
+    val signUpVerifyEvent: StateFlow<TokensUIModel> = _signUpVerifyEvent.asStateFlow()
 
     init {
         signUpVerify()
