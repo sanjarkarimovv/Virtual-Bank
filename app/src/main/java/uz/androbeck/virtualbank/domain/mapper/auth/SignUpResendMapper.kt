@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SingInResendMapper @Inject constructor() :
+class SignUpResendMapper @Inject constructor() :
     BaseMapper<TokenReqDto, TokenReqUiModel> {
     override fun toUIModel(dto: TokenReqDto) = dto.run {
         TokenReqUiModel(

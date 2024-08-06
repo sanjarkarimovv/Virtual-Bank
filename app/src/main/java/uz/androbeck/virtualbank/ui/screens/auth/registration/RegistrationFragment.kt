@@ -20,7 +20,6 @@ import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
 
-//Hello Virtual Bank
 @AndroidEntryPoint
 class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
