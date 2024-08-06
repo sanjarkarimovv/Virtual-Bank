@@ -20,6 +20,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
+import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
@@ -76,7 +77,7 @@ object NetworkModule {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder().apply {
-                    if (prefsProvider.token.isNotEmpty()){
+                    if (prefsProvider.token.isNotEmpty()) {
                         addHeader(
                             Constants.Header.TOKEN_TITLE,
                             Constants.Header.TOKEN_TYPE + " " + prefsProvider.token
@@ -123,6 +124,12 @@ object NetworkModule {
     fun provideAuthService(
         retrofit: Retrofit,
     ): AuthenticationService = retrofit.create(AuthenticationService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideHomeService(
+        retrofit: Retrofit
+    ): HomeService = retrofit.create(HomeService::class.java)
 
     @Provides
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {

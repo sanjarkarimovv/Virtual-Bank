@@ -102,7 +102,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
                 signUpEvent.onEach {
                     btnSignUp.isProgress = false
-                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                    //TODO Sanjar sign up verify dialogni open qilasiz
                 }.launchIn(this)
             }
         }
