@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="static_white">#FFFFFF</color>
+
     <color name="colorPrimary">#6750A4</color>
     <color name="colorSecondary">#625B71</color>
     <color name="colorTertiary">#7D5260</color>
@@ -33,6 +35,7 @@
     <color name="colorSurfaceContainerHigh">#ECE6F0</color>
     <color name="colorSurfaceContainerHighest">#E6E0E9</color>
     <color name="colorOnSurface">#1D1B20</color>
+    <color name="colorOnSurface12">#1F1D1B20</color>
     <color name="colorOnSurfaceVar">#49454F</color>
     <color name="colorOutline">#79747E</color>
     <color name="colorOutlineVariant">#CAC4D0</color>
