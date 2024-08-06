@@ -12,8 +12,8 @@ import uz.androbeck.virtualbank.data.dto.request.TokenReqDto
 interface AuthenticationRemoteDataSource {
     fun signUp(request: SignUpReqDto): Flow<TokenResDto>
     fun signUpVerify(request: SignUpVerifyReqDto): Flow<TokensResDto>
-    fun updateToken(request: UpdateTokenReqDto): Flow<TokenResDto>
-    fun signIn(reqDto: SignInReqDto):Flow<TokenResDto>
+    fun updateToken(request: UpdateTokenReqDto): Flow<TokensResDto>
+    fun signIn(reqDto: SignInReqDto): Flow<TokenResDto>
     fun signInResend(request: TokenReqDto): Flow<TokenResDto>
 }
 

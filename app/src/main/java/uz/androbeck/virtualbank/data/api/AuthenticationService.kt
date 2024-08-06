@@ -25,11 +25,12 @@ interface AuthenticationService {
     @POST(Constants.Endpoint.UPDATE_TOKEN)
     suspend fun updateToken(
         @Body request: UpdateTokenReqDto
-    ): TokenResDto
+    ): TokensResDto
+
     @POST(Constants.Endpoint.SIGN_IN)
     suspend fun signIn(
         @Body request: SignInReqDto
-    ):TokenResDto
+    ): TokenResDto
 
     @POST(Constants.Endpoint.SIGN_IN_RESEND)
     suspend fun signInResend(
