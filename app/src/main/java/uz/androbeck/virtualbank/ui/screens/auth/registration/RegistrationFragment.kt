@@ -16,6 +16,7 @@ import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
+import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
@@ -114,7 +115,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun showVerifyCodeDialog(token : String) {
+    private fun showVerifyCodeDialog(token: String) {
         enterVerifyCodeDialog = EnterVerifyCodeDialogFragment()
         enterVerifyCodeDialog?.arguments = bundleOf(
             TOKEN_FOR_VERIFY to token
@@ -124,7 +125,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
             EnterVerifyCodeDialogFragment::class.java.simpleName
         )
         enterVerifyCodeDialog?.onSuccessVerify = {
-            toast("Pin code ochilsin")
+            sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
         }
     }
 
@@ -133,7 +134,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         requestModel = null
     }
 
-    companion object{
+    companion object {
         const val TOKEN_FOR_VERIFY = "token_for_verify"
     }
 }
