@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.google.firebase.crashlytics)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -27,6 +28,10 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"http://195.158.16.140/mobile-bank/v1/\"")
+        }
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://195.158.16.140/mobile-bank/v1/\"")
         }
     }
     compileOptions {
@@ -38,6 +43,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -79,4 +88,18 @@ dependencies {
 
     //MaskedEditText
     implementation(libs.input.redmadrobot)
+
+    //room
+    implementation(libs.androidx.room)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.kapt)
+
+    //logging interceptor, serialization json,serialization converter
+    implementation(libs.logging.interceptor)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.converter)
+
+    //Chucker interceptor
+    debugImplementation(libs.chucker.interceptor)
+    releaseImplementation(libs.chucker.interceptor.no.op)
 }

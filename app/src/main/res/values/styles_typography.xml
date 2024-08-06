@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.VirtualBank.Headline.Large" parent="">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/exo2_semi_bold</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Headline.Medium" parent="">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/exo2_medium</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Headline.Small" parent="">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/exo2_light</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Title.Large" parent="">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/exo2_semi_bold</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Title.Medium" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/exo2_medium</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Title.Small" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/exo2_light</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Label.Large" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/exo2_semi_bold</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Label.Medium" parent="">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/exo2_medium</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Label.Small" parent="">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">@font/exo2_light</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Body.Large" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/exo2_semi_bold</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Body.Medium" parent="">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/exo2_medium</item>
+    </style>
+
+    <style name="TextAppearance.VirtualBank.Body.Small" parent="">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/exo2_light</item>
+    </style>
+</resources>

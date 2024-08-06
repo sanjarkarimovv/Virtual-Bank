@@ -8,4 +8,12 @@
     <string name="pin_code_page_confirm">Tasdiqlash</string>
     <string name="pin_mismatch_message">PIN kod mos emas.\n%1$d ta urinish qoldi.</string>
     <string name="too_many_attempts_message">Juda ko\'p muvaffaqiyatsiz urinishlar. 1 daqiqadan so‘ng qayta urinib ko‘ring.</string>
+    <string name="str_first_name">Ism</string>
+    <string name="str_last_name">Last name</string>
+    <string name="str_confirm_password">Confirm password</string>
+    <string name="str_password">Password</string>
+    <string name="str_phone_number">Phone number</string>
+    <string name="str_born_date">Born date</string>
+    <string name="str_gender">Gender</string>
+    <string name="str_sign_up">Sign Up</string>
 </resources>

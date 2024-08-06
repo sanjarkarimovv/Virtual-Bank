@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="CustomTextField">
+        <attr name="inputType" format="enum">
+            <enum name="text" value="0" />
+            <enum name="number" value="1" />
+            <enum name="password" value="2" />
+            <enum name="datetime" value="3" />
+        </attr>
+        <attr name="helperText" format="string" />
+        <attr name="endIcon" format="reference" />
+        <attr name="hintText" format="string" />
+        <attr name="startIcon" format="reference" />
+        <attr name="boxBackgroundColor" format="color" />
+        <attr name="hintTextColor" format="color" />
+        <attr name="errorText" format="string" />
+        <attr name="clearable" format="boolean" />
+        <attr name="boxStrokeColor" format="color" />
+        <attr name="maxLength" format="integer" />
+        <attr name="scrollHorizontally" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LoadingButton">
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+        <!--        <attr name="cornerRadius" format="integer" />-->
+        <attr name="progressBarTintColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="VirtualBankProgressButton">
+        <attr name="android:text" />
+    </declare-styleable>
+
+    <declare-styleable name="VirtualBankInputSimple">
+        <attr name="hintText"/>
+        <attr name="helperText" />
+        <attr name="errorEnabled" />
+    </declare-styleable>
 
 </resources>

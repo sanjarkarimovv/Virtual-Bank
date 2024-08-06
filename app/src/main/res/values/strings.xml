@@ -8,4 +8,12 @@
     <string name="pin_code_page_confirm">Confirm</string>
     <string name="pin_mismatch_message">PIN does not match.\n%1$d attempts left.</string>
     <string name="too_many_attempts_message">Too many failed attempts. Please try again in 1 minute.</string>
+    <string name="str_first_name">First name</string>
+    <string name="str_last_name">Last name</string>
+    <string name="str_confirm_password">Confirm password</string>
+    <string name="str_password">Password</string>
+    <string name="str_phone_number">Phone number</string>
+    <string name="str_born_date">Born date</string>
+    <string name="str_gender">Gender</string>
+    <string name="str_sign_up">Sign Up</string>
 </resources>
