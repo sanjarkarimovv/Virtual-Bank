@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.data.dto.common.response.ErrorResDto
 import uz.androbeck.virtualbank.network.errors.ApiErrorType
+import uz.androbeck.virtualbank.network.errors.Error404Exception
 import uz.androbeck.virtualbank.network.errors.ErrorResponseEmptyException
 import uz.androbeck.virtualbank.network.errors.HttpResponseException
 import uz.androbeck.virtualbank.network.errors.IncorrectCredentialsException
@@ -97,7 +98,7 @@ internal class HttpErrorToThrowableCall<T>(
                 } else if (response.code() == 401) {
                     callback.onFailure(call, UnauthorizedException())
                 } else {
-                    callback.onFailure(call, getApiError(response.errorBody()?.string()))
+                    callback.onFailure(call, getApiError(response.errorBody()?.string(),response.code()))
                 }
             }
 
@@ -112,7 +113,7 @@ internal class HttpErrorToThrowableCall<T>(
         })
     }
 
-    private fun getApiError(body: String?): HttpResponseException {
+    private fun getApiError(body: String?,code: Int? = null): HttpResponseException {
         body ?: return ErrorResponseEmptyException()
         val errorResponse = try {
             json.decodeFromString(ErrorResDto.serializer(), body)
@@ -120,7 +121,7 @@ internal class HttpErrorToThrowableCall<T>(
             return ParseErrorResponseException(body)
         }
 
-        return when (ApiErrorType.getByCode(errorResponse.code)) {
+        return when (ApiErrorType.getByCode(code)) {
             ApiErrorType.USER_NOT_VERIFIED -> UserNotVerified(errorResponse.message.orEmpty())
             ApiErrorType.INCORRECT_CREDENTIALS -> IncorrectCredentialsException(errorResponse.message.orEmpty())
             ApiErrorType.INCORRECT_END_TIME_PROVIDED -> IncorrectEndTimeProvidedException(
@@ -129,6 +130,7 @@ internal class HttpErrorToThrowableCall<T>(
 
             null -> OtherNetworkException(errorResponse.code ?: -1)
             ApiErrorType.ERROR_RESPONSE_EMPTY -> ErrorResponseEmptyException()
+            ApiErrorType.ERROR_404 -> Error404Exception(errorResponse.message)
         }
     }
 }

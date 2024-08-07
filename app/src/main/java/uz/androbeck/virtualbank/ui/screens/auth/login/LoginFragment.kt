@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.auth.login
 
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -65,6 +66,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 !it.first -> {
                     binding.btnLogin.isEnable = false
                 }
+
                 it.first -> {
                     setModel(it.third)
                 }
@@ -88,7 +90,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     toast("Success")
                     val dialogFragment = EnterVerifyCodeDialogFragment()
                     // token key
-                    dialogFragment.arguments?.putString("token", it.token)
+                    dialogFragment.arguments = bundleOf(
+                        TOKEN_FOR_VERIFY to it.token,
+                        PHONE_NUMBER_FOR_VERIFY to model?.phone.toString()
+                    )
                     dialogFragment.show(childFragmentManager, null)
                 }
             }
@@ -98,9 +103,15 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     }
 
+
     private fun setModel(data: SignInReqUIModel?) = CoroutineScope(Dispatchers.Main).launch {
         model = data
         binding.btnLogin.isEnable = true
+    }
+
+    companion object {
+        const val TOKEN_FOR_VERIFY = "token_for_verify"
+        const val PHONE_NUMBER_FOR_VERIFY = "phone_number_for_verify"
     }
 }
 

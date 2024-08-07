@@ -18,7 +18,6 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val signInUseCase: SignInUseCase,
     private val errorHandler: ErrorHandler,
-    private val massageController: MessageController
 ) : BaseViewModel() {
     private val _signInEvent = Channel<LoginUiEvent>()
     val signInEvent = _signInEvent.consumeAsFlow()
@@ -33,8 +32,6 @@ class LoginViewModel @Inject constructor(
         }.catch {
             errorHandler.handleError(it)
             _signInEvent.trySend(LoginUiEvent.Error(it.message))
-            println(it.message)
-            println(it)
         }.launchIn(viewModelScope)
     }
 
