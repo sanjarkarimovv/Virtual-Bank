@@ -42,6 +42,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             model?.let {
                 vm.signIn(it)
             }
+            println(model)
+            println("aaa")
         }
         btnSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
@@ -65,10 +67,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 !it.first -> {
                     binding.btnLogin.isEnable = false
                 }
-
                 it.first -> {
                     setModel(it.third)
-
                 }
             }
         }.launchIn(this)
@@ -84,13 +84,14 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     binding.btnLogin.isProgress = true
                 }
 
-                LoginUiEvent.Success -> {
+                is LoginUiEvent.Success -> {
                     binding.btnLogin.isProgress = false
                     // show password set dialog !
                     toast("Success")
                     val dialogFragment = EnterVerifyCodeDialogFragment()
-                    dialogFragment.show(childFragmentManager,null)
-
+                    // token key
+                    dialogFragment.arguments?.putString("token", it.token)
+                    dialogFragment.show(childFragmentManager, null)
                 }
             }
         }.catch {

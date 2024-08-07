@@ -42,7 +42,8 @@ class RegistrationViewModel @Inject constructor(
             return
         }
         if (confirmPassword.isNullOrEmpty()) {
-            _accessSignUp.value = Triple(false, "Confirm password is empty", null)
+            _accessSignUp.value = Triple(false, "Confirm " +
+                    " is empty", null)
             return
         }
         if (requestModel.password != confirmPassword) {
