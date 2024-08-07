@@ -40,6 +40,9 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
     private val _allFieldsFilled = MutableLiveData<Boolean>()
     val allFieldsFilled: LiveData<Boolean> get() = _allFieldsFilled
 
+    private val _isError = MutableLiveData(false)
+    val isError: LiveData<Boolean> get() = _isError
+
     private var countDownTimer: CountDownTimer? = null
 
     init {
@@ -64,11 +67,12 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
                 _signUpVerifyEvent.value = true
             }.catch { th ->
                 errorHandler.handleError(th)
+                _isError.postValue(true)
             }.launchIn(viewModelScope)
         }
     }
 
-    private fun startTimer(durationInMillis: Long = 30000) {
+    private fun startTimer(durationInMillis: Long = 180000) {
         countDownTimer = object : CountDownTimer(durationInMillis, 1000) {
             @SuppressLint("DefaultLocale")
             override fun onTick(millisUntilFinished: Long) {
