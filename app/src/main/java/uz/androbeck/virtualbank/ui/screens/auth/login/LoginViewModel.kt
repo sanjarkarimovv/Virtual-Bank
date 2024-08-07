@@ -29,8 +29,10 @@ class LoginViewModel @Inject constructor(
         signInUseCase.invoke(signUpReqUIModel).onEach {
             _signInEvent.trySend(LoginUiEvent.Success)
         }.catch {
-            errorHandler.handleError(it)
+            //errorHandler.handleError(it)
             _signInEvent.trySend(LoginUiEvent.Error(it.message))
+            println(it.message)
+            println(it)
         }.launchIn(viewModelScope)
     }
 

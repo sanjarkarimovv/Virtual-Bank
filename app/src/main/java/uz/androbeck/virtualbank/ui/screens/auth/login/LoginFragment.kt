@@ -16,6 +16,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentLoginBinding
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInReqUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
@@ -87,6 +88,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     binding.btnLogin.isProgress = false
                     // show password set dialog !
                     toast("Success")
+                    val dialogFragment = EnterVerifyCodeDialogFragment()
+                    dialogFragment.show(childFragmentManager,null)
+
                 }
             }
         }.catch {
