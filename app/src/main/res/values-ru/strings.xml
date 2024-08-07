@@ -38,4 +38,6 @@
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_verification_code_invalid">Tastiqlash kodi noto\'g\'ri</string>
+    <string name="str_empty">\</string>
 </resources>

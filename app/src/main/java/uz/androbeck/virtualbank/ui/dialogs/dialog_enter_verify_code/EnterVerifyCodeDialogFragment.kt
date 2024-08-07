@@ -28,6 +28,7 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
     private var _binding: CustomVerifyDialogBinding? = null
     private val binding get() = _binding!!
     private var tokenForVerify: String? = null
+    private var phoneNumber: String? = null
 
     @Inject
     lateinit var messageController: MessageController
@@ -45,6 +46,7 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tokenForVerify = arguments?.getString(RegistrationFragment.TOKEN_FOR_VERIFY)
+        phoneNumber = arguments?.getString(RegistrationFragment.PHONE_NUMBER_FOR_VERIFY)
         val editTextList = listOf(
             binding.ecet1,
             binding.ecet2,
@@ -70,6 +72,8 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
         vm.allFieldsFilled.observe(viewLifecycleOwner) {
             binding.confirmButton.isEnabled = it
         }
+
+        binding.tvPhoneNumber.text = formatPhoneNumber(phoneNumber.toString())
 
         for (i in editTextList.indices) {
             if (i < editTextList.size - 1) {
@@ -107,6 +111,7 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
         clicks()
     }
 
+
     private val codeStringBuilder = StringBuilder()
     private fun clicks() = with(binding) {
         confirmButton.singleClickable {
@@ -129,6 +134,12 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
         messageController.observeMessage().onEach {
             toast(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        vm.isError.observe(viewLifecycleOwner) {
+            if (it) {
+                reEnterCode()
+            }
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -151,4 +162,27 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun reEnterCode() {
+        with(binding) {
+            ecet1.setText(EMPTY_STR)
+            ecet2.setText(EMPTY_STR)
+            ecet3.setText(EMPTY_STR)
+            ecet4.setText(EMPTY_STR)
+            ecet5.setText(EMPTY_STR)
+            ecet6.setText(EMPTY_STR)
+            ecet1.requestFocus()
+            confirmButton.isEnabled = false
+        }
+    }
+
+    private fun formatPhoneNumber(phoneNumber: String): String {
+        val cleaned = phoneNumber.filter { it.isDigit() }
+        val countryCode = cleaned.substring(0, 3)
+        val operatorCode = cleaned.substring(3, 5)
+        val lastTwoDigits = cleaned.takeLast(2)
+        return "+$countryCode $operatorCode *** ** $lastTwoDigits"
+    }
 }
+
+const val EMPTY_STR = ""

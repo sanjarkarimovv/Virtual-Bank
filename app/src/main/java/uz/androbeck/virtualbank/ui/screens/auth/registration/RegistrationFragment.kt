@@ -109,6 +109,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
             }
         }
 
+
         messageController.observeMessage().onEach {
             btnSignUp.isProgress = false
             toast(it)
@@ -118,11 +119,11 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     private fun showVerifyCodeDialog(token: String) {
         enterVerifyCodeDialog = EnterVerifyCodeDialogFragment()
         enterVerifyCodeDialog?.arguments = bundleOf(
-            TOKEN_FOR_VERIFY to token
+            TOKEN_FOR_VERIFY to token,
+            PHONE_NUMBER_FOR_VERIFY to binding.etPhoneNumber.editText.text.toString()
         )
         enterVerifyCodeDialog?.show(
-            childFragmentManager,
-            EnterVerifyCodeDialogFragment::class.java.simpleName
+            childFragmentManager, EnterVerifyCodeDialogFragment::class.java.simpleName
         )
         enterVerifyCodeDialog?.onSuccessVerify = {
             sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
@@ -136,5 +137,6 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     companion object {
         const val TOKEN_FOR_VERIFY = "token_for_verify"
+        const val PHONE_NUMBER_FOR_VERIFY = "phone_number_for_verify"
     }
 }

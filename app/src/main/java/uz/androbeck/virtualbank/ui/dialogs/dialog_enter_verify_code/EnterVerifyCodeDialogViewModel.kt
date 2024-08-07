@@ -22,7 +22,7 @@ import javax.inject.Inject
 class EnterVerifyCodeDialogViewModel @Inject constructor(
     private val signUpVerifyUseCase: SignUpVerifyUseCase,
     private val preferencesProvider: PreferencesProvider,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: ErrorHandler,
 ) : ViewModel() {
 
     private val _signUpVerifyEvent = MutableStateFlow(false)
@@ -39,6 +39,9 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
 
     private val _allFieldsFilled = MutableLiveData<Boolean>()
     val allFieldsFilled: LiveData<Boolean> get() = _allFieldsFilled
+
+    private val _isError = MutableLiveData(false)
+    val isError: LiveData<Boolean> get() = _isError
 
     private var countDownTimer: CountDownTimer? = null
 
@@ -64,11 +67,12 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
                 _signUpVerifyEvent.value = true
             }.catch { th ->
                 errorHandler.handleError(th)
+                _isError.value = true
             }.launchIn(viewModelScope)
         }
     }
 
-    private fun startTimer(durationInMillis: Long = 30000) {
+    private fun startTimer(durationInMillis: Long = rENTER_GET_CODE_TIME) {
         countDownTimer = object : CountDownTimer(durationInMillis, 1000) {
             @SuppressLint("DefaultLocale")
             override fun onTick(millisUntilFinished: Long) {
@@ -99,3 +103,5 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
         countDownTimer?.cancel()
     }
 }
+
+const val rENTER_GET_CODE_TIME = 180000L
