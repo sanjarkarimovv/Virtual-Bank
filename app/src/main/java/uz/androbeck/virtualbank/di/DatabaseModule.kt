@@ -36,7 +36,7 @@ object DatabaseModule {
                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             )
         } catch (ignore: Exception) {
-            Log.e("shared prefs exception", ignore.message ?: ignore.localizedMessage)
+            //Log.e("shared prefs exception", ignore.message ?: ignore.localizedMessage)
             context.getSharedPreferences(Constants.FileName.SHARED_PREFS, Context.MODE_PRIVATE)
         }
     }

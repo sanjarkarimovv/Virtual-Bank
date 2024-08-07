@@ -10,7 +10,7 @@
     <string name="too_many_attempts_message">Juda ko\'p muvaffaqiyatsiz urinishlar. 1 daqiqadan so‘ng qayta urinib ko‘ring.</string>
     <string name="str_first_name">Ism</string>
     <string name="settings">Sozlamalar</string>
-    <string name="support">Qo`llab-quvvatlash xizmati</string>
+    <string name="support">Qo\'llab-quvvatlash xizmati</string>
     <string name="theme_of_the_application">Ilova mavzusi</string>
     <string name="widget_setup">Vidjetlar sozlamasi</string>
     <string name="todo">TODO</string>
@@ -20,7 +20,7 @@
     <string name="actions">Harakatlar</string>
     <string name="application_language">Ilova tili</string>
     <string name="logout">Profilni almashtirish</string>
-    <string name="consent_to_data_processing">Ma`lumotlarni ishlashga rozilik</string>
+    <string name="consent_to_data_processing">Ma\'lumotlarni ishlashga rozilik</string>
     <string name="public_offer">Ommaviy oferta</string>
     <string name="privacy_policy">Maxfiylik siyosati</string>
     <string name="version">Talqin </string>
