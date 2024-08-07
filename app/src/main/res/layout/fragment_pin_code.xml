@@ -92,12 +92,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:textColor="#B3261E"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/pinCodePagePINField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <!--Num field-->
     <LinearLayout
@@ -126,7 +129,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="1"
+                android:text="@string/str_num_1"
                 android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -137,7 +140,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="2"
+                android:text="@string/str_num_2"
                 android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -148,7 +151,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="3"
+                android:text="@string/str_num_3"
                 android:textSize="25sp" />
         </LinearLayout>
 
@@ -167,7 +170,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="4"
+                android:text="@string/str_num_4"
                 android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -178,7 +181,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="5"
+                android:text="@string/str_num_5"
                 android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -189,7 +192,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="6"
+                android:text="@string/str_num_6"
                 android:textSize="25sp" />
         </LinearLayout>
 
@@ -208,7 +211,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="7"
+                android:text="@string/str_num_7"
                 android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -219,7 +222,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="8"
+                android:text="@string/str_num_8"
                 android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -230,7 +233,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="9"
+                android:text="@string/str_num_9"
                 android:textSize="25sp" />
         </LinearLayout>
 
@@ -243,7 +246,7 @@
 
             <ImageButton
                 android:id="@+id/btn_remove"
-                android:contentDescription="Remove Pin"
+                android:contentDescription="@string/remove_pin"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="35dp"
@@ -260,7 +263,7 @@
                 android:layout_marginEnd="35dp"
                 android:background="@drawable/pin_number_ripple"
                 android:fontFamily="@font/exo2_regular"
-                android:text="0"
+                android:text="@string/str_num_0"
                 android:textSize="25sp" />
 
             <FrameLayout
@@ -271,7 +274,7 @@
 
                 <ImageButton
                     android:id="@+id/btn_confirm"
-                    android:contentDescription="Confirm Pin"
+                    android:contentDescription="@string/confirm_pin"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
@@ -279,6 +282,17 @@
                     android:layout_marginEnd="35dp"
                     android:background="@drawable/pin_number_ripple"
                     android:src="@drawable/ic_check"
+                    android:visibility="gone" />
+                <ImageButton
+                    android:id="@+id/btn_fingerprint"
+                    android:contentDescription="@string/confirm_pin"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:background="@drawable/pin_number_ripple"
+                    android:src="@drawable/ic_fingerprint"
                     android:visibility="gone" />
             </FrameLayout>
         </LinearLayout>

@@ -1,7 +1,11 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code
 
+import android.hardware.biometrics.BiometricManager
+import android.os.Build
+import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -29,27 +33,12 @@ class PinCodeViewModel @Inject constructor(
     private val _errorAttempts = MutableLiveData<Int>()
     val errorAttempts: LiveData<Int> get() = _errorAttempts
 
-    private val _timerRunning = MutableLiveData<Boolean>()
-    val timerRunning: LiveData<Boolean> get() = _timerRunning
+    private val _errorLogout = MutableLiveData<Boolean>()
+    val errorLogout: LiveData<Boolean> get() = _errorLogout
 
     init {
+        userLog()
         _errorAttempts.value = prefsProvider.errorAttempts
-        checkTimer()
-    }
-
-    private fun checkTimer() {
-        val lastErrorTime = prefsProvider.lastErrorTimestamp
-        if (System.currentTimeMillis() - lastErrorTime < 60000) {
-            startTimer(60000 - (System.currentTimeMillis() - lastErrorTime))
-        }
-    }
-
-    private fun startTimer(duration: Long) {
-        _timerRunning.value = true
-        Handler(Looper.getMainLooper()).postDelayed({
-            _timerRunning.value = false
-            resetErrorAttempts()
-        }, duration)
     }
 
     private fun incrementErrorAttempts() {
@@ -57,8 +46,8 @@ class PinCodeViewModel @Inject constructor(
         _errorAttempts.value = attempts
         prefsProvider.errorAttempts = attempts
         if (attempts >= 5) {
-            prefsProvider.lastErrorTimestamp = System.currentTimeMillis()
-            startTimer(60000)
+            _errorLogout.value = true
+            handlePinCodeExit()
         }
     }
 
@@ -102,10 +91,6 @@ class PinCodeViewModel @Inject constructor(
     }
 
     fun handlePinCodeCompletion() {
-        if (_timerRunning.value == true) {
-            // Handle timer running scenario, e.g., show a message to the user.
-            return
-        }
         viewModelScope.launch {
             val pinCode = _pinCodeList.value.toString()
 

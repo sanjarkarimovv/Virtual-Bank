@@ -16,6 +16,9 @@ class MainSharedViewModel @Inject constructor(
     private val _navGraphEvent = MutableStateFlow<NavGraphEvent?>(null)
     val navGraphEvent: StateFlow<NavGraphEvent?> get() = _navGraphEvent
 
+    private val _isAwayLong = MutableStateFlow<Boolean?>(null)
+    val isAwayLong: StateFlow<Boolean?> get() = _isAwayLong
+
     fun setNavGraphEvent(event: NavGraphEvent) {
         _navGraphEvent.value = event
     }
@@ -26,5 +29,13 @@ class MainSharedViewModel @Inject constructor(
         } else {
             _navGraphEvent.value = NavGraphEvent.Auth
         }
+    }
+
+    fun saveAwayLong() {
+        prefsProvider.isAwayLong = System.currentTimeMillis()
+    }
+
+    fun checkIsAwayLong(){
+        _isAwayLong.value = (System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000
     }
 }

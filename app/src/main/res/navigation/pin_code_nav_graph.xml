@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pin_code_nav_graph"
     app:startDestination="@id/pinCodeFragment">
 
     <fragment
         android:id="@+id/pinCodeFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.pin_code.PinCodeFragment"
-        android:label="PinCodeFragment" />
+        android:label="PinCodeFragment"
+        tools:layout="@layout/fragment_pin_code">
+        <action
+            android:id="@+id/action_pinCodeFragment_to_biometricPermissionFragment"
+            app:destination="@id/biometricPermissionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/biometricPermissionFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.BiometricPermissionFragment"
+        android:label="BiometricPermissionFragment"
+        tools:layout="@layout/fragment_biometric_permission"/>
 
 </navigation>

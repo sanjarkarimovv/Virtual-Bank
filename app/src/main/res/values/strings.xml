@@ -19,4 +19,22 @@
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_num_0">0</string>
+    <string name="str_num_1">1</string>
+    <string name="str_num_2">2</string>
+    <string name="str_num_3">3</string>
+    <string name="str_num_4">4</string>
+    <string name="str_num_5">5</string>
+    <string name="str_num_6">6</string>
+    <string name="str_num_7">7</string>
+    <string name="str_num_8">8</string>
+    <string name="str_num_9">9</string>
+    <string name="confirm_pin">Confirm Pin</string>
+    <string name="remove_pin">Remove Pin</string>
+    <string name="timer_message">Please wait %1$d seconds before trying again.</string>
+    <string name="pin_code_page_skip">Skip</string>
+    <string name="pin_code_page_title">Protect with fingerprint or face</string>
+    <string name="pin_code_page_text">To avoid entering the PIN code each time, you can enable fingerprint or face authentication.</string>
+    <string name="pin_code_page_turn_on">Turn On</string>
+
 </resources>

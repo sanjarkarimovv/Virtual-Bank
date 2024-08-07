@@ -57,4 +57,19 @@ class MainActivity : AppCompatActivity() {
             }
         }.launchIn(lifecycleScope)
     }
+
+    override fun onPause() {
+        super.onPause()
+        mainSharedVM.saveAwayLong()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainSharedVM.checkIsAwayLong()
+        mainSharedVM.isAwayLong.onEach {
+            if (it == true) {
+                mainSharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
+            }
+        }.launchIn(lifecycleScope)
+    }
 }

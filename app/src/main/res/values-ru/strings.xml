@@ -19,4 +19,22 @@
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_num_0">0</string>
+    <string name="str_num_1">1</string>
+    <string name="str_num_2">2</string>
+    <string name="str_num_3">3</string>
+    <string name="str_num_4">4</string>
+    <string name="str_num_5">5</string>
+    <string name="str_num_6">6</string>
+    <string name="str_num_7">7</string>
+    <string name="str_num_8">8</string>
+    <string name="str_num_9">9</string>
+    <string name="confirm_pin">Подтвердить PIN-код</string>
+    <string name="remove_pin">Удалить PIN-код</string>
+    <string name="timer_message">Пожалуйста, подождите %1$d секунд, прежде чем повторить попытку.</string>
+    <string name="pin_code_page_skip">Пропустить</string>
+    <string name="pin_code_page_title">Защита с помощью отпечатки пальца или лица</string>
+    <string name="pin_code_page_text">Чтобы не вводить PIN-код каждый раз, вы можете включить аутентификацию по отпечатку пальца или лицу.</string>
+    <string name="pin_code_page_turn_on">Включить</string>
+
 </resources>

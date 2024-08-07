@@ -19,4 +19,21 @@
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_num_0">0</string>
+    <string name="str_num_1">1</string>
+    <string name="str_num_2">2</string>
+    <string name="str_num_3">3</string>
+    <string name="str_num_4">4</string>
+    <string name="str_num_5">5</string>
+    <string name="str_num_6">6</string>
+    <string name="str_num_7">7</string>
+    <string name="str_num_8">8</string>
+    <string name="str_num_9">9</string>
+    <string name="confirm_pin">PIN kodni tasdiqlash</string>
+    <string name="remove_pin">PIN kodni o\'chirish</string>
+    <string name="timer_message">Qayta urinishdan oldin %1$d soniya kuting.</string>
+    <string name="pin_code_page_skip">O\'tkazish</string>
+    <string name="pin_code_page_title">Barmoq izlari yoki yuz yordamida himoya qilish</string>
+    <string name="pin_code_page_text">PIN-kodni har safar kiritmaslik uchun siz\n barmoq izi yoki yuz bilan kiritishni faollashtirishingiz mumkin</string>
+    <string name="pin_code_page_turn_on">Yoqish</string>
 </resources>
