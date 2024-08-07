@@ -135,8 +135,8 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
             toast(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
-        vm.isError.observe(viewLifecycleOwner){
-            if (it){
+        vm.isError.observe(viewLifecycleOwner) {
+            if (it) {
                 reEnterCode()
             }
         }
@@ -165,12 +165,12 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
 
     private fun reEnterCode() {
         with(binding) {
-            ecet1.setText("")
-            ecet2.setText("")
-            ecet3.setText("")
-            ecet4.setText("")
-            ecet5.setText("")
-            ecet6.setText("")
+            ecet1.setText(EMPTY_STR)
+            ecet2.setText(EMPTY_STR)
+            ecet3.setText(EMPTY_STR)
+            ecet4.setText(EMPTY_STR)
+            ecet5.setText(EMPTY_STR)
+            ecet6.setText(EMPTY_STR)
             ecet1.requestFocus()
             confirmButton.isEnabled = false
         }
@@ -184,3 +184,5 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
         return "+$countryCode $operatorCode *** ** $lastTwoDigits"
     }
 }
+
+const val EMPTY_STR = ""
