@@ -19,7 +19,6 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
         vm.fullInfoEvent.onEach { fullInfo->
             val user=fullInfo.firstName+" "+fullInfo.lastName
-            Toast.makeText(requireContext(), " AAA $user", Toast.LENGTH_SHORT).show()
             binding.user.text=user
         }
 
