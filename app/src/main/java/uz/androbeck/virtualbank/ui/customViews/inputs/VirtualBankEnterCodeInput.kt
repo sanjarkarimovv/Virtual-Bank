@@ -38,8 +38,11 @@ class VirtualBankEnterCodeInput @JvmOverloads constructor(
                     R.styleable.CustomEnterCodeEditText_verifyBoxStrokeColor,
                     ContextCompat.getColor(context, R.color.colorPrimary)
                 )
+                val setTex = typedArray.getText(R.styleable.CustomEnterCodeEditText_setText)
+
                 binding.nameTextInput.boxBackgroundColor = boxBackgroundColor
                 binding.nameTextInput.boxStrokeColor = boxStrokeColor
+                binding.nameEditText.setText(setTex)
             } finally {
                 typedArray.recycle()
             }
@@ -56,5 +59,8 @@ class VirtualBankEnterCodeInput @JvmOverloads constructor(
 
     fun addTextChangedListeners(watcher: TextWatcher) {
         binding.nameEditText.addTextChangedListener(watcher)
+    }
+    fun setText(newText: String) {
+        binding.nameTextInput.editText?.setText(newText)
     }
 }

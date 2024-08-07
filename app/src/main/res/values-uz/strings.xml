@@ -42,4 +42,6 @@
     <string name="str_uzbek">O`zbekcha</string>
     <string name="str_russia">Pусский</string>
     <string name="str_english">English</string>
+    <string name="str_verification_code_invalid">Tastiqlash kodi noto\'g\'ri</string>
+    <string name="str_empty">\</string>
 </resources>
