@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.adapters
+package uz.androbeck.virtualbank.utils.adapters
 
 import android.view.LayoutInflater
 import android.view.View
