@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="28dp"
     app:cardElevation="0dp"
-    android:backgroundTint="@color/colorPrimary">
+    android:backgroundTint="@color/colorInverseOnSurface">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Basic dialog title"
             android:textSize="24sp"
+            android:textColor="@color/colorOnSurface"
             android:fontFamily="@font/exo2_semi_bold"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
@@ -32,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Basic dialog message"
             android:textSize="14sp"
+            android:textColor="@color/colorOnSurface"
             android:fontFamily="@font/exo2_semi_bold"
             android:layout_below="@id/dialog_title"
             android:layout_marginTop="16dp"
@@ -53,6 +55,7 @@
                 android:fontFamily="@font/exo2_semi_bold"
                 android:text="Action1"
                 android:textSize="14sp"
+                android:textColor="@color/colorOnPrimaryFixedVariant"
                 android:layout_marginEnd="16dp"/>
             <TextView
                 android:id="@+id/dialog_action2"
@@ -61,6 +64,7 @@
                 android:fontFamily="@font/exo2_semi_bold"
                 android:text="Action2"
                 android:textSize="14sp"
+                android:textColor="@color/colorOnPrimaryFixedVariant"
                 android:layout_marginEnd="24dp"/>
         </LinearLayout>
     </RelativeLayout>
