@@ -1,6 +1,6 @@
 package uz.androbeck.virtualbank.domain.mapper.home
 
-import uz.androbeck.virtualbank.data.dto.request.FullInfoDto
+import uz.androbeck.virtualbank.data.dto.response.home.FullInfoDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import javax.inject.Inject

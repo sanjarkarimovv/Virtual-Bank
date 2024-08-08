@@ -1,10 +1,10 @@
-package uz.androbeck.virtualbank.data.dto.request
+package uz.androbeck.virtualbank.data.dto.request.home
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UpdateInfoReqDto (
+data class UpdateInfoReqDto(
     @SerialName("first-name")
     val first_name: String? = null,
     @SerialName("last-name")

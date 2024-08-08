@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.dto.common.response.home
+package uz.androbeck.virtualbank.data.dto.response.home
 
 import kotlinx.serialization.SerialName
 

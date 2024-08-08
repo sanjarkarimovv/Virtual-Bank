@@ -2,7 +2,7 @@ package uz.androbeck.virtualbank.data.source.remote
 
 import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.HomeService
-import uz.androbeck.virtualbank.data.dto.request.UpdateInfoReqDto
+import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
 import javax.inject.Inject
 
 class HomeRemoteDataSourceImpl @Inject constructor(
