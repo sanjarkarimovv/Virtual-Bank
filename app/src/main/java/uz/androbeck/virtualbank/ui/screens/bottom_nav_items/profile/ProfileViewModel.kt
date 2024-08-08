@@ -29,7 +29,7 @@ class ProfileViewModel @Inject constructor(
 
         }.catch {
             errorHandler.handleError(it)
-            //
+
         }.launchIn(viewModelScope)
     }
 }
