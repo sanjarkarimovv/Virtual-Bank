@@ -21,7 +21,7 @@ class CustomOutlinedTextField @JvmOverloads constructor(
 ) : FrameLayout(context, attrs1, defStyleAttr) {
 
     private var textInputLayout: TextInputLayout
-    private var textInputEditText: TextInputEditText
+    var textInputEditText: TextInputEditText
 
     init {
         LayoutInflater.from(context).inflate(R.layout.custom_outlined_text_field, this, true)

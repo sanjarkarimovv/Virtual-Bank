@@ -1,6 +1,6 @@
 package uz.androbeck.virtualbank.domain.mapper.auth
 
-import uz.androbeck.virtualbank.data.dto.request.SignUpReqDto
+import uz.androbeck.virtualbank.data.dto.request.sign_up.SignUpReqDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import javax.inject.Inject

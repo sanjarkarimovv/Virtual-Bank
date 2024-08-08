@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.databinding.CustomVerifyDialogBinding
 import uz.androbeck.virtualbank.network.message.MessageController
+import uz.androbeck.virtualbank.ui.screens.auth.Common.PHONE_NUMBER_FOR_VERIFY
+import uz.androbeck.virtualbank.ui.screens.auth.Common.TOKEN_FOR_VERIFY
 import uz.androbeck.virtualbank.ui.screens.auth.registration.RegistrationFragment
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
@@ -45,8 +47,8 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tokenForVerify = arguments?.getString(RegistrationFragment.TOKEN_FOR_VERIFY)
-        phoneNumber = arguments?.getString(RegistrationFragment.PHONE_NUMBER_FOR_VERIFY)
+        tokenForVerify = arguments?.getString(TOKEN_FOR_VERIFY)
+        phoneNumber = arguments?.getString(PHONE_NUMBER_FOR_VERIFY)
         val editTextList = listOf(
             binding.ecet1,
             binding.ecet2,
