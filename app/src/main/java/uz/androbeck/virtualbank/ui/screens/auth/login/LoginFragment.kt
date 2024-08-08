@@ -18,6 +18,9 @@ import uz.androbeck.virtualbank.databinding.FragmentLoginBinding
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInReqUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
+import uz.androbeck.virtualbank.ui.screens.auth.Common.PHONE_NUMBER_FOR_VERIFY
+import uz.androbeck.virtualbank.ui.screens.auth.Common.TOKEN_FOR_VERIFY
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
@@ -26,8 +29,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private val vm: LoginViewModel by viewModels()
     private var model: SignInReqUIModel? = null
     override fun setup() {
-        binding.btnLogin.isEnable = false
         with(binding) {
+            btnLogin.isEnable = false
             etPhone.textInputEditText.addTextChangedListener {
                 access()
             }
@@ -35,16 +38,15 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 access()
             }
         }
-        LoginUiEvent.Loading
     }
 
     override fun clicks() = with(binding) {
-        btnLogin.setOnClickListener {
+        btnLogin.singleClickable {
             model?.let {
                 vm.signIn(it)
             }
         }
-        btnSignUp.setOnClickListener {
+        btnSignUp.singleClickable {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
@@ -68,7 +70,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 }
 
                 it.first -> {
-                    setModel(it.third)
+                    model = it.third
+                    binding.btnLogin.isEnable = true
                 }
             }
         }.launchIn(this)
@@ -76,7 +79,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         vm.signInEvent.onEach {
             when (it) {
                 is LoginUiEvent.Error -> {
-                    toast(it.massage ?: "Null")
+                    toast(it.massage ?: getString(R.string.str_error_unexpected))
+                    println(it.massage)
+                    println(it)
                     binding.btnLogin.isProgress = false
                 }
 
@@ -87,7 +92,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 is LoginUiEvent.Success -> {
                     binding.btnLogin.isProgress = false
                     // show password set dialog !
-                    toast("Success")
+                    toast(getString(R.string.str_success))
                     val dialogFragment = EnterVerifyCodeDialogFragment()
                     // token key
                     dialogFragment.arguments = bundleOf(
@@ -98,20 +103,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 }
             }
         }.catch {
-            toast(it.message ?: "Ko'zda tutilmagan xatolik")
+            toast(it.message ?: getString(R.string.str_error_unexpected))
         }.launchIn(this)
 
-    }
-
-
-    private fun setModel(data: SignInReqUIModel?) = CoroutineScope(Dispatchers.Main).launch {
-        model = data
-        binding.btnLogin.isEnable = true
-    }
-
-    companion object {
-        const val TOKEN_FOR_VERIFY = "token_for_verify"
-        const val PHONE_NUMBER_FOR_VERIFY = "phone_number_for_verify"
     }
 }
 
