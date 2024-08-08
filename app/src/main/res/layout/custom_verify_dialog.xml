@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/str_this_send_phone_number_confiry_sms_code"
+        android:text="@string/str_this_send_phone_number_confiry_sms"
         android:textColor="@color/colorScrim"
         android:textSize="14sp"
         android:layout_marginBottom="12dp"

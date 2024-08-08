@@ -33,4 +33,3 @@ class ProfileViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 }
-

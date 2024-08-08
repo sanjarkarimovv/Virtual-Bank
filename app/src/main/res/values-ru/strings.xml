@@ -40,4 +40,9 @@
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
     <string name="str_verification_code_invalid">Tastiqlash kodi noto\'g\'ri</string>
     <string name="str_empty">\</string>
+    <string name="str_this_send_phone_number_confiry_sms">error_temp</string>
+    <string name="tv_widget_setup">Use a darker theme to keep your eyes comfortable at night.</string>
+    <string name="light_mode">Light mode</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="system">System</string>
 </resources>

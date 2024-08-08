@@ -38,4 +38,9 @@
     <string name="defauld_languafe">English</string>
     <string name="default_theme_value">System</string>
     <string name="default_user_name">User User</string>
+    <string name="str_this_send_phone_number_confiry_sms">error_temp</string>
+    <string name="tv_widget_setup">Use a darker theme to keep your eyes comfortable at night.</string>
+    <string name="light_mode">Light mode</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="system">System</string>
 </resources>
