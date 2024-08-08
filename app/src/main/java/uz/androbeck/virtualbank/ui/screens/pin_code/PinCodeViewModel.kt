@@ -115,4 +115,12 @@ class PinCodeViewModel @Inject constructor(
         prefsProvider.pinCode = ""
         resetErrorAttempts()
     }
+
+    fun setBiometrics(useBiometric: Boolean){
+        prefsProvider.useBiometric = useBiometric
+    }
+
+    fun checkBiometrics() : Boolean {
+        return prefsProvider.useBiometric
+    }
 }

@@ -7,6 +7,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BiometricPermissionViewModel @Inject constructor(
-    private val preferencesProvider: PreferencesProvider
+    private val prefsProvider: PreferencesProvider
 ) : ViewModel() {
+    fun setBiometrics(useBiometric: Boolean){
+        prefsProvider.useBiometric = useBiometric
+    }
 }

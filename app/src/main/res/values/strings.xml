@@ -36,5 +36,9 @@
     <string name="pin_code_page_title">Protect with fingerprint or face</string>
     <string name="pin_code_page_text">To avoid entering the PIN code each time, you can enable fingerprint or face authentication.</string>
     <string name="pin_code_page_turn_on">Turn On</string>
+    <string name="biometric_prompt_title">Biometric Authentication</string>
+    <string name="biometric_prompt_subtitle">Authenticate with your biometrics</string>
+    <string name="biometric_prompt_cancel">Cancel</string>
+
 
 </resources>

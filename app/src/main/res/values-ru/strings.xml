@@ -36,5 +36,8 @@
     <string name="pin_code_page_title">Защита с помощью отпечатки пальца или лица</string>
     <string name="pin_code_page_text">Чтобы не вводить PIN-код каждый раз, вы можете включить аутентификацию по отпечатку пальца или лицу.</string>
     <string name="pin_code_page_turn_on">Включить</string>
+    <string name="biometric_prompt_title">Биометрическая аутентификация</string>
+    <string name="biometric_prompt_subtitle">Авторизуйтесь с помощью биометрических данных</string>
+    <string name="biometric_prompt_cancel">Отмена</string>
 
 </resources>

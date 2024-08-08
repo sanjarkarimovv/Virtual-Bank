@@ -1,13 +1,12 @@
     package uz.androbeck.virtualbank.ui.screens.pin_code
     
     import android.animation.ValueAnimator
-    import androidx.biometric.BiometricManager
-    import android.os.Build
     import android.os.Handler
     import android.os.Looper
     import android.view.View
     import android.view.animation.AccelerateDecelerateInterpolator
     import android.view.animation.Interpolator
+    import androidx.biometric.BiometricPrompt
     import androidx.fragment.app.activityViewModels
     import androidx.fragment.app.viewModels
     import androidx.navigation.fragment.findNavController
@@ -22,6 +21,7 @@
     import uz.androbeck.virtualbank.utils.extentions.singleClickable
     import uz.androbeck.virtualbank.utils.extentions.vibrate
     import uz.androbeck.virtualbank.utils.extentions.visible
+    import java.util.concurrent.Executors
 
     @AndroidEntryPoint
     class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
@@ -33,7 +33,7 @@
             setupObservers()
             setupClickListeners()
         }
-    
+
         private fun setupClickListeners() {
             with(binding) {
                 val buttonIds = listOf(
@@ -76,6 +76,7 @@
     
                 btnFingerprint.singleClickable {
                     vibrate()
+                    promptBiometricAuthentication()
                 }
             }
         }
@@ -93,10 +94,18 @@
                             actionConfirm.gone()
                             btnConfirm.gone()
                         } else {
-                            btnFingerprint.visible()
-                            actionExit.visible()
-                            actionConfirm.gone()
-                            btnConfirm.gone()
+                            if (pinCodeViewModel.checkBiometrics()) {
+                                promptBiometricAuthentication()
+                                btnFingerprint.visible()
+                                actionExit.visible()
+                                actionConfirm.gone()
+                                btnConfirm.gone()
+                            } else {
+                                btnFingerprint.gone()
+                                actionExit.visible()
+                                actionConfirm.gone()
+                                btnConfirm.gone()
+                            }
                         }
                     }
                 }
@@ -122,7 +131,13 @@
             when (event) {
                 PinCodeEvent.PinRegistered -> {
     //                navigateWithDelay(NavGraphEvent.Main, 1000)
-                    findNavController().navigate(R.id.action_pinCodeFragment_to_biometricPermissionFragment)
+                    if (BiometricUtils.isBiometricReady(requireContext()) ) {
+                        findNavController().navigate(R.id.action_pinCodeFragment_to_biometricPermissionFragment)
+                    } else {
+                        pinCodeViewModel.setBiometrics(false)
+                        navigateWithDelay(NavGraphEvent.Main, 1000)
+                    }
+
                 }
     
                 PinCodeEvent.PinValidated -> {
@@ -215,18 +230,21 @@
                 start()
             }
         }
-    
-        private fun setButtonsEnabled(enabled: Boolean) {
-            with(binding) {
-                listOf(
-                    btn01, btn02, btn03,
-                    btn04, btn05, btn06,
-                    btn07, btn08, btn09,
-                    btn00, btnRemove, btnFingerprint
-                ).forEach {
-                    it.isEnabled = enabled
+
+        private fun promptBiometricAuthentication() {
+            val biometricPrompt = BiometricPrompt(this, Executors.newSingleThreadExecutor(), object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    navigateWithDelay(NavGraphEvent.Main, 0)
                 }
-            }
+            })
+
+            val promptInfo = BiometricPrompt.PromptInfo.Builder()
+                .setTitle(getString(R.string.biometric_prompt_title))
+                .setSubtitle(getString(R.string.biometric_prompt_subtitle))
+                .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
+                .build()
+
+            biometricPrompt.authenticate(promptInfo)
         }
-    
     }
