@@ -18,6 +18,8 @@ import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.ui.screens.auth.Common.PHONE_NUMBER_FOR_VERIFY
+import uz.androbeck.virtualbank.ui.screens.auth.Common.TOKEN_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
 
@@ -133,10 +135,5 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     override fun onDestroy() {
         super.onDestroy()
         requestModel = null
-    }
-
-    companion object {
-        const val TOKEN_FOR_VERIFY = "token_for_verify"
-        const val PHONE_NUMBER_FOR_VERIFY = "phone_number_for_verify"
     }
 }

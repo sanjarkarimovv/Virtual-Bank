@@ -19,6 +19,7 @@
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_login">Login</string>
     <string name="settings">Settings</string>
     <string name="support">Support</string>
     <string name="theme_of_the_application">Theme of the application</string>
@@ -38,4 +39,8 @@
     <string name="defauld_languafe">English</string>
     <string name="default_theme_value">System</string>
     <string name="default_user_name">User User</string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
+    <string name="forget_password">Forget password</string>
+    <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="str_success">Success</string>
 </resources>
