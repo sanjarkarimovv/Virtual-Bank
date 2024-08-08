@@ -20,5 +20,4 @@ interface HomeService {
     suspend fun putUpdateInfo(
         @Body request: UpdateInfoReqDto
     ): MessageResDto
-
 }

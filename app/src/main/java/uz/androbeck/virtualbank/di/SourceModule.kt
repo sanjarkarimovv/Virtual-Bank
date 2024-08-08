@@ -35,7 +35,7 @@ object SourceModule {
     }
     @Singleton
     @Provides
-    fun  provideHistoryRemoteDataSource(
+    fun provideHistoryRemoteDataSource(
         service: HistoryService
     ):HistoryRemoteDatasource{
         return HistoryRemoteDataSourceImpl(service)
