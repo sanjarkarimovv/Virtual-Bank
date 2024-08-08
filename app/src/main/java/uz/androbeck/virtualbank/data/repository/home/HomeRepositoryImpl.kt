@@ -1,7 +1,7 @@
 package uz.androbeck.virtualbank.data.repository.home
 
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
-import uz.androbeck.virtualbank.data.source.remote.HomeRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(

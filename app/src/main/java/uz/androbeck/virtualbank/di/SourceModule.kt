@@ -6,10 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.api.HomeService
-import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSource
-import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSourceImpl
-import uz.androbeck.virtualbank.data.source.remote.HomeRemoteDataSource
-import uz.androbeck.virtualbank.data.source.remote.HomeRemoteDataSourceImpl
+import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSourceImpl
+import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSourceImpl
 import javax.inject.Singleton
 
 @Module

@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.domain.mapper.auth.common
+package uz.androbeck.virtualbank.domain.mapper.auth
 
 import uz.androbeck.virtualbank.data.dto.common.response.TokensResDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper

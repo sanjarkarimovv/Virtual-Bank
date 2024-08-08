@@ -15,11 +15,13 @@ import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
+import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
-import uz.androbeck.virtualbank.ui.screens.auth.Common.PHONE_NUMBER_FOR_VERIFY
-import uz.androbeck.virtualbank.ui.screens.auth.Common.TOKEN_FOR_VERIFY
+import uz.androbeck.virtualbank.ui.screens.Screen
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
 
@@ -122,7 +124,8 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         enterVerifyCodeDialog = EnterVerifyCodeDialogFragment()
         enterVerifyCodeDialog?.arguments = bundleOf(
             TOKEN_FOR_VERIFY to token,
-            PHONE_NUMBER_FOR_VERIFY to binding.etPhoneNumber.editText.text.toString()
+            PHONE_NUMBER_FOR_VERIFY to binding.etPhoneNumber.editText.text.toString(),
+            SCREEN to Screen.REGISTRATION.name
         )
         enterVerifyCodeDialog?.show(
             childFragmentManager, EnterVerifyCodeDialogFragment::class.java.simpleName

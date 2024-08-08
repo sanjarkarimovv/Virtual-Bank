@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.source.remote
+package uz.androbeck.virtualbank.data.source.remote.home
 
 import kotlinx.coroutines.flow.Flow
 import uz.androbeck.virtualbank.data.dto.common.response.MessageResDto
