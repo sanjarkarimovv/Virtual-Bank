@@ -8,48 +8,60 @@
     <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
         android:id="@+id/et_phone"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginHorizontal="24dp"
-        app:boxBackgroundColor="#EBEBEB"
+        android:layout_marginHorizontal="16dp"
+        app:boxBackgroundColor="@color/colorSurfaceContainer"
         app:clearable="true"
-        app:helperText="Supporting text"
-        app:hintText="Phone number"
+        app:hintText="@string/str_phone_number"
         app:scrollHorizontally="true" />
 
     <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
         android:id="@+id/et_password"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/et_phone"
         android:layout_centerInParent="true"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        app:boxBackgroundColor="#EBEBEB"
+        app:boxBackgroundColor="@color/colorSurfaceContainer"
         app:clearable="true"
-        app:helperText="Supporting text"
-        app:hintText="Password"
+        app:hintText="@string/str_password"
         app:scrollHorizontally="true" />
 
+    <TextView
+        android:id="@+id/btn_forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_sign_up"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/exo2_medium"
+        android:text="@string/forget_password" />
 
     <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankButton
         android:id="@+id/btn_sign_up"
+        style="@style/VirtualBankButton.Filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_login"
-        android:text="Sign in"
-        style="@style/VirtualBankButton.Filled"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="16dp"
+        android:text="@string/str_sign_up" />
 
-    <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankButton
+    <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankProgressButton
         android:id="@+id/btn_login"
+        style="@style/VirtualBankButton.Filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        style="@style/VirtualBankButton.Filled"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="30dp"
-        android:text="Login" />
+        android:enabled="true"
+
+        android:text="@string/str_login" />
 
 
 </RelativeLayout>

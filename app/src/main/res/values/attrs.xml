@@ -29,6 +29,7 @@
     </declare-styleable>
     <declare-styleable name="CustomEnterCodeEditText">
         <attr name="exampleAttribute" format="string"/>
+        <attr name="setText" format="string"/>
         <attr name="verifyBoxBackgroundColor" format="color" />
         <attr name="verifyBoxStrokeColor" format="color" />
     </declare-styleable>

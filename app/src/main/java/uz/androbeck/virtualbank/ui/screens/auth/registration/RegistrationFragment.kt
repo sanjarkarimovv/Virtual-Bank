@@ -15,9 +15,13 @@ import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
+import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.ui.screens.Screen
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
 
@@ -109,6 +113,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
             }
         }
 
+
         messageController.observeMessage().onEach {
             btnSignUp.isProgress = false
             toast(it)
@@ -118,11 +123,12 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     private fun showVerifyCodeDialog(token: String) {
         enterVerifyCodeDialog = EnterVerifyCodeDialogFragment()
         enterVerifyCodeDialog?.arguments = bundleOf(
-            TOKEN_FOR_VERIFY to token
+            TOKEN_FOR_VERIFY to token,
+            PHONE_NUMBER_FOR_VERIFY to binding.etPhoneNumber.editText.text.toString(),
+            SCREEN to Screen.REGISTRATION.name
         )
         enterVerifyCodeDialog?.show(
-            childFragmentManager,
-            EnterVerifyCodeDialogFragment::class.java.simpleName
+            childFragmentManager, EnterVerifyCodeDialogFragment::class.java.simpleName
         )
         enterVerifyCodeDialog?.onSuccessVerify = {
             sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
@@ -132,9 +138,5 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     override fun onDestroy() {
         super.onDestroy()
         requestModel = null
-    }
-
-    companion object {
-        const val TOKEN_FOR_VERIFY = "token_for_verify"
     }
 }

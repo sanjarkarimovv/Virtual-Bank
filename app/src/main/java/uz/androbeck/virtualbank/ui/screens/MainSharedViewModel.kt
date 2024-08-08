@@ -1,8 +1,11 @@
 package uz.androbeck.virtualbank.ui.screens
 
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
@@ -13,8 +16,10 @@ class MainSharedViewModel @Inject constructor(
     private val prefsProvider: PreferencesProvider
 ) : BaseViewModel() {
 
-    private val _navGraphEvent = MutableStateFlow<NavGraphEvent?>(null)
-    val navGraphEvent: StateFlow<NavGraphEvent?> get() = _navGraphEvent
+    private val navGraphEvent = Channel<NavGraphEvent>()
+
+    fun setNavGraphEvent(event: NavGraphEvent) = viewModelScope.launch {
+        navGraphEvent.send(event)
 
     private val _isAwayLong = MutableStateFlow<Boolean?>(null)
     val isAwayLong: StateFlow<Boolean?> get() = _isAwayLong
@@ -23,11 +28,11 @@ class MainSharedViewModel @Inject constructor(
         _navGraphEvent.value = event
     }
 
-    fun setNavGraphEvent() {
+    fun setNavGraphEvent() = viewModelScope.launch {
         if (prefsProvider.token.isNotEmpty()) {
-            _navGraphEvent.value = NavGraphEvent.PinCode
+            navGraphEvent.send(NavGraphEvent.PinCode)
         } else {
-            _navGraphEvent.value = NavGraphEvent.Auth
+            navGraphEvent.send(NavGraphEvent.Auth)
         }
     }
 
@@ -37,5 +42,9 @@ class MainSharedViewModel @Inject constructor(
 
     fun checkIsAwayLong(){
         _isAwayLong.value = (System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000
+    }
+
+    fun observeNavGraphEvent(): Flow<NavGraphEvent> {
+        return navGraphEvent.consumeAsFlow()
     }
 }

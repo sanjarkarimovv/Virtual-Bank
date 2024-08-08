@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObservers(navHostFragment: NavHostFragment) {
-        mainSharedVM.navGraphEvent.onEach { event ->
+        mainSharedVM.observeNavGraphEvent().onEach { event ->
+            println(":::Event: $event")
             when (event) {
                 NavGraphEvent.Auth -> {
                     navHostFragment.navController.setGraph(R.navigation.auth_nav_graph)
@@ -52,8 +53,6 @@ class MainActivity : AppCompatActivity() {
                     navHostFragment.navController.setGraph(R.navigation.pin_code_nav_graph)
                     binding.bottomNavigation.gone()
                 }
-
-                null -> Unit
             }
         }.launchIn(lifecycleScope)
     }

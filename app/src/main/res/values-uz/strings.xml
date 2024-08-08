@@ -9,6 +9,25 @@
     <string name="pin_mismatch_message">PIN kod mos emas.\n%1$d ta urinish qoldi.</string>
     <string name="too_many_attempts_message">Juda ko\'p muvaffaqiyatsiz urinishlar. 1 daqiqadan so‘ng qayta urinib ko‘ring.</string>
     <string name="str_first_name">Ism</string>
+    <string name="settings">Sozlamalar</string>
+    <string name="support">Qo\'llab-quvvatlash xizmati</string>
+    <string name="theme_of_the_application">Ilova mavzusi</string>
+    <string name="widget_setup">Vidjetlar sozlamasi</string>
+    <string name="todo">TODO</string>
+    <string name="security">Xafsizlik</string>
+    <string name="permissions">Ruxsatlar</string>
+    <string name="notification">Xabarnoma</string>
+    <string name="actions">Harakatlar</string>
+    <string name="application_language">Ilova tili</string>
+    <string name="logout">Profilni almashtirish</string>
+    <string name="consent_to_data_processing">Ma\'lumotlarni ishlashga rozilik</string>
+    <string name="public_offer">Ommaviy oferta</string>
+    <string name="privacy_policy">Maxfiylik siyosati</string>
+    <string name="version">Talqin </string>
+    <string name="default_version"> " "1.0.0</string>
+    <string name="defauld_languafe">English</string>
+    <string name="default_theme_value">System</string>
+    <string name="default_user_name">User User</string>
     <string name="str_last_name">Last name</string>
     <string name="str_confirm_password">Confirm password</string>
     <string name="str_password">Password</string>
@@ -39,4 +58,7 @@
     <string name="biometric_prompt_title">Biometrik autentifikatsiya</string>
     <string name="biometric_prompt_subtitle">Biometrik ma\'lumotlaringiz bilan autentifikatsiya qiling</string>
     <string name="biometric_prompt_cancel">Bekor qilish</string>
+    <string name="str_login">Login</string>
+    <string name="forget_password">Forget password</string>
+    <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
 </resources>
