@@ -105,4 +105,7 @@ dependencies {
     //Chucker interceptor
     debugImplementation(libs.chucker.interceptor)
     releaseImplementation(libs.chucker.interceptor.no.op)
+
+    //Material Components
+    implementation(libs.material)
 }

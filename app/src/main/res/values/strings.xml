@@ -49,4 +49,8 @@
     <string name="str_localization_uzb">Uzbek</string>
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
+    <string name="system">System</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="light_mode">Light mode</string>
+    <string name="tv_widget_setup">Daynight Mode</string>
 </resources>
