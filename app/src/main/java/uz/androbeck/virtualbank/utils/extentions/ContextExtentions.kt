@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.view.LayoutInflater
+import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -120,3 +121,13 @@ fun Context.optionDialog(
     dialog.show()
 
 }
+
+fun Context.dpToPx(dp: Float): Int =
+    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics).toInt()
+
+fun Context.dpToPxFloat(dp: Float): Float =
+    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
+
+fun Context.dpToPx(dp: Int): Int = dpToPx(dp.toFloat())
+
+fun Context.pxToDp(px: Int): Int = (px / resources.displayMetrics.density).toInt()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="bottom_item_title_home">Bosh sahifa</string>
     <string name="bottom_item_title_transfer">O\'tkazma</string>
     <string name="pin_code_page_enter_pin">PIN kodni kiriting</string>
@@ -30,14 +30,26 @@
     <string name="default_user_name">User User</string>
     <string name="str_last_name">Last name</string>
     <string name="str_confirm_password">Confirm password</string>
-    <string name="str_password">Password</string>
-    <string name="str_phone_number">Phone number</string>
+    <string name="str_password">Parol</string>
+    <string name="str_phone_number">Telefon raqam</string>
     <string name="str_born_date">Born date</string>
     <string name="str_gender">Gender</string>
-    <string name="str_sign_up">Sign Up</string>
+    <string name="str_sign_up">Ro\'yxatdan o\'tish</string>
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_login">Kirish</string>
+    <string name="forget_password">Parolni unutdim</string>
+    <string name="toolbar_title">Title </string>
+    <string name="str_login">Login</string>
+    <string name="forget_password">Forget password</string>
+    <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="str_choose_language_title">Dastur tilini tanlang</string>
+    <string name="str_choose_title">Tanlamoq</string>
+    <string name="str_localization_uzb">O\'zbekcha</string>
+    <string name="str_localization_rus">Ruscha</string>
+    <string name="str_localization_eng">Inglizcha</string>
     <string name="str_trusted_device">Ishonilgan qurilmalar</string>
     <string name="str_change_password">Parolni o\'zgartirish</string>
     <string name="str_change_pin_code">PIN-kodni o\'zgartirish</string>

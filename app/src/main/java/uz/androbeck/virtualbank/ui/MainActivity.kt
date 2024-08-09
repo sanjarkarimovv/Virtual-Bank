@@ -1,9 +1,6 @@
 package uz.androbeck.virtualbank.ui
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -14,70 +11,78 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.ActivityMainBinding
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.visible
+import java.util.Locale
+import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    // I check this commit
 
     private lateinit var binding: ActivityMainBinding
     private val vm: MainViewModel by viewModels()
-    private val mainSharedVM: MainSharedViewModel by viewModels()
+
+    @Inject
+    lateinit var preferencesProvider: PreferencesProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        changeLanguage()
         setContentView(binding.root)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(navHostFragment.navController)
-        mainSharedVM.setNavGraphEvent()
+        vm.setNavGraphEvent()
         setupObservers(navHostFragment)
     }
 
+    fun changeLanguage() {
+        val language = preferencesProvider.language.getLanguageByCode()
+        val config = resources.configuration
+        val locale = Locale(language.code)
+        Locale.setDefault(locale)
+        config.setLocale(locale)
+        createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+
     private fun setupObservers(navHostFragment: NavHostFragment) {
-        mainSharedVM.navGraphEvent.onEach { event ->
-            when (event) {
-                NavGraphEvent.Auth -> {
-                    navHostFragment.navController.setGraph(R.navigation.auth_nav_graph)
-                    binding.bottomNavigation.gone()
-                }
+        vm.observeNavGraphEvent().onEach { event ->
+            navHostFragment.navController.apply {
+                defaultNavHostTrue(navHostFragment)
+                when (event) {
+                    NavGraphEvent.Auth -> {
+                        val authGraph = navInflater.inflate(R.navigation.auth_nav_graph)
+                        authGraph.setStartDestination(R.id.chooseLanguageFragment)
+                        graph = authGraph
+                        binding.bottomNavigation.gone()
+                    }
 
-                NavGraphEvent.Main -> {
-                    navHostFragment.navController.setGraph(R.navigation.main_nav_graph)
-                    binding.bottomNavigation.visible()
-                }
+                    NavGraphEvent.Main -> {
+                        val mainGraph = navInflater.inflate(R.navigation.main_nav_graph)
+                        mainGraph.setStartDestination(R.id.mainFragment)
+                        graph = mainGraph
+                        binding.bottomNavigation.visible()
+                    }
 
-                NavGraphEvent.PinCode -> {
-                    navHostFragment.navController.setGraph(R.navigation.pin_code_nav_graph)
-                    binding.bottomNavigation.gone()
+                    NavGraphEvent.PinCode -> {
+                        val pinCodeGraph = navInflater.inflate(R.navigation.pin_code_nav_graph)
+                        pinCodeGraph.setStartDestination(R.id.pinCodeFragment)
+                        graph = pinCodeGraph
+                        binding.bottomNavigation.gone()
+                    }
                 }
-                NavGraphEvent.Security -> {
-                    navHostFragment.navController.setGraph(R.navigation.security_nav_graph)
-                    binding.bottomNavigation.gone()
-                }
-
-                null -> Unit
             }
         }.launchIn(lifecycleScope)
     }
-    @SuppressLint("CommitPrefEdits")
-    override fun onStart() {
-        super.onStart()
-        val currentTime=System.currentTimeMillis()
-        val sharedPreferences = getSharedPreferences("secure_shared_prefs", Context.MODE_PRIVATE)
-        sharedPreferences.edit().putLong("current_time",currentTime)
-    }
 
-    override fun onStop() {
-        super.onStop()
-        val sharedPreferences = getSharedPreferences("secure_shared_prefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putLong("last_exit_time", System.currentTimeMillis())
-        editor.apply()
+    private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
+        supportFragmentManager.beginTransaction().setPrimaryNavigationFragment(navHostFragment)
+            .commit()
     }
-
 }

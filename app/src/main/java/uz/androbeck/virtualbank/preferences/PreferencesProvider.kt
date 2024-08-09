@@ -1,7 +1,7 @@
 package uz.androbeck.virtualbank.preferences
 
 import android.content.SharedPreferences
-import android.widget.CheckBox
+import uz.androbeck.virtualbank.utils.Constants
 import javax.inject.Inject
 
 class PreferencesProvider @Inject constructor(
@@ -18,6 +18,8 @@ class PreferencesProvider @Inject constructor(
     var autoBlockIsOn: Boolean by preferences.boolean()
     var useIsGeolocation: Boolean by preferences.boolean()
     var userLocation: String by preferences.string()
+    var language: String by preferences.string(Constants.Localization.UZBEK)
+
     fun clear() {
         preferences.edit().clear().apply()
     }

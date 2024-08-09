@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="bottom_item_title_home">Основной</string>
     <string name="bottom_item_title_transfer">Перевод</string>
     <string name="pin_code_page_enter_pin">Введите PIN-код</string>
@@ -30,11 +30,11 @@
     <string name="str_first_name">First name</string>
     <string name="str_last_name">Last name</string>
     <string name="str_confirm_password">Confirm password</string>
-    <string name="str_password">Password</string>
-    <string name="str_phone_number">Phone number</string>
+    <string name="str_password">Пароль</string>
+    <string name="str_phone_number">Номер телефона</string>
     <string name="str_born_date">Born date</string>
     <string name="str_gender">Gender</string>
-    <string name="str_sign_up">Sign Up</string>
+    <string name="str_sign_up">Регистрация</string>
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
@@ -48,4 +48,14 @@
 
     <!--    <string name="str_verification_code_invalid" tools:ignore="ExtraTranslation">Tastiqlash kodi noto\'g\'ri</string>-->
 <!--    <string name="str_empty" tools:ignore="ExtraTranslation">\</string>-->
+    <string name="str_login">Авторизоваться</string>
+    <string name="forget_password">Забыли пароль</string>
+    <string name="toolbar_title">Title </string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
+    <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="str_choose_language_title">Выберите язык</string>
+    <string name="str_choose_title">Выбирать</string>
+    <string name="str_localization_uzb">Узбекский</string>
+    <string name="str_localization_rus">Русский</string>
+    <string name="str_localization_eng">Английский</string>
 </resources>
