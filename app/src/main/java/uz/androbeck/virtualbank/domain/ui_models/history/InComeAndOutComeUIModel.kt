@@ -6,4 +6,5 @@ data class InComeAndOutComeUIModel(
     val to: String? = null,
     val amount: Double = 0.0,
     val time: Long = 0,
+
 )
