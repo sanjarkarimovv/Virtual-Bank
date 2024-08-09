@@ -37,9 +37,13 @@
     <string name="str_sign_up">Ro\'yxatdan o\'tish</string>
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
     <string name="str_login">Kirish</string>
     <string name="forget_password">Parolni unutdim</string>
+    <string name="toolbar_title">Title </string>
+    <string name="str_login">Login</string>
+    <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_choose_language_title">Dastur tilini tanlang</string>
     <string name="str_choose_title">Tanlamoq</string>
