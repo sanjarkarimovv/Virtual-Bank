@@ -1,11 +1,7 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code
 
-import android.hardware.biometrics.BiometricManager
-import android.os.Build
-import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -56,7 +52,7 @@ class PinCodeViewModel @Inject constructor(
         prefsProvider.errorAttempts = 0
     }
 
-    fun userLog() {
+    private fun userLog() {
         viewModelScope.launch {
             val fromRegister = prefsProvider.pinCode.isEmpty()
             _fromRegister.postValue(!fromRegister)

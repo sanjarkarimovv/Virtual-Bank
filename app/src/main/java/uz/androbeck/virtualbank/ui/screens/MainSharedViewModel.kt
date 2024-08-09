@@ -4,6 +4,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
@@ -18,14 +20,11 @@ class MainSharedViewModel @Inject constructor(
 
     private val navGraphEvent = Channel<NavGraphEvent>()
 
-    fun setNavGraphEvent(event: NavGraphEvent) = viewModelScope.launch {
-        navGraphEvent.send(event)
-
     private val _isAwayLong = MutableStateFlow<Boolean?>(null)
     val isAwayLong: StateFlow<Boolean?> get() = _isAwayLong
-
-    fun setNavGraphEvent(event: NavGraphEvent) {
-        _navGraphEvent.value = event
+    
+    fun setNavGraphEvent(event: NavGraphEvent) = viewModelScope.launch {
+        navGraphEvent.send(event)
     }
 
     fun setNavGraphEvent() = viewModelScope.launch {
@@ -41,7 +40,7 @@ class MainSharedViewModel @Inject constructor(
     }
 
     fun checkIsAwayLong(){
-        _isAwayLong.value = (System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000
+        _isAwayLong.value = (System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000 && prefsProvider.token.isNotEmpty()
     }
 
     fun observeNavGraphEvent(): Flow<NavGraphEvent> {
