@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorSurface"
+        android:title="Kirim-Chikim" />
+<LinearLayout
+    android:id="@+id/ll_sort"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_below="@+id/toolbar"
+    android:weightSum="2"
+    android:orientation="horizontal">
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="History"
-        android:layout_centerInParent="true" />
+        android:id="@+id/tv_tushum"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Tushum \n +124000.00 "
+        android:fontFamily="@font/exo2_italic"
+        android:layout_gravity="center"
+        android:paddingHorizontal="15dp"
+        android:background="@android:color/transparent"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/tv_chiqim"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Chiqim \n -55200.00"
+        android:textColor="@color/colorError"
+        android:paddingHorizontal="15dp"
+        android:fontFamily="@font/exo2_italic"
+        android:background="@android:color/transparent"
+        android:textSize="20dp" />
+</LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_sort"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </RelativeLayout>

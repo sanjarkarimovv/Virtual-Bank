@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shape_corner_radius_16">
+
+
+    <LinearLayout
+        android:id="@+id/ll_image_service"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="34dp"
+        android:background="@drawable/bg_shape_corner_radius_12"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_service_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_transfer_sent" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_transaction_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/ll_image_service"
+        android:text="Cach-in"
+        android:textColor="@color/colorScrim"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_secondary_transaction_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_transaction_name"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/ll_image_service"
+        android:text="From ABC Bank ATM"
+        android:textColor="@color/colorScrim"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:text="$100.00"
+        android:textColor="@color/colorScrim"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_transaction_statuses"
+        android:layout_width="56dp"
+        android:layout_height="14dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_amount"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:background="@drawable/bg_shape_corner_radius_4"
+        android:text="cofirmed"
+        android:textColor="#5DC486"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_transaction_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_transaction_statuses"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="20dp"
+        android:text="06 Jul 2024"
+        android:textColor="@color/colorSecondary"
+        android:textSize="12sp"
+        android:textStyle="italic" />
+
+
+    </RelativeLayout>
