@@ -42,8 +42,6 @@
     <string name="str_login">Kirish</string>
     <string name="forget_password">Parolni unutdim</string>
     <string name="toolbar_title">Title </string>
-    <string name="str_login">Login</string>
-    <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_choose_language_title">Dastur tilini tanlang</string>
     <string name="str_choose_title">Tanlamoq</string>
