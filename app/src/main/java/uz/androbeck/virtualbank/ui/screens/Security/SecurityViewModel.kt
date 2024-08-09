@@ -1,25 +1,12 @@
 package uz.androbeck.virtualbank.ui.screens.Security
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.LocationListener
-import android.location.LocationManager
-import android.view.View
-import android.widget.CheckBox
 import android.widget.SeekBar
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
-import uz.androbeck.virtualbank.ui.screens.Security.service.LocationService
-import uz.androbeck.virtualbank.utils.extentions.gone
-import uz.androbeck.virtualbank.utils.extentions.invisible
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
 
@@ -59,22 +46,5 @@ class SecurityViewModel @Inject constructor(
 
     fun autoBlockIsOn(isCheck: Boolean) {
         provider.autoBlockIsOn = isCheck
-    }
-
-
-
-
-    fun startLocation(context: Context) {
-        val serviceIntent = Intent(context, LocationService::class.java)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            context.startForegroundService(serviceIntent)
-        } else {
-            context.startService(serviceIntent)
-        }
-    }
-
-    fun stopLocation(context: Context) {
-        val serviceIntent = Intent(context, LocationService::class.java)
-        context.stopService(serviceIntent)
     }
 }

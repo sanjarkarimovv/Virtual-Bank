@@ -17,7 +17,6 @@ class PreferencesProvider @Inject constructor(
     var paymentConfirmation: Boolean by preferences.boolean()
     var autoBlockIsOn: Boolean by preferences.boolean()
     var useIsGeolocation: Boolean by preferences.boolean()
-    var userLocation: String by preferences.string()
     var language: String by preferences.string(Constants.Localization.UZBEK)
 
     fun clear() {

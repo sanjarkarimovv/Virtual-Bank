@@ -22,6 +22,6 @@ class HomeRemoteDataSourceImpl @Inject constructor(
     }
 
     override fun getTotalBalance()= flow {
-        emit(fullInfoService.getTotalBalance())
+        emit(homeService.getTotalBalance())
     }
 }

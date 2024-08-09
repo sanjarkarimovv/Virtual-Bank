@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
         if (prefsProvider.token.isNotEmpty()) {
             navGraphEvent.send(NavGraphEvent.PinCode)
         } else {
-            navGraphEvent.send(NavGraphEvent.Auth)
+            navGraphEvent.send(NavGraphEvent.Main)
         }
     }
 

@@ -20,10 +20,17 @@
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
         android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_securityFragment2"
+            app:destination="@id/securityFragment2" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryFragment"
         android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/securityFragment2"
+        android:name="uz.androbeck.virtualbank.ui.screens.Security.SecurityFragment"
+        android:label="SecurityFragment" />
 
 </navigation>
