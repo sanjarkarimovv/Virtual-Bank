@@ -8,8 +8,8 @@ import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRep
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepositoryImpl
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepositoryImpl
-import uz.androbeck.virtualbank.data.source.remote.AuthenticationRemoteDataSource
-import uz.androbeck.virtualbank.data.source.remote.HomeRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
 import javax.inject.Singleton
 
 @Module

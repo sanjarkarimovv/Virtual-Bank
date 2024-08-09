@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code
+package uz.androbeck.virtualbank.ui.dialogs.enter_verify_code
 
 import android.app.Dialog
 import android.os.Bundle
@@ -16,9 +16,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.databinding.CustomVerifyDialogBinding
 import uz.androbeck.virtualbank.network.message.MessageController
-import uz.androbeck.virtualbank.ui.screens.auth.Common.PHONE_NUMBER_FOR_VERIFY
-import uz.androbeck.virtualbank.ui.screens.auth.Common.TOKEN_FOR_VERIFY
-import uz.androbeck.virtualbank.ui.screens.auth.registration.RegistrationFragment
+import uz.androbeck.virtualbank.ui.screens.Screen
+import uz.androbeck.virtualbank.utils.Constants
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
@@ -31,6 +32,7 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
     private val binding get() = _binding!!
     private var tokenForVerify: String? = null
     private var phoneNumber: String? = null
+    private var screen: Screen? = null
 
     @Inject
     lateinit var messageController: MessageController
@@ -45,37 +47,23 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
         super.onViewCreated(view, savedInstanceState)
         tokenForVerify = arguments?.getString(TOKEN_FOR_VERIFY)
         phoneNumber = arguments?.getString(PHONE_NUMBER_FOR_VERIFY)
+        arguments?.getString(Constants.ArgumentKey.SCREEN)?.let {
+            screen = Screen.valueOf(it)
+        }
         val editTextList = listOf(
-            binding.ecet1,
-            binding.ecet2,
-            binding.ecet3,
-            binding.ecet4,
-            binding.ecet5,
-            binding.ecet6,
+            ecet1,
+            ecet2,
+            ecet3,
+            ecet4,
+            ecet5,
+            ecet6,
         )
 
-        vm.timerFinished.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.llRefreshTimer.visibility = View.VISIBLE
-                binding.llTimer.visibility = View.GONE
-            } else {
-                binding.llRefreshTimer.visibility = View.GONE
-                binding.llTimer.visibility = View.VISIBLE
-            }
-        }
-        vm.timerText.observe(viewLifecycleOwner) {
-            binding.timer.text = it
-        }
-
-        vm.allFieldsFilled.observe(viewLifecycleOwner) {
-            binding.confirmButton.isEnabled = it
-        }
-
-        binding.tvPhoneNumber.text = formatPhoneNumber(phoneNumber.toString())
+        tvPhoneNumber.text = formatPhoneNumber(phoneNumber.toString())
 
         for (i in editTextList.indices) {
             if (i < editTextList.size - 1) {
@@ -108,7 +96,6 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
                 }
             })
         }
-
         observe()
         clicks()
     }
@@ -120,12 +107,12 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
             vm.editTextValues.value?.forEach {
                 codeStringBuilder.append(it)
             }
-            vm.signUpVerify(codeStringBuilder.toString(), tokenForVerify)
+            vm.authVerify(codeStringBuilder.toString(), tokenForVerify, screen)
             codeStringBuilder.clear()
         }
     }
 
-    private fun observe() {
+    private fun observe() = with(binding) {
         vm.signUpVerifyEvent.onEach {
             if (it) {
                 dismiss()
@@ -141,6 +128,23 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
             if (it) {
                 reEnterCode()
             }
+        }
+
+        vm.timerFinished.observe(viewLifecycleOwner) {
+            if (it) {
+                llRefreshTimer.visibility = View.VISIBLE
+                llTimer.visibility = View.GONE
+            } else {
+                llRefreshTimer.visibility = View.GONE
+                llTimer.visibility = View.VISIBLE
+            }
+        }
+        vm.timerText.observe(viewLifecycleOwner) {
+            timer.text = it
+        }
+
+        vm.allFieldsFilled.observe(viewLifecycleOwner) {
+            binding.confirmButton.isEnabled = it
         }
     }
 
@@ -167,12 +171,12 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
 
     private fun reEnterCode() {
         with(binding) {
-            ecet1.setText(EMPTY_STR)
-            ecet2.setText(EMPTY_STR)
-            ecet3.setText(EMPTY_STR)
-            ecet4.setText(EMPTY_STR)
-            ecet5.setText(EMPTY_STR)
-            ecet6.setText(EMPTY_STR)
+            ecet1.setText(Constants.String.EMPTY)
+            ecet2.setText(Constants.String.EMPTY)
+            ecet3.setText(Constants.String.EMPTY)
+            ecet4.setText(Constants.String.EMPTY)
+            ecet5.setText(Constants.String.EMPTY)
+            ecet6.setText(Constants.String.EMPTY)
             ecet1.requestFocus()
             confirmButton.isEnabled = false
         }
@@ -186,5 +190,3 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
         return "+$countryCode $operatorCode *** ** $lastTwoDigits"
     }
 }
-
-const val EMPTY_STR = ""

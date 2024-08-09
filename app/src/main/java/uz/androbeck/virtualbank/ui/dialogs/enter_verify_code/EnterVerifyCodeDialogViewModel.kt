@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code
+package uz.androbeck.virtualbank.ui.dialogs.enter_verify_code
 
 import android.annotation.SuppressLint
 import android.os.CountDownTimer
@@ -12,15 +12,18 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpVerifyReqUIModel
+import uz.androbeck.virtualbank.domain.ui_models.common.CodeVerifyReqUIModel
+import uz.androbeck.virtualbank.domain.useCases.authentication.SignInVerifyUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpVerifyUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
+import uz.androbeck.virtualbank.ui.screens.Screen
 import javax.inject.Inject
 
 @HiltViewModel
 class EnterVerifyCodeDialogViewModel @Inject constructor(
     private val signUpVerifyUseCase: SignUpVerifyUseCase,
+    private val signInVerifyUseCase: SignInVerifyUseCase,
     private val preferencesProvider: PreferencesProvider,
     private val errorHandler: ErrorHandler,
 ) : ViewModel() {
@@ -51,24 +54,44 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
         startTimer()
     }
 
-    fun signUpVerify(code: String?, token: String?) {
+    fun authVerify(code: String?, token: String?, screen: Screen?) {
         code?.let {
             if (token == null) {
                 return
             }
-            signUpVerifyUseCase(
-                SignUpVerifyReqUIModel(
-                    token = token,
-                    code = it
-                )
-            ).onEach { uiModel ->
-                preferencesProvider.token = uiModel.accessToken.orEmpty()
-                preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
-                _signUpVerifyEvent.value = true
-            }.catch { th ->
-                errorHandler.handleError(th)
-                _isError.value = true
-            }.launchIn(viewModelScope)
+            val requestUIModel = CodeVerifyReqUIModel(
+                token = token,
+                code = it
+            )
+            when (screen) {
+                Screen.LOGIN -> {
+                    signInVerifyUseCase(
+                        requestUIModel
+                    ).onEach { uiModel ->
+                        preferencesProvider.token = uiModel.accessToken.orEmpty()
+                        preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
+                        _signUpVerifyEvent.value = true
+                    }.catch { th ->
+                        errorHandler.handleError(th)
+                        _isError.value = true
+                    }.launchIn(viewModelScope)
+                }
+
+                Screen.REGISTRATION -> {
+                    signUpVerifyUseCase(
+                        requestUIModel
+                    ).onEach { uiModel ->
+                        preferencesProvider.token = uiModel.accessToken.orEmpty()
+                        preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
+                        _signUpVerifyEvent.value = true
+                    }.catch { th ->
+                        errorHandler.handleError(th)
+                        _isError.value = true
+                    }.launchIn(viewModelScope)
+                }
+
+                null -> Unit
+            }
         }
     }
 

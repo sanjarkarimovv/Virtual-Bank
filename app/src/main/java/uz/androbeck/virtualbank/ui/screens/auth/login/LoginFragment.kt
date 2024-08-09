@@ -2,24 +2,26 @@ package uz.androbeck.virtualbank.ui.screens.auth.login
 
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentLoginBinding
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInReqUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.dialogs.dialog_enter_verify_code.EnterVerifyCodeDialogFragment
-import uz.androbeck.virtualbank.ui.screens.auth.Common.PHONE_NUMBER_FOR_VERIFY
-import uz.androbeck.virtualbank.ui.screens.auth.Common.TOKEN_FOR_VERIFY
+import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
+import uz.androbeck.virtualbank.ui.events.NavGraphEvent
+import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.ui.screens.Screen
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
+import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 
@@ -27,7 +29,9 @@ import uz.androbeck.virtualbank.utils.extentions.toast
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private val binding: FragmentLoginBinding by viewBinding()
     private val vm: LoginViewModel by viewModels()
-    private var model: SignInReqUIModel? = null
+    private val sharedVM: MainSharedViewModel by activityViewModels()
+    private var signInReqUIModel: SignInReqUIModel? = null
+    private var enterVerifyCodeDialogFragment: EnterVerifyCodeDialogFragment? = null
     override fun setup() {
         with(binding) {
             btnLogin.isEnable = false
@@ -42,7 +46,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     override fun clicks() = with(binding) {
         btnLogin.singleClickable {
-            model?.let {
+            signInReqUIModel?.let {
                 vm.signIn(it)
             }
         }
@@ -63,14 +67,14 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     override fun observe(): Unit = with(viewLifecycleOwner.lifecycleScope) {
-        vm.accessLogin.onEach {
+        vm.accessLogin.onEach { (isValidate, _, signInReqUIModel) ->
             when {
-                !it.first -> {
+                !isValidate -> {
                     binding.btnLogin.isEnable = false
                 }
 
-                it.first -> {
-                    model = it.third
+                isValidate -> {
+                    this@LoginFragment.signInReqUIModel = signInReqUIModel
                     binding.btnLogin.isEnable = true
                 }
             }
@@ -91,21 +95,35 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
                 is LoginUiEvent.Success -> {
                     binding.btnLogin.isProgress = false
-                    // show password set dialog !
                     toast(getString(R.string.str_success))
-                    val dialogFragment = EnterVerifyCodeDialogFragment()
-                    // token key
-                    dialogFragment.arguments = bundleOf(
-                        TOKEN_FOR_VERIFY to it.token,
-                        PHONE_NUMBER_FOR_VERIFY to model?.phone.toString()
-                    )
-                    dialogFragment.show(childFragmentManager, null)
+                    showVerifyDialog(it.token)
                 }
             }
         }.catch {
             toast(it.message ?: getString(R.string.str_error_unexpected))
         }.launchIn(this)
+    }
 
+    private fun showVerifyDialog(token: String? = null) {
+        enterVerifyCodeDialogFragment = EnterVerifyCodeDialogFragment()
+        // token key
+        enterVerifyCodeDialogFragment?.arguments = bundleOf(
+            TOKEN_FOR_VERIFY to token,
+            PHONE_NUMBER_FOR_VERIFY to signInReqUIModel?.phone.toString(),
+            SCREEN to Screen.LOGIN.name
+        )
+        enterVerifyCodeDialogFragment?.show(
+            childFragmentManager,
+            EnterVerifyCodeDialogFragment::class.java.simpleName
+        )
+        enterVerifyCodeDialogFragment?.onSuccessVerify = {
+            sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        enterVerifyCodeDialogFragment = null
     }
 }
 
