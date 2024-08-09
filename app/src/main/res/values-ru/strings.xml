@@ -39,6 +39,7 @@
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
     <string name="toolbar_title">Title </string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="str_login">Login</string>
     <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
