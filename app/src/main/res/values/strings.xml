@@ -43,6 +43,11 @@
     <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_success">Success</string>
+    <string name="str_choose_language_title">Choose app language</string>
+    <string name="str_choose_title">Choose</string>
+    <string name="str_localization_uzb">Uzbek</string>
+    <string name="str_localization_rus">Russian</string>
+    <string name="str_localization_eng">English</string>
     <string name="system">System</string>
     <string name="dark_mode">Dark mode</string>
     <string name="light_mode">Light mode</string>
