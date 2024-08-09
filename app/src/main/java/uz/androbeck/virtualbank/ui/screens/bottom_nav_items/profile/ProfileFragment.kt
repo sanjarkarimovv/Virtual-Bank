@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentProfileBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import java.util.Locale
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
@@ -15,13 +16,20 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     private val vm by viewModels<ProfileViewModel>()
     override fun setup() {
 
+        vm.profileUIEvent.onEach{
+            when(it){
+                is ProfileUIEvent.Error -> {
+                    Toast.makeText(requireContext(), it.massage, Toast.LENGTH_SHORT).show()
+                }
 
+                ProfileUIEvent.Loading -> {
 
-        vm.fullInfoEvent.onEach { fullInfo->
-            val user=fullInfo.firstName+" "+fullInfo.lastName
-            binding.user.text=user
+                }
+                is ProfileUIEvent.Success -> {
+                    val user = it.fullInfoUIModel.firstName + " " + it.fullInfoUIModel.lastName
+                    binding.user.text = user.uppercase(Locale.getDefault())
+                }
+            }
         }
-
-
     }
 }
