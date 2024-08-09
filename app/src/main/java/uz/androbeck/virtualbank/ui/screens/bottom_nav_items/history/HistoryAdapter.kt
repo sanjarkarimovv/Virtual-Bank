@@ -39,12 +39,12 @@ class HistoryAdapter(
                 tvAmount.text = content.child.amount.toString() + " so'm"
                 val dateFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
                 tvTransactionDate.text = dateFormat.format(content.child.time)
-                if(content.child.type == "income"){
+                if (content.child.type == "income") {
                     tvTransactionName.text = content.child.from
                     tvSecondaryTransactionName.text = "Qabulqilindi"
                     ivServiceType.setImageResource(R.drawable.ic_transfer_rececived)
                 }
-                if(content.child.type == "outcome"){
+                if (content.child.type == "outcome") {
                     tvTransactionName.text = content.child.to
                     tvSecondaryTransactionName.text = "Tolov"
                     ivServiceType.setImageResource(R.drawable.ic_transfer_sent)
@@ -84,6 +84,7 @@ class HistoryAdapter(
                     false
                 )
             )
+
             ViewType.Content.ordinal -> ContentVH(
                 ItemHistoryInfoBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -91,6 +92,7 @@ class HistoryAdapter(
                     false
                 )
             )
+
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -124,9 +126,6 @@ class HistoryAdapter(
         }
         return null
     }
-
-
-
 
 
     enum class ViewType {

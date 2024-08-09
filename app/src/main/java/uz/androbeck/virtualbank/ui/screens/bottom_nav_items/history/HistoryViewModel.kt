@@ -256,19 +256,6 @@ class HistoryViewModel : ViewModel() {
                             time = System.currentTimeMillis()
                         )
                     )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "Cash-in",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = System.currentTimeMillis()
-                        )
-                    )
                 )
             )
 
