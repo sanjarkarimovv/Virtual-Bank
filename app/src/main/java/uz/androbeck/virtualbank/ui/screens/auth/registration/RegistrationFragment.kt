@@ -17,7 +17,7 @@ import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.screens.Screen
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
@@ -29,7 +29,7 @@ import javax.inject.Inject
 class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     private val binding by viewBinding(FragmentRegistrationBinding::bind)
-    private val sharedVM: MainSharedViewModel by activityViewModels()
+    private val sharedVM: MainViewModel by activityViewModels()
     private val vm by viewModels<RegistrationViewModel>()
 
     @Inject
@@ -48,9 +48,8 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     override fun clicks(): Unit = with(binding) {
         btnSignUp.onClick = {
-            btnSignUp.isProgress = true
+            showProgress()
             requestModel?.let(vm::signUp)
-            requestModel = null
         }
 
         etFirstName.editText.addTextChangedListener {
@@ -107,7 +106,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
                 }.launchIn(this)
 
                 signUpEvent.onEach {
-                    btnSignUp.isProgress = false
+                    hideProgress()
                     showVerifyCodeDialog(it)
                 }.launchIn(this)
             }
@@ -115,7 +114,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
 
         messageController.observeMessage().onEach {
-            btnSignUp.isProgress = false
+            hideProgress()
             toast(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -135,8 +134,17 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         }
     }
 
+    private fun showProgress(){
+        binding.btnSignUp.isProgress = true
+    }
+
+    private fun hideProgress(){
+        binding.btnSignUp.isProgress = false
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         requestModel = null
+        enterVerifyCodeDialog = null
     }
 }

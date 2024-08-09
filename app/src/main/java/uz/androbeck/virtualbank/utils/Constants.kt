@@ -18,7 +18,7 @@ object Constants {
         const val BASIC_INFO = "/home/user-info"
         const val SIGN_IN_RESEND = "auth/sign-in/resend"
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
-        const val LAST_TRANSFERS="home/last-transfers"
+        const val LAST_TRANSFERS = "home/last-transfers"
     }
 
     object Header {
@@ -36,5 +36,17 @@ object Constants {
 
     object String {
         const val EMPTY = ""
+    }
+
+    object Localization {
+        const val LANGUAGE = "language"
+        const val UZBEK = "uz"
+        const val ENGLISH = "en"
+        const val RUSSIAN = "ru"
+    }
+
+    object Number{
+        const val FIVE_THOUSAND = 5000L
+        const val ONE = 1
     }
 }
