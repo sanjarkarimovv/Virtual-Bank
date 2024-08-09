@@ -26,7 +26,7 @@ class VirtualBankProgressButton @JvmOverloads constructor(
     var isEnable: Boolean = false
         set(value) {
             field = value
-            binding.button.isClickable = !value
+            binding.button.isClickable = value
             binding.button.isEnabled = value
         }
 
