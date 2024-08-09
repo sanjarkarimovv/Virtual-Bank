@@ -44,12 +44,11 @@
     </declare-styleable>
 
     <declare-styleable name="VirtualBankToolbar">
-        <attr name="toolbarTitle" format="string"/>
-        <attr name="toolbarText" format="string"/>
-        <attr name="toolbarColor" format="color"/>
-        <attr name="Icon" format="reference" />
+        <attr name="toolbarColor" format="color" />
+        <attr name="title" format="string" />
         <attr name="toolbarEndIcon" format="reference" />
-        <attr name="toolbarTitleTextColor" format="color"/>
+        <attr name="navigationIcon" format="reference" />
     </declare-styleable>
+
 
 </resources>

@@ -7,20 +7,21 @@
     app:navigationIcon="@drawable/baseline_arrow_back_ios_24">
 
     <TextView
-        android:id="@+id/toolbar_text"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:padding="16dp"
+        android:text="hdcidhfjshfjhsdfkjhs"
         android:textSize="18sp"
-        android:text="@string/toolbar_title"
         android:textStyle="bold|italic" />
 
     <ImageView
-        android:id="@+id/right_icon"
+        android:id="@+id/end_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:src="@drawable/ic_history"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:src="@drawable/ic_history" />
 
 </com.google.android.material.appbar.MaterialToolbar>

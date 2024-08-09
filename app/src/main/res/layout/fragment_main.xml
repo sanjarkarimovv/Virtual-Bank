@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="100dp">
-
-    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:Icon="@drawable/baseline_arrow_back_ios_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/static_white"
-        app:toolbarColor="@color/static_white"
-        app:toolbarEndIcon="@drawable/ic_history"
-        app:toolbarText="@string/toolbar_title"
-        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

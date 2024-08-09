@@ -3,7 +3,6 @@ package uz.androbeck.virtualbank.ui.customViews.toolbar
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -17,74 +16,66 @@ import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
 @SuppressLint("CustomViewStyleable", "Recycle")
 class CustomToolBar @JvmOverloads constructor(
-    private val context: Context, attrs: AttributeSet? = null, defStyleAttrs: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttrs: Int = 0
 ) : MaterialToolbar(context, attrs, defStyleAttrs) {
 
-
     private val binding by lazy {
-        CustomToolbarBinding.inflate(LayoutInflater.from(context), this, true)
+        CustomToolbarBinding.inflate(
+            LayoutInflater.from(context), this, true
+        )
     }
 
     init {
         attrs?.let {
             val typedArray: TypedArray = context.obtainStyledAttributes(
-                it, R.styleable.VirtualBankToolbar
+                it, R.styleable.VirtualBankToolbar,// defStyleAttrs, 0
             )
-
             val backgroundColor = typedArray.getColor(
                 R.styleable.VirtualBankToolbar_toolbarColor,
-                ContextCompat.getColor(context, R.color.static_white)
+                ContextCompat.getColor(context, android.R.color.white)
             )
-            val toolbarTitle = typedArray.getString(R.styleable.VirtualBankToolbar_toolbarTitle)
-            val toolbarText = typedArray.getString(R.styleable.VirtualBankToolbar_toolbarText)
-            val icon = typedArray.getResourceId(
-                R.styleable.VirtualBankToolbar_Icon, 0
-            )
-            val textColor = typedArray.getColor(
-                R.styleable.VirtualBankToolbar_toolbarTitleTextColor,
-                ContextCompat.getColor(context, R.color.colorScrim)
-            )
+            val text = typedArray.getString(R.styleable.VirtualBankToolbar_title)
 
-            val endIcon = typedArray.getResourceId(
-                R.styleable.VirtualBankToolbar_toolbarEndIcon, 0
-            )
+            val icon = typedArray.getResourceId(R.styleable.VirtualBankToolbar_toolbarEndIcon, 0)
 
+            val navigationIcon =
+                typedArray.getResourceId(R.styleable.VirtualBankToolbar_navigationIcon, 0)
+
+            // toolbar colors set
             binding.customToolbar.setBackgroundColor(backgroundColor)
-            binding.customToolbar.setNavigationIcon(icon)
-            binding.toolbarText.setTextColor(textColor)
-            binding.customToolbar.setBackgroundColor(Color.TRANSPARENT)
-
-            if(toolbarTitle==""){
-                binding.toolbarText.text = toolbarTitle
-            }else{
-                binding.toolbarText.text = toolbarText
+            // toolbar end icons set
+            binding.endIcon.setImageResource(icon)
+            //toolbar title set
+            binding.tvTitle.text = text
+            if (navigationIcon != 0) {
+                binding.customToolbar.setNavigationIcon(navigationIcon)
             }
 
-            if (endIcon != 0) {
-                binding.rightIcon.setImageResource(endIcon)
-                binding.rightIcon.visibility = View.VISIBLE
+            if (icon != 0) {
+                binding.endIcon.setImageResource(icon)
+                binding.endIcon.visibility = View.VISIBLE
             } else {
-                binding.rightIcon.visibility = View.GONE
+                binding.endIcon.visibility = View.GONE
             }
 
             //Toolbarni back button bosilish
-            binding.customToolbar.singleClickable {
+            binding.customToolbar.setNavigationOnClickListener {
                 arrowBack()
             }
 
             // Toolbarni icon onclick
-            binding.rightIcon.singleClickable{
+            binding.endIcon.singleClickable {
                 rightIcon()
             }
             typedArray.recycle()
         }
     }
 
-    fun arrowBack() {
+    private fun arrowBack() {
         Toast.makeText(context, "Arrow Back", Toast.LENGTH_SHORT).show()
     }
 
-    fun rightIcon() {
+    private fun rightIcon() {
         Toast.makeText(context, "Right Icon", Toast.LENGTH_SHORT).show()
     }
 }
