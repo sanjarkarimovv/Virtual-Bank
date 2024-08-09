@@ -12,6 +12,11 @@ class PreferencesProvider @Inject constructor(
     var errorAttempts: Int by preferences.int()
     var lastErrorTimestamp: Long by preferences.long()
     var refreshToken: String by preferences.string()
+    var autoBlockTime:Long by preferences.long()
+    var biometricLogin: Boolean by preferences.boolean()
+    var paymentConfirmation: Boolean by preferences.boolean()
+    var autoBlockIsOn: Boolean by preferences.boolean()
+    var useIsGeolocation: Boolean by preferences.boolean()
     var language: String by preferences.string(Constants.Localization.UZBEK)
 
     fun clear() {

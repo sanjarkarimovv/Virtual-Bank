@@ -15,7 +15,8 @@ object Constants {
         const val UPDATE_TOKEN = "auth/update-token"
         const val FULL_INFO = "/home/user-info/details"
         const val UPDATE_INFO = "home/user-info"
-        const val BASIC_INFO = "/home/user-info"
+        const val BASIC_INFO ="/home/user-info"
+        const val TOTAL_BALANCE = "home/total-balance"
         const val SIGN_IN_RESEND = "auth/sign-in/resend"
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
@@ -26,6 +27,7 @@ object Constants {
         const val ACCEPT_TITLE = "accept"
         const val APPLICATION_JSON_VALUE = "application/json"
         const val TOKEN_TYPE = "Bearer"
+
     }
 
     object ArgumentKey {
