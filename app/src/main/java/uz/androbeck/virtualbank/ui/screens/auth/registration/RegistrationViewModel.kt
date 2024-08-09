@@ -13,6 +13,7 @@ import uz.androbeck.virtualbank.domain.ui_models.authentication.SignUpReqUIModel
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
+import uz.androbeck.virtualbank.utils.extentions.share
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +23,7 @@ class RegistrationViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _signUpEvent = Channel<String>()
-    val signUpEvent = _signUpEvent.consumeAsFlow()
+    val signUpEvent = _signUpEvent.consumeAsFlow().share(viewModelScope)
 
     private val _accessSignUp =
         MutableStateFlow<Triple<Boolean, String, SignUpReqUIModel?>>(Triple(false, "", null))
