@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FullInfoDto(
+data class FullInfoResDto(
     @SerialName("phone")
     val phone: String? = null,
     @SerialName("first-name")

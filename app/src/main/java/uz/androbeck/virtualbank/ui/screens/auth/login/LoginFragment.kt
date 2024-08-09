@@ -17,19 +17,18 @@ import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInReqUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.screens.Screen
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
-import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private val binding: FragmentLoginBinding by viewBinding()
     private val vm: LoginViewModel by viewModels()
-    private val sharedVM: MainSharedViewModel by activityViewModels()
+    private val sharedVM: MainViewModel by activityViewModels()
     private var signInReqUIModel: SignInReqUIModel? = null
     private var enterVerifyCodeDialogFragment: EnterVerifyCodeDialogFragment? = null
     override fun setup() {
@@ -45,12 +44,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     override fun clicks() = with(binding) {
-        btnLogin.singleClickable {
+        btnLogin.onClick = {
             signInReqUIModel?.let {
                 vm.signIn(it)
             }
         }
-        btnSignUp.singleClickable {
+        btnSignUp.onClick = {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }

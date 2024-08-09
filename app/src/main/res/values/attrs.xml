@@ -44,6 +44,14 @@
         <attr name="errorEnabled" />
     </declare-styleable>
 
+    <declare-styleable name="VirtualBankToolbar">
+        <attr name="toolbarColor" format="color" />
+        <attr name="title" format="string" />
+        <attr name="toolbarEndIcon" format="reference" />
+        <attr name="navigationIcon" format="reference" />
+    </declare-styleable>
+
+
     <declare-styleable name="CustomSearchEditText">
         <attr name="editText" format="string" />
     </declare-styleable>

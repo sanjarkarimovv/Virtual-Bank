@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package uz.androbeck.virtualbank.utils.extentions
 
 import android.content.Context
@@ -35,3 +37,11 @@ fun Fragment.vibrate() {
     }
 
 }
+
+fun Fragment.dpToPx(dp: Float): Int = requireContext().dpToPx(dp)
+
+fun Fragment.dpToPxFloat(dp: Float): Float = requireContext().dpToPxFloat(dp)
+
+fun Fragment.dpToPx(dp: Int): Int = requireContext().dpToPx(dp)
+
+fun Fragment.pxToDp(px: Int): Int = requireContext().pxToDp(px)
