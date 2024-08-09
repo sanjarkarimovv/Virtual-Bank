@@ -41,4 +41,8 @@
     <string name="str_login">Login</string>
     <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="system">System</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="light_mode">Light mode</string>
+    <string name="tv_widget_setup">Daynight Mode</string>
 </resources>
