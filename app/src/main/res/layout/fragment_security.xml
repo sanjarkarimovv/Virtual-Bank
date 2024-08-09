@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,14 +18,16 @@
             android:textColor="@color/colorOnSurface"
             android:textSize="16sp"
             android:fontFamily="@font/exo2_medium"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            tools:ignore="RelativeOverlap" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_right_24"/>
+            android:background="@drawable/ic_right_24"
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
     <LinearLayout
     android:layout_width="match_parent"
@@ -41,14 +44,16 @@
             android:textColor="@color/colorOnSurface"
             android:textSize="16sp"
             android:fontFamily="@font/exo2_medium"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            tools:ignore="RelativeOverlap" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_right_24"/>
+            android:background="@drawable/ic_right_24"
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,14 +70,16 @@
             android:textColor="@color/colorOnSurface"
             android:textSize="16sp"
             android:fontFamily="@font/exo2_medium"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            tools:ignore="RelativeOverlap" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_right_24"/>
+            android:background="@drawable/ic_right_24"
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -86,14 +93,17 @@
             android:textColor="@color/colorOnSurface"
             android:textSize="16sp"
             android:fontFamily="@font/exo2_medium"
-            android:layout_centerVertical="true"/>
-        <CheckBox
+            android:layout_centerVertical="true"
+            tools:ignore="RelativeOverlap" />
+
+        <Switch
             android:id="@+id/biometric_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:buttonTint="@color/colorOnPrimaryFixed"/>
+            android:buttonTint="@color/colorOnPrimaryFixed"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,14 +120,17 @@
             android:textColor="@color/colorOnSurface"
             android:textSize="16sp"
             android:fontFamily="@font/exo2_medium"
-            android:layout_centerVertical="true"/>
-        <CheckBox
+            android:layout_centerVertical="true"
+            tools:ignore="RelativeOverlap" />
+
+        <Switch
             android:id="@+id/payment_confirmation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:buttonTint="@color/colorOnPrimaryFixed"/>
+            android:buttonTint="@color/colorOnPrimaryFixed"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -130,14 +143,17 @@
             android:textColor="@color/colorOnSurface"
             android:textSize="16sp"
             android:fontFamily="@font/exo2_medium"
-            android:layout_centerVertical="true"/>
-        <CheckBox
+            android:layout_centerVertical="true"
+            tools:ignore="RelativeOverlap" />
+
+        <Switch
             android:id="@+id/using_geolocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:buttonTint="@color/colorOnPrimaryFixed"/>
+            android:buttonTint="@color/colorOnPrimaryFixed"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -150,14 +166,17 @@
             android:textColor="@color/colorOnSurface"
             android:textSize="16sp"
             android:fontFamily="@font/exo2_medium"
-            android:layout_centerVertical="true"/>
-        <CheckBox
+            android:layout_centerVertical="true"
+            tools:ignore="RelativeOverlap" />
+
+        <Switch
             android:id="@+id/automatic_blocking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:buttonTint="@color/colorOnPrimaryFixed"/>
+            android:buttonTint="@color/colorOnPrimaryFixed"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_auto_block"
@@ -173,7 +192,8 @@
             android:progressTint="@color/colorSecondary"
             android:thumbTint="@color/colorOnPrimaryFixed"
             android:max="60"
-            android:min="0"/>
+            android:min="0"
+            tools:ignore="UnusedAttribute" />
         <TextView
             android:id="@+id/tv_auto_block_time"
             android:layout_width="wrap_content"
@@ -184,7 +204,8 @@
             android:layout_marginEnd="8dp"
             android:layout_centerVertical="true"
             android:textColor="@color/colorOnSurface"
-            android:layout_toStartOf="@id/tv_sek" />
+            android:layout_toStartOf="@id/tv_sek"
+            tools:ignore="HardcodedText" />
         <TextView
             android:id="@+id/tv_sek"
             android:layout_width="wrap_content"
@@ -194,6 +215,7 @@
             android:layout_marginEnd="12dp"
             android:textColor="@color/colorOnSurface"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            tools:ignore="HardcodedText" />
     </RelativeLayout>
 </LinearLayout>
