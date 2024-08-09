@@ -106,6 +106,6 @@ dependencies {
     debugImplementation(libs.chucker.interceptor)
     releaseImplementation(libs.chucker.interceptor.no.op)
 
-    //Abdulfaiz qo'shdi :-)
+    //Material Components
     implementation("com.google.android.material:material:1.12.0")
 }
