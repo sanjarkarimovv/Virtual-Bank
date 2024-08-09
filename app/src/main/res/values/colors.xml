@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="static_white">#FFFFFF</color>
-
     <color name="colorPrimary">#6750A4</color>
     <color name="colorSecondary">#625B71</color>
     <color name="colorTertiary">#7D5260</color>

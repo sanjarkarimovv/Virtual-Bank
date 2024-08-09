@@ -1,9 +1,7 @@
 package uz.androbeck.virtualbank.data.source.remote
 
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.HomeService
-import uz.androbeck.virtualbank.data.dto.common.response.home.TotalBalanceResDto
 import uz.androbeck.virtualbank.data.dto.request.UpdateInfoReqDto
 import javax.inject.Inject
 

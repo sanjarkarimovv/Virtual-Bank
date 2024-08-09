@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.PUT
 import uz.androbeck.virtualbank.data.dto.common.response.MessageResDto
 import uz.androbeck.virtualbank.data.dto.common.response.home.BasicInfoResDto
-import uz.androbeck.virtualbank.data.dto.common.response.home.TotalBalanceResDto
+import uz.androbeck.virtualbank.data.dto.common.response.TotalBalanceResDto
 import uz.androbeck.virtualbank.data.dto.request.FullInfoDto
 import uz.androbeck.virtualbank.data.dto.request.UpdateInfoReqDto
 import uz.androbeck.virtualbank.utils.Constants

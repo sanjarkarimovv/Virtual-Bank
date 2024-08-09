@@ -1,6 +1,9 @@
 package uz.androbeck.virtualbank.ui
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -52,9 +55,29 @@ class MainActivity : AppCompatActivity() {
                     navHostFragment.navController.setGraph(R.navigation.pin_code_nav_graph)
                     binding.bottomNavigation.gone()
                 }
+                NavGraphEvent.Security -> {
+                    navHostFragment.navController.setGraph(R.navigation.security_nav_graph)
+                    binding.bottomNavigation.gone()
+                }
 
                 null -> Unit
             }
         }.launchIn(lifecycleScope)
     }
+    @SuppressLint("CommitPrefEdits")
+    override fun onStart() {
+        super.onStart()
+        val currentTime=System.currentTimeMillis()
+        val sharedPreferences = getSharedPreferences("secure_shared_prefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putLong("current_time",currentTime)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val sharedPreferences = getSharedPreferences("secure_shared_prefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putLong("last_exit_time", System.currentTimeMillis())
+        editor.apply()
+    }
+
 }

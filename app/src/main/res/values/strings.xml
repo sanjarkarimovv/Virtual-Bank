@@ -38,4 +38,12 @@
     <string name="defauld_languafe">English</string>
     <string name="default_theme_value">System</string>
     <string name="default_user_name">User User</string>
+    <string name="str_trusted_device">Ishonilgan qurilmalar</string>
+    <string name="str_change_password">Parolni o\'zgartirish</string>
+    <string name="str_change_pin_code">PIN-kodni o\'zgartirish</string>
+    <string name="str_biometric_login">Barmoq izi yoki yuz yordamida kirish</string>
+    <string name="str_payment_configuration">To\'lovni tasdiqlash</string>
+    <string name="str_use_geolocation">Geolokatsiyadan foydalanish</string>
+    <string name="str_blocking_while_closing">Yopib turganda blokirovka qilish</string>
+
 </resources>

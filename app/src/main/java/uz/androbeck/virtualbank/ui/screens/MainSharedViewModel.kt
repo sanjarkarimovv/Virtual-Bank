@@ -9,6 +9,7 @@ import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import javax.inject.Inject
 
 @HiltViewModel
+
 class MainSharedViewModel @Inject constructor(
     private val prefsProvider: PreferencesProvider
 ) : BaseViewModel() {

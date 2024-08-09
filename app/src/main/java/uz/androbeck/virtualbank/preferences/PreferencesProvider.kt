@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.preferences
 
 import android.content.SharedPreferences
+import android.widget.CheckBox
 import javax.inject.Inject
 
 class PreferencesProvider @Inject constructor(
@@ -11,7 +12,12 @@ class PreferencesProvider @Inject constructor(
     var errorAttempts: Int by preferences.int()
     var lastErrorTimestamp: Long by preferences.long()
     var refreshToken: String by preferences.string()
-
+    var autoBlockTime:Long by preferences.long()
+    var biometricLogin: Boolean by preferences.boolean()
+    var paymentConfirmation: Boolean by preferences.boolean()
+    var autoBlockIsOn: Boolean by preferences.boolean()
+    var useIsGeolocation: Boolean by preferences.boolean()
+    var userLocation: String by preferences.string()
     fun clear() {
         preferences.edit().clear().apply()
     }

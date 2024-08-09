@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="bottom_item_title_home">Основной</string>
     <string name="bottom_item_title_transfer">Перевод</string>
     <string name="pin_code_page_enter_pin">Введите PIN-код</string>
@@ -38,6 +38,14 @@
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
-    <string name="str_verification_code_invalid">Tastiqlash kodi noto\'g\'ri</string>
-    <string name="str_empty">\</string>
+    <string name="str_trusted_device">Доверенные устройства</string>
+    <string name="str_change_password">изменить пароль</string>
+    <string name="str_change_pin_code">изменить пин-код</string>
+    <string name="str_biometric_login">Доступ по отпечатку пальца или лицу</string>
+    <string name="str_payment_configuration">Подтверждение об оплате</string>
+    <string name="str_use_geolocation">Использование геолокации</string>
+    <string name="str_blocking_while_closing">Блокировка при закрытии</string>
+
+    <!--    <string name="str_verification_code_invalid" tools:ignore="ExtraTranslation">Tastiqlash kodi noto\'g\'ri</string>-->
+<!--    <string name="str_empty" tools:ignore="ExtraTranslation">\</string>-->
 </resources>
