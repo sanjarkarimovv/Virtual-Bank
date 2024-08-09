@@ -56,11 +56,11 @@ class MainActivity : AppCompatActivity() {
             navHostFragment.navController.apply {
                 when (event) {
                     NavGraphEvent.Auth -> {
-                        val authGraph = navInflater.inflate(R.navigation.auth_nav_graph)
-                        authGraph.setStartDestination(R.id.chooseLanguageFragment)
+                        val authGraph = navInflater.inflate(R.navigation.main_nav_graph)
+                        authGraph.setStartDestination(R.id.mainFragment)
                         defaultNavHostTrue(navHostFragment)
                         graph = authGraph
-                        binding.bottomNavigation.gone()
+                        binding.bottomNavigation.visible()
                     }
 
                     NavGraphEvent.Main -> {

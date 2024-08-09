@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val prefsProvider: PreferencesProvider
+    private val prefsProvider: PreferencesProvider,
 ) : BaseViewModel() {
 
     private val navGraphEvent = Channel<NavGraphEvent>()

@@ -41,11 +41,17 @@
     <string name="str_login">Авторизоваться</string>
     <string name="forget_password">Забыли пароль</string>
     <string name="toolbar_title">Title </string>
-    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="str_success">Success</string>
+    <string name="str_currency">so\'m</string>
+    <string name="str_cards">Cards</string>
+    <string name="str_last_transfer">Last transfer</string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
+    <string name="str_payments">Payments</string>
     <string name="str_choose_language_title">Выберите язык</string>
     <string name="str_choose_title">Выбирать</string>
     <string name="str_localization_uzb">Узбекский</string>
     <string name="str_localization_rus">Русский</string>
     <string name="str_localization_eng">Английский</string>
+    <string name="str_widget_settings">Vidjet sozlamalari</string>
 </resources>

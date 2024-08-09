@@ -10,6 +10,7 @@ import uz.androbeck.virtualbank.data.repository.history.HistoryRepository
 import uz.androbeck.virtualbank.data.repository.history.HistoryRepositoryImpl
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepositoryImpl
+import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDatasource
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
@@ -30,9 +31,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideHomeRepository(
-        homeRemoteDataSource: HomeRemoteDataSource
+        homeRemoteDataSource: HomeRemoteDataSource,
+        homeLocalDatasource: HomeLocalDatasource
     ):HomeRepository{
-        return HomeRepositoryImpl(homeRemoteDataSource)
+        return HomeRepositoryImpl(homeRemoteDataSource,homeLocalDatasource)
     }
     @Provides
     @Singleton

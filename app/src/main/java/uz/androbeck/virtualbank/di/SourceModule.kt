@@ -7,6 +7,9 @@ import dagger.hilt.components.SingletonComponent
 import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
+import uz.androbeck.virtualbank.data.db.dao.HomeDao
+import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasource
+import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasourceImpl
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSourceImpl
 import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDataSourceImpl
@@ -26,6 +29,7 @@ object SourceModule {
     ): AuthenticationRemoteDataSource {
         return AuthenticationRemoteDataSourceImpl(service)
     }
+
     @Singleton
     @Provides
     fun provideMainRemoteDataSource(
@@ -33,12 +37,21 @@ object SourceModule {
     ): HomeRemoteDataSource {
         return HomeRemoteDataSourceImpl(service)
     }
+
     @Singleton
     @Provides
     fun provideHistoryRemoteDataSource(
         service: HistoryService
-    ):HistoryRemoteDatasource{
+    ): HistoryRemoteDatasource {
         return HistoryRemoteDataSourceImpl(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHomeLocalDataSource(
+        dao: HomeDao
+    ): HomeLocalDatasource {
+        return HomeLocalDatasourceImpl(dao)
     }
 
 }

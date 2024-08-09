@@ -3,7 +3,7 @@ package uz.androbeck.virtualbank.utils
 object Constants {
     object FileName {
         const val SHARED_PREFS = "virtual_bank"
-        const val DATABASE_NAME = "virtual_bank_database"
+        const val DATABASE_NAME= "virtual_bank_database"
     }
 
     object Endpoint {
@@ -45,7 +45,7 @@ object Constants {
         const val RUSSIAN = "ru"
     }
 
-    object Number{
+    object Number {
         const val FIVE_THOUSAND = 5000L
         const val ONE = 1
     }

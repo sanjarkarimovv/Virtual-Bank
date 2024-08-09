@@ -105,4 +105,7 @@ dependencies {
     //Chucker interceptor
     debugImplementation(libs.chucker.interceptor)
     releaseImplementation(libs.chucker.interceptor.no.op)
+
+    // refresh layout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

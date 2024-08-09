@@ -17,6 +17,7 @@ import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCas
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.history.LastTransfersMapper
+import uz.androbeck.virtualbank.domain.mapper.home.ComponentsMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
@@ -24,8 +25,11 @@ import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCa
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.UpdateComponentsInCatchUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -70,9 +74,9 @@ object UseCaseModule {
     fun provideLastTransfersUseCase(
         historyRepository: HistoryRepository,
         lastTransfersMapper: LastTransfersMapper,
-        ) = LastTransfersUseCase(historyRepository, lastTransfersMapper)
+    ) = LastTransfersUseCase(historyRepository, lastTransfersMapper)
 
-        @Provides
+    @Provides
     fun provideSignInResendUseCase(
         authenticationRepository: AuthenticationRepository,
         signInResendMapper: SingInResendMapper,
@@ -85,4 +89,24 @@ object UseCaseModule {
         signUpResendMapper: SignUpResendMapper,
         tokenMapper: TokenMapper,
     ) = SignUpResendUseCase(authenticationRepository, tokenMapper, signUpResendMapper)
+
+    @Provides
+    fun provideGetComponentsFromCacheUseCase(
+        homeRepository: HomeRepository,
+        componentsMapper: ComponentsMapper
+    ) = GetComponentsFromCacheUseCase(homeRepository, componentsMapper)
+
+    @Provides
+    fun providePutComponentsUseCase(
+        homeRepository: HomeRepository,
+        mapper: ComponentsMapper
+    ) = PutComponentsUseCase(homeRepository, mapper)
+
+    @Provides
+    fun provideUpdateUseCase(
+        homeRepository: HomeRepository,
+        mapper: ComponentsMapper
+    ) = UpdateComponentsInCatchUseCase(
+        homeRepository
+    )
 }

@@ -42,5 +42,8 @@
     <color name="colorInversePrimary">#6750A4</color>
     <color name="colorScrim">#000000</color>
     <color name="colorShadow">#000000</color>
+    //home
+    <color name="colorBlueForHome">#02BDD5</color>
+    <color name="colorDarkFoeHome">#1C182B</color>
 
 </resources>

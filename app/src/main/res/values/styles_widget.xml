@@ -14,7 +14,17 @@
         <item name="android:textColor">@color/vb_btn_primary_text</item>
     </style>
 
+    <style name="VirtualBankButton.Outlined">
+        <item name="android:background">@drawable/bg_stroke_button</item>
+        <item name="android:minHeight">52dp</item>
+<!--        <item name="backgroundTint">@color/vb_btn_primary_bg</item>-->
+        <item name="iconTint">@color/vb_btn_primary_text</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="VirtualBankInput">
         <item name="android:theme">@style/Theme.VirtualBank</item>
     </style>
+
+
 </resources>
