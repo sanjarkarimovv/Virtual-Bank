@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.utils.extentions
 
 import android.content.Context
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.ColorRes
@@ -22,3 +23,13 @@ fun Context.dimensionInt(@DimenRes dimenRes: Int) = resources.getDimensionPixelO
 fun Context.toast(message: String, isLong: Boolean = false) {
     Toast.makeText(this, message, if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
 }
+
+fun Context.dpToPx(dp: Float): Int =
+    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics).toInt()
+
+fun Context.dpToPxFloat(dp: Float): Float =
+    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
+
+fun Context.dpToPx(dp: Int): Int = dpToPx(dp.toFloat())
+
+fun Context.pxToDp(px: Int): Int = (px / resources.displayMetrics.density).toInt()

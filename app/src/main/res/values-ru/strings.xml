@@ -41,4 +41,9 @@
     <string name="str_login">Login</string>
     <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="str_choose_language_title">Dastur tilini tanlang</string>
+    <string name="str_choose_title">Tanlamoq</string>
+    <string name="str_localization_uzb">O\'zbekcha</string>
+    <string name="str_localization_rus">Ruscha</string>
+    <string name="str_localization_eng">Inglizcha</string>
 </resources>

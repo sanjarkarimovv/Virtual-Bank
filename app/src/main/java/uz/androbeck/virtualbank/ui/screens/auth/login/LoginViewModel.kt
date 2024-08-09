@@ -3,14 +3,17 @@ package uz.androbeck.virtualbank.ui.screens.auth.login
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.shareIn
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInReqUIModel
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
+import uz.androbeck.virtualbank.utils.extentions.share
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,10 +22,10 @@ class LoginViewModel @Inject constructor(
     private val errorHandler: ErrorHandler,
 ) : BaseViewModel() {
     private val _signInEvent = Channel<LoginUiEvent>()
-    val signInEvent = _signInEvent.consumeAsFlow()
+    val signInEvent = _signInEvent.consumeAsFlow().share(viewModelScope)
 
     private val _accessLogin = Channel<Triple<Boolean, String?, SignInReqUIModel?>>()
-    val accessLogin = _accessLogin.consumeAsFlow()
+    val accessLogin = _accessLogin.consumeAsFlow().share(viewModelScope)
 
     fun signIn(signUpReqUIModel: SignInReqUIModel) {
         _signInEvent.trySend(LoginUiEvent.Loading)

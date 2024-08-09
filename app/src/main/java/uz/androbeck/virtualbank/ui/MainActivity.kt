@@ -37,23 +37,39 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupObservers(navHostFragment: NavHostFragment) {
         mainSharedVM.observeNavGraphEvent().onEach { event ->
-            println(":::Event: $event")
-            when (event) {
-                NavGraphEvent.Auth -> {
-                    navHostFragment.navController.setGraph(R.navigation.auth_nav_graph)
-                    binding.bottomNavigation.gone()
-                }
+            println("::EVENT $event")
+            navHostFragment.navController.apply {
+                when (event) {
+                    NavGraphEvent.Auth -> {
+                        val authGraph = navInflater.inflate(R.navigation.auth_nav_graph)
+                        defaultNavHostTrue(navHostFragment)
+                        authGraph.setStartDestination(R.id.chooseLanguageFragment)
+                        graph = authGraph
+                        binding.bottomNavigation.gone()
+                    }
 
-                NavGraphEvent.Main -> {
-                    navHostFragment.navController.setGraph(R.navigation.main_nav_graph)
-                    binding.bottomNavigation.visible()
-                }
+                    NavGraphEvent.Main -> {
+                        val mainGraph = navInflater.inflate(R.navigation.main_nav_graph)
+                        defaultNavHostTrue(navHostFragment)
+                        mainGraph.setStartDestination(R.id.mainFragment)
+                        graph = mainGraph
+                        binding.bottomNavigation.visible()
+                    }
 
-                NavGraphEvent.PinCode -> {
-                    navHostFragment.navController.setGraph(R.navigation.pin_code_nav_graph)
-                    binding.bottomNavigation.gone()
+                    NavGraphEvent.PinCode -> {
+                        val pinCodeGraph = navInflater.inflate(R.navigation.pin_code_nav_graph)
+                        defaultNavHostTrue(navHostFragment)
+                        pinCodeGraph.setStartDestination(R.id.pinCodeFragment)
+                        graph = pinCodeGraph
+                        binding.bottomNavigation.gone()
+                    }
                 }
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
+        supportFragmentManager.beginTransaction().setPrimaryNavigationFragment(navHostFragment)
+            .commit()
     }
 }

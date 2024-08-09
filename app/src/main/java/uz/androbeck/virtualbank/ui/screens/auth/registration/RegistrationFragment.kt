@@ -48,9 +48,8 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     override fun clicks(): Unit = with(binding) {
         btnSignUp.onClick = {
-            btnSignUp.isProgress = true
+            showProgress()
             requestModel?.let(vm::signUp)
-            requestModel = null
         }
 
         etFirstName.editText.addTextChangedListener {
@@ -107,7 +106,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
                 }.launchIn(this)
 
                 signUpEvent.onEach {
-                    btnSignUp.isProgress = false
+                    hideProgress()
                     showVerifyCodeDialog(it)
                 }.launchIn(this)
             }
@@ -115,7 +114,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
 
         messageController.observeMessage().onEach {
-            btnSignUp.isProgress = false
+            hideProgress()
             toast(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -135,8 +134,17 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         }
     }
 
+    private fun showProgress(){
+        binding.btnSignUp.isProgress = true
+    }
+
+    private fun hideProgress(){
+        binding.btnSignUp.isProgress = false
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         requestModel = null
+        enterVerifyCodeDialog = null
     }
 }

@@ -1,10 +1,15 @@
 package uz.androbeck.virtualbank.ui.screens
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
@@ -31,6 +36,6 @@ class MainSharedViewModel @Inject constructor(
     }
 
     fun observeNavGraphEvent(): Flow<NavGraphEvent> {
-        return navGraphEvent.consumeAsFlow()
+        return navGraphEvent.receiveAsFlow()
     }
 }
