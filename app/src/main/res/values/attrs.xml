@@ -29,6 +29,7 @@
     </declare-styleable>
     <declare-styleable name="CustomEnterCodeEditText">
         <attr name="exampleAttribute" format="string"/>
+        <attr name="setText" format="string"/>
         <attr name="verifyBoxBackgroundColor" format="color" />
         <attr name="verifyBoxStrokeColor" format="color" />
     </declare-styleable>
@@ -42,5 +43,13 @@
         <attr name="helperText" />
         <attr name="errorEnabled" />
     </declare-styleable>
+
+    <declare-styleable name="VirtualBankToolbar">
+        <attr name="toolbarColor" format="color" />
+        <attr name="title" format="string" />
+        <attr name="toolbarEndIcon" format="reference" />
+        <attr name="navigationIcon" format="reference" />
+    </declare-styleable>
+
 
 </resources>

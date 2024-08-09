@@ -8,13 +8,13 @@ import javax.inject.Inject
 class SignInMapper @Inject constructor() : BaseMapper<SignInReqDto, SignInReqUIModel> {
     override fun toUIModel(dto: SignInReqDto) = dto.run {
         SignInReqUIModel(
-            phone = dto.phone, password = dto.password
+            phone = phone, password = password
         )
     }
 
     override fun toDTO(uiModel: SignInReqUIModel) = uiModel.run {
         SignInReqDto(
-            phone = uiModel.phone, password = uiModel.password
+            phone = phone, password = password
         )
     }
 }

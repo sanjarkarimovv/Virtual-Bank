@@ -1,23 +1,23 @@
 package uz.androbeck.virtualbank.domain.mapper.auth
 
-import uz.androbeck.virtualbank.data.dto.request.SignInVerifyReqDto
+import uz.androbeck.virtualbank.data.dto.common.request.CodeVerifyReqDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
-import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInVerifyReqUIModel
+import uz.androbeck.virtualbank.domain.ui_models.common.CodeVerifyReqUIModel
 import javax.inject.Inject
 
 class SignInVerifyMapper @Inject constructor() :
-    BaseMapper<SignInVerifyReqDto, SignInVerifyReqUIModel> {
-    override fun toUIModel(dto: SignInVerifyReqDto) = dto.run {
-        SignInVerifyReqUIModel(
-            accessToken = dto.accessToken,
-            refreshToken = dto.refreshToken
+    BaseMapper<CodeVerifyReqDto, CodeVerifyReqUIModel> {
+    override fun toUIModel(dto: CodeVerifyReqDto) = dto.run {
+        CodeVerifyReqUIModel(
+            token = token,
+            code = code
         )
     }
 
-    override fun toDTO(uiModel: SignInVerifyReqUIModel) = uiModel.run {
-        SignInVerifyReqDto(
-            accessToken = uiModel.accessToken,
-            refreshToken = uiModel.refreshToken
+    override fun toDTO(uiModel: CodeVerifyReqUIModel) = uiModel.run {
+        CodeVerifyReqDto(
+            token = token,
+            code = code
         )
     }
 }

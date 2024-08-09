@@ -3,7 +3,7 @@ package uz.androbeck.virtualbank.domain.useCases.authentication
 import kotlinx.coroutines.flow.map
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
-import uz.androbeck.virtualbank.domain.mapper.auth.common.TokensMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
 import uz.androbeck.virtualbank.domain.ui_models.authentication.UpdateTokenReqUIModel
 import javax.inject.Inject
 import javax.inject.Singleton
