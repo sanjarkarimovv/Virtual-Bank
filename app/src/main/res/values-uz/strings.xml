@@ -66,4 +66,6 @@
     <string name="str_localization_uzb">O\'zbekcha</string>
     <string name="str_localization_rus">Ruscha</string>
     <string name="str_localization_eng">Inglizcha</string>
+    <string name="str_this_send_phone_number_confirm_sms_code">Ushbu telefon raqamga tasdiqlash kodi yuborildi</string>
+    <string name="str_success">Success</string>
 </resources>

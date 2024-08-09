@@ -66,4 +66,6 @@
     <string name="str_localization_uzb">Узбекский</string>
     <string name="str_localization_rus">Русский</string>
     <string name="str_localization_eng">Английский</string>
+    <string name="str_this_send_phone_number_confirm_sms_code">На этот номер телефона был отправлен код подтверждения</string>
+    <string name="str_success">Success</string>
 </resources>

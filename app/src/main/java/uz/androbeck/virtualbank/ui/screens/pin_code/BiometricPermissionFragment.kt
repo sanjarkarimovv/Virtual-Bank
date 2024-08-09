@@ -9,9 +9,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentBiometricPermissionBinding
+import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
 import java.util.concurrent.Executors
 
 @AndroidEntryPoint
@@ -19,7 +19,7 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
 
     private val binding by viewBinding(FragmentBiometricPermissionBinding::bind)
     private val viewModel: BiometricPermissionViewModel by viewModels()
-    private val sharedVM: MainSharedViewModel by activityViewModels()
+    private val sharedVM: MainViewModel by activityViewModels()
     override fun setup() {
         setupClickListeners()
     }

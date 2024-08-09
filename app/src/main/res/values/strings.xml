@@ -39,9 +39,9 @@
     <string name="defauld_languafe">English</string>
     <string name="default_theme_value">System</string>
     <string name="default_user_name">User User</string>
-    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="str_this_send_phone_number_confirm_sms_code">A verification code has been sent to this phone number</string>
     <string name="str_success">Success</string>
     <string name="str_choose_language_title">Choose app language</string>
     <string name="str_choose_title">Choose</string>

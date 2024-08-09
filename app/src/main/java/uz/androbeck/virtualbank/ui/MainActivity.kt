@@ -88,15 +88,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        mainSharedVM.saveAwayLong()
+        vm.saveAwayLong()
     }
 
     override fun onResume() {
         super.onResume()
-        mainSharedVM.checkIsAwayLong()
-        mainSharedVM.isAwayLong.onEach {
+        vm.checkIsAwayLong()
+        vm.isAwayLong.onEach {
             if (it == true) {
-                mainSharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
+                vm.setNavGraphEvent(NavGraphEvent.PinCode)
             }
         }.launchIn(lifecycleScope)
     }
