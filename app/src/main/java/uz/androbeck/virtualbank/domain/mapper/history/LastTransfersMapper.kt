@@ -4,7 +4,7 @@ import uz.androbeck.virtualbank.data.dto.response.history.LastTransfersResDto
 import uz.androbeck.virtualbank.data.dto.response.history.InComeAndOutComeResDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
 import uz.androbeck.virtualbank.domain.ui_models.history.LastTransferUIModel
-import uz.androbeck.virtualbank.domain.ui_models.history.TransferUIModel
+import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,11 +15,12 @@ class LastTransfersMapper @Inject constructor() :
     override fun toUIModel(dto: LastTransfersResDto) = dto.run {
         LastTransferUIModel(
             transferUIModel = transferResDto?.map {
-                TransferUIModel(
+                InComeAndOutComeUIModel(
                     type = it.type,
                     from = it.from,
                     to = it.to,
-                    amount = it.amount
+                    amount = it.amount,
+                    time = it.time,
                 )
             }
         )
@@ -31,6 +32,8 @@ class LastTransfersMapper @Inject constructor() :
                     type = it.type,
                     from = it.from,
                     to = it.to,
+                    amount = it.amount,
+                    time = it.time,
                 )
             }
         )
