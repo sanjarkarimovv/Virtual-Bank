@@ -1,5 +1,5 @@
 [versions]
-agp = "8.4.2"
+agp = "8.4.0"
 kotlin = "1.9.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -25,8 +25,10 @@ redmadrobot = "7.2.4"
 roomVertion = "2.5.1"
 interceptor = "4.12.0"
 serialization-json = "1.2.2"
-serialization-converter = "0.8.0"
-chucker = "4.0.0"
+serialization-converter ="0.8.0"
+chucker ="4.0.0"
+roomVertion ="2.5.1"
+chucker-library = "4.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,10 +56,10 @@ androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = 
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVertion" }
 androidx-room-kapt = { group = "androidx.room", name = "room-ktx", version.ref = "roomVertion" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor" }
-kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-json" }
-kotlinx-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "serialization-converter" }
-chucker-interceptor = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
-chucker-interceptor-no-op = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref ="serialization-json"}
+kotlinx-serialization-converter ={group="com.jakewharton.retrofit",name="retrofit2-kotlinx-serialization-converter",version.ref="serialization-converter"}
+chucker-interceptor ={group="com.github.chuckerteam.chucker",name="library",version.ref="chucker"}
+chucker-interceptor-no-op ={group="com.github.chuckerteam.chucker",name="library-no-op",version.ref="chucker"}
 
 
 [plugins]
@@ -66,3 +68,4 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "googleFirebaseCrashlytics" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+

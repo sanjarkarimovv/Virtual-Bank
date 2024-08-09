@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter 
+import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
@@ -77,7 +77,7 @@ object NetworkModule {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder().apply {
-                    if (prefsProvider.token.isNotEmpty()) {
+                    if (prefsProvider.token.isNotEmpty()){
                         addHeader(
                             Constants.Header.TOKEN_TITLE,
                             Constants.Header.TOKEN_TYPE + " " + prefsProvider.token
@@ -119,7 +119,6 @@ object NetworkModule {
     }
 
     @Provides
-
     @Singleton
     fun provideAuthService(
         retrofit: Retrofit,
