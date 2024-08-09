@@ -45,12 +45,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     override fun clicks() = with(binding) {
-        btnLogin.singleClickable {
+        btnLogin.onClick = {
             signInReqUIModel?.let {
                 vm.signIn(it)
             }
         }
-        btnSignUp.singleClickable {
+        btnSignUp.onClick = {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
