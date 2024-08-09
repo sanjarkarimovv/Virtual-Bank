@@ -80,7 +80,9 @@ class MainActivity : AppCompatActivity() {
             }
         }.launchIn(lifecycleScope)
     }
-
+    fun bottomNavIsGone(){
+        binding.bottomNavigation.gone()
+    }
     private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
         supportFragmentManager.beginTransaction().setPrimaryNavigationFragment(navHostFragment)
             .commit()
