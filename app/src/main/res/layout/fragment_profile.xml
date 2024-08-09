@@ -411,7 +411,7 @@
 
             </androidx.cardview.widget.CardView>
             <TextView
-                android:background="@drawable/ripple_effect_fot_text_view"
+                android:background="@drawable/ripple_effect_transparent"
                 android:clickable="true"
                 android:focusable="true"
                 android:id="@+id/consent_to_data_processing"
@@ -424,7 +424,7 @@
                 android:textColor="@color/colorOnPrimaryFixed"
                 android:text="@string/consent_to_data_processing"/>
             <TextView
-                android:background="@drawable/ripple_effect_fot_text_view"
+                android:background="@drawable/ripple_effect_transparent"
                 android:clickable="true"
                 android:focusable="true"
                 android:id="@+id/public_offer"
@@ -436,7 +436,7 @@
                 android:textColor="@color/colorOnPrimaryFixed"
                 android:text="@string/public_offer"/>
             <TextView
-                android:background="@drawable/ripple_effect_fot_text_view"
+                android:background="@drawable/ripple_effect_transparent"
                 android:clickable="true"
                 android:focusable="true"
                 android:id="@+id/privacy_policy"

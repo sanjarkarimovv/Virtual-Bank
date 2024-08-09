@@ -43,4 +43,13 @@
     <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_success">Success</string>
+    <string name="str_payment">To\'lov</string>
+    <string name="str_search">Izlash</string>
+    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
+    <string name="str_more">Yana</string>
+    <string name="str_servers_payment">Xizmatga to\'lov</string>
+    <string name="paymnet">Paymnet</string>
+    <string name="my_home">Mening uyim</string>
+    <string name="places_payments">Joylarda to\'lov</string>
+    <string name="str_add">Qo\'shish</string>
 </resources>

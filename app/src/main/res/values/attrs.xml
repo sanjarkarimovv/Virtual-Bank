@@ -28,8 +28,8 @@
         <attr name="progressBarTintColor" format="color" />
     </declare-styleable>
     <declare-styleable name="CustomEnterCodeEditText">
-        <attr name="exampleAttribute" format="string"/>
-        <attr name="setText" format="string"/>
+        <attr name="exampleAttribute" format="string" />
+        <attr name="setText" format="string" />
         <attr name="verifyBoxBackgroundColor" format="color" />
         <attr name="verifyBoxStrokeColor" format="color" />
     </declare-styleable>
@@ -39,9 +39,12 @@
     </declare-styleable>
 
     <declare-styleable name="VirtualBankInputSimple">
-        <attr name="hintText"/>
+        <attr name="hintText" />
         <attr name="helperText" />
         <attr name="errorEnabled" />
     </declare-styleable>
 
+    <declare-styleable name="CustomSearchEditText">
+        <attr name="editText" format="string" />
+    </declare-styleable>
 </resources>
