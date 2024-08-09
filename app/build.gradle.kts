@@ -107,5 +107,5 @@ dependencies {
     releaseImplementation(libs.chucker.interceptor.no.op)
 
     //Material Components
-    implementation("com.google.android.material:material:1.12.0")
+    implementation(libs.material)
 }
