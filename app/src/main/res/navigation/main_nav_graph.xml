@@ -13,9 +13,9 @@
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer.TransferFragment"
         android:label="TransferFragment" />
     <fragment
-        android:id="@+id/cardsFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.cards.CardsFragment"
-        android:label="CardsFragment" />
+        android:id="@+id/paymentFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.payment.PaymentFragment"
+        android:label="PaymentFragment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"

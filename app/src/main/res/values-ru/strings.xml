@@ -48,4 +48,9 @@
     <string name="str_localization_uzb">Узбекский</string>
     <string name="str_localization_rus">Русский</string>
     <string name="str_localization_eng">Английский</string>
+    <string name="str_search">Izlash</string>
+    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
+    <string name="my_home">Mening uyim</string>
+    <string name="places_payments">Joylarda to\'lov</string>
+    <string name="str_add">Qo\'shish</string>
 </resources>

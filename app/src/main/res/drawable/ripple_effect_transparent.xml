@@ -2,6 +2,6 @@
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="@color/colorOnSurfaceVar">
-    <item android:drawable="@color/colorSurface"/>
+    <item android:drawable="@color/static_transparent"/>
 
 </ripple>
