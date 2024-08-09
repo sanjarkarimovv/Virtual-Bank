@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package uz.androbeck.virtualbank.utils.extentions
 
 import android.content.Context

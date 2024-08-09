@@ -10,6 +10,4 @@ interface HomeRepository {
     fun getFullInfo(): Flow<FullInfoResDto>
     fun getBasicInfo(): Flow<BasicInfoResDto>
     fun putUpdateInfo(request: UpdateInfoReqDto):Flow<MessageResDto>
-
-
 }
