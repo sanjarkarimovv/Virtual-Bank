@@ -43,4 +43,6 @@
     <string name="forget_password">Forget password</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_success">Success</string>
+    <string name="str_delete_account">Delete account</string>
+    <string name="str_taxallus">Nickname</string>
 </resources>

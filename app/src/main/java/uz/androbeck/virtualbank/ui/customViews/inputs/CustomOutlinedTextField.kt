@@ -45,9 +45,13 @@ class CustomOutlinedTextField @JvmOverloads constructor(
             )
             val errorText = typedArray.getString(R.styleable.CustomTextField_errorText)
             val clearable = typedArray.getBoolean(R.styleable.CustomTextField_clearable, false)
-            val boxStrokeColor = typedArray.getColor(R.styleable.CustomTextField_boxStrokeColor, ContextCompat.getColor(context, android.R.color.holo_purple))
+            val boxStrokeColor = typedArray.getColor(
+                R.styleable.CustomTextField_boxStrokeColor,
+                ContextCompat.getColor(context, android.R.color.holo_purple)
+            )
             val maxLength = typedArray.getInt(R.styleable.CustomTextField_maxLength, -1)
-            val scrollHorizontally = typedArray.getBoolean(R.styleable.CustomTextField_scrollHorizontally, false)
+            val scrollHorizontally =
+                typedArray.getBoolean(R.styleable.CustomTextField_scrollHorizontally, false)
 
             textInputLayout.hint = hintText
             textInputLayout.helperText = helperText
@@ -67,36 +71,35 @@ class CustomOutlinedTextField @JvmOverloads constructor(
                     textInputEditText.text?.clear()
                 }
 
-                    textInputEditText.addTextChangedListener(object : TextWatcher {
-                        override fun beforeTextChanged(
-                            s: CharSequence?,
-                            start: Int,
-                            count: Int,
-                            after: Int
-                        ) {
-                        }
+                textInputEditText.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
+                    }
 
-                        override fun onTextChanged(
-                            s: CharSequence?,
-                            start: Int,
-                            before: Int,
-                            count: Int
-                        ) {
-                        }
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                    }
 
-                        override fun afterTextChanged(s: Editable?) {
-                            if (!s.isNullOrEmpty()) {
-                                textInputLayout.isEndIconVisible = true
-                            } else {
-                                textInputLayout.isEndIconVisible = false
-                            }
+                    override fun afterTextChanged(s: Editable?) {
+                        if (!s.isNullOrEmpty()) {
+                            textInputLayout.isEndIconVisible = true
+                        } else {
+                            textInputLayout.isEndIconVisible = false
                         }
-                    })
+                    }
+                })
             }
 
-            if (maxLength != -1) {
-                textInputEditText.filters = maxLength.let { arrayOf(android.text.InputFilter.LengthFilter(it)) }
-            }
+            if (maxLength != -1) textInputEditText.filters =
+                maxLength.let { arrayOf(android.text.InputFilter.LengthFilter(it)) }
 
             if (scrollHorizontally) {
                 textInputEditText.isHorizontalScrollBarEnabled = true
@@ -114,7 +117,6 @@ class CustomOutlinedTextField @JvmOverloads constructor(
     fun setText(text: String) {
         textInputEditText.setText(text)
     }
-
 
 
 }

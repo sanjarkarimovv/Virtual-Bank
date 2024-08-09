@@ -1,27 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/transferFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer.TransferFragment"
-        android:label="TransferFragment" />
+        android:label="TransferFragment"
+        tools:layout="@layout/fragment_transfer" />
     <fragment
         android:id="@+id/cardsFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.cards.CardsFragment"
-        android:label="CardsFragment" />
+        android:label="CardsFragment"
+        tools:layout="@layout/fragment_cards" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_updateProfileFragment"
+            app:destination="@id/updateProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/updateProfileFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.UpdateProfileFragment"
+        android:label="UpdateProfileFragment"
+        tools:layout="@layout/fragment_update_profile" />
 </navigation>

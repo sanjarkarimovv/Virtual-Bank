@@ -6,6 +6,7 @@
     <color name="colorSecondary">#625B71</color>
     <color name="colorTertiary">#7D5260</color>
     <color name="colorError">#B3261E</color>
+    <color name="colorRed">#EF1C10</color>
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorOnTertiary">#FFFFFF</color>
@@ -44,13 +45,7 @@
     <color name="colorInversePrimary">#D0BCFF</color>
     <color name="colorScrim">#000000</color>
     <color name="colorShadow">#000000</color>
-
-
-
-
-
-
-
+    <color name="colorBlue">#349FF4</color>
 
 
 </resources>
