@@ -110,7 +110,6 @@ class HistoryAdapter(
         }
     }
 
-
     fun findHeaderViewForPosition1(position: Int, parent: RecyclerView): View? {
         val currentItem = getItem(position)
         if (currentItem is HistoryItem.Header) {
