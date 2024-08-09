@@ -49,7 +49,7 @@
     <string name="str_localization_rus">Ruscha</string>
     <string name="str_localization_eng">Inglizcha</string>
     <string name="system">Tizim</string>
-    <string name="dark_mode">Kunduzgi rejim</string>
-    <string name="light_mode">Tungi rejimi</string>
+    <string name="dark_mode">Tungi rejimi</string>
+    <string name="light_mode">Kunduzgi rejim</string>
     <string name="tv_widget_setup">Ilova rejim</string>
 </resources>

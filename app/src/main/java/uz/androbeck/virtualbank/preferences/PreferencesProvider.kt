@@ -13,6 +13,10 @@ class PreferencesProvider @Inject constructor(
     var lastErrorTimestamp: Long by preferences.long()
     var refreshToken: String by preferences.string()
     var language: String by preferences.string(Constants.Localization.UZBEK)
+    var theme: Int by preferences.int(Constants.Theme.SYSTEM_MODE)
+    var radioButtonLight: Boolean by preferences.boolean()
+    var radioButtonDark: Boolean by preferences.boolean()
+    var radioButtonSystem: Boolean by preferences.boolean()
 
     fun clear() {
         preferences.edit().clear().apply()

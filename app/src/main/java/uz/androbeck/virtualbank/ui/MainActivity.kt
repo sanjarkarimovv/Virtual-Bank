@@ -54,11 +54,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupObservers(navHostFragment: NavHostFragment) {
         vm.observeNavGraphEvent().onEach { event ->
             navHostFragment.navController.apply {
+                defaultNavHostTrue(navHostFragment)
                 when (event) {
                     NavGraphEvent.Auth -> {
                         val authGraph = navInflater.inflate(R.navigation.auth_nav_graph)
                         authGraph.setStartDestination(R.id.chooseLanguageFragment)
-                        defaultNavHostTrue(navHostFragment)
                         graph = authGraph
                         binding.bottomNavigation.gone()
                     }
@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
                     NavGraphEvent.Main -> {
                         val mainGraph = navInflater.inflate(R.navigation.main_nav_graph)
                         mainGraph.setStartDestination(R.id.mainFragment)
-                        defaultNavHostTrue(navHostFragment)
                         graph = mainGraph
                         binding.bottomNavigation.visible()
                     }
@@ -74,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                     NavGraphEvent.PinCode -> {
                         val pinCodeGraph = navInflater.inflate(R.navigation.pin_code_nav_graph)
                         pinCodeGraph.setStartDestination(R.id.pinCodeFragment)
-                        defaultNavHostTrue(navHostFragment)
                         graph = pinCodeGraph
                         binding.bottomNavigation.gone()
                     }
@@ -84,9 +82,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .setPrimaryNavigationFragment(navHostFragment)
+        supportFragmentManager.beginTransaction().setPrimaryNavigationFragment(navHostFragment)
             .commit()
     }
 }

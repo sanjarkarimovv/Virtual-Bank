@@ -1,5 +1,10 @@
 package uz.androbeck.virtualbank.utils
 
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+
 object Constants {
     object FileName {
         const val SHARED_PREFS = "virtual_bank"
@@ -45,8 +50,14 @@ object Constants {
         const val RUSSIAN = "ru"
     }
 
-    object Number{
+    object Number {
         const val FIVE_THOUSAND = 5000L
         const val ONE = 1
+    }
+
+    object Theme {
+        const val DARK_MODE = MODE_NIGHT_NO
+        const val LIGHT_MODE = MODE_NIGHT_YES
+        const val SYSTEM_MODE = MODE_NIGHT_FOLLOW_SYSTEM
     }
 }

@@ -15,6 +15,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import javax.inject.Inject
@@ -27,44 +28,18 @@ class ProfileViewModel @Inject constructor(
     private val _fullInfoEvent = Channel<FullInfoUIModel>()
     val fullInfoEvent = _fullInfoEvent.consumeAsFlow()
 
+    @Inject
+    lateinit var preferencesProvider: PreferencesProvider
     fun getFullInfo() {
         getFullInfoUseCase().onEach {
-
             _fullInfoEvent.trySend(it)
-
         }.catch {
             errorHandler.handleError(it)
             //
         }.launchIn(viewModelScope)
     }
-
-    companion object {
-        fun nightMode(dialog: BottomSheetDialog) {
-            dialog.run {
-                setContentView(R.layout.dialog_widget_setup)
-                setCancelable(true)
-                setCanceledOnTouchOutside(true)
-                show()
-            }
-            val group = dialog.findViewById<RadioGroup>(R.id.radio_gp)
-            group?.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    group.getChildAt(0).id -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        dialog.dismiss()
-                    }
-
-                    group.getChildAt(1).id -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                        dialog.dismiss()
-                    }
-
-                    group.getChildAt(2).id -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                        dialog.dismiss()
-                    }
-                }
-            }
-        }
+    fun changeTheme(mode:Int){
+        preferencesProvider.theme = mode
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 }
