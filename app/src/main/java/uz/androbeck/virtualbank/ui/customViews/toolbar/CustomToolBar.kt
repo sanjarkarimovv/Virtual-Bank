@@ -25,6 +25,9 @@ class CustomToolBar @JvmOverloads constructor(
         )
     }
 
+    var onClickRightIcon: () -> Unit = {}
+    var onClickLeftIcon: () -> Unit = {}
+
     init {
         attrs?.let {
             val typedArray: TypedArray = context.obtainStyledAttributes(
@@ -60,12 +63,12 @@ class CustomToolBar @JvmOverloads constructor(
 
             //Toolbarni back button bosilish
             binding.customToolbar.setNavigationOnClickListener {
-                arrowBack()
+                onClickLeftIcon()
             }
 
             // Toolbarni icon onclick
             binding.endIcon.singleClickable {
-                rightIcon()
+                onClickRightIcon()
             }
             typedArray.recycle()
         }

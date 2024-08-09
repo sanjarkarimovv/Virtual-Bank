@@ -53,6 +53,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         btnSignUp.singleClickable {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
+        customToolbar.onClickLeftIcon = {
+            findNavController().popBackStack()
+        }
     }
 
     private fun access() = with(binding) {
