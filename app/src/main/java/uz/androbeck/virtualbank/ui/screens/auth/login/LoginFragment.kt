@@ -22,7 +22,6 @@ import uz.androbeck.virtualbank.ui.screens.Screen
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
-import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
@@ -45,12 +44,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     override fun clicks() = with(binding) {
-        btnLogin.singleClickable {
+        btnLogin.onClick = {
             signInReqUIModel?.let {
                 vm.signIn(it)
             }
         }
-        btnSignUp.singleClickable {
+        btnSignUp.onClick = {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
