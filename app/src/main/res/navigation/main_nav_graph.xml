@@ -36,7 +36,7 @@
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/updateProfileFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.UpdateProfileFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update.UpdateProfileFragment"
         android:label="UpdateProfileFragment"
         tools:layout="@layout/fragment_update_profile" />
 </navigation>

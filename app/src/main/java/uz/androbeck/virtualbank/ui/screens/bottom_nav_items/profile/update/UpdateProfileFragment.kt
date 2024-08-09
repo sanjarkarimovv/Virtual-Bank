@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile
+package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels

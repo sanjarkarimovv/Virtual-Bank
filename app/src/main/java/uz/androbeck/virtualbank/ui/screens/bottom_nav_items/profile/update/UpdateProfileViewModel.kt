@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile
+package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
