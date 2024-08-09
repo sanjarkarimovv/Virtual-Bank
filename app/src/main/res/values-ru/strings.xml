@@ -60,6 +60,8 @@
     <string name="biometric_prompt_cancel">Отмена</string>
     <string name="str_login">Авторизоваться</string>
     <string name="forget_password">Забыли пароль</string>
+    <string name="toolbar_title">Title </string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_choose_language_title">Выберите язык</string>
     <string name="str_choose_title">Выбирать</string>
