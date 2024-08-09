@@ -17,7 +17,7 @@ import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.MainSharedViewModel
+import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.screens.Screen
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
@@ -29,7 +29,7 @@ import javax.inject.Inject
 class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     private val binding by viewBinding(FragmentRegistrationBinding::bind)
-    private val sharedVM: MainSharedViewModel by activityViewModels()
+    private val sharedVM: MainViewModel by activityViewModels()
     private val vm by viewModels<RegistrationViewModel>()
 
     @Inject
