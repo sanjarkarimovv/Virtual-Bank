@@ -20,6 +20,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.DialogWidgetSetupBinding
 import uz.androbeck.virtualbank.databinding.FragmentProfileBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileViewModel.Companion.nightMode
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
 @AndroidEntryPoint
@@ -42,25 +43,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
                 setCanceledOnTouchOutside(true)
                 show()
             }
-            val group = dialog?.findViewById<RadioGroup>(R.id.radio_gp)
-            group?.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    group.getChildAt(0).id -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        dialog?.dismiss()
-                    }
-
-                    group.getChildAt(1).id -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                        dialog?.dismiss()
-                    }
-
-                    group.getChildAt(2).id -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                        dialog?.dismiss()
-                    }
-                }
-            }
+            nightMode(dialog!!)
         }
     }
 }
