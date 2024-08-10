@@ -42,7 +42,7 @@ class CustomOutlinedTextField @JvmOverloads constructor(
             )
             val boxStrokeRadius = typedArray.getDimension(
                 R.styleable.CustomTextField_boxStrokeRadius,
-                10f
+                20f
             )
             val hintTextColor = typedArray.getColor(
                 R.styleable.CustomTextField_hintTextColor,

@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentUpdateProfileBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
 
 @AndroidEntryPoint
 class UserFullInfoFragment : BaseFragment(R.layout.fragment_update_profile) {
@@ -31,9 +32,7 @@ class UserFullInfoFragment : BaseFragment(R.layout.fragment_update_profile) {
         }.launchIn(lifecycleScope)
     }
 
-    override fun clicks() = with(binding) {
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_userFullInfoFragment_to_profileFragment)
-        }
+    override fun clicks(): Unit = with(binding) {
+
     }
 }

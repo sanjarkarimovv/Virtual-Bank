@@ -10,6 +10,7 @@
         <attr name="helperText" format="string" />
         <attr name="endIcon" format="reference" />
         <attr name="hintText" format="string" />
+        <attr name="focusable" format="boolean" />
         <attr name="startIcon" format="reference" />
         <attr name="boxBackgroundColor" format="color" />
         <attr name="hintTextColor" format="color" />
@@ -17,6 +18,7 @@
         <attr name="errorText" format="string" />
         <attr name="clearable" format="boolean" />
         <attr name="boxStrokeColor" format="color" />
+        <attr name="defaultStrokeColor" format="color" />
         <attr name="maxLength" format="integer" />
         <attr name="boxStrokeRadius" format="dimension" />
         <attr name="scrollHorizontally" format="boolean" />
