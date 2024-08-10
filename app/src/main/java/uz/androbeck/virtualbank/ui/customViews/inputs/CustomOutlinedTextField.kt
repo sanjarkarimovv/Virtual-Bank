@@ -2,6 +2,7 @@ package uz.androbeck.virtualbank.ui.customViews.inputs
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.text.Editable
 import android.text.TextWatcher
@@ -39,6 +40,10 @@ class CustomOutlinedTextField @JvmOverloads constructor(
                 R.styleable.CustomTextField_boxBackgroundColor,
                 ContextCompat.getColor(context, android.R.color.white)
             )
+            val boxStrokeRadius = typedArray.getDimension(
+                R.styleable.CustomTextField_boxStrokeRadius,
+                10f
+            )
             val hintTextColor = typedArray.getColor(
                 R.styleable.CustomTextField_hintTextColor,
                 ContextCompat.getColor(context, android.R.color.holo_purple)
@@ -49,21 +54,29 @@ class CustomOutlinedTextField @JvmOverloads constructor(
                 R.styleable.CustomTextField_boxStrokeColor,
                 ContextCompat.getColor(context, android.R.color.holo_purple)
             )
+            val labelColor = typedArray.getColor(
+                R.styleable.CustomTextField_labelColor,
+                ContextCompat.getColor(context, android.R.color.holo_purple)
+            )
             val maxLength = typedArray.getInt(R.styleable.CustomTextField_maxLength, -1)
             val scrollHorizontally =
                 typedArray.getBoolean(R.styleable.CustomTextField_scrollHorizontally, false)
-
             textInputLayout.hint = hintText
             textInputLayout.helperText = helperText
             textInputLayout.boxBackgroundColor = boxBackgroundColor
             textInputEditText.setHintTextColor(hintTextColor)
             textInputLayout.boxStrokeColor = boxStrokeColor
             textInputLayout.error = errorText
+            textInputLayout.setBoxCornerRadii(
+                boxStrokeRadius,
+                boxStrokeRadius,
+                boxStrokeRadius,
+                boxStrokeRadius
+            )
+            textInputLayout.defaultHintTextColor = ColorStateList.valueOf(labelColor)
             if (startIcon != 0) {
                 textInputLayout.setStartIconDrawable(startIcon)
             }
-
-
 
             if (clearable) {
                 textInputLayout.setEndIconDrawable(R.drawable.icon1_36)

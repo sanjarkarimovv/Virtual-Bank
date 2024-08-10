@@ -13,10 +13,12 @@
         <attr name="startIcon" format="reference" />
         <attr name="boxBackgroundColor" format="color" />
         <attr name="hintTextColor" format="color" />
+        <attr name="labelColor" format="color" />
         <attr name="errorText" format="string" />
         <attr name="clearable" format="boolean" />
         <attr name="boxStrokeColor" format="color" />
         <attr name="maxLength" format="integer" />
+        <attr name="boxStrokeRadius" format="dimension" />
         <attr name="scrollHorizontally" format="boolean" />
     </declare-styleable>
 
@@ -28,8 +30,8 @@
         <attr name="progressBarTintColor" format="color" />
     </declare-styleable>
     <declare-styleable name="CustomEnterCodeEditText">
-        <attr name="exampleAttribute" format="string"/>
-        <attr name="setText" format="string"/>
+        <attr name="exampleAttribute" format="string" />
+        <attr name="setText" format="string" />
         <attr name="verifyBoxBackgroundColor" format="color" />
         <attr name="verifyBoxStrokeColor" format="color" />
     </declare-styleable>
@@ -39,7 +41,7 @@
     </declare-styleable>
 
     <declare-styleable name="VirtualBankInputSimple">
-        <attr name="hintText"/>
+        <attr name="hintText" />
         <attr name="helperText" />
         <attr name="errorEnabled" />
     </declare-styleable>

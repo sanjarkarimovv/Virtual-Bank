@@ -45,7 +45,7 @@
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_success">Success</string>
     <string name="str_delete_account">Delete account</string>
-    <string name="str_taxallus">Nickname</string>
+    <string name="str_nick_name">Nickname</string>
     <string name="str_choose_language_title">Choose app language</string>
     <string name="str_choose_title">Choose</string>
     <string name="str_localization_uzb">Uzbek</string>

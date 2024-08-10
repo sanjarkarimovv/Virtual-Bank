@@ -1,6 +1,5 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update
+package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.full_info
 
-import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,24 +12,19 @@ import uz.androbeck.virtualbank.databinding.FragmentUpdateProfileBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 
 @AndroidEntryPoint
-class UpdateProfileFragment : BaseFragment(R.layout.fragment_update_profile) {
+class UserFullInfoFragment : BaseFragment(R.layout.fragment_update_profile) {
     private val binding by viewBinding(FragmentUpdateProfileBinding::bind)
-    private val vm: UpdateProfileViewModel by viewModels()
+    private val vm: UserFullInfoViewModel by viewModels()
     override fun setup() = with(binding) {
-        vm.getUserData()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         vm.getUserData()
     }
 
     override fun observe() {
         vm.getUserData.onEach { event ->
             when (event) {
-                is UpdateProfileEvent.Error -> println("::: Error -> ${event.massage.toString()}")
-                UpdateProfileEvent.Loading -> println("::: -> Loading Model...")
-                is UpdateProfileEvent.Success -> {
+                is UserFullInfoEvent.Error -> println("::: Error -> ${event.massage.toString()}")
+                UserFullInfoEvent.Loading -> println("::: -> Loading Model...")
+                is UserFullInfoEvent.Success -> {
                     println("::: -> Success User data -> ${event.model}")
                 }
             }
@@ -39,7 +33,7 @@ class UpdateProfileFragment : BaseFragment(R.layout.fragment_update_profile) {
 
     override fun clicks() = with(binding) {
         toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_userFullInfoFragment_to_profileFragment)
         }
     }
 }

@@ -24,10 +24,12 @@
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_updateProfileFragment"
-            app:destination="@id/updateProfileFragment" />
+            app:destination="@id/userFullInfoFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -35,8 +37,12 @@
         android:label="HistoryFragment"
         tools:layout="@layout/fragment_history" />
     <fragment
-        android:id="@+id/updateProfileFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update.UpdateProfileFragment"
+        android:id="@+id/userFullInfoFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.full_info.UserFullInfoFragment"
         android:label="UpdateProfileFragment"
-        tools:layout="@layout/fragment_update_profile" />
+        tools:layout="@layout/fragment_update_profile" >
+        <action
+            android:id="@+id/action_userFullInfoFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>
