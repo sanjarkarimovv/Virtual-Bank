@@ -2,19 +2,17 @@ package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.full_info
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.databinding.FragmentUpdateProfileBinding
+import uz.androbeck.virtualbank.databinding.FragmentUserFullInfoBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
 
 @AndroidEntryPoint
-class UserFullInfoFragment : BaseFragment(R.layout.fragment_update_profile) {
-    private val binding by viewBinding(FragmentUpdateProfileBinding::bind)
+class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
+    private val binding by viewBinding(FragmentUserFullInfoBinding::bind)
     private val vm: UserFullInfoViewModel by viewModels()
     override fun setup() = with(binding) {
         vm.getUserData()

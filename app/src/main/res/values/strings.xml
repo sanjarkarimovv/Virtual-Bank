@@ -16,9 +16,9 @@
     <string name="str_born_date">Born date</string>
     <string name="str_gender">Gender</string>
     <string name="str_sign_up">Sign Up</string>
-    <string name="str_refresh_code">Kodni qayta olish</string>
-    <string name="str_confirm">Tastiqlash</string>
-    <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_refresh_code">Get code again</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="str_code_confirm_time">Confirm code</string>
     <string name="toolbar_title">Title </string>
     <string name="str_login">Login</string>
     <string name="settings">Settings</string>
@@ -40,9 +40,9 @@
     <string name="defauld_languafe">English</string>
     <string name="default_theme_value">System</string>
     <string name="default_user_name">User User</string>
-    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Verification code has been sent to this phone number</string>
     <string name="forget_password">Forget password</string>
-    <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
+    <string name="str_error_unexpected">Unknown error</string>
     <string name="str_success">Success</string>
     <string name="str_delete_account">Delete account</string>
     <string name="str_nick_name">Nickname</string>

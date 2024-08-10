@@ -50,8 +50,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         }
         btnSignUp.onClick = {
-//            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
-            sharedVM.setNavGraphEvent(NavGraphEvent.Main)
+            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
 

@@ -40,7 +40,7 @@
         android:id="@+id/userFullInfoFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.full_info.UserFullInfoFragment"
         android:label="UpdateProfileFragment"
-        tools:layout="@layout/fragment_update_profile" >
+        tools:layout="@layout/fragment_user_full_info" >
         <action
             android:id="@+id/action_userFullInfoFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

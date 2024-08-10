@@ -19,7 +19,6 @@
         android:layout_marginTop="30dp"
         app:boxStrokeColor="@color/colorBlue"
         app:boxStrokeRadius="20dp"
-        app:focusable="true"
         app:hintText="@string/str_first_name"
         app:labelColor="@color/colorBlue" />
 
