@@ -36,6 +36,7 @@
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColor="@color/colorScrim"
+                android:fontFamily="@font/exo2_medium"
                 android:textSize="14sp"/>
             <ImageView
                 android:id="@+id/btn_cancel"

@@ -36,7 +36,8 @@
             android:textSize="11sp"
             tools:text="Mobil operatorlar"
             android:gravity="center"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/exo2_medium"/>
 
     </LinearLayout>
 

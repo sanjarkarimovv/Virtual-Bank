@@ -4,24 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSurface"
-    android:orientation="vertical"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:orientation="vertical">
 
-
-    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomSearchEditText
-        android:id="@+id/tv_search"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="24dp"/>
+        android:background="@color/screenBackgroundColor"
+        android:paddingBottom="16dp">
+        <uz.androbeck.virtualbank.ui.customViews.inputs.CustomSearchEditText
+            android:id="@+id/tv_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"/>
+    </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_marginTop="16dp">
+        android:background="@color/screenBackgroundColor">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +44,8 @@
                     android:text="@string/str_saved_payments"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorScrim"/>
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
                 <TextView
                     android:id="@+id/btn_more_saved_payments"
                     android:layout_width="wrap_content"
@@ -50,9 +53,10 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/screenTextColor"
                     android:layout_alignParentEnd="true"
-                    tools:ignore="RelativeOverlap" />
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -82,7 +86,8 @@
                     android:text="@string/str_servers_payment"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorScrim"/>
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
                 <TextView
                     android:id="@+id/btn_more_servers_payments"
                     android:layout_width="wrap_content"
@@ -90,9 +95,10 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/screenTextColor"
                     android:layout_alignParentEnd="true"
-                    tools:ignore="RelativeOverlap" />
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -119,7 +125,8 @@
                     android:text="@string/my_home"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorScrim"/>
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
                 <TextView
                     android:id="@+id/btn_more_my_home"
                     android:layout_width="wrap_content"
@@ -127,9 +134,10 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/screenTextColor"
                     android:layout_alignParentEnd="true"
-                    tools:ignore="RelativeOverlap" />
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -159,7 +167,8 @@
                     android:text="@string/places_payments"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorScrim"/>
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
                 <TextView
                     android:id="@+id/btn_more_places_payments"
                     android:layout_width="wrap_content"
@@ -167,9 +176,10 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/screenTextColor"
                     android:layout_alignParentEnd="true"
-                    tools:ignore="RelativeOverlap" />
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -177,6 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

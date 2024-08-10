@@ -40,7 +40,7 @@ class CustomSearchEditText @JvmOverloads constructor(
                         resources.displayMetrics
                     ).toInt()
                     cvSearch.strokeWidth = strokeWidthInPx
-                    cvSearch.strokeColor = ContextCompat.getColor(context, R.color.colorPrimary)
+                    cvSearch.strokeColor = ContextCompat.getColor(context, R.color.screenTextColor)
                 } else {
                     val strokeWidthInDp = 1
                     val strokeWidthInPx = TypedValue.applyDimension(
