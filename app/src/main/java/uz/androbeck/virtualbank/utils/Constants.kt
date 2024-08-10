@@ -9,7 +9,6 @@ object Constants {
     object Endpoint {
         const val SIGN_UP = "auth/sign-up"
         const val SIGN_IN_VERIFY = "auth/sign-in/verify"
-
         const val SIGN_IN = "auth/sign-in"
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
         const val UPDATE_TOKEN = "auth/update-token"
@@ -19,6 +18,7 @@ object Constants {
         const val SIGN_IN_RESEND = "auth/sign-in/resend"
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
+        const val GET_CARDS = "/card"
     }
 
     object Header {
@@ -45,7 +45,7 @@ object Constants {
         const val RUSSIAN = "ru"
     }
 
-    object Number{
+    object Number {
         const val FIVE_THOUSAND = 5000L
         const val ONE = 1
     }
