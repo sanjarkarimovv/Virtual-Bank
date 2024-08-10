@@ -7,6 +7,7 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.biometric.BiometricPrompt
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -66,12 +67,12 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 pinCodeViewModel.removeLastDigit()
             }
 
-            listOf(btnConfirm, actionConfirm).forEach { button ->
-                button.setOnClickListener {
-                    vibrate()
-                    pinCodeViewModel.handlePinCodeCompletion()
-                }
-            }
+//            listOf(btnConfirm, actionConfirm).forEach { button ->
+//                button.setOnClickListener {
+//                    vibrate()
+//                    pinCodeViewModel.handlePinCodeCompletion()
+//                }
+//            }
 
             actionExit.setOnClickListener {
                 vibrate()
@@ -96,20 +97,14 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 with(binding) {
                     if (it == false) {
                         actionExit.gone()
-                        actionConfirm.gone()
-                        btnConfirm.gone()
                     } else {
-                        if (pinCodeViewModel.checkBiometrics()) {
+                        if (pinCodeViewModel.checkBiometrics()) { // mana bu logikani confirm pin codega qo'shib yuborman
                             promptBiometricAuthentication()
                             btnFingerprint.visible()
                             actionExit.visible()
-                            actionConfirm.gone()
-                            btnConfirm.gone()
                         } else {
                             btnFingerprint.gone()
                             actionExit.visible()
-                            actionConfirm.gone()
-                            btnConfirm.gone()
                         }
                     }
                 }
@@ -134,28 +129,44 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
 
     private fun handlePinCodeEvent(event: PinCodeEvent) {
         when (event) {
-            PinCodeEvent.PinRegistered -> {
-                //                navigateWithDelay(NavGraphEvent.Main, 1000)
-                if (BiometricUtils.isBiometricReady(requireContext())) {
-                    findNavController().navigate(R.id.action_pinCodeFragment_to_biometricPermissionFragment)
-                } else {
-                    pinCodeViewModel.setBiometrics(false)
-                    navigateWithDelay(NavGraphEvent.Main, 1000)
-                }
-
-            }
-
-            PinCodeEvent.PinValidated -> {
+            is PinCodeEvent.PinRegistered -> {
+                setButtonsEnabled(false)
+                val bundle = bundleOf("pinCode" to event.pin)
                 Handler(Looper.getMainLooper()).postDelayed({
                     pinCodeViewModel.clearPinCode()
                 }, 200)
                 Handler(Looper.getMainLooper()).postDelayed({
                     checkPinAnim()
                 }, 400)
+                Handler(Looper.getMainLooper()).postDelayed({ setButtonsEnabled(true) },1000)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    findNavController().navigate(R.id.action_pinCodeFragment_to_confirmPinCodeFragment, bundle)
+                }, 1200L)
+
+                //                navigateWithDelay(NavGraphEvent.Main, 1000)
+//                if (BiometricUtils.isBiometricReady(requireContext())) {
+//                    findNavController().navigate(R.id.action_confirmPinCodeFragment_to_biometricPermissionFragment)
+//                } else {
+//                    pinCodeViewModel.setBiometrics(false)
+////                    navigateWithDelay(NavGraphEvent.Main, 1000) buni coinfirm pin code ga
+//                }
+
+            }
+
+            PinCodeEvent.PinValidated -> {
+                setButtonsEnabled(false)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    pinCodeViewModel.clearPinCode()
+                }, 200)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    checkPinAnim()
+                }, 400)
+                Handler(Looper.getMainLooper()).postDelayed({ setButtonsEnabled(true) },1000)
                 navigateWithDelay(NavGraphEvent.Main, 1200)
             }
 
             PinCodeEvent.PinValidationFailed -> {
+                setButtonsEnabled(false)
                 Handler(Looper.getMainLooper()).postDelayed({
                     pinCodeViewModel.clearPinCode()
                 }, 200)
@@ -167,6 +178,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 }, 1000)
                 Handler(Looper.getMainLooper()).postDelayed({
                     pinCodeViewModel.clearPinCode()
+                    setButtonsEnabled(true)
                     binding.errorAttempts.visible()
                 }, 2000)
             }
@@ -180,17 +192,11 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 view.setBackgroundResource(if (index < pinCode.size) R.drawable.bg_pin_active else R.drawable.bg_pin_inactive)
             }
 
-            if (pinCode.size == 4) {
-                if (pinCodeViewModel.fromRegister.value == true) {
-                    pinCodeViewModel.handlePinCodeCompletion()
-                } else {
-                    actionConfirm.visible()
-                    btnConfirm.visible()
-                }
-            } else {
-                actionConfirm.gone()
-                btnConfirm.gone()
-            }
+//            if (pinCode.size == 4) {
+//                if (pinCodeViewModel.fromRegister.value == true) {
+//
+//                }
+//            }
         }
     }
 
@@ -254,5 +260,18 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
             .build()
 
         biometricPrompt.authenticate(promptInfo)
+    }
+
+    private fun setButtonsEnabled(enabled: Boolean) {
+        with(binding) {
+            listOf(
+                btn01, btn02, btn03,
+                btn04, btn05, btn06,
+                btn07, btn08, btn09,
+                btn00, btnRemove, btnFingerprint
+            ).forEach {
+                it.isEnabled = enabled
+            }
+        }
     }
 }

@@ -92,7 +92,7 @@ class PinCodeViewModel @Inject constructor(
 
             if (prefsProvider.pinCode.isEmpty()) {
                 registerPinUseCase.registerPin(pinCode)
-                _pinCodeEvent.value = PinCodeEvent.PinRegistered
+                _pinCodeEvent.value = PinCodeEvent.PinRegistered(pinCode)
             } else {
                 if (validatePinUseCase.isValidPin(pinCode)) {
                     _pinCodeEvent.value = PinCodeEvent.PinValidated
