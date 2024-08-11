@@ -65,7 +65,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/screenBackgroundColor"
+            android:backgroundTint="@color/screenTextColor"
             app:cardCornerRadius="4dp"
             app:cardElevation="0dp">
             <ImageView
