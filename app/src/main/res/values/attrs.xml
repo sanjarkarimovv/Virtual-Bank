@@ -12,7 +12,6 @@
         <attr name="endIcon" format="reference" />
         <attr name="hintText" format="string" />
         <attr name="focusable" format="boolean" />
-        <attr name="isWritable" format="boolean" />
         <attr name="startIcon" format="reference" />
         <attr name="boxBackgroundColor" format="color" />
         <attr name="hintTextColor" format="color" />
@@ -24,6 +23,25 @@
         <attr name="maxLength" format="integer" />
         <attr name="boxStrokeRadius" format="dimension" />
         <attr name="scrollHorizontally" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomProfileDataTextView">
+        <attr name="etTitle" format="string" />
+        <attr name="etText" format="string" />
+        <attr name="etPutTitleCenterHorizontally" format="integer" />
+        <attr name="etTitleSize" format="dimension" />
+        <attr name="etBoxStrokeBottomStartRadius" format="dimension" />
+        <attr name="etBoxStrokeBottomEndRadius" format="dimension" />
+        <attr name="etBoxStrokeTopStartRadius" format="dimension" />
+        <attr name="etBoxStrokeTopEndRadius" format="dimension" />
+        <attr name="etEtBoxStrokeRadius" format="dimension" />
+        <attr name="etTextSize" format="dimension" />
+        <attr name="etMarginBottomOfTitle" format="dimension" />
+        <attr name="etBoxStrokeColor" format="color" />
+        <attr name="etFocusedTitleColor" format="color" />
+        <attr name="etNoneFocusedTitleColor" format="color" />
+        <attr name="etTextColor" format="color" />
+        <attr name="etBackgroundColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="LoadingButton">

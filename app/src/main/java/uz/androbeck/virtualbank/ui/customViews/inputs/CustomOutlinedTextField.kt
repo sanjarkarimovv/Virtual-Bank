@@ -51,10 +51,6 @@ class CustomOutlinedTextField @JvmOverloads constructor(
                 0
             )
             inputType = InputType.entries.find { it.value == inputTypeValue } ?: InputType.TEXT
-            val isWritable = typedArray.getBoolean(
-                R.styleable.CustomTextField_isWritable,
-                true
-            )
             val hintTextColor = typedArray.getColor(
                 R.styleable.CustomTextField_hintTextColor,
                 ContextCompat.getColor(context, android.R.color.holo_purple)
@@ -95,7 +91,6 @@ class CustomOutlinedTextField @JvmOverloads constructor(
                 textInputLayout.setEndIconOnClickListener {
                     textInputEditText.text?.clear()
                 }
-
                 textInputEditText.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(
                         s: CharSequence?,

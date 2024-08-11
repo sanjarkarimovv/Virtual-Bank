@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/static_white">
@@ -10,73 +9,176 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
-        android:id="@+id/tv_name"
+    <LinearLayout
+        android:id="@+id/name_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:boxStrokeColor="@color/colorBlue"
-        app:boxStrokeRadius="20dp"
-        app:hintText="@string/str_first_name"
-        app:labelColor="@color/colorBlue" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
 
-    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
-        android:id="@+id/tv_last_name"
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/str_first_name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/name_et"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/custom_input_background"
+            android:editable="false"
+            android:paddingHorizontal="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/last_name_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_name"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:boxStrokeColor="@color/colorBlue"
-        app:boxStrokeRadius="20dp"
-        app:hintText="@string/str_last_name"
-        app:labelColor="@color/colorBlue" />
+        android:layout_below="@+id/name_ll"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
 
-    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
-        android:id="@+id/tv_user_name"
+        <TextView
+            android:id="@+id/title_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/str_last_name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/last_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/custom_input_background"
+            android:editable="false"
+            android:paddingHorizontal="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/nick_name_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_last_name"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="30dp"
-        app:boxStrokeColor="@color/colorBlue"
-        app:boxStrokeRadius="20dp"
-        app:hintText="@string/str_nick_name"
-        app:labelColor="@color/colorBlue" />
+        android:layout_below="@+id/last_name_ll"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
 
-    <TextView
-        android:id="@+id/tv_phone_number"
+        <TextView
+            android:id="@+id/title_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="start"
+            android:text="@string/str_nick_name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/nick_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/custom_input_background"
+            android:editable="false"
+            android:paddingHorizontal="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/phone_rl_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_user_name"
-        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/nick_name_ll"
+        android:layout_marginTop="40dp"
         android:background="@drawable/ripple_effect_fot_text_view"
         android:clickable="true"
-        android:drawablePadding="10dp"
-        android:focusable="true"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        android:text="+998 95 058 06 27"
-        android:textSize="16sp"
-        app:drawableEndCompat="@drawable/ic_next"
-        app:drawableStartCompat="@drawable/ic_phone" />
+        android:focusable="true">
 
-    <TextView
-        android:id="@+id/tv_delete_account"
+        <ImageView
+            android:id="@+id/ic_phone_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/ic_phone" />
+
+        <TextView
+            android:id="@+id/title_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toStartOf="@id/ic_next_iv"
+            android:layout_toEndOf="@+id/ic_phone_iv"
+            android:text="@string/str_phone_number"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/telephone_number_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_phone"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toStartOf="@id/ic_next_iv"
+            android:layout_toEndOf="@+id/ic_phone_iv"
+            android:text="+998 95 058 06 27"
+            android:textColor="@color/colorScrim"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ic_next_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_next" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_phone_number"
-        android:layout_marginTop="20dp"
+        android:layout_height="36dp"
+        android:layout_below="@id/phone_rl_root"
+        android:layout_marginTop="30dp"
         android:background="@drawable/ripple_effect_fot_text_view"
         android:clickable="true"
-        android:focusable="true"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="10dp"
-        android:text="@string/str_delete_account"
-        android:textColor="@color/colorRed"
-        android:textSize="16sp"
-        app:drawableEndCompat="@drawable/ic_next" />
+        android:focusable="true">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toStartOf="@+id/delete_ic_next"
+            android:gravity="start"
+            android:text="@string/str_delete_account"
+            android:textColor="@color/colorRed"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/delete_ic_next"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_next" />
+    </RelativeLayout>
 </RelativeLayout>
