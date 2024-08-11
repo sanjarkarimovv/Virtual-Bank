@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentUserFullInfoBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.visible
 
 @AndroidEntryPoint
 class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
@@ -24,16 +26,24 @@ class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
         vm.getUserData.onEach { event ->
             when (event) {
                 is UserFullInfoEvent.Error -> {
+                    progressBar.gone()
                     println("::: Error -> ${event.massage.toString()}")
                 }
 
-                UserFullInfoEvent.Loading -> {}
+                UserFullInfoEvent.Loading -> {
+                    startProgress()
+                }
 
                 is UserFullInfoEvent.Success -> {
+                    progressBar.gone()
                     println("::: -> Success User data -> ${event.model}")
                 }
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun startProgress() = with(binding) {
+        progressBar.visible()
     }
 
     private fun changeTitlesColorOnFocus() = with(binding) {
