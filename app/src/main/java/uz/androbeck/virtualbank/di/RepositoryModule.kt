@@ -6,14 +6,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepositoryImpl
-import uz.androbeck.virtualbank.data.repository.cards.CardsRepository
-import uz.androbeck.virtualbank.data.repository.cards.CardsRepositoryImpl
 import uz.androbeck.virtualbank.data.repository.history.HistoryRepository
 import uz.androbeck.virtualbank.data.repository.history.HistoryRepositoryImpl
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepositoryImpl
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
-import uz.androbeck.virtualbank.data.source.remote.cards.CardsDataSourceImpl
 import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDatasource
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
 import javax.inject.Singleton
@@ -45,9 +42,4 @@ object RepositoryModule {
     ): HistoryRepository {
         return HistoryRepositoryImpl(historyRemoteDatasource)
     }
-
-    @[Provides Singleton]
-    fun provideCardsRepository(
-        dataSource: CardsDataSourceImpl
-    ): CardsRepository = CardsRepositoryImpl(dataSource)
 }
