@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacer_large">20dp</dimen>
+    <dimen name="spacer_small">5dp</dimen>
+    <dimen name="halfPageMargin">10dp</dimen><!-- half of distance between pages -->
+    <dimen name="peekOffset">10dp</dimen><!-- how much of adjacent pages is shown -->
+    <dimen name="topMargin">6dp</dimen>
+</resources>
