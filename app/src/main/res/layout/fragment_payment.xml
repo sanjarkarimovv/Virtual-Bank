@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/screenBackgroundColor"
+        android:paddingBottom="16dp">
+        <uz.androbeck.virtualbank.ui.customViews.inputs.CustomSearchEditText
+            android:id="@+id/tv_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"/>
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/screenBackgroundColor">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/ripple_effect_transparent"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_saved_payments"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
+                <TextView
+                    android:id="@+id/btn_more_saved_payments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_more"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/screenTextColor"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_saved_payments"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:paddingHorizontal="16dp"
+                android:clipToPadding = "false"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_saved_payments"
+                tools:ignore="RtlSymmetry" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/ripple_effect_transparent"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_servers_payment"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
+                <TextView
+                    android:id="@+id/btn_more_servers_payments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_more"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/screenTextColor"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_servers_payments"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="16dp"
+                android:clipToPadding = "false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_servers_payment"
+                tools:ignore="RtlSymmetry" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/my_home"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
+                <TextView
+                    android:id="@+id/btn_more_my_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_more"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/screenTextColor"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_my_home"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:paddingHorizontal="16dp"
+                android:clipToPadding = "false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_my_home"
+                tools:ignore="RtlSymmetry" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/ripple_effect_transparent"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/places_payments"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorScrim"
+                    android:fontFamily="@font/exo2_medium"/>
+                <TextView
+                    android:id="@+id/btn_more_places_payments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_more"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/screenTextColor"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="RelativeOverlap"
+                    android:fontFamily="@font/exo2_medium"/>
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_places_payments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="12"
+                tools:listitem="@layout/item_places_payments">
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>
