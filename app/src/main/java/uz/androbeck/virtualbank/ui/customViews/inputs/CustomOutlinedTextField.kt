@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.ui.enums.InputType
 
 @SuppressLint("RestrictedApi")
 class CustomOutlinedTextField @JvmOverloads constructor(
@@ -24,7 +23,6 @@ class CustomOutlinedTextField @JvmOverloads constructor(
 
     private var textInputLayout: TextInputLayout
     var textInputEditText: TextInputEditText
-    private lateinit var inputType: InputType
 
     init {
         LayoutInflater.from(context).inflate(R.layout.custom_outlined_text_field, this, true)
@@ -46,11 +44,6 @@ class CustomOutlinedTextField @JvmOverloads constructor(
                 R.styleable.CustomTextField_boxStrokeRadius,
                 20f
             )
-            val inputTypeValue = typedArray.getInt(
-                R.styleable.CustomTextField_inputType,
-                0
-            )
-            inputType = InputType.entries.find { it.value == inputTypeValue } ?: InputType.TEXT
             val hintTextColor = typedArray.getColor(
                 R.styleable.CustomTextField_hintTextColor,
                 ContextCompat.getColor(context, android.R.color.holo_purple)
@@ -72,7 +65,6 @@ class CustomOutlinedTextField @JvmOverloads constructor(
             textInputLayout.helperText = helperText
             textInputLayout.boxBackgroundColor = boxBackgroundColor
             textInputEditText.setHintTextColor(hintTextColor)
-            textInputEditText.inputType = inputTypeValue
             textInputLayout.boxStrokeColor = boxStrokeColor
             textInputLayout.error = errorText
             textInputLayout.setBoxCornerRadii(
