@@ -18,6 +18,7 @@ import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.history.LastTransfersMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
+import uz.androbeck.virtualbank.domain.mapper.home.TotalBalanceMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCase
@@ -25,6 +26,7 @@ import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 
 @Module
@@ -58,6 +60,12 @@ object UseCaseModule {
         homeRepository: HomeRepository,
         fullInfoMapper: FullInfoMapper
     ) = GetFullInfoUseCase(homeRepository, fullInfoMapper)
+
+    @Provides
+    fun provideGetTotalBalanceUseCase(
+        homeRepository: HomeRepository,
+        totalBalanceMapper: TotalBalanceMapper
+    ) = GetTotalBalanceUseCase(homeRepository, totalBalanceMapper)
 
     @Provides
     fun provideUpdateInfoUseCase(
