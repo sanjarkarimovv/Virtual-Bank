@@ -12,10 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:tooltipText="@string/toolbar_title"
-        app:toolbarEndIcon="@drawable/ic_history"
-        app:title="@string/toolbar_title"
+        app:toolbarColor="@color/colorSurface"
+        app:title="@string/str_login"
         tools:ignore="UnusedAttribute" />
-
 
     <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
         android:id="@+id/et_phone"
