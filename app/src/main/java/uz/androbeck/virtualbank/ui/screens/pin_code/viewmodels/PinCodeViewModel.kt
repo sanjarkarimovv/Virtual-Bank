@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code
+package uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels
 
 import android.os.Handler
 import android.os.Looper
@@ -9,12 +9,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
+import uz.androbeck.virtualbank.ui.screens.pin_code.events.PinCodeEvent
+import uz.androbeck.virtualbank.ui.screens.pin_code.usecases.RegisterReservePinUseCase
+import uz.androbeck.virtualbank.ui.screens.pin_code.usecases.ValidatePinUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class PinCodeViewModel @Inject constructor(
     private val prefsProvider: PreferencesProvider,
-    private val registerPinUseCase: RegisterPinUseCase,
+    private val registerReservePinUseCase: RegisterReservePinUseCase,
     private val validatePinUseCase: ValidatePinUseCase
 ) : BaseViewModel() {
     private val _pinCodeList = MutableLiveData<MutableList<String>>(mutableListOf())
@@ -48,7 +51,7 @@ class PinCodeViewModel @Inject constructor(
     }
 
     fun resetErrorAttempts() {
-        _errorAttempts.value = 0
+        _errorAttempts.postValue(0)
         prefsProvider.errorAttempts = 0
     }
 
@@ -88,7 +91,7 @@ class PinCodeViewModel @Inject constructor(
             val pinCode = _pinCodeList.value.toString()
 
             if (prefsProvider.pinCode.isEmpty()) {
-                registerPinUseCase.registerPin(pinCode)
+                registerReservePinUseCase.registerReservePin(pinCode)
                 _pinCodeEvent.value = PinCodeEvent.PinRegistered
             } else {
                 if (validatePinUseCase.isValidPin(pinCode)) {

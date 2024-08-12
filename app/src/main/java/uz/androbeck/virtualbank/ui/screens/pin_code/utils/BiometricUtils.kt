@@ -1,10 +1,10 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code
+package uz.androbeck.virtualbank.ui.screens.pin_code.utils
 
 import android.content.Context
 import androidx.biometric.BiometricManager
 
 object BiometricUtils {
-    fun isBiometricReady(context : Context) : Boolean{
+    fun isBiometricReady(context: Context): Boolean {
         val biometricManager = BiometricManager.from(context)
         return when (biometricManager.canAuthenticate()) {
             BiometricManager.BIOMETRIC_SUCCESS -> true

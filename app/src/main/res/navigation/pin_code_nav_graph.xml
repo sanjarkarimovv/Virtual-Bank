@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/pinCodeFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.PinCodeFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.views.PinCodeFragment"
         android:label="PinCodeFragment"
         tools:layout="@layout/fragment_pin_code">
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/biometricPermissionFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.BiometricPermissionFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.views.BiometricPermissionFragment"
         android:label="BiometricPermissionFragment"
         tools:layout="@layout/fragment_biometric_permission"/>
     <fragment
         android:id="@+id/confirmPinCodeFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.ConfirmPinCodeFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.views.ConfirmPinCodeFragment"
         android:label="ConfirmPinCodeFragment"
         tools:layout="@layout/fragment_confirm_pin_code">
         <action
@@ -29,7 +29,9 @@
             app:destination="@id/biometricPermissionFragment" />
         <action
             android:id="@+id/action_confirmPinCodeFragment_to_pinCodeFragment"
-            app:destination="@id/pinCodeFragment" />
+            app:destination="@id/pinCodeFragment"
+            app:popUpTo="@id/pinCodeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

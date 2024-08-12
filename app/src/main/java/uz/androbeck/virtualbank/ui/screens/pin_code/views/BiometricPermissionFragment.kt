@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code
+package uz.androbeck.virtualbank.ui.screens.pin_code.views
 
 import android.os.Handler
 import android.os.Looper
@@ -12,6 +12,7 @@ import uz.androbeck.virtualbank.databinding.FragmentBiometricPermissionBinding
 import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
+import uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels.BiometricPermissionViewModel
 import java.util.concurrent.Executors
 
 @AndroidEntryPoint
@@ -35,23 +36,26 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
     }
 
     private fun promptBiometricAuthentication() {
-        val biometricPrompt = BiometricPrompt(this, Executors.newSingleThreadExecutor(), object : BiometricPrompt.AuthenticationCallback() {
-            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                super.onAuthenticationSucceeded(result)
-                viewModel.setBiometrics(true)
-                navigateWithDelay(NavGraphEvent.Main)
-            }
+        val biometricPrompt = BiometricPrompt(
+            this,
+            Executors.newSingleThreadExecutor(),
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    viewModel.setBiometrics(true)
+                    navigateWithDelay(NavGraphEvent.Main)
+                }
 
-            override fun onAuthenticationFailed() {
-                super.onAuthenticationFailed()
-                viewModel.setBiometrics(false)
-            }
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    viewModel.setBiometrics(false)
+                }
 
-            override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                super.onAuthenticationError(errorCode, errString)
-                viewModel.setBiometrics(false)
-            }
-        })
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    viewModel.setBiometrics(false)
+                }
+            })
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(getString(R.string.biometric_prompt_title))

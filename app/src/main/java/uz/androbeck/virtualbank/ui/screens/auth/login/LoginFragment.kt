@@ -44,12 +44,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         }
     }
-    @Inject
-    lateinit var prefsProvider: PreferencesProvider
+
     override fun clicks() = with(binding) {
         btnLogin.onClick = {
-            prefsProvider.token = "token"
-            sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
             signInReqUIModel?.let {
                 vm.signIn(it)
             }

@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code
+package uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
+import uz.androbeck.virtualbank.ui.screens.pin_code.events.ConfirmPinCodeEvent
+import uz.androbeck.virtualbank.ui.screens.pin_code.usecases.ConfirmPinCodeUseCase
+import uz.androbeck.virtualbank.ui.screens.pin_code.usecases.RegisterPinUseCase
 import javax.inject.Inject
 
 @HiltViewModel
@@ -49,12 +52,20 @@ class ConfirmPinCodeViewModel @Inject constructor(
         viewModelScope.launch {
             val pinCode = _pinCodeList.value.toString()
 
-            if(confirmPinCodeUseCase.confirmPinCode(pinCode)){
+            if (confirmPinCodeUseCase.confirmPinCode(pinCode)) {
                 _confirmPinCodeEvent.value = ConfirmPinCodeEvent.PinValidated
                 registerPinUseCase.registerPin(pinCode)
             } else {
                 _confirmPinCodeEvent.value = ConfirmPinCodeEvent.PinValidationFailed
             }
         }
+    }
+
+    fun clearReservePinCode() {
+        prefsProvider.pinCodeReserve = ""
+    }
+
+    fun setBiometrics(cond: Boolean) {
+        prefsProvider.useBiometric = cond
     }
 }
