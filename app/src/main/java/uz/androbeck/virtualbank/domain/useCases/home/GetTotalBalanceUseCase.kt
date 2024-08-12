@@ -7,11 +7,10 @@ import javax.inject.Inject
 
 class GetTotalBalanceUseCase @Inject constructor(
     private val homeRepository: HomeRepository,
-    private val totalBalanceMapper: TotalBalanceMapper
+    private val totalBalanceMapper: TotalBalanceMapper,
 ) {
-    operator fun invoke(){
+    operator fun invoke() =
         homeRepository.getTotalBalance().map {
             totalBalanceMapper.toUIModel(it)
         }
-    }
 }
