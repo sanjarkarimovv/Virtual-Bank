@@ -55,14 +55,12 @@ class ConfirmPinCodeFragment : BaseFragment(R.layout.fragment_confirm_pin_code) 
                 }
             }
 
-            // Back action
             actionBack.singleClickable {
                 vibrate()
                 confirmPinCodeViewModel.clearReservePinCode()
                 findNavController().navigate(R.id.action_confirmPinCodeFragment_to_pinCodeFragment)
             }
 
-            // Confirm actions
             listOf(btnConfirm, actionConfirm).forEach { button ->
                 button.setOnClickListener {
                     vibrate()
@@ -70,7 +68,6 @@ class ConfirmPinCodeFragment : BaseFragment(R.layout.fragment_confirm_pin_code) 
                 }
             }
 
-            // Remove digit action
             btnRemove.setOnClickListener {
                 vibrate()
                 confirmPinCodeViewModel.removeLastDigit()

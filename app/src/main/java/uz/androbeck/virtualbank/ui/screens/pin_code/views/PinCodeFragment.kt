@@ -34,7 +34,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
     lateinit var prefsProvider: PreferencesProvider
 
     override fun setup() {
-        // Additional setup if needed
+
     }
 
     override fun clicks() {
