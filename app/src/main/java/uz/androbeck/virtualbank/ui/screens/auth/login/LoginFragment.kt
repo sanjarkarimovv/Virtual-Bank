@@ -53,6 +53,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 //            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
             sharedVM.setNavGraphEvent(NavGraphEvent.Main)
         }
+        customToolbar.onClickLeftIcon = {
+            findNavController().popBackStack()
+        }
     }
 
     private fun access() = with(binding) {
