@@ -18,7 +18,7 @@ class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
     private val vm: UserFullInfoViewModel by viewModels()
     override fun setup() {
         vm.getUserData()
-        changeTitlesColorOnFocus()
+        changeTitlesAndTextColorsOnFocus()
     }
 
     override fun observe(): Unit = with(binding) {
@@ -42,7 +42,7 @@ class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
         }
     }
 
-    private fun changeTitlesColorOnFocus() = with(binding) {
+    private fun changeTitlesAndTextColorsOnFocus() = with(binding) {
         nameEt.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 titleName.setTextColor(
@@ -50,8 +50,18 @@ class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
                         requireContext(), R.color.colorBlue
                     )
                 )
+                nameEt.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.colorBlue
+                    )
+                )
             } else {
                 titleName.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.colorPrimary
+                    )
+                )
+                nameEt.setTextColor(
                     ContextCompat.getColor(
                         requireContext(), R.color.colorPrimary
                     )
@@ -65,8 +75,18 @@ class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
                         requireContext(), R.color.colorBlue
                     )
                 )
+                lastNameEt.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.colorBlue
+                    )
+                )
             } else {
                 titleLastName.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.colorPrimary
+                    )
+                )
+                lastNameEt.setTextColor(
                     ContextCompat.getColor(
                         requireContext(), R.color.colorPrimary
                     )
@@ -81,8 +101,18 @@ class UserFullInfoFragment : BaseFragment(R.layout.fragment_user_full_info) {
                         requireContext(), R.color.colorBlue
                     )
                 )
+                nickNameEt.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.colorBlue
+                    )
+                )
             } else {
                 titleNickName.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.colorPrimary
+                    )
+                )
+                nickNameEt.setTextColor(
                     ContextCompat.getColor(
                         requireContext(), R.color.colorPrimary
                     )

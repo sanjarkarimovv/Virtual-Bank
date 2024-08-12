@@ -45,7 +45,9 @@
             android:background="@drawable/custom_input_background"
             android:editable="false"
             android:paddingHorizontal="10dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +78,9 @@
             android:background="@drawable/custom_input_background"
             android:editable="false"
             android:paddingHorizontal="10dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -107,7 +111,9 @@
             android:background="@drawable/custom_input_background"
             android:editable="false"
             android:paddingHorizontal="10dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <RelativeLayout
