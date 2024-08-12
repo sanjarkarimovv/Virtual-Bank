@@ -8,6 +8,7 @@ class PreferencesProvider @Inject constructor(
     private val preferences: SharedPreferences
 ) {
     var token: String by preferences.string()
+    var pinCodeReserve : String by preferences.string()
     var pinCode: String by preferences.string()
     var errorAttempts: Int by preferences.int()
     var isAwayLong : Long by preferences.long()

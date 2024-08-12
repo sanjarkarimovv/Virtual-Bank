@@ -7,7 +7,6 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.biometric.BiometricPrompt
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -36,11 +35,10 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
     lateinit var prefsProvider: PreferencesProvider
 
     override fun setup() {
-        setupObservers()
-        setupClickListeners()
+
     }
 
-    private fun setupClickListeners() {
+    override fun clicks() {
         with(binding) {
             val buttonIds = listOf(
                 btn01 to getString(R.string.str_num_1),
@@ -67,13 +65,6 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 pinCodeViewModel.removeLastDigit()
             }
 
-//            listOf(btnConfirm, actionConfirm).forEach { button ->
-//                button.setOnClickListener {
-//                    vibrate()
-//                    pinCodeViewModel.handlePinCodeCompletion()
-//                }
-//            }
-
             actionExit.setOnClickListener {
                 vibrate()
                 pinCodeViewModel.handlePinCodeExit()
@@ -87,7 +78,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
         }
     }
 
-    private fun setupObservers() {
+    override fun observe() {
         pinCodeViewModel.apply {
             pinCodeList.observe(viewLifecycleOwner) {
                 updatePinCode(it)
@@ -131,7 +122,6 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
         when (event) {
             is PinCodeEvent.PinRegistered -> {
                 setButtonsEnabled(false)
-                val bundle = bundleOf("pinCode" to event.pin)
                 Handler(Looper.getMainLooper()).postDelayed({
                     pinCodeViewModel.clearPinCode()
                 }, 200)
@@ -140,7 +130,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 }, 400)
                 Handler(Looper.getMainLooper()).postDelayed({ setButtonsEnabled(true) },1000)
                 Handler(Looper.getMainLooper()).postDelayed({
-                    findNavController().navigate(R.id.action_pinCodeFragment_to_confirmPinCodeFragment, bundle)
+                    findNavController().navigate(R.id.action_pinCodeFragment_to_confirmPinCodeFragment)
                 }, 1200L)
 
                 //                navigateWithDelay(NavGraphEvent.Main, 1000)
@@ -192,11 +182,9 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 view.setBackgroundResource(if (index < pinCode.size) R.drawable.bg_pin_active else R.drawable.bg_pin_inactive)
             }
 
-//            if (pinCode.size == 4) {
-//                if (pinCodeViewModel.fromRegister.value == true) {
-//
-//                }
-//            }
+            if (pinCode.size == 4) {
+                pinCodeViewModel.handlePinCodeCompletion()
+            }
         }
     }
 
@@ -250,6 +238,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     navigateWithDelay(NavGraphEvent.Main, 0)
+                    pinCodeViewModel.resetErrorAttempts()
                 }
             })
 

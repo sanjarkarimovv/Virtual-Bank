@@ -6,16 +6,15 @@
     android:animateLayoutChanges="true">
 
     <!--Top Right corner action buttons bu action back bo'ladi va chap tarafga o'tadi icon bo'lib-->
-    <TextView
+    <ImageView
         android:id="@+id/actionBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
-        android:fontFamily="@font/exo2_semi_bold"
-        android:text="@string/pin_code_page_logout"
+        android:src="@drawable/baseline_arrow_back_ios_24"
         android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -31,12 +30,12 @@
         app:layout_constraintTop_toTopOf="parent" />
     <!--    Bu yerga confirm pin code qo'yamiz-->
     <TextView
-        android:id="@+id/pinCodePageEnterPin"
+        android:id="@+id/pinCodePageConfirmPin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
         android:fontFamily="@font/exo2_bold"
-        android:text="@string/pin_code_page_enter_pin"
+        android:text="@string/pin_code_page_confirm_pin"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pinCodePageEnterPin">
+        app:layout_constraintTop_toBottomOf="@+id/pinCodePageConfirmPin">
 
         <View
             android:id="@+id/view_01"

@@ -37,7 +37,6 @@
     <string name="str_sign_up">Ro\'yxatdan o\'tish</string>
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
-    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
     <string name="str_num_0">0</string>
     <string name="str_num_1">1</string>

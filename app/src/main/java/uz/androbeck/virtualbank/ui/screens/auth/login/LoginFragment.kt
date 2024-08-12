@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentLoginBinding
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInReqUIModel
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
@@ -23,6 +24,7 @@ import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VER
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.extentions.toast
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -42,9 +44,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         }
     }
-
+    @Inject
+    lateinit var prefsProvider: PreferencesProvider
     override fun clicks() = with(binding) {
         btnLogin.onClick = {
+            prefsProvider.token = "token"
+            sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
             signInReqUIModel?.let {
                 vm.signIn(it)
             }

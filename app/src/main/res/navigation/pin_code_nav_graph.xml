@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_confirmPinCodeFragment_to_biometricPermissionFragment"
             app:destination="@id/biometricPermissionFragment" />
+        <action
+            android:id="@+id/action_confirmPinCodeFragment_to_pinCodeFragment"
+            app:destination="@id/pinCodeFragment" />
     </fragment>
 
 </navigation>

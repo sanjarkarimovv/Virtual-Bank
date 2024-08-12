@@ -7,6 +7,10 @@ class RegisterPinUseCase @Inject constructor(
     private val prefsProvider: PreferencesProvider
 ) {
     fun registerPin(pin: String) {
-        prefsProvider.pinCode = pin
+        if(prefsProvider.pinCodeReserve.isEmpty()){
+            prefsProvider.pinCode = pin
+        } else {
+            prefsProvider.pinCodeReserve = pin
+        }
     }
 }

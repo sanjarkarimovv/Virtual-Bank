@@ -47,7 +47,7 @@ class PinCodeViewModel @Inject constructor(
         }
     }
 
-    private fun resetErrorAttempts() {
+    fun resetErrorAttempts() {
         _errorAttempts.value = 0
         prefsProvider.errorAttempts = 0
     }
@@ -65,10 +65,6 @@ class PinCodeViewModel @Inject constructor(
             if (it.size < 4) {
                 it.add(digit)
                 _pinCodeList.value = it
-
-                if (it.size == 4 && _fromRegister.value == true) {
-                    handlePinCodeCompletion()
-                }
             }
         }
     }
@@ -81,6 +77,7 @@ class PinCodeViewModel @Inject constructor(
             }
         }
     }
+
     fun clearPinCode() {
         _pinCodeList.value?.clear()
         _pinCodeList.value = _pinCodeList.value
@@ -92,7 +89,7 @@ class PinCodeViewModel @Inject constructor(
 
             if (prefsProvider.pinCode.isEmpty()) {
                 registerPinUseCase.registerPin(pinCode)
-                _pinCodeEvent.value = PinCodeEvent.PinRegistered(pinCode)
+                _pinCodeEvent.value = PinCodeEvent.PinRegistered
             } else {
                 if (validatePinUseCase.isValidPin(pinCode)) {
                     _pinCodeEvent.value = PinCodeEvent.PinValidated
@@ -112,11 +109,7 @@ class PinCodeViewModel @Inject constructor(
         resetErrorAttempts()
     }
 
-    fun setBiometrics(useBiometric: Boolean){
-        prefsProvider.useBiometric = useBiometric
-    }
-
-    fun checkBiometrics() : Boolean {
+    fun checkBiometrics(): Boolean {
         return prefsProvider.useBiometric
     }
 }
