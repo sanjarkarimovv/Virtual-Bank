@@ -18,10 +18,10 @@
         android:background="@drawable/ripple_effect">
 
         <ImageView
-            android:id="@+id/ic"
+            android:id="@+id/iv_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_home"
+            tools:src="@drawable/ic_home"
             android:layout_marginStart="16dp"/>
         <TextView
             android:id="@+id/tv_title"

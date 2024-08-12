@@ -1,87 +1,76 @@
-package uz.androbeck.test
+package uz.androbeck.virtualbank.domain.mock_data
 
-import java.io.Serializable
 import uz.androbeck.virtualbank.R
+import uz.androbeck.virtualbank.domain.ui_models.payment_screen.PaymentScreenUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payment_screen.PlacesPaymentUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payment_screen.SavedPaymentUIModel
+import uz.androbeck.virtualbank.utils.Constants.String.ADD_HOME
 
-data class Model(
-    val logo: Int? = null,
-    val title: String? = null,
-    val phoneNumber: String? = null,
-) : Serializable
-
-data class PlacesPayment(
-    val logo: Int? = null,
-    val title: String? = null,
-    val description: String? = null,
-    val distance: Int? = null,
-)
-
-object MyList {
+object AppHardcodeData {
     val savedPaymentList = listOf(
-        Model(
+        SavedPaymentUIModel(
             logo = R.drawable.ucell_logo,
             title = "Mening telefonim",
             phoneNumber = "+998944856603"
         ),
-        Model(
+        SavedPaymentUIModel(
             logo = R.drawable.ucell_logo,
             title = "Dadamning telefoni",
             phoneNumber = "+998500721763"
         ),
-        Model(
+        SavedPaymentUIModel(
             logo = R.drawable.beeline_logo,
             title = "Onamning telefoni",
             phoneNumber = "+998900722266"
         ),
-        Model(logo = R.drawable.gas_logo, title = "GAZ"),
-        Model(title = ADD_HOME)
+        SavedPaymentUIModel(logo = R.drawable.gas_logo, title = "GAZ"),
+        SavedPaymentUIModel(title = ADD_HOME)
     )
-    val servesPaymentList = listOf(
-        Model(logo = R.drawable.ic_language, title = "Internet Provider"),
-        Model(logo = R.drawable.ic_phone, title = "Mobil operators"),
-        Model(logo = R.drawable.ic_permission, title = "Davlat xizmatlari"),
-        Model(logo = R.drawable.ic_support, title = "Call centr xizmatlari"),
-        Model(logo = R.drawable.ic_security, title = "Xavfsizlik xizmati"),
+    val servicePaymentList = listOf(
+        PaymentScreenUIModel(logo = R.drawable.ic_language, title = "Internet Provider"),
+        PaymentScreenUIModel(logo = R.drawable.ic_phone, title = "Mobil operators"),
+        PaymentScreenUIModel(logo = R.drawable.ic_permission, title = "Davlat xizmatlari"),
+        PaymentScreenUIModel(logo = R.drawable.ic_support, title = "Call centr xizmatlari"),
+        PaymentScreenUIModel(logo = R.drawable.ic_security, title = "Xavfsizlik xizmati"),
     )
-
-    val myHomeList = listOf(
-        Model(title = "Olmazor ko'cha 291 - uy"),
-        Model(title = "Yunusobod 47/33 xonadon"),
-        Model(title = "Besh ariq ko'cha 137 - uy"),
-        Model(title = ADD_HOME),
+    val myHomePaymentList = listOf(
+        PaymentScreenUIModel(logo = R.drawable.ic_home, title = "Olmazor ko'cha 291 - uy"),
+        PaymentScreenUIModel(logo = R.drawable.ic_home, title = "Yunusobod 47/33 xonadon"),
+        PaymentScreenUIModel(logo = R.drawable.ic_home, title = "Besh ariq ko'cha 137 - uy"),
+        PaymentScreenUIModel(logo = R.drawable.ic_home, title = ADD_HOME),
     )
-    val placesList = listOf(
-        PlacesPayment(
+    val placesPaymentList = listOf(
+        PlacesPaymentUIModel(
             logo = R.drawable.odil_logo,
             title = "ODIL SCHOOL QORAKO'L - Yunusobod",
             description = "Yunusobod tumani, Bodomzor mahallasi, mo'ljal 'Bodomzor masjid'",
             distance = 350
         ),
-        PlacesPayment(
+        PlacesPaymentUIModel(
             logo = R.drawable.beeline_logo,
             title = "BEELINE COMPANY - Yashnabod",
             description = "Yashnabod tumani, Ko'kcha mahallasi, mo'ljal 'Adamarin kiyim do'koni'",
             distance = 730
         ),
-        PlacesPayment(
+        PlacesPaymentUIModel(
             logo = R.drawable.ucell_logo,
             title = "UCELL COMPANY - Chilonzor",
             description = "Chilonzor tumani, Olmazor mahallasi, mo'ljal 'Farhod bozori'",
             distance = 730
         ),
-        PlacesPayment(
+        PlacesPaymentUIModel(
             logo = R.drawable.odil_logo,
             title = "ODIL SCHOOL QORAKO'L - Yunusobod",
             description = "Yunusobod tumani, Bodomzor mahallasi, mo'ljal 'Bodomzor masjid'",
             distance = 350
         ),
-        PlacesPayment(
+        PlacesPaymentUIModel(
             logo = R.drawable.beeline_logo,
             title = "BEELINE COMPANY - Yashnabod",
             description = "Yashnabod tumani, Ko'kcha mahallasi, mo'ljal 'Adamarin kiyim do'koni'",
             distance = 730
         ),
-        PlacesPayment(
+        PlacesPaymentUIModel(
             logo = R.drawable.ucell_logo,
             title = "UCELL COMPANY - Chilonzor",
             description = "Chilonzor tumani, Olmazor mahallasi, mo'ljal 'Farhod bozori'",
@@ -89,5 +78,3 @@ object MyList {
         ),
     )
 }
-
-const val ADD_HOME = "Uy qo'shish"

@@ -7,12 +7,14 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomSearchEditTextBinding
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
 @SuppressLint("Recycle")
-class CustomSearchEditText @JvmOverloads constructor(
+class VirtualBankSearchInput @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -53,13 +55,9 @@ class CustomSearchEditText @JvmOverloads constructor(
                 }
             }
             customTvSearch.addTextChangedListener { s ->
-                if (s.toString().isNotEmpty()) {
-                    btnCancel.visibility = VISIBLE
-                } else {
-                    btnCancel.visibility = GONE
-                }
+                btnCancel.isVisible = s.toString().isNotEmpty()
             }
-            btnCancel.setOnClickListener {
+            btnCancel.singleClickable {
                 customTvSearch.text.clear()
                 customTvSearch.clearFocus()
             }

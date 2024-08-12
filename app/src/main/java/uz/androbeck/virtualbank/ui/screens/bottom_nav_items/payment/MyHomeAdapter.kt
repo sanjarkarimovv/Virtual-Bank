@@ -1,51 +1,50 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.payment
 
-import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import uz.androbeck.test.ADD_HOME
-import uz.androbeck.test.Model
 import uz.androbeck.virtualbank.databinding.ItemMyHomeBinding
+import uz.androbeck.virtualbank.domain.ui_models.payment_screen.PaymentScreenUIModel
+import uz.androbeck.virtualbank.utils.Constants.String.ADD_HOME
 
-class MyHomeAdapter : ListAdapter<Model, MyHomeAdapter.SavedViewHolder>(diffUtil) {
+class MyHomeAdapter : ListAdapter<PaymentScreenUIModel, MyHomeAdapter.SavedViewHolder>(diffUtil) {
 
     inner class SavedViewHolder(
         private val binding: ItemMyHomeBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: Model) {
+        fun bind(paymentScreenUIModel: PaymentScreenUIModel) {
             with(binding) {
-                model.title?.let { tvTitle.text = it }
-                if (model.title == ADD_HOME) {
-                    imAdd.visibility = View.VISIBLE
+                paymentScreenUIModel.run {
+                    title?.let { tvTitle.text = it }
+                    logo?.let { ivLogo.setImageResource(it) }
                 }
+                imAdd.isVisible = paymentScreenUIModel.title == ADD_HOME
             }
         }
     }
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<Model>() {
-            override fun areItemsTheSame(oldItem: Model, newItem: Model): Boolean {
+        private val diffUtil = object : DiffUtil.ItemCallback<PaymentScreenUIModel>() {
+            override fun areItemsTheSame(oldItem: PaymentScreenUIModel, newItem: PaymentScreenUIModel): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: Model, newItem: Model): Boolean {
+            override fun areContentsTheSame(oldItem: PaymentScreenUIModel, newItem: PaymentScreenUIModel): Boolean {
                 return oldItem == newItem
             }
 
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedViewHolder {
-        return SavedViewHolder(
-            ItemMyHomeBinding.inflate(
-                android.view.LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SavedViewHolder(
+        ItemMyHomeBinding.inflate(
+            android.view.LayoutInflater.from(parent.context),
+            parent,
+            false
         )
-    }
+    )
 
     override fun onBindViewHolder(holder: SavedViewHolder, position: Int) {
         holder.bind(getItem(position))

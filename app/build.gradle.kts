@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.cli.jvm.main
-import org.jetbrains.kotlin.ir.backend.js.compile
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
