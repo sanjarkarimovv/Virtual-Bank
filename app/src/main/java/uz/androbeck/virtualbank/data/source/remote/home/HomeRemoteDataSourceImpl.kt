@@ -20,5 +20,8 @@ class HomeRemoteDataSourceImpl @Inject constructor(
     override fun putUpdateInfo(request: UpdateInfoReqDto) = flow {
         emit(homeService.putUpdateInfo(request))
     }
+    override fun getLastTransfers()= flow {
+        emit(homeService.getLastTransfers())
+    }
 
 }

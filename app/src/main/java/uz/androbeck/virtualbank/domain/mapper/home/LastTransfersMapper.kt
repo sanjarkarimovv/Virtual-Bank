@@ -1,10 +1,10 @@
-package uz.androbeck.virtualbank.domain.mapper.history
+package uz.androbeck.virtualbank.domain.mapper.home
 
-import uz.androbeck.virtualbank.data.dto.response.history.LastTransfersResDto
-import uz.androbeck.virtualbank.data.dto.response.history.InComeAndOutComeResDto
+import uz.androbeck.virtualbank.data.dto.response.home.LastTransfersResDto
+import uz.androbeck.virtualbank.data.dto.common.response.InComeAndOutComeResDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
-import uz.androbeck.virtualbank.domain.ui_models.history.LastTransferUIModel
-import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
+import uz.androbeck.virtualbank.domain.ui_models.home.LastTransferUIModel
+import uz.androbeck.virtualbank.domain.ui_models.common.InComeAndOutComeUIModel
 import javax.inject.Inject
 import javax.inject.Singleton
 

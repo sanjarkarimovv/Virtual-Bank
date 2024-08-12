@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.domain.ui_models.history
+package uz.androbeck.virtualbank.domain.ui_models.common
 
 data class InComeAndOutComeUIModel(
     val type: String? = null,

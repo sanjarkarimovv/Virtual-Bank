@@ -5,7 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
-import uz.androbeck.virtualbank.data.repository.history.HistoryRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpResendMapper
@@ -16,14 +15,14 @@ import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
 import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
-import uz.androbeck.virtualbank.domain.mapper.history.LastTransfersMapper
+import uz.androbeck.virtualbank.domain.mapper.home.LastTransfersMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
-import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 
@@ -68,9 +67,14 @@ object UseCaseModule {
 
     @Provides
     fun provideLastTransfersUseCase(
-        historyRepository: HistoryRepository,
+        homeRepository: HomeRepository,
         lastTransfersMapper: LastTransfersMapper,
-        ) = LastTransfersUseCase(historyRepository, lastTransfersMapper)
+        ) = LastTransfersUseCase(homeRepository, lastTransfersMapper)
+    //@Provides
+//    fun provideGetHistoryUseCase(
+//        historyRepository: HistoryRepository,
+//        lastTransfersMapper: LastTransfersMapper,
+//    ) = LastTransfersUseCase(historyRepository, lastTransfersMapper)
 
         @Provides
     fun provideSignInResendUseCase(

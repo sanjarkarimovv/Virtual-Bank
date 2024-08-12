@@ -1,7 +1,9 @@
-package uz.androbeck.virtualbank.data.dto.response.history
+package uz.androbeck.virtualbank.data.dto.response.home
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import uz.androbeck.virtualbank.data.dto.common.response.InComeAndOutComeResDto
+
 @Serializable
 data class LastTransfersResDto(
     @SerialName("transfers")

@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.dto.response.history
+package uz.androbeck.virtualbank.data.dto.common.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
