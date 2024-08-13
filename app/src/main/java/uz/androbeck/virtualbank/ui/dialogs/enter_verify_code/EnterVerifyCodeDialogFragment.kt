@@ -20,6 +20,7 @@ import uz.androbeck.virtualbank.ui.screens.Screen
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
+import uz.androbeck.virtualbank.utils.Constants.String.EMPTY
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 import javax.inject.Inject
@@ -104,7 +105,7 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
     private val codeStringBuilder = StringBuilder()
     private fun clicks() = with(binding) {
         confirmButton.singleClickable {
-            vm.editTextValues.value?.forEach {
+            vm.editTextValuesEvent.value?.forEach {
                 codeStringBuilder.append(it)
             }
             vm.authVerify(codeStringBuilder.toString(), tokenForVerify, screen)
@@ -113,7 +114,7 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
     }
 
     private fun observe() = with(binding) {
-        vm.signUpVerifyEvent.onEach {
+        vm.authVerifyEvent.onEach {
             if (it) {
                 dismiss()
                 onSuccessVerify?.invoke()
@@ -124,13 +125,13 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
             toast(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
-        vm.isError.observe(viewLifecycleOwner) {
+        vm.isErrorEvent.observe(viewLifecycleOwner) {
             if (it) {
                 reEnterCode()
             }
         }
 
-        vm.timerFinished.observe(viewLifecycleOwner) {
+        vm.timerFinishedEvent.observe(viewLifecycleOwner) {
             if (it) {
                 llRefreshTimer.visibility = View.VISIBLE
                 llTimer.visibility = View.GONE
@@ -139,11 +140,11 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
                 llTimer.visibility = View.VISIBLE
             }
         }
-        vm.timerText.observe(viewLifecycleOwner) {
+        vm.timerTextEvent.observe(viewLifecycleOwner) {
             timer.text = it
         }
 
-        vm.allFieldsFilled.observe(viewLifecycleOwner) {
+        vm.allFieldsFilledEvent.observe(viewLifecycleOwner) {
             binding.confirmButton.isEnabled = it
         }
     }
@@ -171,12 +172,12 @@ class EnterVerifyCodeDialogFragment : DialogFragment() {
 
     private fun reEnterCode() {
         with(binding) {
-            ecet1.setText(Constants.String.EMPTY)
-            ecet2.setText(Constants.String.EMPTY)
-            ecet3.setText(Constants.String.EMPTY)
-            ecet4.setText(Constants.String.EMPTY)
-            ecet5.setText(Constants.String.EMPTY)
-            ecet6.setText(Constants.String.EMPTY)
+            ecet1.setText(EMPTY)
+            ecet2.setText(EMPTY)
+            ecet3.setText(EMPTY)
+            ecet4.setText(EMPTY)
+            ecet5.setText(EMPTY)
+            ecet6.setText(EMPTY)
             ecet1.requestFocus()
             confirmButton.isEnabled = false
         }
