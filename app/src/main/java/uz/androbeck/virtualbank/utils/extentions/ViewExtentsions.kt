@@ -13,3 +13,12 @@ fun View.invisible() {
 fun View.gone() {
     visibility = View.GONE
 }
+
+fun View.dpToPx(dp: Float): Int = context.dpToPx(dp)
+
+fun View.dpToPxFloat(dp: Float): Float = context.dpToPxFloat(dp)
+
+fun View.dpToPx(dp: Int): Int = context.dpToPx(dp)
+
+fun View.pxToDp(px: Int): Int = context.pxToDp(px)
+

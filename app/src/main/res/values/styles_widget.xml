@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="VirtualBankButton" parent="Widget.AppCompat.Button">
+        <item name="android:textAppearance">@style/TextAppearance.VirtualBank.Label.Large</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="VirtualBankButton.Filled">
+        <item name="android:background">@drawable/vb_btn_big</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="backgroundTint">@color/vb_btn_primary_bg</item>
+        <item name="iconTint">@color/vb_btn_primary_text</item>
+        <item name="android:textColor">@color/vb_btn_primary_text</item>
+    </style>
+
+    <style name="VirtualBankButton.Outlined">
+        <item name="android:background">@drawable/bg_stroke_button</item>
+        <item name="android:minHeight">52dp</item>
+<!--        <item name="backgroundTint">@color/vb_btn_primary_bg</item>-->
+        <item name="iconTint">@color/vb_btn_primary_text</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="VirtualBankInput">
+        <item name="android:theme">@style/Theme.VirtualBank</item>
+    </style>
+</resources>
