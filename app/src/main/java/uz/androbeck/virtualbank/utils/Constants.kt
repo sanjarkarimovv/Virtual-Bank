@@ -19,6 +19,7 @@ object Constants {
         const val SIGN_IN_RESEND = "auth/sign-in/resend"
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
+        const val TOTAL_BALANCE = "home/total-balance"
     }
 
     object Header {
