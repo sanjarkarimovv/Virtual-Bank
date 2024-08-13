@@ -108,9 +108,6 @@ dependencies {
     debugImplementation(libs.chucker.interceptor)
     releaseImplementation(libs.chucker.interceptor.no.op)
 
-    //StickyHeadersRecyclerView
-    //implementation("com.github.timehop.sticky-headers-recyclerview:library:1.1.0")
-   // implementation ("com.brandongogetap:stickyheaders:0.6.0")
 
     // Pagination
     implementation ("androidx.paging:paging-runtime-ktx:3.1.0-beta01")
