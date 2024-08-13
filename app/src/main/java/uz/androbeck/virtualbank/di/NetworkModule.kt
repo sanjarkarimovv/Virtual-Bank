@@ -142,4 +142,5 @@ object NetworkModule {
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {
         return errorHandlerImpl
     }
+
 }
