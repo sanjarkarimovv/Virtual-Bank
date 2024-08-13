@@ -7,5 +7,4 @@ import kotlinx.serialization.Serializable
 data class TotalBalanceResDto(
     @SerialName("total-balance")
     val total_balance: String? = null,
-) {
-}
+)
