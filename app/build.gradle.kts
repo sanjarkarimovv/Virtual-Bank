@@ -8,6 +8,8 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id ("kotlin-android")
+
 }
 
 android {
@@ -109,6 +111,9 @@ dependencies {
     //StickyHeadersRecyclerView
     //implementation("com.github.timehop.sticky-headers-recyclerview:library:1.1.0")
    // implementation ("com.brandongogetap:stickyheaders:0.6.0")
+
+    // Pagination
+    implementation ("androidx.paging:paging-runtime-ktx:3.1.0-beta01")
 
 
 }

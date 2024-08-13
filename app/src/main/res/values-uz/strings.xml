@@ -47,5 +47,12 @@
     <string name="str_choose_title">Tanlamoq</string>
     <string name="str_localization_uzb">O\'zbekcha</string>
     <string name="str_localization_rus">Ruscha</string>
-    <string name="str_localization_eng">Inglizcha</string>
+    <string name="str_transfer_type_income">Daromad</string>
+    <string name="str_transfer_type_outcome">To\'lov</string>
+    <string name="str_money_type_uzb">so\'m</string>
+    <string name="str_transfer_cofir">Muvaffaqiyatli</string>
+    <string name="str_transfer_cencle">Amalga oshmadi</string>
+    <string name="str_history_toolbar_title">Kirim-Chiqim</string>
+    <string name="str_histiry_sort_name_income">Tushum</string>
+    <string name="str_histiry_sort_name_outcome">Chiqim</string>
 </resources>

@@ -1,5 +1,8 @@
+/*
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,17 +10,23 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.data.dto.common.response.transfer.Child
 import uz.androbeck.virtualbank.data.dto.common.response.transfer.GetHistoryResDto
+import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
 import java.util.Calendar
 
-class HistoryViewModel : ViewModel() {
+class HistoryViewModel() : ViewModel(), Parcelable {
 
     private val _historyItems = MutableLiveData<List<HistoryItem>>()
     val historyItems: LiveData<List<HistoryItem>> = _historyItems
+
+    constructor(parcel: Parcel) : this() {
+    }
 
     init {
 
         loadHistory()
     }
+
+
 
     private fun loadHistory() {
         viewModelScope.launch {
@@ -305,4 +314,23 @@ class HistoryViewModel : ViewModel() {
             )
         )
     }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<HistoryViewModelPaging> {
+        override fun createFromParcel(parcel: Parcel): HistoryViewModelPaging {
+            return HistoryViewModelPaging(parcel)
+        }
+
+        override fun newArray(size: Int): Array<HistoryViewModelPaging?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
+*/

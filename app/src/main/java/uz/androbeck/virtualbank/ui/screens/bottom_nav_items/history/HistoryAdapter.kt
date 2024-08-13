@@ -1,53 +1,57 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.data.dto.common.response.transfer.Child
 import uz.androbeck.virtualbank.databinding.ItemHistoryHeaderBinding
 import uz.androbeck.virtualbank.databinding.ItemHistoryInfoBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
+import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
+import uz.androbeck.virtualbank.ui.enums.ViewType
+import uz.androbeck.virtualbank.utils.Constants
+import uz.androbeck.virtualbank.utils.extentions.formatToDayMonthYear
+import uz.androbeck.virtualbank.utils.extentions.formatToHourMinute
 
-sealed class HistoryItem {
-    data class Header(val time: Long?) : HistoryItem()
-    data class Content(val child: Child) : HistoryItem()
-}
 
 class HistoryAdapter(
     private val onClick: (HistoryItem.Content) -> Unit
-) : ListAdapter<HistoryItem, RecyclerView.ViewHolder>(diffUtil) {
+) : PagingDataAdapter<HistoryItem, RecyclerView.ViewHolder>(diffUtil) {
+
 
     inner class HeaderVH(private val binding: ItemHistoryHeaderBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(header: HistoryItem.Header) {
-            val dateFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
-            binding.tvHeader.text = dateFormat.format(header.time)
+            binding.tvHeader.text = header.time?.formatToDayMonthYear()
         }
     }
 
     inner class ContentVH(private val binding: ItemHistoryInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(content: HistoryItem.Content) {
 
             with(binding) {
-
-                tvAmount.text = content.child.amount.toString() + " so'm"
-                val dateFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
-                tvTransactionDate.text = dateFormat.format(content.child.time)
-                if (content.child.type == "income") {
+                val context = root.context
+                tvTransactionDate.text = content.child.time.formatToHourMinute()
+                if (content.child.type == Constants.History.INCOME) {
                     tvTransactionName.text = content.child.from
-                    tvSecondaryTransactionName.text = "Qabulqilindi"
+                tvAmount.text = "+ "+content.child.amount.toString() + " " +context.getString(R.string.str_money_type_uzb)
+                    llImageService.setBackgroundResource(R.drawable.bg_shape_corner_radius_12)
+                    tvSecondaryTransactionName.text = context.getString(R.string.str_transfer_type_income)
                     ivServiceType.setImageResource(R.drawable.ic_transfer_rececived)
                 }
-                if (content.child.type == "outcome") {
+                if (content.child.type == Constants.History.OUTCOME) {
+                tvAmount.text = "- "+content.child.amount.toString() + " " +context.getString(R.string.str_money_type_uzb)
                     tvTransactionName.text = content.child.to
-                    tvSecondaryTransactionName.text = "Tolov"
+                    tvSecondaryTransactionName.text = context.getString(R.string.str_transfer_type_outcome)
                     ivServiceType.setImageResource(R.drawable.ic_transfer_sent)
+                    llImageService.setBackgroundResource(R.drawable.bg_shape_corner_radius_15)
                 }
             }
 
@@ -63,14 +67,20 @@ class HistoryAdapter(
                 oldItem: HistoryItem,
                 newItem: HistoryItem
             ): Boolean {
+                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header ||oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
                 return oldItem == newItem
+                }
+                return false
             }
 
             override fun areContentsTheSame(
                 oldItem: HistoryItem,
                 newItem: HistoryItem
             ): Boolean {
-                return oldItem == newItem
+                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header ||oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
+                    return oldItem == newItem
+                }
+                return false
             }
         }
     }
@@ -101,6 +111,7 @@ class HistoryAdapter(
         when (val item = getItem(position)) {
             is HistoryItem.Header -> (holder as HeaderVH).bind(item)
             is HistoryItem.Content -> (holder as ContentVH).bind(item)
+            null -> TODO()
         }
     }
 
@@ -120,16 +131,13 @@ class HistoryAdapter(
                 parent,
                 false
             )
-            val dateFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-            binding.tvHeader.text = dateFormat.format(currentItem.time)
+
+            binding.tvHeader.text = currentItem.time?.formatToDayMonthYear()
             return binding.root
         }
         return null
     }
 
 
-    enum class ViewType {
-        Header,
-        Content
-    }
+
 }

@@ -48,4 +48,12 @@
     <string name="str_localization_uzb">Узбекский</string>
     <string name="str_localization_rus">Русский</string>
     <string name="str_localization_eng">Английский</string>
+    <string name="str_money_type_uzb">сум</string>
+    <string name="str_transfer_type_income">Доход</string>
+    <string name="str_transfer_type_outcome">Исход</string>
+    <string name="str_transfer_cofir">Успешно</string>
+    <string name="str_transfer_cencle">Отменено</string>
+    <string name="str_history_toolbar_title">Мониторинг</string>
+    <string name="str_histiry_sort_name_income">Поступиленные</string>
+    <string name="str_histiry_sort_name_outcome">Расходы</string>
 </resources>

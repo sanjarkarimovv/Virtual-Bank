@@ -2,16 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_shape_corner_radius_16">
+    android:background="@color/colorSurfaceContainerLowest">
 
 
     <LinearLayout
         android:id="@+id/ll_image_service"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="34dp"
         android:background="@drawable/bg_shape_corner_radius_12"
         android:gravity="center">
 
@@ -29,9 +28,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/ll_image_service"
-        android:text="Cach-in"
         android:textColor="@color/colorScrim"
-        android:textSize="16sp"
+        android:textSize="12sp"
+        android:fontFamily="@font/exo2_semi_bold"
         android:textStyle="bold" />
 
     <TextView
@@ -42,10 +41,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ll_image_service"
-        android:text="From ABC Bank ATM"
         android:textColor="@color/colorScrim"
-        android:textSize="14sp"
-        android:textStyle="italic" />
+        android:textSize="10sp"
+        android:fontFamily="@font/exo2_medium"
+        android:textStyle="normal" />
 
 
     <TextView
@@ -55,9 +54,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:text="$100.00"
         android:textColor="@color/colorScrim"
-        android:textSize="16sp"
+        android:textSize="12sp"
+        android:fontFamily="@font/exo2_bold"
         android:textStyle="bold" />
 
     <TextView
@@ -70,7 +69,7 @@
         android:layout_marginEnd="20dp"
         android:gravity="center"
         android:background="@drawable/bg_shape_corner_radius_4"
-        android:text="cofirmed"
+        android:text="@string/str_transfer_cofir"
         android:textColor="#5DC486"
         android:textSize="10sp"
         android:textStyle="bold" />
@@ -83,9 +82,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="20dp"
-        android:text="06 Jul 2024"
         android:textColor="@color/colorSecondary"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:textStyle="italic" />
 
 

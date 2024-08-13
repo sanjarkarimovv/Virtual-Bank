@@ -49,4 +49,13 @@
     <string name="str_localization_uzb">Uzbek</string>
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
+    <string name="str_money_type_uzb">soum</string>
+    <string name="str_transfer_type_income">Income</string>
+    <string name="str_transfer_type_outcome">Outcome</string>
+    <string name="str_transfer_cofir">Confirmed</string>
+    <string name="str_transfer_cencle">Cancel</string>
+    <string name="str_history_toolbar_title">Monitoring</string>
+    <string name="str_histiry_sort_name_income">Received</string>
+    <string name="str_histiry_sort_name_outcome">Expenses</string>
+
 </resources>
