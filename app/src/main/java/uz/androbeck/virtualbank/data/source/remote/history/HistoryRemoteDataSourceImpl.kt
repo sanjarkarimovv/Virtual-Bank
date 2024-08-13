@@ -1,21 +1,13 @@
 package uz.androbeck.virtualbank.data.source.remote.history
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import uz.androbeck.virtualbank.data.dto.response.home.LastTransfersResDto
-import uz.androbeck.virtualbank.data.pager.HistoryPagingSource
+import uz.androbeck.virtualbank.data.api.HistoryService
 import javax.inject.Inject
 
 class HistoryRemoteDataSourceImpl @Inject constructor(
-    private val historyPagingSource: HistoryPagingSource
+    private val historyService: HistoryService
 ) : HistoryRemoteDataSource {
-    override fun getLastTransfers(): Pager<Int, LastTransfersResDto> {
-        return Pager(
-            PagingConfig(
-                pageSize = 10
-            )
-        ){ historyPagingSource }
-    }
-
-
+    override suspend  fun getHistory(size: Int, currentPage: Int) = historyService.getHistory(
+        size = size,
+        currentPage = currentPage
+    )
 }

@@ -1,10 +1,7 @@
 package uz.androbeck.virtualbank.data.source.remote.history
 
-import androidx.paging.Pager
-import kotlinx.coroutines.flow.Flow
-import uz.androbeck.virtualbank.data.dto.response.home.LastTransfersResDto
+import uz.androbeck.virtualbank.data.dto.response.history.GetHistoryResDto
 
 interface HistoryRemoteDataSource {
-
-    fun getLastTransfers(): Pager<Int, LastTransfersResDto>
+    suspend fun  getHistory(size: Int, currentPage: Int): List<GetHistoryResDto>
 }

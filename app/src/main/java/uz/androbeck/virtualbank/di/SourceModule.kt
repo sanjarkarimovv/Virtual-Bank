@@ -9,8 +9,8 @@ import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSourceImpl
+import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDataSourceImpl
-import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDatasource
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSourceImpl
 import javax.inject.Singleton
@@ -37,7 +37,7 @@ object SourceModule {
     @Provides
     fun provideHistoryRemoteDataSource(
         service: HistoryService
-    ):HistoryRemoteDatasource{
+    ):HistoryRemoteDataSource{
         return HistoryRemoteDataSourceImpl(service)
     }
 

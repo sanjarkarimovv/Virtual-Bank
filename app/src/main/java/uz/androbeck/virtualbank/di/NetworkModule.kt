@@ -23,6 +23,7 @@ import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.data.pager.HistoryPagingSource
+import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDataSource
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
@@ -147,6 +148,6 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHistoryPagingService(
-        historyService: HistoryService
-    )=HistoryPagingSource(historyService)
+       historyRemoteDataSource: HistoryRemoteDataSource
+    )=HistoryPagingSource(historyRemoteDataSource)
 }
