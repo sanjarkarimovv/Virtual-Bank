@@ -16,6 +16,7 @@ import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
+import uz.androbeck.virtualbank.domain.mapper.card.DeleteCardMapper
 import uz.androbeck.virtualbank.domain.mapper.history.GetHistoryMapper
 import uz.androbeck.virtualbank.domain.mapper.history.TransfersMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
@@ -116,7 +117,7 @@ object UseCaseModule {
     @Provides
     fun provideDeleteCardUseCase(
         cardRepository: CardRepository,
-        messageMapper: MessageMapper
-    ) = DeleteCardUseCase(cardRepository, messageMapper)
+        deleteCardMapper: DeleteCardMapper
+    ) = DeleteCardUseCase(cardRepository, deleteCardMapper)
 
 }
