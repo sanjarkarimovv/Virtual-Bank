@@ -13,8 +13,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.ui_models.common.CodeVerifyReqUIModel
-import uz.androbeck.virtualbank.domain.useCases.authentication.SignInVerifyUseCase
-import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpVerifyUseCase
+import uz.androbeck.virtualbank.domain.useCases.authentication.AuthVerifyUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.screens.Screen
@@ -23,14 +22,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EnterVerifyCodeDialogViewModel @Inject constructor(
-    private val signUpVerifyUseCase: SignUpVerifyUseCase,
-    private val signInVerifyUseCase: SignInVerifyUseCase,
+    private val authVerifyUseCase: AuthVerifyUseCase,
     private val preferencesProvider: PreferencesProvider,
     private val errorHandler: ErrorHandler,
 ) : ViewModel() {
 
-    private val _authVerifyEvent = MutableStateFlow(false)
-    val authVerifyEvent = _authVerifyEvent.asStateFlow()
+    private val _signUpVerifyEvent = MutableStateFlow(false)
+    val signUpVerifyEvent = _signUpVerifyEvent.asStateFlow()
 
     private val _timerTextEvent = MutableLiveData<String>()
     val timerTextEvent: LiveData<String> get() = _timerTextEvent
@@ -64,35 +62,20 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
                 token = token,
                 code = it
             )
-            when (screen) {
-                Screen.LOGIN -> {
-                    signInVerifyUseCase(
-                        requestUIModel
-                    ).onEach { uiModel ->
-                        preferencesProvider.token = uiModel.accessToken.orEmpty()
-                        preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
-                        _authVerifyEvent.value = true
-                    }.catch { th ->
-                        errorHandler.handleError(th)
-                        _isErrorEvent.value = true
-                    }.launchIn(viewModelScope)
-                }
-
-                Screen.REGISTRATION -> {
-                    signUpVerifyUseCase(
-                        requestUIModel
-                    ).onEach { uiModel ->
-                        preferencesProvider.token = uiModel.accessToken.orEmpty()
-                        preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
-                        _authVerifyEvent.value = true
-                    }.catch { th ->
-                        errorHandler.handleError(th)
-                        _isErrorEvent.value = true
-                    }.launchIn(viewModelScope)
-                }
-
-                null -> Unit
+            if (screen == null) {
+                return
             }
+            authVerifyUseCase(
+                screen,
+                requestUIModel
+            ).onEach { uiModel ->
+                preferencesProvider.token = uiModel.accessToken.orEmpty()
+                preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
+                _signUpVerifyEvent.value = true
+            }.catch { th ->
+                errorHandler.handleError(th)
+                _isError.value = true
+            }.launchIn(viewModelScope)
         }
     }
 
