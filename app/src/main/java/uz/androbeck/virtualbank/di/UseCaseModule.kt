@@ -15,7 +15,8 @@ import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
-import uz.androbeck.virtualbank.domain.mapper.history.LastTransfersMapper
+import uz.androbeck.virtualbank.domain.mapper.history.GetHistoryMapper
+import uz.androbeck.virtualbank.domain.mapper.history.TransfersMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.TotalBalanceMapper
@@ -26,6 +27,7 @@ import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCa
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
+import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
@@ -79,8 +81,14 @@ object UseCaseModule {
     @Provides
     fun provideLastTransfersUseCase(
         historyRepository: HistoryRepository,
-        lastTransfersMapper: LastTransfersMapper,
-    ) = LastTransfersUseCase(historyRepository, lastTransfersMapper)
+        transfersMapper: TransfersMapper,
+    ) = LastTransfersUseCase(historyRepository, transfersMapper)
+
+    @Provides
+    fun provideGetHistoryUseCase(
+        historyRepository: HistoryRepository,
+        getHistoryMapper: GetHistoryMapper,
+    ) = GetHistoryUseCase(historyRepository,getHistoryMapper)
 
     @Provides
     fun provideSignInResendUseCase(
