@@ -14,23 +14,21 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentPinCodeBinding
-import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.pin_code.events.PinCodeEvent
-import uz.androbeck.virtualbank.utils.extentions.*
+import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
+import uz.androbeck.virtualbank.utils.extentions.vibrate
+import uz.androbeck.virtualbank.utils.extentions.visible
 import java.util.concurrent.Executors
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
     private val binding by viewBinding(FragmentPinCodeBinding::bind)
     private val pinCodeViewModel: PinCodeViewModel by viewModels()
     private val sharedVM: MainViewModel by activityViewModels()
-
-    @Inject
-    lateinit var prefsProvider: PreferencesProvider
 
     override fun setup() {
 
