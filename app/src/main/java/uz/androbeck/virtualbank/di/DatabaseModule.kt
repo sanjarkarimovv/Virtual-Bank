@@ -3,6 +3,8 @@ package uz.androbeck.virtualbank.di
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import dagger.Module
@@ -10,8 +12,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import uz.androbeck.virtualbank.data.db.AppDatabase
+import uz.androbeck.virtualbank.data.db.dao.UserDao
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.utils.Constants
+import uz.androbeck.virtualbank.utils.Constants.FileName.DATABASE_NAME
 import javax.inject.Singleton
 
 @Module
@@ -40,4 +45,17 @@ object DatabaseModule {
     @Provides
     fun providePreferencesProvider(sharedPreferences: SharedPreferences) =
         PreferencesProvider(sharedPreferences)
+
+    @Provides
+    @Singleton
+    fun provideRoomDataBase(@ApplicationContext context: Context): RoomDatabase {
+        return Room.databaseBuilder(
+            context, AppDatabase::class.java, DATABASE_NAME
+        ).fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    fun provideUserDao(roomDatabase: AppDatabase): UserDao {
+        return roomDatabase.userDao()
+    }
 }

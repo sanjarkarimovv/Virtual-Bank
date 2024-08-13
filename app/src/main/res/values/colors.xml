@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorSurface">#FEF7FF</color>
     <color name="colorPrimary">#6750A4</color>
+    <color name="colorSecondary">#625B71</color>
+    <color name="colorTertiary">#7D5260</color>
+    <color name="colorError">#B3261E</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorOnTertiary">#FFFFFF</color>
+    <color name="colorOnError">#FFFFFF</color>
+    <color name="colorOnPrimaryContainer">#21005D</color>
+    <color name="colorOnSecondaryContainer">#1D192B</color>
+    <color name="colorOnTertiaryContainer">#31111D</color>
+    <color name="colorOnErrorContainer">#410E0B</color>
+    <color name="colorPrimaryFixed">#EADDFF</color>
+    <color name="colorPrimaryFixedDim">#D0BCFF</color>
+    <color name="colorSecondaryFixed">#E8DEF8</color>
+    <color name="colorSecondaryFixedDim">#CCC2DC</color>
+    <color name="colorTertiaryFixed">#FFD8E4</color>
+    <color name="colorTertiaryFixedDim">#EFB8C8</color>
+    <color name="colorOnPrimaryFixed">#21005D</color>
+    <color name="colorOnSecondaryFixed">#1D192B</color>
+    <color name="colorOnTertiaryFixed">#31111D</color>
+    <color name="colorOnPrimaryFixedVariant">#4F378B</color>
+    <color name="colorOnSecondaryFixedVariant">#4A4458</color>
+    <color name="colorOnTertiaryFixedVariant">#633B48</color>
+    <color name="colorSurfaceDim">#DED8E1</color>
+    <color name="colorSurface">#FEF7FF</color>
+    <color name="colorSurfaceBright">#FEF7FF</color>
+    <color name="colorSurfaceContainerLowest">#FFFFFF</color>
+    <color name="colorSurfaceContainerLow">#F7F2FA</color>
+    <color name="colorSurfaceContainer">#F3EDF7</color>
+    <color name="colorSurfaceContainerHigh">#ECE6F0</color>
+    <color name="colorSurfaceContainerHighest">#E6E0E9</color>
+    <color name="colorOnSurface">#1D1B20</color>
+    <color name="colorOnSurfaceVar">#49454F</color>
+    <color name="colorOutline">#79747E</color>
+    <color name="colorOutlineVariant">#CAC4D0</color>
+    <color name="colorInverseSurface">#322F35</color>
+    <color name="colorInverseOnSurface">#F5EFF7</color>
+    <color name="colorInversePrimary">#D0BCFF</color>
+    <color name="colorScrim">#000000</color>
+    <color name="colorShadow">#000000</color>
+
+
+
+
+
+
+
+
+
 </resources>
