@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels
+package uz.androbeck.virtualbank.ui.screens.pin_code.biometrics
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

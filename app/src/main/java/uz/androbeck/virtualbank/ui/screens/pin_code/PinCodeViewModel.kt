@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels
+package uz.androbeck.virtualbank.ui.screens.pin_code
 
 import android.os.Handler
 import android.os.Looper

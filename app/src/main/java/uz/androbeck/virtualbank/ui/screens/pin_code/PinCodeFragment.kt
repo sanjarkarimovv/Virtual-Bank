@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code.views
+package uz.androbeck.virtualbank.ui.screens.pin_code
 
 import android.animation.ValueAnimator
 import android.os.Handler
@@ -19,7 +19,6 @@ import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.pin_code.events.PinCodeEvent
-import uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels.PinCodeViewModel
 import uz.androbeck.virtualbank.utils.extentions.*
 import java.util.concurrent.Executors
 import javax.inject.Inject

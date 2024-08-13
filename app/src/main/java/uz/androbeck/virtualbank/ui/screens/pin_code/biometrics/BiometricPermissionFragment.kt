@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code.views
+package uz.androbeck.virtualbank.ui.screens.pin_code.biometrics
 
 import android.os.Handler
 import android.os.Looper
@@ -12,7 +12,6 @@ import uz.androbeck.virtualbank.databinding.FragmentBiometricPermissionBinding
 import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels.BiometricPermissionViewModel
 import java.util.concurrent.Executors
 
 @AndroidEntryPoint

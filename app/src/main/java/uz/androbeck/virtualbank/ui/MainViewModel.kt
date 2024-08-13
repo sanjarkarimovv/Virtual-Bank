@@ -21,8 +21,7 @@ class MainViewModel @Inject constructor(
 
     private val navGraphEvent = Channel<NavGraphEvent>()
 
-    private val _isAwayLong = MutableStateFlow<Boolean?>(null)
-    val isAwayLong: StateFlow<Boolean?> get() = _isAwayLong
+    private val isAwayLong = Channel<Boolean>()
 
     fun setNavGraphEvent(event: NavGraphEvent) = viewModelScope.launch {
         navGraphEvent.send(event)
@@ -40,8 +39,12 @@ class MainViewModel @Inject constructor(
         prefsProvider.isAwayLong = System.currentTimeMillis()
     }
 
-    fun checkIsAwayLong(){
-        _isAwayLong.value = (System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000 && prefsProvider.token.isNotEmpty()
+    fun checkIsAwayLong() = viewModelScope.launch {
+        isAwayLong.send((System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000 && prefsProvider.token.isNotEmpty())
+    }
+
+    fun observeIsAwayLong() : Flow<Boolean> {
+        return isAwayLong.consumeAsFlow().share(viewModelScope)
     }
 
     fun observeNavGraphEvent(): Flow<NavGraphEvent> {

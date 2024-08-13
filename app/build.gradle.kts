@@ -104,5 +104,6 @@ dependencies {
     debugImplementation(libs.chucker.interceptor)
     releaseImplementation(libs.chucker.interceptor.no.op)
 
+    //Biometrics
     implementation(libs.androidx.biometric)
 }

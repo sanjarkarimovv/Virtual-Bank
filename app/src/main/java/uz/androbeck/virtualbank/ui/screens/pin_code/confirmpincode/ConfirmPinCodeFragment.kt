@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code.views
+package uz.androbeck.virtualbank.ui.screens.pin_code.confirmpincode
 
 import android.animation.ValueAnimator
 import android.os.Handler
@@ -18,7 +18,6 @@ import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.pin_code.utils.BiometricUtils
 import uz.androbeck.virtualbank.ui.screens.pin_code.events.ConfirmPinCodeEvent
-import uz.androbeck.virtualbank.ui.screens.pin_code.viewmodels.ConfirmPinCodeViewModel
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.vibrate
 import uz.androbeck.virtualbank.utils.extentions.visibleIf
