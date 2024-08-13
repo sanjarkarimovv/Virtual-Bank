@@ -82,8 +82,14 @@ object UseCaseModule {
     @Provides
     fun provideLastTransfersUseCase(
         historyRepository: HistoryRepository,
-        lastTransfersMapper: LastTransfersMapper,
-    ) = LastTransfersUseCase(historyRepository, lastTransfersMapper)
+        transfersMapper: TransfersMapper,
+    ) = LastTransfersUseCase(historyRepository, transfersMapper)
+
+    @Provides
+    fun provideGetHistoryUseCase(
+        historyRepository: HistoryRepository,
+        getHistoryMapper: GetHistoryMapper,
+    ) = GetHistoryUseCase(historyRepository,getHistoryMapper)
 
     @Provides
     fun provideSignInResendUseCase(
@@ -105,9 +111,4 @@ object UseCaseModule {
         signInVerifyMapper: SignInVerifyMapper,
         tokensMapper: TokensMapper
     ) = AuthVerifyUseCase(authenticationRepository, signInVerifyMapper, tokensMapper)
-    @Provides
-    fun provideGetCardsUseCase(
-        cardsRepository: GetCardsRepository,
-        cardsMapper: GetCardsMapper
-    ) =GetCardsUseCase(cardsRepository,cardsMapper)
 }
