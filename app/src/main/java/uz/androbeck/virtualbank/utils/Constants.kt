@@ -24,6 +24,7 @@ object Constants {
     object History {
         const val INCOME = "income"
         const val OUTCOME = "outcome"
+        const val TOTAL_BALANCE = "home/total-balance"
     }
 
     object Header {
@@ -53,5 +54,6 @@ object Constants {
     object Number{
         const val FIVE_THOUSAND = 5000L
         const val ONE = 1
+        const val reENTRY_GET_CODE_TIME = 180000L
     }
 }
