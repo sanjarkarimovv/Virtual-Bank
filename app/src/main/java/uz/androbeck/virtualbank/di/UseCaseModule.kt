@@ -91,6 +91,7 @@ object UseCaseModule {
     @Provides
     fun provideAuthVerifyUseCase(
         authenticationRepository: AuthenticationRepository,
-        signInVerifyMapper: SignInVerifyMapper
-    ) = AuthVerifyUseCase(authenticationRepository, signInVerifyMapper)
+        signInVerifyMapper: SignInVerifyMapper,
+        tokensMapper: TokensMapper
+    ) = AuthVerifyUseCase(authenticationRepository, signInVerifyMapper, tokensMapper)
 }
