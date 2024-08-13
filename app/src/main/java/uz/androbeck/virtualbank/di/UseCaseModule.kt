@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
+import uz.androbeck.virtualbank.data.repository.card.CardRepository
 import uz.androbeck.virtualbank.data.repository.history.HistoryRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignInVerifyMapper
@@ -110,4 +111,11 @@ object UseCaseModule {
         signInVerifyMapper: SignInVerifyMapper,
         tokensMapper: TokensMapper
     ) = AuthVerifyUseCase(authenticationRepository, signInVerifyMapper, tokensMapper)
+
+    @Provides
+    fun provideDeleteCardUseCase(
+        cardRepository: CardRepository,
+        messageMapper: MessageMapper
+    ) = DeleteCardUseCase(cardRepository, messageMapper)
+
 }
