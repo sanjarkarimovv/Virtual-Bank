@@ -10,6 +10,7 @@ class GetHistoryUseCase @Inject constructor(
     private val historyRepository: HistoryRepository,
     private val historyMapper: HistoryMapper,
     ) {
+
     operator fun invoke() =
         historyRepository.getHistory().flow.map {pagingData->
             pagingData.map { historyDto->
