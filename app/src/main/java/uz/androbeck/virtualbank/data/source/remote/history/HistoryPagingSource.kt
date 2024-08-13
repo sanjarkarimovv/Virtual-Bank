@@ -286,6 +286,7 @@ class HistoryPagingSource : PagingSource<Int, HistoryItem>() {
                 ?: state.closestPageToPosition(position)?.nextKey?.minus(1)
         }
     }
+
     private suspend fun getHistoryFromServer(): GetHistoryResDto {
         // сервердан mалумот келишини  боглаш керак
         return GetHistoryResDto(
