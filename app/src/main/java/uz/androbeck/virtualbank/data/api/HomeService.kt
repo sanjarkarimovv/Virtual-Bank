@@ -8,6 +8,7 @@ import uz.androbeck.virtualbank.data.dto.response.home.BasicInfoResDto
 import uz.androbeck.virtualbank.data.dto.response.home.FullInfoResDto
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
 import uz.androbeck.virtualbank.data.dto.response.home.LastTransfersResDto
+import uz.androbeck.virtualbank.data.dto.response.home.TotalBalanceResDto
 import uz.androbeck.virtualbank.utils.Constants
 
 interface HomeService {
@@ -17,11 +18,9 @@ interface HomeService {
     @GET(Constants.Endpoint.BASIC_INFO)
     suspend fun getBasicInfo(): BasicInfoResDto
 
+
     @PUT(Constants.Endpoint.UPDATE_INFO)
     suspend fun putUpdateInfo(
         @Body request: UpdateInfoReqDto
     ): MessageResDto
-
-    @GET(Constants.Endpoint.LAST_TRANSFERS)
-    suspend fun getLastTransfers(): LastTransfersResDto
 }

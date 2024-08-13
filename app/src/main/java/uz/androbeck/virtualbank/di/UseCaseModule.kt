@@ -7,26 +7,33 @@ import dagger.hilt.android.components.ViewModelComponent
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
 import uz.androbeck.virtualbank.data.repository.history.HistoryRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
+import uz.androbeck.virtualbank.domain.mapper.auth.SignInVerifyMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.SignUpResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.SingInResendMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
-import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
-import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
+import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
+import uz.androbeck.virtualbank.domain.mapper.history.LastTransfersMapper
+import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.history.HistoryMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.LastTransfersMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
+import uz.androbeck.virtualbank.domain.mapper.home.TotalBalanceMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
+import uz.androbeck.virtualbank.domain.useCases.authentication.AuthVerifyUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
+import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
+import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 
 @Module
@@ -70,15 +77,9 @@ object UseCaseModule {
 
     @Provides
     fun provideLastTransfersUseCase(
-        homeRepository: HomeRepository,
-        lastTransfersMapper: LastTransfersMapper,
-        ) = LastTransfersUseCase(homeRepository, lastTransfersMapper)
-    @Provides
-    fun provideGetHistoryUseCase(
         historyRepository: HistoryRepository,
-        historyMapper: HistoryMapper,
-    )= GetHistoryUseCase(historyRepository, historyMapper)
-
+        lastTransfersMapper: LastTransfersMapper,
+        ) = LastTransfersUseCase(historyRepository, lastTransfersMapper)
 
         @Provides
     fun provideSignInResendUseCase(

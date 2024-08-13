@@ -6,6 +6,7 @@ import uz.androbeck.virtualbank.data.dto.response.home.BasicInfoResDto
 import uz.androbeck.virtualbank.data.dto.response.home.FullInfoResDto
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
 import uz.androbeck.virtualbank.data.dto.response.home.LastTransfersResDto
+import uz.androbeck.virtualbank.data.dto.response.home.TotalBalanceResDto
 
 interface HomeRemoteDataSource {
     fun getFullInfo(): Flow<FullInfoResDto>
@@ -13,4 +14,5 @@ interface HomeRemoteDataSource {
     fun putUpdateInfo(request: UpdateInfoReqDto):Flow<MessageResDto>
     fun getLastTransfers(): Flow<LastTransfersResDto>
 
+    fun getTotalBalance():Flow<TotalBalanceResDto>
 }

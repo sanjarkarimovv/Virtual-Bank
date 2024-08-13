@@ -1,8 +1,10 @@
 package uz.androbeck.virtualbank.data.source.remote.home
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
+import uz.androbeck.virtualbank.data.dto.response.home.TotalBalanceResDto
 import javax.inject.Inject
 
 class HomeRemoteDataSourceImpl @Inject constructor(
@@ -22,6 +24,10 @@ class HomeRemoteDataSourceImpl @Inject constructor(
     }
     override fun getLastTransfers()= flow {
         emit(homeService.getLastTransfers())
+    }
+
+    override fun getTotalBalance()= flow {
+        emit(homeService.getTotalBalance())
     }
 
 }
