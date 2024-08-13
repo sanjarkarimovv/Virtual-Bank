@@ -5,8 +5,9 @@ import uz.androbeck.virtualbank.data.dto.response.history.GetHistoryResDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
 import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
 import uz.androbeck.virtualbank.domain.ui_models.history.TransfersUIModel
+import javax.inject.Inject
 
-class GetHistoryMapper:BaseMapper<GetHistoryResDto, TransfersUIModel> {
+class GetHistoryMapper @Inject constructor():BaseMapper<GetHistoryResDto, TransfersUIModel> {
     override fun toUIModel(dto: GetHistoryResDto)=dto.run {
         TransfersUIModel(
             transferUIModel = transferResDto?.map {
