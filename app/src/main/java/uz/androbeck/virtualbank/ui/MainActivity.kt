@@ -13,6 +13,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.ActivityMainBinding
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
+import uz.androbeck.virtualbank.ui.screens.change_language.OnLanguageChangedListener
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.visible
@@ -21,7 +22,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnLanguageChangedListener {
 
     private lateinit var binding: ActivityMainBinding
     private val vm: MainViewModel by viewModels()
@@ -84,5 +85,9 @@ class MainActivity : AppCompatActivity() {
     private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
         supportFragmentManager.beginTransaction().setPrimaryNavigationFragment(navHostFragment)
             .commit()
+    }
+
+    override fun onLanguageChanged() {
+        recreate()
     }
 }
