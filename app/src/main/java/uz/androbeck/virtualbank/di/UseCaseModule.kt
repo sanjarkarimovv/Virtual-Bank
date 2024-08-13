@@ -28,6 +28,7 @@ import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCa
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
+import uz.androbeck.virtualbank.domain.useCases.card.DeleteCardUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
