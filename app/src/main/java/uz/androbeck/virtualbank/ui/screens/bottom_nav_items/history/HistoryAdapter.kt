@@ -32,7 +32,7 @@ class HistoryAdapter(
 
     inner class ContentVH(private val binding: ItemHistoryInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "SuspiciousIndentation")
         fun bind(content: HistoryItem.Content) {
 
             with(binding) {
@@ -40,15 +40,19 @@ class HistoryAdapter(
                 tvTransactionDate.text = content.child.time.formatToHourMinute()
                 if (content.child.type == Constants.History.INCOME) {
                     tvTransactionName.text = content.child.from
-                tvAmount.text = "+ "+content.child.amount.toString() + " " +context.getString(R.string.str_money_type_uzb)
+                    tvAmount.text =
+                        " + " + content.child.amount.toString() + " " + context.getString(R.string.str_money_type_uzb)
                     llImageService.setBackgroundResource(R.drawable.bg_shape_corner_radius_12)
-                    tvSecondaryTransactionName.text = context.getString(R.string.str_transfer_type_income)
+                    tvSecondaryTransactionName.text =
+                        context.getString(R.string.str_transfer_type_income)
                     ivServiceType.setImageResource(R.drawable.ic_transfer_rececived)
                 }
                 if (content.child.type == Constants.History.OUTCOME) {
-                tvAmount.text = "- "+content.child.amount.toString() + " " +context.getString(R.string.str_money_type_uzb)
+                    tvAmount.text =
+                        " - " + content.child.amount.toString() + " " + context.getString(R.string.str_money_type_uzb)
                     tvTransactionName.text = content.child.to
-                    tvSecondaryTransactionName.text = context.getString(R.string.str_transfer_type_outcome)
+                    tvSecondaryTransactionName.text =
+                        context.getString(R.string.str_transfer_type_outcome)
                     ivServiceType.setImageResource(R.drawable.ic_transfer_sent)
                     llImageService.setBackgroundResource(R.drawable.bg_shape_corner_radius_15)
                 }
@@ -66,8 +70,8 @@ class HistoryAdapter(
                 oldItem: HistoryItem,
                 newItem: HistoryItem
             ): Boolean {
-                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header ||oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
-                return oldItem == newItem
+                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header || oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
+                    return oldItem == newItem
                 }
                 return false
             }
@@ -76,7 +80,7 @@ class HistoryAdapter(
                 oldItem: HistoryItem,
                 newItem: HistoryItem
             ): Boolean {
-                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header ||oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
+                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header || oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
                     return oldItem == newItem
                 }
                 return false
@@ -136,7 +140,6 @@ class HistoryAdapter(
         }
         return null
     }
-
 
 
 }

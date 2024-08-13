@@ -12,7 +12,7 @@ data class InComeAndOutComeResDto (
     @SerialName("to")
     val to: String?=null,
     @SerialName("amount")
-    val amount: Double=0.0,
+    val amount: Float=0f,
     @SerialName("time")
     val time: Long=0
 )

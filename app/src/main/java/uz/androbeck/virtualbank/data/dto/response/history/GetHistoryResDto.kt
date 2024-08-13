@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.dto.common.response.transfer
+package uz.androbeck.virtualbank.data.dto.response.history
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -12,19 +12,7 @@ data class GetHistoryResDto(
     @SerialName("current-page")
     val currentPage: String? = null,
     @SerialName("child")
-    val child: List<Child>
+    val child: List<InComeAndOutComeResDto>
 )
 
-@Serializable
-data class Child(
-    @SerialName("type")
-    val type: String,
-    @SerialName("from")
-    val from: String,
-    @SerialName("to")
-    val to: String,
-    @SerialName("amount")
-    val amount: Int,
-    @SerialName("time")
-    val time: Long
-)
+

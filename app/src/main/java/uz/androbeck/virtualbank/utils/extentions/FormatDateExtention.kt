@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.utils.extentions
 
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
@@ -20,5 +21,14 @@ fun Long.formatToHourMinute(): String {
     return dateFormat.format(
         this
     )
+}
+ fun Long.toStartOfDay(): Long {
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = this
+    calendar.set(Calendar.HOUR_OF_DAY, 0)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
+    return calendar.timeInMillis
 }
 

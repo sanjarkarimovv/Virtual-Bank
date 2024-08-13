@@ -1,8 +1,8 @@
 package uz.androbeck.virtualbank.domain.ui_models.history
 
-import uz.androbeck.virtualbank.data.dto.common.response.transfer.Child
+import uz.androbeck.virtualbank.data.dto.response.history.InComeAndOutComeResDto
 
 sealed class HistoryItem {
     data class Header(val time: Long?) : HistoryItem()
-    data class Content(val child: Child) : HistoryItem()
+    data class Content(val child: InComeAndOutComeResDto) : HistoryItem()
 }

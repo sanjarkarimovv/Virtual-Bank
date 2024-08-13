@@ -1,336 +1,42 @@
-/*
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history
 
-import android.os.Parcel
-import android.os.Parcelable
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import uz.androbeck.virtualbank.data.dto.common.response.transfer.Child
-import uz.androbeck.virtualbank.data.dto.common.response.transfer.GetHistoryResDto
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import kotlinx.coroutines.flow.Flow
+import uz.androbeck.virtualbank.data.source.remote.history.HistoryPagingSource
 import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
-import java.util.Calendar
+import uz.androbeck.virtualbank.utils.Constants
 
-class HistoryViewModel() : ViewModel(), Parcelable {
+class HistoryViewModel : ViewModel() {
 
-    private val _historyItems = MutableLiveData<List<HistoryItem>>()
-    val historyItems: LiveData<List<HistoryItem>> = _historyItems
+    private var totalAmountIncome: Float = 0f
+    private var totalAmountOutcome: Float = 0f
 
-    constructor(parcel: Parcel) : this() {
-    }
-
-    init {
-
-        loadHistory()
-    }
+    val historyItems: Flow<PagingData<HistoryItem>> = Pager(PagingConfig(pageSize = 5)) {
+        HistoryPagingSource()
+    }.flow.cachedIn(viewModelScope)
 
 
+    fun getAmounts(): Pair<Float?, Float?> {
+        HistoryPagingSource().response.forEach {
+            it.child.forEach { child ->
+                val amountIncome: Float =
+                    (child.amount.takeIf { Constants.History.INCOME == child.type } ?: 0).toFloat()
+                val amountOutcome: Float =
+                    (child.amount.takeIf { Constants.History.OUTCOME == child.type } ?: 0).toFloat()
+                totalAmountIncome = totalAmountIncome.plus(amountIncome)
+                totalAmountOutcome = totalAmountOutcome.plus(amountOutcome)
+                println("totalAmountIncome: $totalAmountIncome ")
 
-    private fun loadHistory() {
-        viewModelScope.launch {
-            val response = listOf(
-                GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "income",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 759200500
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "outcome",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 759200500
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "income",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 859200500
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "outcome",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 759200500
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "outcome",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 259204000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "income",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 259290000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "outcome",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 359203000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "outcome",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 359200000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "income",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 459200000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "income",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 459200000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "outcome",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 459200000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "income",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = 559200000
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "Cash-in",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = System.currentTimeMillis()
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "Cash-in",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = System.currentTimeMillis()
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "Cash-in",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = System.currentTimeMillis()
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "Cash-in",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = System.currentTimeMillis()
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "Cash-in",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = System.currentTimeMillis()
-                        )
-                    )
-                ), GetHistoryResDto(
-                    totalElements = "5",
-                    totalPages = "1",
-                    currentPage = "1",
-                    child = listOf(
-                        Child(
-                            type = "Cash-in",
-                            from = "ABC Bank ATM",
-                            to = "My Account",
-                            amount = 100,
-                            time = System.currentTimeMillis()
-                        )
-                    )
-                )
-            )
-
-            val items = mutableListOf<HistoryItem>()
-            var lastHeaderTime: Long? = null
-
-            response.forEach { response1 ->
-                response1.child.forEachIndexed { index, child ->
-                    val currentHeaderTime = child.time.toStartOfDay()
-
-                    if (lastHeaderTime == null || lastHeaderTime != currentHeaderTime) {
-                        items.add(HistoryItem.Header(currentHeaderTime))
-                        lastHeaderTime = currentHeaderTime
-                    }
-
-                    items.add(HistoryItem.Content(child))
-                }
             }
-            _historyItems.value = items
         }
+        return Pair(totalAmountIncome, totalAmountOutcome)
     }
 
-    private fun Long.toStartOfDay(): Long {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = this
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        return calendar.timeInMillis
-    }
-
-    private suspend fun getHistoryFromServer(): GetHistoryResDto {
-        // сервердан mалумот келишини  боглаш керак
-        return GetHistoryResDto(
-            totalElements = "5",
-            totalPages = "1",
-            currentPage = "1",
-            child = listOf(
-                Child(
-                    type = "Cash-in",
-                    from = "ABC Bank ATM",
-                    to = "My Account",
-                    amount = 100,
-                    time = System.currentTimeMillis()
-                )
-            )
-        )
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<HistoryViewModelPaging> {
-        override fun createFromParcel(parcel: Parcel): HistoryViewModelPaging {
-            return HistoryViewModelPaging(parcel)
-        }
-
-        override fun newArray(size: Int): Array<HistoryViewModelPaging?> {
-            return arrayOfNulls(size)
-        }
-    }
 }
-*/
+
+
