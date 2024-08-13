@@ -105,4 +105,7 @@ dependencies {
     //Chucker interceptor
     debugImplementation(libs.chucker.interceptor)
     releaseImplementation(libs.chucker.interceptor.no.op)
+
+    //MaskedEditText2
+    implementation("io.github.vicmikhailau:MaskedEditText:5.0.2")
 }

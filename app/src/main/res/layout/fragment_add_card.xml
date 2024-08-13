@@ -21,4 +21,9 @@
         android:background="@android:color/transparent"
         app:tabIndicatorColor="@android:color/transparent"/>
 
+    <com.vicmikhailau.maskededittext.MaskedEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mask="(##) ###-##-##"/>
+
 </LinearLayout>

@@ -20,19 +20,21 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
     @SuppressLint("InflateParams")
     override fun setup() {
         val images = listOf(
-            R.drawable.card_image1,
-            R.drawable.card_image2,
-            R.drawable.card_image3,
-            R.drawable.card_image4,
-            R.drawable.card_image5,
-            R.drawable.card_image6,
-            R.drawable.card_image1,
-            R.drawable.card_image2,
-            R.drawable.card_image3,
-            R.drawable.card_image4,
-            R.drawable.card_image5,
-            R.drawable.card_image6,
-        )
+            R.color.colorError,
+            R.color.colorInversePrimary,
+            R.color.screenTextColor,
+            R.color.colorOnPrimaryContainer,
+            R.color.colorOnPrimaryFixedVariant,
+            R.color.colorOnSecondaryContainer,
+            R.color.colorOnTertiaryContainer,
+            R.color.colorError,
+            R.color.colorInversePrimary,
+            R.color.screenTextColor,
+            R.color.colorOnPrimaryContainer,
+            R.color.colorOnPrimaryFixedVariant,
+            R.color.colorOnSecondaryContainer,
+            R.color.colorOnTertiaryContainer,
+            )
         with(binding) {
             viewPager.adapter = ViewPagerAdapter(images)
 
