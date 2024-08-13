@@ -29,7 +29,7 @@
                 android:fontFamily="@font/exo2_bold"
                 android:textColor="@color/colorScrim"/>
             <androidx.cardview.widget.CardView
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:cardElevation="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"

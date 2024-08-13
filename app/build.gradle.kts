@@ -103,4 +103,7 @@ dependencies {
     //Chucker interceptor
     debugImplementation(libs.chucker.interceptor)
     releaseImplementation(libs.chucker.interceptor.no.op)
+
+    //Paging 3
+    implementation("androidx.paging:paging-runtime:3.3.2")
 }
