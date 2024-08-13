@@ -1,9 +1,9 @@
 package uz.androbeck.virtualbank.domain.mock_data
 
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.domain.ui_models.payment_screen.PaymentScreenUIModel
-import uz.androbeck.virtualbank.domain.ui_models.payment_screen.PlacesPaymentUIModel
-import uz.androbeck.virtualbank.domain.ui_models.payment_screen.SavedPaymentUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payments.PaymentUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payments.PlacesPaymentUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payments.SavedPaymentUIModel
 import uz.androbeck.virtualbank.utils.Constants.String.ADD_HOME
 
 object AppHardcodeData {
@@ -27,17 +27,17 @@ object AppHardcodeData {
         SavedPaymentUIModel(title = ADD_HOME)
     )
     val servicePaymentList = listOf(
-        PaymentScreenUIModel(logo = R.drawable.ic_language, title = "Internet Provider"),
-        PaymentScreenUIModel(logo = R.drawable.ic_phone, title = "Mobil operators"),
-        PaymentScreenUIModel(logo = R.drawable.ic_permission, title = "Davlat xizmatlari"),
-        PaymentScreenUIModel(logo = R.drawable.ic_support, title = "Call centr xizmatlari"),
-        PaymentScreenUIModel(logo = R.drawable.ic_security, title = "Xavfsizlik xizmati"),
+        PaymentUIModel(logo = R.drawable.ic_language, title = "Internet Provider"),
+        PaymentUIModel(logo = R.drawable.ic_phone, title = "Mobil operators"),
+        PaymentUIModel(logo = R.drawable.ic_permission, title = "Davlat xizmatlari"),
+        PaymentUIModel(logo = R.drawable.ic_support, title = "Call centr xizmatlari"),
+        PaymentUIModel(logo = R.drawable.ic_security, title = "Xavfsizlik xizmati"),
     )
     val myHomePaymentList = listOf(
-        PaymentScreenUIModel(logo = R.drawable.ic_home, title = "Olmazor ko'cha 291 - uy"),
-        PaymentScreenUIModel(logo = R.drawable.ic_home, title = "Yunusobod 47/33 xonadon"),
-        PaymentScreenUIModel(logo = R.drawable.ic_home, title = "Besh ariq ko'cha 137 - uy"),
-        PaymentScreenUIModel(logo = R.drawable.ic_home, title = ADD_HOME),
+        PaymentUIModel(logo = R.drawable.ic_home, title = "Olmazor ko'cha 291 - uy"),
+        PaymentUIModel(logo = R.drawable.ic_home, title = "Yunusobod 47/33 xonadon"),
+        PaymentUIModel(logo = R.drawable.ic_home, title = "Besh ariq ko'cha 137 - uy"),
+        PaymentUIModel(logo = R.drawable.ic_home, title = ADD_HOME),
     )
     val placesPaymentList = listOf(
         PlacesPaymentUIModel(

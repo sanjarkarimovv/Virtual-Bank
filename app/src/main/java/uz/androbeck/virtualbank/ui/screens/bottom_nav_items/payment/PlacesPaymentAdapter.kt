@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.ItemPlacesPaymentsBinding
-import uz.androbeck.virtualbank.domain.ui_models.payment_screen.PlacesPaymentUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payments.PlacesPaymentUIModel
 
 class PlacesPaymentAdapter :
     ListAdapter<PlacesPaymentUIModel, PlacesPaymentAdapter.SavedViewHolder>(diffUtil) {

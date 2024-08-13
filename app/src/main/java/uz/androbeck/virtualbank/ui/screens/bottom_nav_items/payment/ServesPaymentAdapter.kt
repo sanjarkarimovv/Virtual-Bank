@@ -5,16 +5,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.ItemServersPaymentBinding
-import uz.androbeck.virtualbank.domain.ui_models.payment_screen.PaymentScreenUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payments.PaymentUIModel
 
-class ServicePaymentAdapter : ListAdapter<PaymentScreenUIModel, ServicePaymentAdapter.SavedViewHolder>(diffUtil) {
+class ServicePaymentAdapter : ListAdapter<PaymentUIModel, ServicePaymentAdapter.SavedViewHolder>(diffUtil) {
 
     inner class SavedViewHolder(
         private val binding: ItemServersPaymentBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(paymentScreenUIModel: PaymentScreenUIModel) {
+        fun bind(paymentUIModel: PaymentUIModel) {
             with(binding) {
-                paymentScreenUIModel.run {
+                paymentUIModel.run {
                     logo?.let { ivLogo.setImageResource(it) }
                     title?.let { tvTitle.text = it }
                 }
@@ -23,12 +23,12 @@ class ServicePaymentAdapter : ListAdapter<PaymentScreenUIModel, ServicePaymentAd
     }
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<PaymentScreenUIModel>() {
-            override fun areItemsTheSame(oldItem: PaymentScreenUIModel, newItem: PaymentScreenUIModel): Boolean {
+        private val diffUtil = object : DiffUtil.ItemCallback<PaymentUIModel>() {
+            override fun areItemsTheSame(oldItem: PaymentUIModel, newItem: PaymentUIModel): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: PaymentScreenUIModel, newItem: PaymentScreenUIModel): Boolean {
+            override fun areContentsTheSame(oldItem: PaymentUIModel, newItem: PaymentUIModel): Boolean {
                 return oldItem == newItem
             }
 

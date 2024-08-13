@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.domain.ui_models.payment_screen
+package uz.androbeck.virtualbank.domain.ui_models.payments
 data class PlacesPaymentUIModel(
     val logo: Int? = null,
     val title: String? = null,

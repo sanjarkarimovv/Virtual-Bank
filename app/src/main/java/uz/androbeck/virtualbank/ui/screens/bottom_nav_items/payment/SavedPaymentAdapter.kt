@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.ItemSavedPaymentsBinding
-import uz.androbeck.virtualbank.domain.ui_models.payment_screen.SavedPaymentUIModel
+import uz.androbeck.virtualbank.domain.ui_models.payments.SavedPaymentUIModel
 import uz.androbeck.virtualbank.utils.Constants.String.ADD_HOME
 
 class SavedPaymentAdapter : ListAdapter<SavedPaymentUIModel, SavedPaymentAdapter.SavedViewHolder>(diffUtil) {
