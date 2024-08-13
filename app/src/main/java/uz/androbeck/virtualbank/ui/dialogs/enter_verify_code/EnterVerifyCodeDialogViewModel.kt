@@ -27,8 +27,8 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
     private val errorHandler: ErrorHandler,
 ) : ViewModel() {
 
-    private val _signUpVerifyEvent = MutableStateFlow(false)
-    val signUpVerifyEvent = _signUpVerifyEvent.asStateFlow()
+    private val _authVerifyEvent = MutableStateFlow(false)
+    val authVerifyEvent = _authVerifyEvent.asStateFlow()
 
     private val _timerTextEvent = MutableLiveData<String>()
     val timerTextEvent: LiveData<String> get() = _timerTextEvent
@@ -71,10 +71,10 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
             ).onEach { uiModel ->
                 preferencesProvider.token = uiModel.accessToken.orEmpty()
                 preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
-                _signUpVerifyEvent.value = true
+                _authVerifyEvent.value = true
             }.catch { th ->
                 errorHandler.handleError(th)
-                _isError.value = true
+                _isErrorEvent.value = true
             }.launchIn(viewModelScope)
         }
     }
