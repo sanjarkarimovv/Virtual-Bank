@@ -18,6 +18,8 @@ interface HomeService {
     @GET(Constants.Endpoint.BASIC_INFO)
     suspend fun getBasicInfo(): BasicInfoResDto
 
+    @GET(Constants.Endpoint.TOTAL_BALANCE)
+    suspend fun getTotalBalance(): TotalBalanceResDto
 
     @PUT(Constants.Endpoint.UPDATE_INFO)
     suspend fun putUpdateInfo(
