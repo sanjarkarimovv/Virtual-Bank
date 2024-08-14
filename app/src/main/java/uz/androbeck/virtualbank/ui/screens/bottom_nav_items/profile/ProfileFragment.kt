@@ -1,7 +1,7 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile
 
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
@@ -15,8 +15,9 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     private val vm by viewModels<ProfileViewModel>()
     override fun setup() {
 
-
-
+        binding.appLanguage.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_changeLanguageFragment)
+        }
         vm.fullInfoEvent.onEach { fullInfo->
             val user=fullInfo.firstName+" "+fullInfo.lastName
             binding.user.text=user
