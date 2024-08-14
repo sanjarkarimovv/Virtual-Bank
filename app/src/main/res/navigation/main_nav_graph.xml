@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_profileFragment_to_changeLanguageFragment"
             app:destination="@id/changeLanguageFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_changeThemeFragment"
+            app:destination="@id/changeThemeFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -34,4 +37,9 @@
         android:name="uz.androbeck.virtualbank.ui.screens.change_language.ChangeLanguageFragment"
         android:label="ChangeLanguageFragment"
         tools:layout="@layout/fragment_change_language"/>
+    <dialog
+        android:id="@+id/changeThemeFragment"
+        android:name="uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.change_theme.ChangeThemeDialog"
+        android:label="ChangeThemeFragment"
+        tools:layout="@layout/dialog_change_theme"/>
 </navigation>

@@ -3,6 +3,7 @@ package uz.androbeck.virtualbank.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -14,6 +15,7 @@ import uz.androbeck.virtualbank.databinding.ActivityMainBinding
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.ui.screens.change_language.OnLanguageChangedListener
+import uz.androbeck.virtualbank.ui.screens.change_language.OnThemeChangedListener
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.visible
@@ -29,9 +31,10 @@ class MainActivity : AppCompatActivity(), OnLanguageChangedListener {
 
     @Inject
     lateinit var preferencesProvider: PreferencesProvider
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       // AppCompatDelegate.setDefaultNightMode(preferencesProvider.theme)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         changeLanguage()
         setContentView(binding.root)
@@ -41,7 +44,6 @@ class MainActivity : AppCompatActivity(), OnLanguageChangedListener {
         vm.setNavGraphEvent()
         setupObservers(navHostFragment)
     }
-
     fun changeLanguage() {
         val language = preferencesProvider.language.getLanguageByCode()
         val config = resources.configuration

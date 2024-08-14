@@ -49,4 +49,11 @@
     <string name="str_localization_uzb">Uzbek</string>
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="theme">Theme of the application</string>
+    <string name="light_mode">Light mode</string>
+    <string name="night_mode">Dark mode</string>
+    <string name="system">System</string>
+    <string name="dark_mode">Dark mode</string>
 </resources>

@@ -1,5 +1,7 @@
 package uz.androbeck.virtualbank.utils
 
+import androidx.appcompat.app.AppCompatDelegate
+
 object Constants {
     object FileName {
         const val SHARED_PREFS = "virtual_bank"
@@ -20,7 +22,7 @@ object Constants {
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
         const val TOTAL_BALANCE = "home/total-balance"
-        const val GET_HISTORY="transfer/transfer"
+        const val GET_HISTORY = "transfer/transfer"
     }
 
     object Header {
@@ -47,9 +49,16 @@ object Constants {
         const val RUSSIAN = "ru"
     }
 
-    object Number{
+    object Number {
         const val FIVE_THOUSAND = 5000L
         const val ONE = 1
         const val reENTRY_GET_CODE_TIME = 180000L
+    }
+
+    object Theme {
+        const val LIGHT_MODE = AppCompatDelegate.MODE_NIGHT_NO
+        const val DARK_MODE = AppCompatDelegate.MODE_NIGHT_YES
+        const val SYSTEM = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+
     }
 }

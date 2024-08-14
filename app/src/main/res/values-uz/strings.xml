@@ -48,4 +48,9 @@
     <string name="str_localization_uzb">O\'zbekcha</string>
     <string name="str_localization_rus">Ruscha</string>
     <string name="str_localization_eng">Inglizcha</string>
+    <string name="theme">Theme of the application</string>
+    <string name="light_mode">Light mode</string>
+    <string name="night_mode">Night mode</string>
+    <string name="system">System</string>
+    <string name="dark_mode">Dark mode</string>
 </resources>
