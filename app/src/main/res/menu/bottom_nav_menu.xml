@@ -11,9 +11,9 @@
         android:title="@string/bottom_item_title_transfer" />
     <!--TODO static text-->
     <item
-        android:id="@+id/cardsFragment"
-        android:icon="@drawable/ic_cards"
-        android:title="Cards" />
+        android:id="@+id/paymentFragment"
+        android:icon="@drawable/ic_payment"
+        android:title="@string/paymnet" />
     <!--TODO static text-->
     <item
         android:id="@+id/historyFragment"
