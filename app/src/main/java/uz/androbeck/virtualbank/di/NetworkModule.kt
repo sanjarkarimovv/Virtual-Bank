@@ -20,6 +20,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
+import uz.androbeck.virtualbank.data.api.CardsService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
@@ -142,5 +143,5 @@ object NetworkModule {
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {
         return errorHandlerImpl
     }
+    }
 
-}
