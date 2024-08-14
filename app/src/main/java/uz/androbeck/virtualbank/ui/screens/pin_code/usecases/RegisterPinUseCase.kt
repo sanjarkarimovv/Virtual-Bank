@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code
+package uz.androbeck.virtualbank.ui.screens.pin_code.usecases
 
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import javax.inject.Inject

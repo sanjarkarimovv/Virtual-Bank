@@ -20,6 +20,7 @@ object Constants {
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
         const val TOTAL_BALANCE = "home/total-balance"
+        const val GET_HISTORY="transfer/transfer"
     }
 
     object Header {
@@ -37,6 +38,7 @@ object Constants {
 
     object String {
         const val EMPTY = ""
+        const val ADD_HOME = "Uy qo'shish"
     }
 
     object Localization {

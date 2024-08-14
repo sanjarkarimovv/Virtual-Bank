@@ -5,35 +5,37 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import uz.androbeck.test.PlacesPayment
 import uz.androbeck.virtualbank.databinding.ItemPlacesPaymentsBinding
+import uz.androbeck.virtualbank.domain.ui_models.payments.PlacesPaymentUIModel
 
 class PlacesPaymentAdapter :
-    ListAdapter<PlacesPayment, PlacesPaymentAdapter.SavedViewHolder>(diffUtil) {
+    ListAdapter<PlacesPaymentUIModel, PlacesPaymentAdapter.SavedViewHolder>(diffUtil) {
 
     inner class SavedViewHolder(
         private val binding: ItemPlacesPaymentsBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(placesPayment: PlacesPayment) {
+        fun bind(placesPayment: PlacesPaymentUIModel) {
             with(binding) {
-                placesPayment.logo?.let { ivLogo.setImageResource(it) }
-                placesPayment.title?.let { tvTitle.text = it }
-                placesPayment.description?.let { tvDescription.text = it }
-                placesPayment.distance?.let { tvDistance.text = "$it m" }
+                placesPayment.run {
+                    logo?.let { ivLogo.setImageResource(it) }
+                    title?.let { tvTitle.text = it }
+                    description?.let { tvDescription.text = it }
+                    distance?.let { tvDistance.text = "$it m" }
+                }
             }
         }
     }
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<PlacesPayment>() {
-            override fun areItemsTheSame(oldItem: PlacesPayment, newItem: PlacesPayment): Boolean {
+        private val diffUtil = object : DiffUtil.ItemCallback<PlacesPaymentUIModel>() {
+            override fun areItemsTheSame(oldItem: PlacesPaymentUIModel, newItem: PlacesPaymentUIModel): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: PlacesPayment,
-                newItem: PlacesPayment,
+                oldItem: PlacesPaymentUIModel,
+                newItem: PlacesPaymentUIModel,
             ): Boolean {
                 return oldItem == newItem
             }
@@ -41,15 +43,13 @@ class PlacesPaymentAdapter :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedViewHolder {
-        return SavedViewHolder(
-            ItemPlacesPaymentsBinding.inflate(
-                android.view.LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SavedViewHolder(
+        ItemPlacesPaymentsBinding.inflate(
+            android.view.LayoutInflater.from(parent.context),
+            parent,
+            false
         )
-    }
+    )
 
     override fun onBindViewHolder(holder: SavedViewHolder, position: Int) {
         holder.bind(getItem(position))

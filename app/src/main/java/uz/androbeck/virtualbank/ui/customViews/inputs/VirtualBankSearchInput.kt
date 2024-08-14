@@ -3,16 +3,18 @@ package uz.androbeck.virtualbank.ui.customViews.inputs
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomSearchEditTextBinding
+import uz.androbeck.virtualbank.utils.extentions.pxToDp
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
 @SuppressLint("Recycle")
-class CustomSearchEditText @JvmOverloads constructor(
+class VirtualBankSearchInput @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -33,33 +35,17 @@ class CustomSearchEditText @JvmOverloads constructor(
         with(binding) {
             customTvSearch.setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
-                    val strokeWidthInDp = 2
-                    val strokeWidthInPx = TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        strokeWidthInDp.toFloat(),
-                        resources.displayMetrics
-                    ).toInt()
-                    cvSearch.strokeWidth = strokeWidthInPx
+                    cvSearch.strokeWidth = pxToDp(2)
                     cvSearch.strokeColor = ContextCompat.getColor(context, R.color.screenTextColor)
                 } else {
-                    val strokeWidthInDp = 1
-                    val strokeWidthInPx = TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        strokeWidthInDp.toFloat(),
-                        resources.displayMetrics
-                    ).toInt()
-                    cvSearch.strokeWidth = strokeWidthInPx
+                    cvSearch.strokeWidth = pxToDp(1)
                     cvSearch.strokeColor = ContextCompat.getColor(context, R.color.colorOutline)
                 }
             }
             customTvSearch.addTextChangedListener { s ->
-                if (s.toString().isNotEmpty()) {
-                    btnCancel.visibility = VISIBLE
-                } else {
-                    btnCancel.visibility = GONE
-                }
+                btnCancel.isVisible = s.toString().isNotEmpty()
             }
-            btnCancel.setOnClickListener {
+            btnCancel.singleClickable {
                 customTvSearch.text.clear()
                 customTvSearch.clearFocus()
             }
@@ -69,5 +55,4 @@ class CustomSearchEditText @JvmOverloads constructor(
     fun getSearchTxt(): String {
         return binding.customTvSearch.text.toString()
     }
-
 }

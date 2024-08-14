@@ -1,24 +1,17 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.payment
-
 import android.annotation.SuppressLint
-import android.content.Context
-import android.view.inputmethod.InputMethodManager
-import androidx.recyclerview.widget.DividerItemDecoration
 import by.kirich1409.viewbindingdelegate.viewBinding
-import uz.androbeck.test.MyList
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentPaymentBinding
+import uz.androbeck.virtualbank.domain.mock_data.AppHardcodeData
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-
+import uz.androbeck.virtualbank.utils.extentions.hideKeyboard
 class PaymentFragment : BaseFragment(R.layout.fragment_payment) {
-
-
-
     private val savedPaymentAdapter: SavedPaymentAdapter by lazy {
         SavedPaymentAdapter()
     }
-    private val servesPaymentAdapter: ServesPaymentAdapter by lazy {
-        ServesPaymentAdapter()
+    private val servicePaymentAdapter: ServicePaymentAdapter by lazy {
+        ServicePaymentAdapter()
     }
     private val myHomeAdapter: MyHomeAdapter by lazy {
         MyHomeAdapter()
@@ -26,35 +19,28 @@ class PaymentFragment : BaseFragment(R.layout.fragment_payment) {
     private val placesPaymentAdapter: PlacesPaymentAdapter by lazy {
         PlacesPaymentAdapter()
     }
-    private val bi by viewBinding(FragmentPaymentBinding::bind)
+    private val binding by viewBinding(FragmentPaymentBinding::bind)
 
     @SuppressLint("ClickableViewAccessibility")
     override fun setup() {
-        with(bi) {
-
+        with(binding) {
 
             root.setOnTouchListener { _, _ ->
-
                 hideKeyboard()
                 false
             }
 
             rvSavedPayments.adapter = savedPaymentAdapter
-            savedPaymentAdapter.submitList(MyList.savedPaymentList)
+            savedPaymentAdapter.submitList(AppHardcodeData.savedPaymentList)
 
-            rvServersPayments.adapter = servesPaymentAdapter
-            servesPaymentAdapter.submitList(MyList.servesPaymentList)
+            rvServicePayments.adapter = servicePaymentAdapter
+            servicePaymentAdapter.submitList(AppHardcodeData.servicePaymentList)
 
             rvMyHome.adapter = myHomeAdapter
-            myHomeAdapter.submitList(MyList.myHomeList)
+            myHomeAdapter.submitList(AppHardcodeData.myHomePaymentList)
 
             rvPlacesPayments.adapter = placesPaymentAdapter
-            placesPaymentAdapter.submitList(MyList.placesList)
+            placesPaymentAdapter.submitList(AppHardcodeData.placesPaymentList)
         }
-    }
-
-    private fun hideKeyboard() {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }

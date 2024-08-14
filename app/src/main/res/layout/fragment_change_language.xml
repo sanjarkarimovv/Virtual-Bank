@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSurface"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingBottom="32dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center|top"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/colorOutline"
+        android:scaleType="centerCrop"
+        app:cardCornerRadius="2.5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title_app_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/exo2_semi_bold"
+            android:padding="8dp"
+            android:text="@string/application_language"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorOnSurface"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_uzb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_uzb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/str_localization_uzb"
+            android:textColor="@color/colorOnSurface"
+            android:textSize="16sp" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/ms_uzb"
+            android:layout_width="wrap_content"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginHorizontal="12dp"
+            android:clickable="false"
+            android:focusable="false"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_rus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_rus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/str_localization_rus"
+            android:textColor="@color/colorOnSurface"
+            android:textSize="16sp" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/ms_rus"
+            android:layout_width="wrap_content"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginHorizontal="12dp"
+            android:clickable="false"
+            android:focusable="false"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_eng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_eng"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/str_localization_eng"
+            android:textColor="@color/colorOnSurface"
+            android:textSize="16sp" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/ms_eng"
+            android:layout_width="wrap_content"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginHorizontal="12dp"
+            android:clickable="false"
+            android:focusable="false"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

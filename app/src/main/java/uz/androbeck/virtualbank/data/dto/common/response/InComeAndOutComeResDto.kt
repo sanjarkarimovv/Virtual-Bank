@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.data.dto.response.history
+package uz.androbeck.virtualbank.data.dto.common.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -12,7 +12,7 @@ data class InComeAndOutComeResDto (
     @SerialName("to")
     val to: String?=null,
     @SerialName("amount")
-    val amount: Double=0.0,
+    val amount: Float=0f,
     @SerialName("time")
     val time: Long=0
 )

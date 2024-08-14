@@ -19,7 +19,6 @@ import uz.androbeck.virtualbank.utils.extentions.visible
 import java.util.Locale
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(navHostFragment.navController)
+        println("onCreate:App")
         vm.setNavGraphEvent()
         setupObservers(navHostFragment)
     }
@@ -53,32 +53,36 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupObservers(navHostFragment: NavHostFragment) {
         vm.observeNavGraphEvent().onEach { event ->
-            navHostFragment.navController.apply {
                 when (event) {
                     NavGraphEvent.Auth -> {
-                        val authGraph = navInflater.inflate(R.navigation.auth_nav_graph)
+                        val authGraph = navHostFragment.navController.navInflater.inflate(R.navigation.auth_nav_graph)
                         authGraph.setStartDestination(R.id.chooseLanguageFragment)
                         defaultNavHostTrue(navHostFragment)
-                        graph = authGraph
+                        navHostFragment.navController.graph = authGraph
                         binding.bottomNavigation.gone()
                     }
 
                     NavGraphEvent.Main -> {
-                        val mainGraph = navInflater.inflate(R.navigation.main_nav_graph)
+                        val mainGraph = navHostFragment.navController.navInflater.inflate(R.navigation.main_nav_graph)
                         mainGraph.setStartDestination(R.id.mainFragment)
                         defaultNavHostTrue(navHostFragment)
-                        graph = mainGraph
+                        navHostFragment.navController.graph = mainGraph
                         binding.bottomNavigation.visible()
                     }
 
                     NavGraphEvent.PinCode -> {
-                        val pinCodeGraph = navInflater.inflate(R.navigation.pin_code_nav_graph)
+                        val pinCodeGraph = navHostFragment.navController.navInflater.inflate(R.navigation.pin_code_nav_graph)
                         pinCodeGraph.setStartDestination(R.id.pinCodeFragment)
                         defaultNavHostTrue(navHostFragment)
-                        graph = pinCodeGraph
+                        navHostFragment.navController.graph = pinCodeGraph
                         binding.bottomNavigation.gone()
                     }
                 }
+        }.launchIn(lifecycleScope)
+
+        vm.observeIsAwayLong().onEach {
+            if (it) {
+                vm.setNavGraphEvent(NavGraphEvent.PinCode)
             }
         }.launchIn(lifecycleScope)
     }
@@ -88,5 +92,15 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .setPrimaryNavigationFragment(navHostFragment)
             .commit()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        vm.saveAwayLong()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        vm.checkIsAwayLong()
     }
 }
