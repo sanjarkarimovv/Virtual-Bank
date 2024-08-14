@@ -69,7 +69,8 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
             val cardNumber = vm.resultCardNumber(etCardNumber.getCardNumber())
             val (month, year) = vm.extractDate(metValidityPeriod.text.toString())
             val cardName = etCardName.text.toString()
-            toast("Karta raqami: $cardNumber\nOy: $month\nYil: $year\nKarta nomi: $cardName")
+            val cardStyleColor = viewPager.currentItem
+            toast("Karta raqami: $cardNumber\nOy: $month\nYil: $year\nKarta nomi: $cardName\nKarta rangi[index]: $cardStyleColor")
         }
     }
 
