@@ -4,7 +4,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentHistoryBinding
@@ -22,18 +21,21 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
         }
         with(binding) {
 
-        recyclerView.apply {
-            adapter = historyAdapter
-            addItemDecoration(StickyHeaderDecoration(historyAdapter))
-        }
-
-        lifecycleScope.launch {
-            viewModel.historyItems.collectLatest { pagingData ->
-                historyAdapter.submitData(pagingData)
+            recyclerView.apply {
+                adapter = historyAdapter
+                addItemDecoration(StickyHeaderDecoration(historyAdapter))
             }
-        }
-            tvIncomeAmount.text = "+ " + viewModel.getAmounts().first.toString()
-            tvOutcomeAmount.text = "- " + viewModel.getAmounts().second.toString()
+
+
+            lifecycleScope.launch {
+                viewModel.getHistory()
+                viewModel.response.observe(viewLifecycleOwner) { pagingData ->
+                    println(":::::::;HistoryList $pagingData")
+                    historyAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+                }
+            }
+            // tvIncomeAmount.text = "+ " + viewModel.getAmounts().first.toString()
+            //tvOutcomeAmount.text = "- " + viewModel.getAmounts().second.toString()
         }
 
     }
