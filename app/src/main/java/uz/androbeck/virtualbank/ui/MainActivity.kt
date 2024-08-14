@@ -79,6 +79,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
         }.launchIn(lifecycleScope)
+
+        vm.observeIsAwayLong().onEach {
+            if (it) {
+                vm.setNavGraphEvent(NavGraphEvent.PinCode)
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
@@ -86,5 +92,15 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .setPrimaryNavigationFragment(navHostFragment)
             .commit()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        vm.saveAwayLong()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        vm.checkIsAwayLong()
     }
 }

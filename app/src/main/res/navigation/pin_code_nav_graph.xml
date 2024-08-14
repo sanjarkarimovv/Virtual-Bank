@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pin_code_nav_graph"
     app:startDestination="@id/pinCodeFragment">
 
     <fragment
         android:id="@+id/pinCodeFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.pin_code.PinCodeFragment"
-        android:label="PinCodeFragment" />
+        android:label="PinCodeFragment"
+        tools:layout="@layout/fragment_pin_code">
+        <action
+            android:id="@+id/action_pinCodeFragment_to_confirmPinCodeFragment"
+            app:destination="@id/confirmPinCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/biometricPermissionFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.biometrics.BiometricPermissionFragment"
+        android:label="BiometricPermissionFragment"
+        tools:layout="@layout/fragment_biometric_permission"/>
+    <fragment
+        android:id="@+id/confirmPinCodeFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.pin_code.confirmpincode.ConfirmPinCodeFragment"
+        android:label="ConfirmPinCodeFragment"
+        tools:layout="@layout/fragment_confirm_pin_code">
+        <action
+            android:id="@+id/action_confirmPinCodeFragment_to_biometricPermissionFragment"
+            app:destination="@id/biometricPermissionFragment" />
+        <action
+            android:id="@+id/action_confirmPinCodeFragment_to_pinCodeFragment"
+            app:destination="@id/pinCodeFragment"
+            app:popUpTo="@id/pinCodeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

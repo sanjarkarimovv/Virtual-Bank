@@ -9,12 +9,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
+import uz.androbeck.virtualbank.ui.screens.pin_code.events.PinCodeEvent
+import uz.androbeck.virtualbank.ui.screens.pin_code.usecases.RegisterReservePinUseCase
+import uz.androbeck.virtualbank.ui.screens.pin_code.usecases.ValidatePinUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class PinCodeViewModel @Inject constructor(
     private val prefsProvider: PreferencesProvider,
-    private val registerPinUseCase: RegisterPinUseCase,
+    private val registerReservePinUseCase: RegisterReservePinUseCase,
     private val validatePinUseCase: ValidatePinUseCase
 ) : BaseViewModel() {
     private val _pinCodeList = MutableLiveData<MutableList<String>>(mutableListOf())
@@ -29,27 +32,12 @@ class PinCodeViewModel @Inject constructor(
     private val _errorAttempts = MutableLiveData<Int>()
     val errorAttempts: LiveData<Int> get() = _errorAttempts
 
-    private val _timerRunning = MutableLiveData<Boolean>()
-    val timerRunning: LiveData<Boolean> get() = _timerRunning
+    private val _errorLogout = MutableLiveData<Boolean>()
+    val errorLogout: LiveData<Boolean> get() = _errorLogout
 
     init {
+        userLog()
         _errorAttempts.value = prefsProvider.errorAttempts
-        checkTimer()
-    }
-
-    private fun checkTimer() {
-        val lastErrorTime = prefsProvider.lastErrorTimestamp
-        if (System.currentTimeMillis() - lastErrorTime < 60000) {
-            startTimer(60000 - (System.currentTimeMillis() - lastErrorTime))
-        }
-    }
-
-    private fun startTimer(duration: Long) {
-        _timerRunning.value = true
-        Handler(Looper.getMainLooper()).postDelayed({
-            _timerRunning.value = false
-            resetErrorAttempts()
-        }, duration)
     }
 
     private fun incrementErrorAttempts() {
@@ -57,17 +45,17 @@ class PinCodeViewModel @Inject constructor(
         _errorAttempts.value = attempts
         prefsProvider.errorAttempts = attempts
         if (attempts >= 5) {
-            prefsProvider.lastErrorTimestamp = System.currentTimeMillis()
-            startTimer(60000)
+            _errorLogout.value = true
+            handlePinCodeExit()
         }
     }
 
-    private fun resetErrorAttempts() {
-        _errorAttempts.value = 0
+    fun resetErrorAttempts() {
+        _errorAttempts.postValue(0)
         prefsProvider.errorAttempts = 0
     }
 
-    fun userLog() {
+    private fun userLog() {
         viewModelScope.launch {
             val fromRegister = prefsProvider.pinCode.isEmpty()
             _fromRegister.postValue(!fromRegister)
@@ -80,10 +68,6 @@ class PinCodeViewModel @Inject constructor(
             if (it.size < 4) {
                 it.add(digit)
                 _pinCodeList.value = it
-
-                if (it.size == 4 && _fromRegister.value == true) {
-                    handlePinCodeCompletion()
-                }
             }
         }
     }
@@ -96,21 +80,18 @@ class PinCodeViewModel @Inject constructor(
             }
         }
     }
+
     fun clearPinCode() {
         _pinCodeList.value?.clear()
         _pinCodeList.value = _pinCodeList.value
     }
 
     fun handlePinCodeCompletion() {
-        if (_timerRunning.value == true) {
-            // Handle timer running scenario, e.g., show a message to the user.
-            return
-        }
         viewModelScope.launch {
             val pinCode = _pinCodeList.value.toString()
 
             if (prefsProvider.pinCode.isEmpty()) {
-                registerPinUseCase.registerPin(pinCode)
+                registerReservePinUseCase.registerReservePin(pinCode)
                 _pinCodeEvent.value = PinCodeEvent.PinRegistered
             } else {
                 if (validatePinUseCase.isValidPin(pinCode)) {
@@ -129,5 +110,9 @@ class PinCodeViewModel @Inject constructor(
         prefsProvider.token = ""
         prefsProvider.pinCode = ""
         resetErrorAttempts()
+    }
+
+    fun checkBiometrics(): Boolean {
+        return prefsProvider.useBiometric
     }
 }

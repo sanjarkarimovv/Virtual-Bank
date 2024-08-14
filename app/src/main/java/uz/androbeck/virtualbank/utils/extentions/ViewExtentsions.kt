@@ -6,6 +6,10 @@ fun View.visible() {
     visibility = View.VISIBLE
 }
 
+fun View.visibleIf(condition: Boolean) {
+    visibility = if (condition) View.VISIBLE else View.GONE
+}
+
 fun View.invisible() {
     visibility = View.INVISIBLE
 }
