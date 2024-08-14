@@ -1,10 +1,10 @@
-package uz.androbeck.virtualbank.data.dto.common.response
+package uz.androbeck.virtualbank.data.dto.response.card
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GetCardsResDto(
+data class CardResDto(
     @SerialName("id")
     val id: Int? = 0,
     @SerialName("amount")
