@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
+import uz.androbeck.virtualbank.data.repository.cards.GetCardsRepository
 import uz.androbeck.virtualbank.data.repository.history.HistoryRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.auth.SignInVerifyMapper
@@ -15,6 +16,7 @@ import uz.androbeck.virtualbank.domain.mapper.auth.TokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
+import uz.androbeck.virtualbank.domain.mapper.cards.GetCardsMapper
 import uz.androbeck.virtualbank.domain.mapper.history.LastTransfersMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
@@ -26,6 +28,7 @@ import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCa
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SingInResendUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
+import uz.androbeck.virtualbank.domain.useCases.cards.GetCardsUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
@@ -102,4 +105,9 @@ object UseCaseModule {
         signInVerifyMapper: SignInVerifyMapper,
         tokensMapper: TokensMapper
     ) = AuthVerifyUseCase(authenticationRepository, signInVerifyMapper, tokensMapper)
+    @Provides
+    fun provideGetCardsUseCase(
+        cardsRepository: GetCardsRepository,
+        cardsMapper: GetCardsMapper
+    ) =GetCardsUseCase(cardsRepository,cardsMapper)
 }
