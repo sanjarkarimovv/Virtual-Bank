@@ -14,13 +14,14 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
 import uz.androbeck.virtualbank.domain.ui_models.history.TransfersUIModel
 import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
+import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import uz.androbeck.virtualbank.utils.extentions.toStartOfDay
 import javax.inject.Inject
 
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val getHistoryUseCase: GetHistoryUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private var totalAmountIncome: Float = 0f
     private var totalAmountOutcome: Float = 0f
