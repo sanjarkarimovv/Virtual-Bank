@@ -1,6 +1,6 @@
 package uz.androbeck.virtualbank.ui.enums
 
-enum class ViewType {
+enum class HistoryItemViewType {
     Header,
     Content
 }

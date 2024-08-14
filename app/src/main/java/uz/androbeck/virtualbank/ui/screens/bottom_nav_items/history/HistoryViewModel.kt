@@ -2,7 +2,6 @@ package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn

@@ -11,10 +11,11 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.ItemHistoryHeaderBinding
 import uz.androbeck.virtualbank.databinding.ItemHistoryInfoBinding
 import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
-import uz.androbeck.virtualbank.ui.enums.ViewType
+import uz.androbeck.virtualbank.ui.enums.HistoryItemViewType
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.formatToDayMonthYear
 import uz.androbeck.virtualbank.utils.extentions.formatToHourMinute
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
 
 class HistoryAdapter(
@@ -56,10 +57,9 @@ class HistoryAdapter(
                     ivServiceType.setImageResource(R.drawable.ic_transfer_sent)
                     llImageService.setBackgroundResource(R.drawable.bg_shape_corner_radius_15)
                 }
-            }
-
-            binding.root.setOnClickListener {
-                onClick(content)
+                root.singleClickable {
+                    onClick(content)
+                }
             }
         }
     }
@@ -70,7 +70,7 @@ class HistoryAdapter(
                 oldItem: HistoryItem,
                 newItem: HistoryItem
             ): Boolean {
-                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header || oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
+                if ((oldItem is HistoryItem.Header && newItem is HistoryItem.Header) || (oldItem is HistoryItem.Content && newItem is HistoryItem.Content)) {
                     return oldItem == newItem
                 }
                 return false
@@ -80,7 +80,7 @@ class HistoryAdapter(
                 oldItem: HistoryItem,
                 newItem: HistoryItem
             ): Boolean {
-                if (oldItem is HistoryItem.Header && newItem is HistoryItem.Header || oldItem is HistoryItem.Content && newItem is HistoryItem.Content) {
+                if ((oldItem is HistoryItem.Header && newItem is HistoryItem.Header) || (oldItem is HistoryItem.Content && newItem is HistoryItem.Content)) {
                     return oldItem == newItem
                 }
                 return false
@@ -90,7 +90,7 @@ class HistoryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ViewType.Header.ordinal -> HeaderVH(
+            HistoryItemViewType.Header.ordinal -> HeaderVH(
                 ItemHistoryHeaderBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -98,7 +98,7 @@ class HistoryAdapter(
                 )
             )
 
-            ViewType.Content.ordinal -> ContentVH(
+            HistoryItemViewType.Content.ordinal -> ContentVH(
                 ItemHistoryInfoBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
@@ -114,14 +114,14 @@ class HistoryAdapter(
         when (val item = getItem(position)) {
             is HistoryItem.Header -> (holder as HeaderVH).bind(item)
             is HistoryItem.Content -> (holder as ContentVH).bind(item)
-            null -> TODO()
+            null -> Unit
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is HistoryItem.Header -> ViewType.Header.ordinal
-            is HistoryItem.Content -> ViewType.Content.ordinal
+            is HistoryItem.Header -> HistoryItemViewType.Header.ordinal
+            is HistoryItem.Content -> HistoryItemViewType.Content.ordinal
             else -> throw IllegalArgumentException("Invalid item type")
         }
     }

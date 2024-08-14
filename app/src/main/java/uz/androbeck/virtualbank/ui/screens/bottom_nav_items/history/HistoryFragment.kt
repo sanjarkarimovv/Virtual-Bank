@@ -26,9 +26,7 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
                 addItemDecoration(StickyHeaderDecoration(historyAdapter))
             }
 
-
             lifecycleScope.launch {
-                viewModel.getHistory()
                 viewModel.response.observe(viewLifecycleOwner) { pagingData ->
                     println(":::::::;HistoryList $pagingData")
                     historyAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
