@@ -25,6 +25,7 @@ object Constants {
         const val INCOME = "income"
         const val OUTCOME = "outcome"
         const val TOTAL_BALANCE = "home/total-balance"
+        const val GET_HISTORY="transfer/transfer"
     }
 
     object Header {
