@@ -49,6 +49,15 @@
     <string name="str_localization_uzb">Uzbek</string>
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
+    <string name="str_payment">To\'lov</string>
+    <string name="str_search">Izlash</string>
+    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
+    <string name="str_more">Yana</string>
+    <string name="str_servers_payment">Xizmatga to\'lov</string>
+    <string name="paymnet">Paymnet</string>
+    <string name="my_home">Mening uyim</string>
+    <string name="places_payments">Joylarda to\'lov</string>
+    <string name="str_add">Qo\'shish</string>
     <string name="str_num_0">0</string>
     <string name="str_num_1">1</string>
     <string name="str_num_2">2</string>

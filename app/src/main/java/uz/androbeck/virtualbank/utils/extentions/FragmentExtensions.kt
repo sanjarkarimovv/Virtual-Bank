@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
@@ -45,3 +46,8 @@ fun Fragment.dpToPxFloat(dp: Float): Float = requireContext().dpToPxFloat(dp)
 fun Fragment.dpToPx(dp: Int): Int = requireContext().dpToPx(dp)
 
 fun Fragment.pxToDp(px: Int): Int = requireContext().pxToDp(px)
+
+fun Fragment.hideKeyboard() {
+    val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    imm?.hideSoftInputFromWindow(view?.windowToken, 0)
+}
