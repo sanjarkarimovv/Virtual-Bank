@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/static_white">
+
+    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/user_info_page_menu"
+        app:title="@string/str_my_information" />
+
+    <LinearLayout
+        android:id="@+id/first_name_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/helper_first_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/str_first_name"
+            android:textColor="@color/colorInverseSurface"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/custom_input_background"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:singleLine="true"
+            android:textColor="@color/colorInverseSurface"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/last_name_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/first_name_ll"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/helper_last_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/str_last_name"
+            android:textColor="@color/colorInverseSurface"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/custom_input_background"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:singleLine="true"
+            android:textColor="@color/colorInverseSurface"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/date_birth_and_gender_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/last_name_ll"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/date_birth_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo2_semi_bold"
+            android:text="@string/str_date_of_birth"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/date_birth_receiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/date_birth_tv"
+            android:layout_marginTop="20dp"
+            android:text="2006.04.04"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_date_and_birth_changer"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gender_info_receiver"
+            android:layout_marginTop="10dp"
+            android:padding="1dp"
+            android:text="@string/str_change"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:cornerRadius="10dp" />
+
+        <TextView
+            android:id="@+id/gender_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/exo2_semi_bold"
+            android:text="@string/str_gender"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/gender_info_receiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gender_tv"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="38dp"
+            android:text="@string/str_male"
+            android:textColor="@color/colorScrim"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_gender_changer"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gender_info_receiver"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="14dp"
+            android:layout_toStartOf="@id/gender_info_receiver"
+            android:padding="1dp"
+            android:text="@string/str_change"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:cornerRadius="10dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_birth_and_gender_root"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ripple_effect"
+        android:clickable="true"
+        android:drawablePadding="10dp"
+        android:focusable="true"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="20dp"
+        android:text="+998 95 058 06 27"
+        android:textSize="16sp"
+        app:drawableEndCompat="@drawable/ic_next"
+        app:drawableStartCompat="@drawable/ic_phone" />
+
+    <TextView
+        android:id="@+id/tv_delete_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_phone_number"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ripple_effect"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="10dp"
+        android:text="@string/str_delete_account"
+        android:textColor="@color/colorRed"
+        android:textSize="16sp"
+        app:drawableEndCompat="@drawable/ic_next" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_undo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_saver_changes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:elevation="10dp"
+        android:text="@string/str_undo_changes"
+        android:textColor="@color/static_white"
+        android:visibility="gone"
+        app:cornerRadius="10dp"
+        app:elevation="10dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_saver_changes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:enabled="false"
+        android:text="@string/str_save_changes"
+        android:textColor="@color/colorPrimary"
+        app:cornerRadius="10dp"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp" />
+
+</RelativeLayout>
