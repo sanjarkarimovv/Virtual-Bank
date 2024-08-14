@@ -28,7 +28,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun setNavGraphEvent() = viewModelScope.launch {
-            navGraphEvent.send(NavGraphEvent.Main)
         if (prefsProvider.token.isNotEmpty()) {
             navGraphEvent.send(NavGraphEvent.PinCode)
         } else {
