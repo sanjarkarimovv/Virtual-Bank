@@ -94,10 +94,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    override fun onLanguageChanged() {
-        recreate()
-    }
-
     override fun onPause() {
         super.onPause()
         vm.saveAwayLong()
