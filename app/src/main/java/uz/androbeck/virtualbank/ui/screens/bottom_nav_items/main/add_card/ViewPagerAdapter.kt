@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.ItemAddCardImagesBinding
 
 class ViewPagerAdapter(
-    val images: List<Int>,
+    val cardStyleColors: List<Int>,
 ) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder>() {
 
     inner class ViewPagerHolder(
@@ -14,7 +14,7 @@ class ViewPagerAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             with(binding) {
-                iv.setImageResource(images[adapterPosition])
+                iv.setImageResource(cardStyleColors[adapterPosition])
             }
         }
     }
@@ -26,7 +26,7 @@ class ViewPagerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return cardStyleColors.size
     }
 
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
