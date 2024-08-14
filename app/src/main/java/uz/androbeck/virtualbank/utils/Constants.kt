@@ -22,6 +22,7 @@ object Constants {
         const val TOTAL_BALANCE = "home/total-balance"
         const val GET_HISTORY="transfer/transfer"
         const val DELETE_CARD="card/3"
+        const val GET_CARD="card"
     }
 
     object Header {
