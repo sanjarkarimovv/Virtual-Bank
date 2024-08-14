@@ -78,6 +78,14 @@
     <string name="biometric_prompt_title">Biometric Authentication</string>
     <string name="biometric_prompt_subtitle">Authenticate with your biometrics</string>
     <string name="biometric_prompt_cancel">Cancel</string>
+    <string name="str_my_information">My Information</string>
+    <string name="str_date_of_birth">Date of Birth</string>
+    <string name="str_change">Change</string>
+    <string name="str_male">Male</string>
+    <string name="str_female">Female</string>
+    <string name="str_undo_changes">Undo changes</string>
+    <string name="str_save_changes">Save changes</string>
+    <string name="str_delete_account">Delete account</string>
 
 
 </resources>

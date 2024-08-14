@@ -47,5 +47,6 @@
     <color name="colorShadow">#000000</color>
     <color name="screenBackgroundColor">#F6F7F9</color>
     <color name="screenTextColor">#6DC7CE</color>
+    <color name="colorRed">#F60C14</color>
 
 </resources>

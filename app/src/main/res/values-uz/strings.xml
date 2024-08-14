@@ -74,4 +74,12 @@
     <string name="str_add">Qo\'shish</string>
     <string name="str_this_send_phone_number_confirm_sms_code">Ushbu telefon raqamga tasdiqlash kodi yuborildi</string>
     <string name="str_success">Success</string>
+    <string name="str_my_information">Mening ma`lumotlarim</string>
+    <string name="str_date_of_birth">Tug`ilgan kun sanasi</string>
+    <string name="str_change">O`zgartirish</string>
+    <string name="str_male">Erkak</string>
+    <string name="str_female">Ayol</string>
+    <string name="str_undo_changes">O`zgarishlarni bekor qilish</string>
+    <string name="str_save_changes">O`zgarishlarni saqlash</string>
+    <string name="str_delete_account">Akkountni o`chirish</string>
 </resources>

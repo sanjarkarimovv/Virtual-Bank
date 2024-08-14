@@ -74,4 +74,12 @@
     <string name="str_add">Qo\'shish</string>
     <string name="str_this_send_phone_number_confirm_sms_code">На этот номер телефона был отправлен код подтверждения</string>
     <string name="str_success">Success</string>
+    <string name="str_my_information">Моя информация</string>
+    <string name="str_date_of_birth">Дата рождения</string>
+    <string name="str_change">Изменять</string>
+    <string name="str_male">Мужской</string>
+    <string name="str_female">женский</string>
+    <string name="str_undo_changes">Отменить изменения</string>
+    <string name="str_save_changes">Сохранить изменения</string>
+    <string name="str_delete_account">Удалить аккаунт</string>
 </resources>
