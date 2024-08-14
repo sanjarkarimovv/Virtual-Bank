@@ -54,4 +54,10 @@
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
     <string name="str_widget_settings">Vidjet sozlamalari</string>
+    <string name="str_hint_phone_number">+998 Telefon raqami</string>
+    <string name="str_payment_for_phone_number">Payment for phone</string>
+    <string name="str_advertising">Advertising</string>
+    <string name="str_finances_service">Finances service</string>
+    <string name="str_payment">Pul o\'tgazish</string>
+    <string name="str_get_credit">Kridit oling</string>
 </resources>

@@ -9,8 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.domain.ui_models.home.CardModel
 import uz.androbeck.virtualbank.domain.ui_models.home.HomeBodyModels
+import uz.androbeck.virtualbank.domain.ui_models.home.LastTransferModel
+import uz.androbeck.virtualbank.domain.ui_models.home.PaymentsModel
 import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
 import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
@@ -38,7 +41,8 @@ class MainViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             getComponentsFromCacheUseCase().onEach { it ->
-                _homeComponents.postValue(HomeComponentsUiEvent.ComponentForUi(it))
+                viewModelScope.launch {
+                _homeComponents.value = (HomeComponentsUiEvent.ComponentForUi(it))
                 components = it.ifEmpty {
                     // default components save
                     val list = listOf(
@@ -59,17 +63,17 @@ class MainViewModel @Inject constructor(
                         ),
                         UiComponents(
                             name = HomeComponents.ForAdvertising,
-                            isShow = false,
+                            isShow = true,
                             value = HomeComponents.ForAdvertising.name
                         ),
                         UiComponents(
                             name = HomeComponents.Payments,
-                            isShow = false,
+                            isShow = true,
                             value = HomeComponents.Payments.name
                         ),
                         UiComponents(
                             name = HomeComponents.PaymentForPhoneNumber,
-                            isShow = false,
+                            isShow = true,
                             value = HomeComponents.PaymentForPhoneNumber.name
                         ),
                     )
@@ -78,46 +82,72 @@ class MainViewModel @Inject constructor(
                     }
                     list
                 }
+                getUiData()
+                }
             }.launchIn(this)
         }
-        getUiData()
     }
 
     fun getUiData() {
         viewModelScope.launch {
             components?.let { com ->
                 com.forEach { item ->
-                    when (item.name) {
-                        HomeComponents.Cards -> {
-                            // get from local data
-                            _uiData.value =
-                                HomeBodyModels.Card(
-                                    HomeComponents.Cards,
-                                    listOf(
-                                        CardModel("Normurodov", "123456789"),
-                                        CardModel("Normurodov", "123456789"),
-                                        )
+                    if (item.isShow) {
+                        when (item.name) {
+                            HomeComponents.Cards -> {
+                                // get from remote data
+                                _uiData.value = HomeBodyModels.Card(
+                                    item.name, listOf(
+                                        CardModel("Normurodov", "100 000"),
+                                        CardModel("Normurodov", "500 000"),
+                                        CardModel("Normurodov", "800 000"),
+                                        CardModel("Normurodov", "500 000"),
+                                    )
                                 )
-                        }
+                            }
 
-                        HomeComponents.Payments -> {
-                            // get from local data
-                        }
+                            HomeComponents.Payments -> {
+                                // get from local data
+                                _uiData.value = HomeBodyModels.Payment(
+                                    item.name,
+                                    listOf(
+                                        PaymentsModel("", R.drawable.bg_beeline_logo),
+                                        PaymentsModel("",R.drawable.bg_ucell_logo),
+                                        PaymentsModel("",R.drawable.bg_gas_logo),
+                                        PaymentsModel("",R.drawable.bg_humo_logo),
+                                        PaymentsModel("",R.drawable.bg_uzcard_logo),
+                                    )
+                                )
+                            }
 
-                        HomeComponents.LastTransfers -> {
-                            // get from local data
-                        }
+                            HomeComponents.LastTransfers -> {
+                                _uiData.value = HomeBodyModels.LastTransfer(
+                                    item.name,
+                                    listOf(
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                        LastTransferModel(""),
+                                    )
+                                )
+                            }
 
-                        HomeComponents.PaymentForPhoneNumber -> {
-                            // get from local data
-                        }
+                            HomeComponents.PaymentForPhoneNumber -> {
+                                // it is static ui
+                            }
 
-                        HomeComponents.FinancesService -> {
-                            // get from local data
-                        }
+                            HomeComponents.FinancesService -> {
+                                // get from local data
+                            }
 
-                        HomeComponents.ForAdvertising -> {
-                            // get from local data
+                            HomeComponents.ForAdvertising -> {
+                                // get from local data
+                            }
                         }
                     }
                 }

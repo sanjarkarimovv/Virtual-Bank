@@ -7,4 +7,14 @@ sealed class HomeBodyModels {
         val name: HomeComponents,
         val data: List<CardModel>
     ) : HomeBodyModels()
+
+    data class Payment(
+        val name: HomeComponents,
+        val data: List<PaymentsModel>
+    ):HomeBodyModels()
+
+    data class LastTransfer(
+        val name: HomeComponents,
+        val data: List<LastTransferModel>
+    ) : HomeBodyModels()
 }
