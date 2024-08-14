@@ -58,4 +58,13 @@
     <string name="str_histiry_sort_name_income">Received</string>
     <string name="str_histiry_sort_name_outcome">Expenses</string>
 
+    <string name="str_payment">To\'lov</string>
+    <string name="str_search">Izlash</string>
+    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
+    <string name="str_more">Yana</string>
+    <string name="str_servers_payment">Xizmatga to\'lov</string>
+    <string name="paymnet">Paymnet</string>
+    <string name="my_home">Mening uyim</string>
+    <string name="places_payments">Joylarda to\'lov</string>
+    <string name="str_add">Qo\'shish</string>
 </resources>

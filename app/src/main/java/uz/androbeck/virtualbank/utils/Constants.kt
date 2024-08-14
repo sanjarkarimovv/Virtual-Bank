@@ -43,6 +43,7 @@ object Constants {
 
     object String {
         const val EMPTY = ""
+        const val ADD_HOME = "Uy qo'shish"
     }
 
     object Localization {

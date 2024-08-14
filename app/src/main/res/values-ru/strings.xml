@@ -56,4 +56,9 @@
     <string name="str_history_toolbar_title">Мониторинг</string>
     <string name="str_histiry_sort_name_income">Поступиленные</string>
     <string name="str_histiry_sort_name_outcome">Расходы</string>
+    <string name="str_search">Izlash</string>
+    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
+    <string name="my_home">Mening uyim</string>
+    <string name="places_payments">Joylarda to\'lov</string>
+    <string name="str_add">Qo\'shish</string>
 </resources>

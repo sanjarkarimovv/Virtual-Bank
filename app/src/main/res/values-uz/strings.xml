@@ -55,4 +55,10 @@
     <string name="str_history_toolbar_title">Kirim-Chiqim</string>
     <string name="str_histiry_sort_name_income">Tushum</string>
     <string name="str_histiry_sort_name_outcome">Chiqim</string>
+    <string name="str_localization_eng">Inglizcha</string>
+    <string name="str_search">Izlash</string>
+    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
+    <string name="my_home">Mening uyim</string>
+    <string name="places_payments">Joylarda to\'lov</string>
+    <string name="str_add">Qo\'shish</string>
 </resources>
