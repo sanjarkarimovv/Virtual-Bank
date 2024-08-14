@@ -12,6 +12,7 @@ import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.data.repository.home.HomeRepositoryImpl
 import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.history.HistoryPagingSource
 import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDatasource
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
 import javax.inject.Singleton
@@ -39,9 +40,10 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideHistoryRepository(
-        historyRemoteDatasource: HistoryRemoteDatasource
+        historyRemoteDatasource: HistoryRemoteDatasource,
+        historyPagingSource: HistoryPagingSource
     ):HistoryRepository{
-        return HistoryRepositoryImpl(historyRemoteDatasource)
+        return HistoryRepositoryImpl(historyPagingSource,historyRemoteDatasource)
     }
 
 }

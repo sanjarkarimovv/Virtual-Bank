@@ -7,6 +7,8 @@ import uz.androbeck.virtualbank.data.dto.common.response.MessageResDto
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
 import uz.androbeck.virtualbank.data.dto.response.home.BasicInfoResDto
 import uz.androbeck.virtualbank.data.dto.response.home.FullInfoResDto
+import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
+import uz.androbeck.virtualbank.data.dto.response.home.TotalBalanceResDto
 
 interface HomeRepository {
     fun getFullInfo(): Flow<FullInfoResDto>
@@ -15,4 +17,6 @@ interface HomeRepository {
     fun getAllHomeComponents(): Flow<List<HomeEntity>>
     suspend fun putComponents(homeEntity: HomeEntity)
     suspend fun updateComponents(id: Int, isVisibility: Boolean)
+    fun putUpdateInfo(request: UpdateInfoReqDto):Flow<MessageResDto>
+    fun getTotalBalance():Flow<TotalBalanceResDto>
 }

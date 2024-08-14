@@ -4,6 +4,13 @@
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/mainFragment">
 
+    <action
+        android:id="@+id/recreate_profile"
+        app:destination="@id/profileFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/profileFragment"
+        app:popUpToSaveState="true" />
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"

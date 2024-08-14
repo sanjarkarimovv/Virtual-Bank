@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.cli.jvm.main
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -108,4 +106,7 @@ dependencies {
 
     // refresh layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    //Paging 3
+    implementation("androidx.paging:paging-runtime:3.3.2")
 }

@@ -13,44 +13,43 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.ui_models.common.CodeVerifyReqUIModel
-import uz.androbeck.virtualbank.domain.useCases.authentication.SignInVerifyUseCase
-import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpVerifyUseCase
+import uz.androbeck.virtualbank.domain.useCases.authentication.AuthVerifyUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.screens.Screen
+import uz.androbeck.virtualbank.utils.Constants.Number.reENTRY_GET_CODE_TIME
 import javax.inject.Inject
 
 @HiltViewModel
 class EnterVerifyCodeDialogViewModel @Inject constructor(
-    private val signUpVerifyUseCase: SignUpVerifyUseCase,
-    private val signInVerifyUseCase: SignInVerifyUseCase,
+    private val authVerifyUseCase: AuthVerifyUseCase,
     private val preferencesProvider: PreferencesProvider,
     private val errorHandler: ErrorHandler,
 ) : ViewModel() {
 
-    private val _signUpVerifyEvent = MutableStateFlow(false)
-    val signUpVerifyEvent = _signUpVerifyEvent.asStateFlow()
+    private val _authVerifyEvent = MutableStateFlow(false)
+    val authVerifyEvent = _authVerifyEvent.asStateFlow()
 
-    private val _timerText = MutableLiveData<String>()
-    val timerText: LiveData<String> get() = _timerText
+    private val _timerTextEvent = MutableLiveData<String>()
+    val timerTextEvent: LiveData<String> get() = _timerTextEvent
 
-    private val _timerFinished = MutableLiveData<Boolean>()
-    val timerFinished: LiveData<Boolean> get() = _timerFinished
+    private val _timerFinishedEvent = MutableLiveData(false)
+    val timerFinishedEvent: LiveData<Boolean> get() = _timerFinishedEvent
 
-    private val _editTextValues = MutableLiveData<List<String>>()
-    val editTextValues: LiveData<List<String>> get() = _editTextValues
+    private val _editTextValuesEvent = MutableLiveData<List<String>>()
+    val editTextValuesEvent: LiveData<List<String>> get() = _editTextValuesEvent
 
-    private val _allFieldsFilled = MutableLiveData<Boolean>()
-    val allFieldsFilled: LiveData<Boolean> get() = _allFieldsFilled
+    private val _allFieldsFilledEvent = MutableLiveData(false)
+    val allFieldsFilledEvent: LiveData<Boolean> get() = _allFieldsFilledEvent
 
-    private val _isError = MutableLiveData(false)
-    val isError: LiveData<Boolean> get() = _isError
+    private val _isErrorEvent = MutableLiveData(false)
+    val isErrorEvent: LiveData<Boolean> get() = _isErrorEvent
 
     private var countDownTimer: CountDownTimer? = null
 
     init {
-        _editTextValues.value = List(6) { "" }
-        _allFieldsFilled.value = false
+        _editTextValuesEvent.value = List(6) { "" }
+        _allFieldsFilledEvent.value = false
         startTimer()
     }
 
@@ -63,62 +62,47 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
                 token = token,
                 code = it
             )
-            when (screen) {
-                Screen.LOGIN -> {
-                    signInVerifyUseCase(
-                        requestUIModel
-                    ).onEach { uiModel ->
-                        preferencesProvider.token = uiModel.accessToken.orEmpty()
-                        preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
-                        _signUpVerifyEvent.value = true
-                    }.catch { th ->
-                        errorHandler.handleError(th)
-                        _isError.value = true
-                    }.launchIn(viewModelScope)
-                }
-
-                Screen.REGISTRATION -> {
-                    signUpVerifyUseCase(
-                        requestUIModel
-                    ).onEach { uiModel ->
-                        preferencesProvider.token = uiModel.accessToken.orEmpty()
-                        preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
-                        _signUpVerifyEvent.value = true
-                    }.catch { th ->
-                        errorHandler.handleError(th)
-                        _isError.value = true
-                    }.launchIn(viewModelScope)
-                }
-
-                null -> Unit
+            if (screen == null) {
+                return
             }
+            authVerifyUseCase(
+                screen,
+                requestUIModel
+            ).onEach { uiModel ->
+                preferencesProvider.token = uiModel.accessToken.orEmpty()
+                preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
+                _authVerifyEvent.value = true
+            }.catch { th ->
+                errorHandler.handleError(th)
+                _isErrorEvent.value = true
+            }.launchIn(viewModelScope)
         }
     }
 
-    private fun startTimer(durationInMillis: Long = rENTER_GET_CODE_TIME) {
+    private fun startTimer(durationInMillis: Long = reENTRY_GET_CODE_TIME) {
         countDownTimer = object : CountDownTimer(durationInMillis, 1000) {
             @SuppressLint("DefaultLocale")
             override fun onTick(millisUntilFinished: Long) {
                 val minutes = (millisUntilFinished / 1000) / 60
                 val seconds = (millisUntilFinished / 1000) % 60
-                _timerText.postValue(String.format("%d:%02d", minutes, seconds))
+                _timerTextEvent.value = String.format("%d:%02d", minutes, seconds)
             }
 
             override fun onFinish() {
-                _timerFinished.postValue(true)
+                _timerFinishedEvent.value = true
             }
         }.start()
     }
 
     fun updateEditTextValue(index: Int, value: String) {
-        _editTextValues.value = _editTextValues.value?.toMutableList()?.apply {
+        _editTextValuesEvent.value = _editTextValuesEvent.value?.toMutableList()?.apply {
             this[index] = value
         }
         checkAllFieldsFilled()
     }
 
     private fun checkAllFieldsFilled() {
-        _allFieldsFilled.value = _editTextValues.value?.all { it.isNotEmpty() } == true
+        _allFieldsFilledEvent.value = _editTextValuesEvent.value?.all { it.isNotEmpty() } == true
     }
 
     override fun onCleared() {
@@ -126,5 +110,3 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
         countDownTimer?.cancel()
     }
 }
-
-const val rENTER_GET_CODE_TIME = 180000L

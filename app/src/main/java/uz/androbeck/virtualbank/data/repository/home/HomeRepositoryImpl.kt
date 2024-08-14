@@ -1,8 +1,10 @@
 package uz.androbeck.virtualbank.data.repository.home
 
 import uz.androbeck.virtualbank.data.db.entity.HomeEntity
+import kotlinx.coroutines.flow.Flow
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
 import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasource
+import uz.androbeck.virtualbank.data.dto.response.home.TotalBalanceResDto
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
 import javax.inject.Inject
 
@@ -17,6 +19,8 @@ class HomeRepositoryImpl @Inject constructor(
 
     override fun putUpdateInfo(request: UpdateInfoReqDto) =
         homeRemoteDataSource.putUpdateInfo(request)
+
+    override fun getTotalBalance() = homeRemoteDataSource.getTotalBalance()
 
     override fun getAllHomeComponents() =
         homeLocalDatasource.getHomeComponents()
