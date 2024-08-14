@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/mainFragment">
 
@@ -19,9 +20,18 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_changeLanguageFragment"
+            app:destination="@id/changeLanguageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryFragment"
         android:label="HistoryFragment" />
+    <dialog
+        android:id="@+id/changeLanguageFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.change_language.ChangeLanguageFragment"
+        android:label="ChangeLanguageFragment"
+        tools:layout="@layout/fragment_change_language"/>
 </navigation>
