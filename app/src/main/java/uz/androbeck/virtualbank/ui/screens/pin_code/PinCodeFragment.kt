@@ -132,27 +132,24 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
     private fun handlePinCodeEvent(event: PinCodeEvent) {
         when (event) {
             PinCodeEvent.PinRegistered -> {
-                performPinCodeAnimation()
+                performPinCodeAnimation(false)
                 Handler(Looper.getMainLooper()).postDelayed({
                     findNavController().navigate(R.id.action_pinCodeFragment_to_confirmPinCodeFragment)
                 }, 1200)
             }
 
             PinCodeEvent.PinValidated -> {
-                performPinCodeAnimation()
+                performPinCodeAnimation(false)
                 navigateWithDelay(NavGraphEvent.Main, 1200)
             }
 
             PinCodeEvent.PinValidationFailed -> {
-                performPinCodeAnimation()
-                errorPinAnim()
-                pinCodeViewModel.clearPinCode()
-                binding.errorAttempts.visible()
+                performPinCodeAnimation(true)
             }
         }
     }
 
-    private fun performPinCodeAnimation() {
+    private fun performPinCodeAnimation(isError: Boolean) {
         setButtonsEnabled(false)
         Handler(Looper.getMainLooper()).postDelayed({
             pinCodeViewModel.clearPinCode()
@@ -160,7 +157,16 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
         Handler(Looper.getMainLooper()).postDelayed({
             checkPinAnim()
         }, 400)
-        Handler(Looper.getMainLooper()).postDelayed({ setButtonsEnabled(true) }, 1000)
+        if (isError) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                errorPinAnim()
+            }, 1000)
+            Handler(Looper.getMainLooper()).postDelayed({
+                pinCodeViewModel.clearPinCode()
+                setButtonsEnabled(true)
+                binding.errorAttempts.visible()
+            }, 2000)
+        }
     }
 
     private fun updatePinCode(pinCode: MutableList<String>) {
