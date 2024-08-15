@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/static_transparent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_title_input_card_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Karta yoki telefon raqamini kiriting "
+        android:textColor="#868888"
+        android:textSize="10sp"
+        android:padding="5dp"
+        android:fontFamily="@font/exo2_semi_bold"
+        android:textStyle="normal"
+        android:layout_marginStart="14dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcv_card"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_title_input_card_number"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/colorOutline"
+        android:backgroundTint="@color/static_white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:layout_weight="0.12">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cards"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+</RelativeLayout>
