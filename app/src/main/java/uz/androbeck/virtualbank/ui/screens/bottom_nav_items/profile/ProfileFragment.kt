@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentProfileBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.screens.change_language.ChangeLanguageBottomDialog
+import uz.androbeck.virtualbank.ui.dialogs.change_language.ChangeLanguageBottomDialog
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
 @AndroidEntryPoint
