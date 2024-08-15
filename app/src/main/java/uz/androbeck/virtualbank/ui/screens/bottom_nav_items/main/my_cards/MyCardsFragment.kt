@@ -11,9 +11,13 @@ import uz.androbeck.virtualbank.utils.extentions.toast
 class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     private val binding by viewBinding(FragmentMyCardsBinding::bind)
+    private lateinit var pagingAdapter: PagingAdapter
     override fun setup() {
 
-        binding.viewPager.adapter = MyCardsAdapter(loadList())
+        pagingAdapter = PagingAdapter()
+        pagingAdapter.load(loadList())
+        binding.viewPager.adapter = pagingAdapter
+
 
         TabLayoutMediator(
             binding.tabLayout,
