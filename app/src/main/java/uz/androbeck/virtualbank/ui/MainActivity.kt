@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     private fun bottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val isVisibleBottomNav = when (destination.id) {
-                R.id.mainFragment, R.id.profileFragment, R.id.transferFragment, R.id.historyFragment -> true
+                R.id.mainFragment, R.id.profileFragment, R.id.transferFragment, R.id.historyFragment, R.id.paymentFragment -> true
                 else -> false
             }
             binding.bottomNavigation.isVisible = isVisibleBottomNav
