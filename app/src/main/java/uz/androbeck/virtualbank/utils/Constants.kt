@@ -21,13 +21,13 @@ object Constants {
         const val LAST_TRANSFERS = "home/last-transfers"
         const val TOTAL_BALANCE = "home/total-balance"
         const val GET_HISTORY="transfer/transfer"
+        const val DELETE_CARD="card"
+        const val ADD_CARD="card"
 
     }
     object History {
         const val INCOME = "income"
         const val OUTCOME = "outcome"
-        const val DELETE_CARD="card"
-        const val ADD_CARD="card"
 
     }
 
