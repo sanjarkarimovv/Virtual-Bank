@@ -48,5 +48,6 @@
     <color name="screenBackgroundColor">#F6F7F9</color>
     <color name="screenTextColor">#6DC7CE</color>
     <color name="colorRed">#F60C14</color>
+    <color name="colorWeakPrimary">#806750A4</color>
 
 </resources>

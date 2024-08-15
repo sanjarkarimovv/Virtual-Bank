@@ -1,20 +1,25 @@
-@file:Suppress("DEPRECATION")
-
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info
 
 import android.app.DatePickerDialog
 import android.os.Build
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
+import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqUIModel
 import uz.androbeck.virtualbank.databinding.FragmentUpdateInfoBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.toast
 import uz.androbeck.virtualbank.utils.extentions.visible
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
@@ -27,6 +32,70 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         onCreateMenu()
         listenings()
         setBundleDataToViews()
+    }
+
+    override fun clicks() = with(binding) {
+        btnUndo.setOnClickListener {
+            changingButtonsMakeInvisible()
+        }
+        btnChangeDate.setOnClickListener {
+            datePicker()
+        }
+        btnChangeGender.setOnClickListener {
+            if (genderInfoReceiver.text == "Male") {
+                genderInfoReceiver.text = getString(R.string.str_female)
+            } else {
+                genderInfoReceiver.text = getString(R.string.str_male)
+            }
+        }
+        btnSaverChanges.setOnClickListener {
+            println("::: -> btn changes clicked")
+//            updateChanges()
+        }
+    }
+
+    private fun updateChanges() = with(binding) {
+        println("::: -> update changes")
+        val firstName = etFirstName.text.toString()
+        val lastName = etLastName.text.toString()
+        val date = dateBirthReceiver.text.toString()
+        var gender: String? = null
+        if (genderInfoReceiver.text == getString(R.string.str_male)) {
+            gender = "1"
+        } else if (genderInfoReceiver.text == getString(R.string.str_male)) {
+            gender = "0"
+        }
+        val reqDate = dateToMillis(date)
+        viewLifecycleOwner.lifecycleScope.launch {
+            vm.updateUserInfo(
+                UpdateInfoReqUIModel(
+                    firstName = firstName,
+                    lastName = lastName,
+                    bornDate = millisToDate(reqDate),
+                    gender = gender
+                )
+            ).collect { event ->
+                when (event) {
+                    is UpdateFullInfoEvent.Error -> {
+                        println("Error buttons make invisible !")
+                        toast(event.error)
+                        btnSaverChanges.text = getString(R.string.str_save_changes)
+                        changingButtonsMakeInvisible()
+                    }
+
+                    UpdateFullInfoEvent.Loading -> {
+                        changingButtonsMakeInvisible()
+                        btnSaverChanges.text = null
+                    }
+
+                    is UpdateFullInfoEvent.Success -> {
+                        println("Success buttons make invisible !")
+                        changingButtonsMakeInvisible()
+                        btnSaverChanges.text = getString(R.string.str_save_changes)
+                    }
+                }
+            }
+        }
     }
 
     private fun setBundleDataToViews() = with(binding) {
@@ -106,43 +175,14 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         }
     }
 
-    override fun clicks() = with(binding) {
-        btnUndo.setOnClickListener {
-            changingButtonsMakeInvisible()
-        }
-        btnDateAndBirthChanger.setOnClickListener {
-            datePicker()
-        }
-        btnGenderChanger.setOnClickListener {
-            if (genderInfoReceiver.text == "Male") {
-                genderInfoReceiver.text = getString(R.string.str_female)
-            } else {
-                genderInfoReceiver.text = getString(R.string.str_male)
-            }
-        }
-        btnSaverChanges.setOnClickListener {
-
-        }
-    }
-
     private fun changingButtonsMakeVisible() = with(binding) {
-        btnSaverChanges.isEnabled = true
-        btnSaverChanges.isEnabled = true
-        btnSaverChanges.strokeWidth = 1
-        btnSaverChanges.setTextColor(ContextCompat.getColor(requireContext(), R.color.static_white))
-        btnUndo.visible()
-        btnDateAndBirthChanger.visible()
-        btnGenderChanger.visible()
-        tvPhoneNumber.gone()
-        tvDeleteAccount.gone()
+        icDateIv.gone()
+        updateButtonsRoot.visible()
+        btnChangeDate.visible()
+        btnChangeGender.visible()
     }
 
     private fun datePicker() = with(binding) {
-//        val oldDate = dateBirthReceiver.text.split(".")
-//        val defYear = oldDate[0]
-//        val defMonth = oldDate[1]
-//        val defDay = oldDate[2]
-//        println("Year => $defYear Month -> $defMonth Day -> $defDay")
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, year, month, dayOfMonth ->
@@ -158,16 +198,21 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     }
 
     private fun changingButtonsMakeInvisible() = with(binding) {
-        etFirstName.isEnabled = false
-        etLastName.isEnabled = false
-        etFirstName.isFocusable = false
-        etLastName.isFocusable = false
-        btnSaverChanges.isEnabled = false
-        btnSaverChanges.strokeWidth = 0
-        btnUndo.gone()
-        btnDateAndBirthChanger.gone()
-        btnGenderChanger.gone()
-        tvPhoneNumber.visible()
-        tvDeleteAccount.visible()
+        icDateIv.visible(   )
+        updateButtonsRoot.gone()
+        btnChangeDate.gone()
+        btnChangeGender.gone()
+    }
+
+    private fun dateToMillis(dateString: String): Long {
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+        val date = dateFormat.parse(dateString)
+        return date?.time ?: 0
+    }
+
+    private fun millisToDate(milliseconds: Long): String {
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+        val date = Date(milliseconds)
+        return dateFormat.format(date)
     }
 }
