@@ -9,8 +9,8 @@ import javax.inject.Inject
 class CardRepositoryImpl @Inject constructor(
     private val cardRemoteDataSource: CardRemoteDataSource
 ) : CardRepository {
-    override suspend fun deleteCard() = cardRemoteDataSource.deleteCard()
-    override suspend fun addCard(addCardReqDto: AddCardReqDto) =
+    override fun deleteCard() = cardRemoteDataSource.deleteCard()
+    override fun addCard(addCardReqDto: AddCardReqDto) =
         cardRemoteDataSource.addCard(addCardReqDto)
 
 }

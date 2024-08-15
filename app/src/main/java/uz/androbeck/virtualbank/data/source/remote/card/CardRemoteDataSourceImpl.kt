@@ -10,11 +10,11 @@ import javax.inject.Inject
 class CardRemoteDataSourceImpl @Inject constructor(
     private val cardService: CardService
 ):CardRemoteDataSource {
-    override suspend fun deleteCard()= flow {
+    override fun deleteCard()= flow {
         emit(cardService.deleteCard())
 
     }
-    override suspend fun addCard(addCardReqDto: AddCardReqDto)= flow {
+    override  fun addCard(addCardReqDto: AddCardReqDto)= flow {
         emit(cardService.addCard(addCardReqDto))
     }
 

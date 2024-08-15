@@ -16,7 +16,7 @@ class AddCardUseCase @Inject constructor(
     private val addCardMapper: AddCardMapper,
     private val messageMapper: MessageMapper
 ) {
-    suspend operator fun  invoke(uiReqModel: AddCardReqUIModel) : Flow<MessageUIModel> {
+    operator fun invoke(uiReqModel: AddCardReqUIModel): Flow<MessageUIModel> {
         val request = addCardMapper.toDTO(uiReqModel)
         return cardRepository.addCard(request).map { messageMapper.toUIModel(it) }
     }

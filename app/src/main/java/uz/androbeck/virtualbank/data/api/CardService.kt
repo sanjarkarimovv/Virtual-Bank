@@ -19,4 +19,3 @@ interface CardService {
     ): MessageResDto
 }
 
-// Service->Source->Repository->UseCase->~~ViewModel->Fragment/Activity
