@@ -17,6 +17,7 @@ import uz.androbeck.virtualbank.domain.ui_models.home.PaymentsModel
 import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
 import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.UpdateComponentsInCatchUseCase
@@ -29,7 +30,8 @@ class MainViewModel @Inject constructor(
     private val putUpdateInfoUseCase: PutUpdateInfoUseCase,
     private val getComponentsFromCacheUseCase: GetComponentsFromCacheUseCase,
     private val putComponentsUseCase: PutComponentsUseCase,
-    private val updateComponentsInCatchUseCase: UpdateComponentsInCatchUseCase
+    private val updateComponentsInCatchUseCase: UpdateComponentsInCatchUseCase,
+    private val totalBalanceUseCase: GetTotalBalanceUseCase
 
 ) : ViewModel() {
     private val _homeComponents = MutableLiveData<HomeComponentsUiEvent>()
@@ -42,47 +44,47 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             getComponentsFromCacheUseCase().onEach { it ->
                 viewModelScope.launch {
-                _homeComponents.value = (HomeComponentsUiEvent.ComponentForUi(it))
-                components = it.ifEmpty {
-                    // default components save
-                    val list = listOf(
-                        UiComponents(
-                            name = HomeComponents.Cards,
-                            isShow = true,
-                            value = HomeComponents.Cards.name
-                        ),
-                        UiComponents(
-                            name = HomeComponents.LastTransfers,
-                            isShow = true,
-                            value = HomeComponents.LastTransfers.name
-                        ),
-                        UiComponents(
-                            name = HomeComponents.FinancesService,
-                            isShow = true,
-                            value = HomeComponents.FinancesService.name
-                        ),
-                        UiComponents(
-                            name = HomeComponents.ForAdvertising,
-                            isShow = true,
-                            value = HomeComponents.ForAdvertising.name
-                        ),
-                        UiComponents(
-                            name = HomeComponents.Payments,
-                            isShow = true,
-                            value = HomeComponents.Payments.name
-                        ),
-                        UiComponents(
-                            name = HomeComponents.PaymentForPhoneNumber,
-                            isShow = true,
-                            value = HomeComponents.PaymentForPhoneNumber.name
-                        ),
-                    )
-                    list.forEach { item ->
-                        putComponents(item)
+                    _homeComponents.value = (HomeComponentsUiEvent.ComponentForUi(it))
+                    components = it.ifEmpty {
+                        // default components save
+                        val list = listOf(
+                            UiComponents(
+                                name = HomeComponents.Cards,
+                                isShow = true,
+                                value = HomeComponents.Cards.name
+                            ),
+                            UiComponents(
+                                name = HomeComponents.LastTransfers,
+                                isShow = true,
+                                value = HomeComponents.LastTransfers.name
+                            ),
+                            UiComponents(
+                                name = HomeComponents.FinancesService,
+                                isShow = true,
+                                value = HomeComponents.FinancesService.name
+                            ),
+                            UiComponents(
+                                name = HomeComponents.ForAdvertising,
+                                isShow = true,
+                                value = HomeComponents.ForAdvertising.name
+                            ),
+                            UiComponents(
+                                name = HomeComponents.Payments,
+                                isShow = true,
+                                value = HomeComponents.Payments.name
+                            ),
+                            UiComponents(
+                                name = HomeComponents.PaymentForPhoneNumber,
+                                isShow = true,
+                                value = HomeComponents.PaymentForPhoneNumber.name
+                            ),
+                        )
+                        list.forEach { item ->
+                            putComponents(item)
+                        }
+                        list
                     }
-                    list
-                }
-                getUiData()
+                    getUiData()
                 }
             }.launchIn(this)
         }
@@ -112,10 +114,10 @@ class MainViewModel @Inject constructor(
                                     item.name,
                                     listOf(
                                         PaymentsModel("", R.drawable.bg_beeline_logo),
-                                        PaymentsModel("",R.drawable.bg_ucell_logo),
-                                        PaymentsModel("",R.drawable.bg_gas_logo),
-                                        PaymentsModel("",R.drawable.bg_humo_logo),
-                                        PaymentsModel("",R.drawable.bg_uzcard_logo),
+                                        PaymentsModel("", R.drawable.bg_ucell_logo),
+                                        PaymentsModel("", R.drawable.bg_gas_logo),
+                                        PaymentsModel("", R.drawable.bg_humo_logo),
+                                        PaymentsModel("", R.drawable.bg_uzcard_logo),
                                     )
                                 )
                             }

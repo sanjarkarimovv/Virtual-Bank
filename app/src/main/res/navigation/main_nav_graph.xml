@@ -14,7 +14,11 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_widgetSettingsFragment"
+            app:destination="@id/widgetSettingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/transferFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer.TransferFragment"
@@ -31,4 +35,8 @@
         android:id="@+id/historyFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryFragment"
         android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/widgetSettingsFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.widgetSettings.WidgetSettingsFragment"
+        android:label="WidgetSettingsFragment" />
 </navigation>

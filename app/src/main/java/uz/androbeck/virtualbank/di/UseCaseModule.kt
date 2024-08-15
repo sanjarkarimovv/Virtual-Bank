@@ -17,9 +17,8 @@ import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
 import uz.androbeck.virtualbank.domain.mapper.auth.sign_in.SignInMapper
 import uz.androbeck.virtualbank.domain.mapper.history.GetHistoryMapper
 import uz.androbeck.virtualbank.domain.mapper.history.TransfersMapper
-import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
-import uz.androbeck.virtualbank.domain.mapper.history.LastTransfersMapper
 import uz.androbeck.virtualbank.domain.mapper.home.ComponentsMapper
+import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.TotalBalanceMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper

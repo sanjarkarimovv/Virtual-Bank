@@ -31,7 +31,6 @@ class CustomHomeBody @JvmOverloads constructor(
                 count = 0
             }
         }
-
         override fun onFinish() {
             start()
         }

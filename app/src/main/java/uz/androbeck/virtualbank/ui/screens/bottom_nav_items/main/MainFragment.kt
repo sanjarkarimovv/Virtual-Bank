@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
@@ -19,7 +20,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             viewModel.getUiData()
         }
         binding.btnSettings.setOnClickListener {
-
+            // navigate to settings screen
+            findNavController().navigate(R.id.action_mainFragment_to_widgetSettingsFragment)
         }
     }
 
