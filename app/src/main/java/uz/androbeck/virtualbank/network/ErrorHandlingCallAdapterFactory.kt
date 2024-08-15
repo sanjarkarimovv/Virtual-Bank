@@ -22,23 +22,21 @@ import uz.androbeck.virtualbank.network.errors.UnauthorizedException
 import uz.androbeck.virtualbank.network.errors.UnknownException
 import uz.androbeck.virtualbank.network.errors.UserNotVerified
 import java.io.IOException
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 import javax.inject.Inject
 import javax.inject.Singleton
-import java.lang.reflect.Type
-import java.lang.reflect.ParameterizedType
 
 @Singleton
 class ErrorHandlingCallAdapterFactory @Inject constructor(
-    private val json: Json,
+    private val json: Json, private val globalErrorController: GlobalErrorController
 ) : CallAdapter.Factory() {
 
     override fun get(
-        returnType: Type,
-        annotations: Array<Annotation>,
-        retrofit: Retrofit
+        returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit
     ): CallAdapter<*, *>? {
         return if (returnType is ParameterizedType) {
-            ErrorHandlingCallAdapter(returnType, json)
+            ErrorHandlingCallAdapter(returnType, json, globalErrorController)
         } else {
             null
         }
@@ -47,13 +45,14 @@ class ErrorHandlingCallAdapterFactory @Inject constructor(
     private class ErrorHandlingCallAdapter constructor(
         private val responseType: ParameterizedType,
         private val json: Json,
+        private val globalErrorController: GlobalErrorController
     ) : CallAdapter<Any, Call<*>> {
         override fun responseType(): Type {
             return getParameterUpperBound(0, responseType)
         }
 
         override fun adapt(call: Call<Any>): Call<*> {
-            return HttpErrorToThrowableCall(call, json)
+            return HttpErrorToThrowableCall(call, json, globalErrorController)
         }
     }
 }
@@ -61,9 +60,10 @@ class ErrorHandlingCallAdapterFactory @Inject constructor(
 internal class HttpErrorToThrowableCall<T>(
     private val call: Call<T>,
     private val json: Json,
+    private val globalErrorController: GlobalErrorController
 ) : Call<T> {
     override fun clone(): Call<T> {
-        return HttpErrorToThrowableCall(call.clone(), json)
+        return HttpErrorToThrowableCall(call.clone(), json, globalErrorController)
     }
 
     override fun execute(): Response<T> {
@@ -98,7 +98,9 @@ internal class HttpErrorToThrowableCall<T>(
                 } else if (response.code() == 401) {
                     callback.onFailure(call, UnauthorizedException())
                 } else {
-                    callback.onFailure(call, getApiError(response.errorBody()?.string(),response.code()))
+                    callback.onFailure(
+                        call, getApiError(response.errorBody()?.string(), response.code())
+                    )
                 }
             }
 
@@ -113,14 +115,14 @@ internal class HttpErrorToThrowableCall<T>(
         })
     }
 
-    private fun getApiError(body: String?,code: Int? = null): HttpResponseException {
+    private fun getApiError(body: String?, code: Int? = null): HttpResponseException {
         body ?: return ErrorResponseEmptyException()
         val errorResponse = try {
             json.decodeFromString(ErrorResDto.serializer(), body)
         } catch (e: Exception) {
             return ParseErrorResponseException(body)
         }
-
+        ApiErrorType.getByCode(code)?.let(globalErrorController::sendError)
         return when (ApiErrorType.getByCode(code)) {
             ApiErrorType.USER_NOT_VERIFIED -> UserNotVerified(errorResponse.message.orEmpty())
             ApiErrorType.INCORRECT_CREDENTIALS -> IncorrectCredentialsException(errorResponse.message.orEmpty())
@@ -131,6 +133,7 @@ internal class HttpErrorToThrowableCall<T>(
             null -> OtherNetworkException(errorResponse.code ?: -1)
             ApiErrorType.ERROR_RESPONSE_EMPTY -> ErrorResponseEmptyException()
             ApiErrorType.ERROR_404 -> Error404Exception(errorResponse.message)
+            ApiErrorType.ERROR_401 -> TODO()
         }
     }
 }
