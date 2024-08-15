@@ -14,7 +14,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val binding: FragmentMainBinding by viewBinding()
     override fun setup() {
         binding.root.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_myCardsFragment)
         }
     }
 }
