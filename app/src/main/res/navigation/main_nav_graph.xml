@@ -37,6 +37,6 @@
         android:label="HistoryFragment" />
     <fragment
         android:id="@+id/widgetSettingsFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.widgetSettings.WidgetSettingsFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.widgetSettings.WidgetSettingsFragment"
         android:label="WidgetSettingsFragment" />
 </navigation>

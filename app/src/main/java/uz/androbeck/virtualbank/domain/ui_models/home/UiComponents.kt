@@ -5,6 +5,6 @@ import uz.androbeck.virtualbank.ui.screens.HomeComponents
 data class UiComponents(
     val id: Int = 0,
     val name: HomeComponents,
-    val isShow: Boolean,
+    var isShow: Boolean,
     val value: String?=null
 )

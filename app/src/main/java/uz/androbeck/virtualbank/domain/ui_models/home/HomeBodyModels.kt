@@ -17,4 +17,6 @@ sealed class HomeBodyModels {
         val name: HomeComponents,
         val data: List<LastTransferModel>
     ) : HomeBodyModels()
+    data class TotalBalance(val amount: String):HomeBodyModels()
+    data class Error(val massage: String):HomeBodyModels()
 }

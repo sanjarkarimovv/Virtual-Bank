@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -51,32 +52,32 @@ class MainViewModel @Inject constructor(
                             UiComponents(
                                 name = HomeComponents.Cards,
                                 isShow = true,
-                                value = HomeComponents.Cards.name
+                                value = "Cards"
                             ),
                             UiComponents(
                                 name = HomeComponents.LastTransfers,
                                 isShow = true,
-                                value = HomeComponents.LastTransfers.name
+                                value = "Last Transfers"
                             ),
                             UiComponents(
                                 name = HomeComponents.FinancesService,
                                 isShow = true,
-                                value = HomeComponents.FinancesService.name
+                                value = "Finances Service"
                             ),
                             UiComponents(
                                 name = HomeComponents.ForAdvertising,
                                 isShow = true,
-                                value = HomeComponents.ForAdvertising.name
+                                value = "Advertising"
                             ),
                             UiComponents(
                                 name = HomeComponents.Payments,
                                 isShow = true,
-                                value = HomeComponents.Payments.name
+                                value = "Payments"
                             ),
                             UiComponents(
                                 name = HomeComponents.PaymentForPhoneNumber,
                                 isShow = true,
-                                value = HomeComponents.PaymentForPhoneNumber.name
+                                value = "Payment for phone number"
                             ),
                         )
                         list.forEach { item ->
@@ -154,6 +155,17 @@ class MainViewModel @Inject constructor(
                     }
                 }
             }
+            getTotalBalance()
+        }
+    }
+
+    fun getTotalBalance() {
+        viewModelScope.launch {
+            totalBalanceUseCase.invoke().onEach {
+                _uiData.value = HomeBodyModels.TotalBalance("${it.totalBalance}")
+            }.catch {
+                _uiData.value = HomeBodyModels.Error(it.message?:"Ko'zda tutilmagan xatolik")
+            }.launchIn(this)
         }
     }
 
@@ -162,6 +174,7 @@ class MainViewModel @Inject constructor(
             putComponentsUseCase.putComponents(
                 uiComponents = uiComponents
             )
+
         }
     }
 

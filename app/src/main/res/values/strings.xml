@@ -27,6 +27,7 @@
     <string name="widget_setup">Widget setup</string>
     <string name="todo">TODO</string>
     <string name="security">Security</string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="permissions">Permissions</string>
     <string name="notification">Notification</string>
     <string name="actions">Actions</string>
@@ -58,8 +59,14 @@
     <string name="str_saved_payments">Saqlangan to\'lovlar</string>
     <string name="str_more">Yana</string>
     <string name="str_servers_payment">Xizmatga to\'lov</string>
-    <string name="paymnet">Paymnet</string>
+    <string name="str_paymnet">Paymnet</string>
+    <string name="str_widget_settings">Vidjet sozlamalari</string>
+    <string name="str_hint_phone_number">+998 Telefon raqami</string>
+    <string name="str_payment_for_phone_number">Payment for phone</string>
+    <string name="str_advertising">Advertising</string>
+    <string name="str_finances_service">Finances service</string>
     <string name="my_home">Mening uyim</string>
+    <string name="str_get_credit">Kridit oling</string>
     <string name="places_payments">Joylarda to\'lov</string>
     <string name="str_add">Qo\'shish</string>
     <string name="str_num_0">0</string>
@@ -82,13 +89,10 @@
     <string name="biometric_prompt_title">Biometric Authentication</string>
     <string name="biometric_prompt_subtitle">Authenticate with your biometrics</string>
     <string name="biometric_prompt_cancel">Cancel</string>
+    <string name="str_select">Select</string>
+    <string name="str_show_amount">Ballansni Ko\'rsatish</string>
+    <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
+    <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
 
 
-    <string name="str_widget_settings">Vidjet sozlamalari</string>
-    <string name="str_hint_phone_number">+998 Telefon raqami</string>
-    <string name="str_payment_for_phone_number">Payment for phone</string>
-    <string name="str_advertising">Advertising</string>
-    <string name="str_finances_service">Finances service</string>
-    <string name="str_payment">Pul o\'tgazish</string>
-    <string name="str_get_credit">Kridit oling</string>
 </resources>

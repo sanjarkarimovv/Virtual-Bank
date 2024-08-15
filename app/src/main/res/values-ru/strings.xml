@@ -65,6 +65,9 @@
     <string name="str_success">Success</string>
     <string name="str_currency">so\'m</string>
     <string name="str_cards">Cards</string>
+    <string name="str_more">Yana</string>
+    <string name="str_servers_payment">Xizmatga to\'lov</string>
+    <string name="str_paymnet">Paymnet</string>
     <string name="str_last_transfer">Last transfer</string>
     <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="str_payments">Payments</string>
@@ -86,5 +89,8 @@
     <string name="places_payments">Joylarda to\'lov</string>
     <string name="str_add">Qo\'shish</string>
     <string name="str_this_send_phone_number_confirm_sms_code">На этот номер телефона был отправлен код подтверждения</string>
-    <string name="str_success">Success</string>
+    <string name="str_select">Select</string>
+    <string name="str_show_amount">Ballansni Ko\'rsatish</string>
+    <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
+    <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
 </resources>

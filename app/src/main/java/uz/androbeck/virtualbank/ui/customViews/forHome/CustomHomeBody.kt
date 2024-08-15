@@ -23,6 +23,17 @@ class CustomHomeBody @JvmOverloads constructor(
 
     private val counter = object : CountDownTimer(21000L, 3000) {
         private var count = 0
+         var isStart = true
+            set(value) {
+                if (!value) {
+                    count = 0
+                    onFinish()
+                } else {
+                    count = 0
+                    start()
+                }
+                field = value
+            }
         override fun onTick(p0: Long) {
             if (count < 5) {
                 binding.rvAdvertising.currentItem = count
@@ -32,9 +43,8 @@ class CustomHomeBody @JvmOverloads constructor(
             }
         }
         override fun onFinish() {
-            start()
+            if (isStart) start()
         }
-
     }
 
     init {
@@ -119,13 +129,13 @@ class CustomHomeBody @JvmOverloads constructor(
         } else this.gone()
     }
 
+    fun stopCounter() {
+       counter.isStart = false
+    }
+
 
 }
 /**
  *  components
  *  cards payments lastTransfer paymentForPhoneNumber financesService forAdvertising
- *
- *
- *
- *
  */

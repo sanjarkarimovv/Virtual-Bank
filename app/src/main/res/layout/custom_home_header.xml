@@ -21,7 +21,7 @@
             android:src="@drawable/ic_not_visible" />
 
         <TextView
-            android:id="@+id/text_prise"
+            android:id="@+id/tv_text_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
@@ -47,6 +47,31 @@
             android:layout_marginStart="20dp"
             android:src="@drawable/ic_dots" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_amount_not_show_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/btn_show_amount_in_not_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="8dp"
+            android:src="@drawable/ic_show" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_show_amount"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout

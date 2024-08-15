@@ -42,7 +42,6 @@ class CardsAdapter : ListAdapter<CardModel, CardsAdapter.CardsHolder>(diffUtil) 
             )
         )
     }
-
     override fun onBindViewHolder(holder: CardsHolder, position: Int) {
         holder.bind(getItem(position))
     }
