@@ -53,7 +53,7 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/screenTextColor"
+                    android:textColor="@color/colorPrimary"
                     android:layout_alignParentEnd="true"
                     tools:ignore="RelativeOverlap"
                     android:fontFamily="@font/exo2_medium"/>
@@ -95,7 +95,7 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/screenTextColor"
+                    android:textColor="@color/colorPrimary"
                     android:layout_alignParentEnd="true"
                     tools:ignore="RelativeOverlap"
                     android:fontFamily="@font/exo2_medium"/>
@@ -137,7 +137,7 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/screenTextColor"
+                    android:textColor="@color/colorPrimary"
                     android:layout_alignParentEnd="true"
                     tools:ignore="RelativeOverlap"
                     android:fontFamily="@font/exo2_medium"/>
@@ -179,7 +179,7 @@
                     android:text="@string/str_more"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="@color/screenTextColor"
+                    android:textColor="@color/colorPrimary"
                     android:layout_alignParentEnd="true"
                     tools:ignore="RelativeOverlap"
                     android:fontFamily="@font/exo2_medium"/>

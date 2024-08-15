@@ -42,9 +42,9 @@ class VirtualBankCardNumberInput @JvmOverloads constructor(
                 cvCard.strokeWidth = strokeWidthInPx
                 cvCard.strokeColor = ContextCompat.getColor(
                     context,
-                    if (hasFocus) R.color.screenTextColor else R.color.colorOutline
+                    if (hasFocus) R.color.colorPrimary else R.color.colorOutline
                 )
-                tvHelperText.setTextColorRes(if (hasFocus) R.color.screenTextColor else R.color.colorScrim)
+                tvHelperText.setTextColorRes(if (hasFocus) R.color.colorPrimary else R.color.colorScrim)
             }
             metCardNumber.addTextChangedListener { s ->
                 btnCancel.isVisible = s.toString().isNotEmpty()

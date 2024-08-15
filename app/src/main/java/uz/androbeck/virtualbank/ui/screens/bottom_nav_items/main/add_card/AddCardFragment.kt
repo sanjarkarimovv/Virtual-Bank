@@ -20,8 +20,9 @@ import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentAddCardBinding
 import uz.androbeck.virtualbank.databinding.ItemTabBinding
-import uz.androbeck.virtualbank.domain.mock_data.CardStyleColors
+import uz.androbeck.virtualbank.domain.mock_data.CardStyleImages
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
 import uz.androbeck.virtualbank.utils.extentions.toast
 
@@ -51,7 +52,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
                 editTextFocus(hasFocus, mcvCardName, cardNameHelperText)
             }
 
-            viewPager.adapter = ViewPagerAdapter(CardStyleColors.cardStyleColors)
+            viewPager.adapter = ViewPagerAdapter(CardStyleImages.cardStyleImages)
             setupViewPager(viewPager)
             setupTabLayout(tabLayout, viewPager)
 
@@ -75,7 +76,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
     }
 
     private fun editTextFocus(hasFocus: Boolean, cardView: MaterialCardView, helperText: TextView) {
-        val strokeWidthInDp = if (hasFocus) 2 else 1
+        val strokeWidthInDp = if (hasFocus) Constants.Number.SELECT_CARD_STROKE_WIDTH else Constants.Number.DEFAULT_CARD_STROKE_WIDTH
         val strokeWidthInPx = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             strokeWidthInDp.toFloat(),
@@ -85,9 +86,9 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
         cardView.strokeWidth = strokeWidthInPx
         cardView.strokeColor = ContextCompat.getColor(
             requireContext(),
-            if (hasFocus) R.color.screenTextColor else R.color.colorOutline
+            if (hasFocus) R.color.colorPrimary else R.color.colorOutline
         )
-        helperText.setTextColorRes(if (hasFocus) R.color.screenTextColor else R.color.colorScrim)
+        helperText.setTextColorRes(if (hasFocus) R.color.colorPrimary else R.color.colorScrim)
     }
 
     @SuppressLint("InflateParams")
@@ -97,7 +98,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
             val customView = LayoutInflater.from(requireContext())
                 .inflate(R.layout.item_tab, null)
             val bindingItemTab = ItemTabBinding.bind(customView)
-            bindingItemTab.tabIcon.setImageResource(CardStyleColors.cardStyleColors[position])
+            bindingItemTab.tabIcon.setImageResource(CardStyleImages.cardStyleImages[position])
             bindingItemTab.checkIcon.visibility = View.GONE
             tab.customView = customView
         }.attach()
@@ -127,7 +128,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
 
     private fun setupViewPager(viewPager: ViewPager2) {
         viewPager.apply {
-            offscreenPageLimit = 1
+            offscreenPageLimit = Constants.Number.OFFSCREEN_PAGE_LIMIT
             val recyclerView = getChildAt(0) as RecyclerView
             recyclerView.apply {
                 val padding = resources.getDimensionPixelOffset(R.dimen.halfPageMargin) +
