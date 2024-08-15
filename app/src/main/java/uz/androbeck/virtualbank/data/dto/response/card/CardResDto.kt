@@ -7,6 +7,8 @@ import kotlinx.serialization.Serializable
 data class CardResDto(
     @SerialName("id")
     val id: Int? = 0,
+    @SerialName("name")
+    val name: String? = null,
     @SerialName("amount")
     val amount: Double? = 0.0,
     @SerialName("owner")
