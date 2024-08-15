@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:backgroundTint="@color/static_white">
 
     <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
@@ -169,10 +169,10 @@
         android:focusable="true"
         android:paddingHorizontal="30dp"
         android:paddingVertical="20dp"
-        tools:text="+998 95 058 06 27"
         android:textSize="16sp"
         app:drawableEndCompat="@drawable/ic_next"
-        app:drawableStartCompat="@drawable/ic_phone" />
+        app:drawableStartCompat="@drawable/ic_telephone"
+        tools:text="+998 95 058 06 27" />
 
     <TextView
         android:id="@+id/tv_delete_account"

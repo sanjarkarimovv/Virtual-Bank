@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/mainFragment">
 
@@ -14,21 +15,34 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/transferFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer.TransferFragment"
-        android:label="TransferFragment" />
+        android:label="TransferFragment"
+        tools:layout="@layout/fragment_transfer" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.payment.PaymentFragment"
-        android:label="PaymentFragment" />
+        android:label="PaymentFragment"
+        tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_updateInfoFragment"
+            app:destination="@id/updateInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryFragment"
         android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/updateInfoFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info.UpdateInfoFragment"
+        android:label="UpdateInfoFragment"
+        tools:layout="@layout/fragment_update_info" />
 </navigation>

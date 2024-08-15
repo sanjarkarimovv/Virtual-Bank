@@ -86,6 +86,7 @@
     <string name="str_undo_changes">Undo changes</string>
     <string name="str_save_changes">Save changes</string>
     <string name="str_delete_account">Delete account</string>
+    <string name="str_change_information">Change informations</string>
 
 
 </resources>

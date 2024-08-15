@@ -82,4 +82,5 @@
     <string name="str_undo_changes">Отменить изменения</string>
     <string name="str_save_changes">Сохранить изменения</string>
     <string name="str_delete_account">Удалить аккаунт</string>
+    <string name="str_change_information">Изменить информацию</string>
 </resources>

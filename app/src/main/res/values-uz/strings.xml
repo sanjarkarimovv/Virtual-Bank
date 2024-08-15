@@ -82,4 +82,5 @@
     <string name="str_undo_changes">O`zgarishlarni bekor qilish</string>
     <string name="str_save_changes">O`zgarishlarni saqlash</string>
     <string name="str_delete_account">Akkountni o`chirish</string>
+    <string name="str_change_information">Ma`lumotlarni o`zgartirish</string>
 </resources>
