@@ -25,8 +25,13 @@ class VirtualBankCardNumberInput @JvmOverloads constructor(
         ViewVirtualBankCardNumberInputBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
+    var onScannerClick: () -> Unit = {}
+
     init {
         setupView()
+        binding.btnScanner.singleClickable {
+            onScannerClick()
+        }
     }
 
     private fun setupView() {

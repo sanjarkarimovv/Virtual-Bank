@@ -27,6 +27,7 @@ import uz.androbeck.virtualbank.domain.mock_data.AppHardcodeData
 import uz.androbeck.virtualbank.domain.ui_models.card.AddCardReqUIModel
 import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.ui.dialogs.card_scanner.CardScannerBottomDialog
 import uz.androbeck.virtualbank.ui.screens.auth.login.LoginUiEvent
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
@@ -45,6 +46,9 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
     @SuppressLint("InflateParams")
     override fun setup() {
         with(binding) {
+            etCardNumber.onScannerClick = {
+                showCardScannerDialog()
+            }
             btnAddCard.isEnable = false
 
             etCardNumber.addTextChangedListener {
@@ -73,6 +77,13 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
                 }
             }
         }
+    }
+
+    private fun showCardScannerDialog() {
+        CardScannerBottomDialog().show(
+            childFragmentManager,
+            CardScannerBottomDialog::class.java.simpleName
+        )
     }
 
     override fun clicks(): Unit = with(binding) {
