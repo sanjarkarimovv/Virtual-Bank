@@ -12,7 +12,7 @@ class DeleteCardUseCase @Inject constructor(
     private val cardRepository: CardRepository,
     private val deleteCardMapper: DeleteCardMapper
 ) {
-    suspend operator fun invoke()=cardRepository.deleteCard().map {
+    operator fun invoke() = cardRepository.deleteCard().map {
         deleteCardMapper.toUIModel(it)
     }
 }

@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.change_language
+package uz.androbeck.virtualbank.ui.dialogs.change_language
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
