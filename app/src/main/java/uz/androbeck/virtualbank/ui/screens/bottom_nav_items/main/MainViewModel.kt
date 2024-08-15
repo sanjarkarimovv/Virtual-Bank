@@ -22,6 +22,7 @@ import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.UpdateComponentsInCatchUseCase
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.screens.HomeComponents
 import javax.inject.Inject
 
@@ -32,7 +33,8 @@ class MainViewModel @Inject constructor(
     private val getComponentsFromCacheUseCase: GetComponentsFromCacheUseCase,
     private val putComponentsUseCase: PutComponentsUseCase,
     private val updateComponentsInCatchUseCase: UpdateComponentsInCatchUseCase,
-    private val totalBalanceUseCase: GetTotalBalanceUseCase
+    private val totalBalanceUseCase: GetTotalBalanceUseCase,
+    private val preferencesProvider: PreferencesProvider
 
 ) : ViewModel() {
     private val _homeComponents = MutableLiveData<HomeComponentsUiEvent>()
@@ -101,10 +103,9 @@ class MainViewModel @Inject constructor(
                                 // get from remote data
                                 _uiData.value = HomeBodyModels.Card(
                                     item.name, listOf(
-                                        CardModel("Normurodov", "100 000"),
-                                        CardModel("Normurodov", "500 000"),
-                                        CardModel("Normurodov", "800 000"),
-                                        CardModel("Normurodov", "500 000"),
+                                        CardModel( cardStile = preferencesProvider.cardStile, "Normurodov", "100 000"),
+                                        CardModel( cardStile = preferencesProvider.cardStile, "Normurodov", "100 000"),
+                                        CardModel( cardStile = preferencesProvider.cardStile, "Normurodov", "100 000"),
                                     )
                                 )
                             }

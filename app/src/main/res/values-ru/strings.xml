@@ -62,11 +62,8 @@
     <string name="forget_password">Забыли пароль</string>
     <string name="toolbar_title">Title </string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
-    <string name="str_success">Success</string>
     <string name="str_currency">so\'m</string>
     <string name="str_cards">Cards</string>
-    <string name="str_more">Yana</string>
-    <string name="str_servers_payment">Xizmatga to\'lov</string>
     <string name="str_paymnet">Paymnet</string>
     <string name="str_last_transfer">Last transfer</string>
     <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>

@@ -14,6 +14,7 @@ class PreferencesProvider @Inject constructor(
     var isAwayLong : Long by preferences.long()
     var refreshToken: String by preferences.string()
     var useBiometric: Boolean by preferences.boolean()
+    var cardStile: Int by preferences.int()
     var language: String by preferences.string(Constants.Localization.UZBEK)
 
     fun clear() {

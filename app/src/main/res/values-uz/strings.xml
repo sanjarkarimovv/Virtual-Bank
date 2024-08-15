@@ -62,7 +62,6 @@
     <string name="forget_password">Parolni unutdim</string>
     <string name="toolbar_title">Title </string>
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
-    <string name="str_success">Success</string>
     <string name="str_currency">so\'m</string>
     <string name="str_cards">Cards</string>
     <string name="str_last_transfer">Last transfer</string>
@@ -80,8 +79,6 @@
     <string name="str_finances_service">Finances service</string>
     <string name="str_payment">Pul o\'tgazish</string>
     <string name="str_get_credit">Kridit oling</string>
-    <string name="str_more">Yana</string>
-    <string name="str_servers_payment">Xizmatga to\'lov</string>
     <string name="str_paymnet">Paymnet</string>
     <string name="str_search">Izlash</string>
     <string name="str_saved_payments">Saqlangan to\'lovlar</string>
