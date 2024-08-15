@@ -16,9 +16,9 @@
     <string name="str_born_date">Born date</string>
     <string name="str_gender">Gender</string>
     <string name="str_sign_up">Sign Up</string>
-    <string name="str_refresh_code">Kodni qayta olish</string>
-    <string name="str_confirm">Tastiqlash</string>
-    <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_refresh_code">Get the code</string>
+    <string name="str_confirm">Confirmation</string>
+    <string name="str_code_confirm_time">Code verification time</string>
     <string name="toolbar_title">Title </string>
     <string name="str_login">Login</string>
     <string name="settings">Settings</string>
@@ -49,11 +49,11 @@
     <string name="str_localization_uzb">Uzbek</string>
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
-    <string name="str_search">Izlash</string>
-    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
-    <string name="my_home">Mening uyim</string>
-    <string name="places_payments">Joylarda to\'lov</string>
-    <string name="str_add">Qo\'shish</string>
+    <string name="str_search">Search</string>
+    <string name="str_saved_payments">Saved payments</string>
+    <string name="my_home">My home</string>
+    <string name="places_payments">Places payments</string>
+    <string name="str_add">Add</string>
     <string name="str_num_0">0</string>
     <string name="str_num_1">1</string>
     <string name="str_num_2">2</string>
@@ -76,13 +76,15 @@
     <string name="biometric_prompt_cancel">Cancel</string>
 
 
-    <string name="str_more">Yana</string>
-    <string name="str_servers_payment">Xizmatga to\'lov</string>
-    <string name="paymnet">Paymnet</string>
-    <string name="str_card_number">Kartaning raqami</string>
-    <string name="str_validity_period">Amala qilish muddati</string>
+    <string name="str_more">More</string>
+    <string name="str_servers_payment">Service payment</string>
+    <string name="paymnet">Payment</string>
+    <string name="str_card_number">Card number</string>
+    <string name="str_validity_period">Validity period</string>
     <string name="str_hint_card_number">0000 0000 0000 0000</string>
     <string name="str_hint_validity_period">MM/YY</string>
-    <string name="str_card_name">Kartaning nomi</string>
-    <string name="str_add_card">Karta qo\'shish</string>
+    <string name="str_card_name">Card name</string>
+    <string name="str_add_card">Add card</string>
+
+    <string name="str_add_card_succes">Card added successfully</string>
 </resources>

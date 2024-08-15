@@ -5,7 +5,6 @@ import android.text.Editable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -13,6 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.ViewVirtualBankCardNumberInputBinding
 import uz.androbeck.virtualbank.ui.enums.CardType
+import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
@@ -83,5 +83,17 @@ class VirtualBankCardNumberInput @JvmOverloads constructor(
 
     fun addTextChangedListener(afterTextChanged: (Editable?) -> Unit) {
         binding.metCardNumber.addTextChangedListener(afterTextChanged = afterTextChanged)
+    }
+
+    fun addCardError() = with(binding) {
+        val strokeWidthInDp = Constants.Number.SELECT_CARD_STROKE_WIDTH
+        val strokeWidthInPx = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            strokeWidthInDp.toFloat(),
+            resources.displayMetrics
+        ).toInt()
+        cvCard.strokeWidth = strokeWidthInPx
+        cvCard.strokeColor = ContextCompat.getColor(context, R.color.colorError)
+        tvHelperText.setTextColorRes(R.color.colorError)
     }
 }
