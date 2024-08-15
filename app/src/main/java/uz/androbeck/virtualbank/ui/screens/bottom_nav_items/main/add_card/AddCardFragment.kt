@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentAddCardBinding
 import uz.androbeck.virtualbank.databinding.ItemTabBinding
-import uz.androbeck.virtualbank.domain.mock_data.CardStyleImages
+import uz.androbeck.virtualbank.domain.mock_data.AppHardcodeData
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
@@ -52,7 +52,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
                 editTextFocus(hasFocus, mcvCardName, cardNameHelperText)
             }
 
-            viewPager.adapter = ViewPagerAdapter(CardStyleImages.cardStyleImages)
+            viewPager.adapter = ViewPagerAdapter(AppHardcodeData.cardStyleImages)
             setupViewPager(viewPager)
             setupTabLayout(tabLayout, viewPager)
 
@@ -98,7 +98,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
             val customView = LayoutInflater.from(requireContext())
                 .inflate(R.layout.item_tab, null)
             val bindingItemTab = ItemTabBinding.bind(customView)
-            bindingItemTab.tabIcon.setImageResource(CardStyleImages.cardStyleImages[position])
+            bindingItemTab.tabIcon.setImageResource(AppHardcodeData.cardStyleImages[position])
             bindingItemTab.checkIcon.visibility = View.GONE
             tab.customView = customView
         }.attach()
