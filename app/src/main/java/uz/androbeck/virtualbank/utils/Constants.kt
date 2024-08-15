@@ -21,6 +21,7 @@ object Constants {
         const val LAST_TRANSFERS = "home/last-transfers"
         const val TOTAL_BALANCE = "home/total-balance"
         const val GET_HISTORY="transfer/transfer"
+        const val DELETE_CARD="card/3"
     }
 
     object Header {
@@ -38,6 +39,7 @@ object Constants {
 
     object String {
         const val EMPTY = ""
+        const val ADD_HOME = "Uy qo'shish"
     }
 
     object Localization {
