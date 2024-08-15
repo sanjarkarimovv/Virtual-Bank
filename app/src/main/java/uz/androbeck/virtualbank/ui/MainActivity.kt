@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.ActivityMainBinding
+import uz.androbeck.virtualbank.network.GlobalErrorController
+import uz.androbeck.virtualbank.network.errors.ApiErrorType
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
@@ -29,6 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var preferencesProvider: PreferencesProvider
+
+    @Inject
+    lateinit var globalErrorController: GlobalErrorController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,6 +103,16 @@ class MainActivity : AppCompatActivity() {
         vm.observeIsAwayLong().onEach {
             if (it) {
                 vm.setNavGraphEvent(NavGraphEvent.PinCode)
+            }
+        }.launchIn(lifecycleScope)
+
+        globalErrorController.observeError().onEach {
+            when (it) {
+                ApiErrorType.ERROR_401 -> {
+                    vm.setNavGraphEvent(NavGraphEvent.Auth)
+                }
+
+                else -> Unit
             }
         }.launchIn(lifecycleScope)
     }

@@ -3,6 +3,7 @@ package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -94,6 +95,9 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                     }
                 }
             }
+        }
+        binding.root.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
         }
     }
 

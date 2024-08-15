@@ -14,6 +14,11 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+    </fragment>
         android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_widgetSettingsFragment"
@@ -35,6 +40,10 @@
         android:id="@+id/historyFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryFragment"
         android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
+        android:label="AddCardFragment" />
     <fragment
         android:id="@+id/widgetSettingsFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.widgetSettings.WidgetSettingsFragment"
