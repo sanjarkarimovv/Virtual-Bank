@@ -107,6 +107,9 @@ dependencies {
     // refresh layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
+    //Biometrics
+    implementation(libs.androidx.biometric)
+
     //Paging 3
     implementation("androidx.paging:paging-runtime:3.3.2")
 }

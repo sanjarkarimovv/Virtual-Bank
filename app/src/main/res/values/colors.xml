@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="static_white">#FFFFFF</color>
+    <color name="static_transparent">#4CFFFFFF</color>
 
     <color name="colorPrimary">#6750A4</color>
     <color name="colorSecondary">#625B71</color>
@@ -49,5 +50,7 @@
     <color name="colorDarkFoeHome">#1C182B</color>
 
     <color name="colorCardLight">#CC16131F</color>
+    <color name="screenBackgroundColor">#F6F7F9</color>
+    <color name="screenTextColor">#6DC7CE</color>
 
 </resources>
