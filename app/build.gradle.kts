@@ -109,4 +109,7 @@ dependencies {
 
     //Paging 3
     implementation("androidx.paging:paging-runtime:3.3.2")
+
+    //MaskedEditText2
+    implementation("io.github.vicmikhailau:MaskedEditText:5.0.2")
 }

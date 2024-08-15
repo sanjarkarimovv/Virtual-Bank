@@ -3,17 +3,20 @@ package uz.androbeck.virtualbank.ui.customViews.inputs
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomSearchEditTextBinding
+import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.pxToDp
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
-@SuppressLint("Recycle")
+@SuppressLint("Recycle", "CustomViewStyleable")
 class VirtualBankSearchInput @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -34,13 +37,18 @@ class VirtualBankSearchInput @JvmOverloads constructor(
     private fun setupView() {
         with(binding) {
             customTvSearch.setOnFocusChangeListener { _, hasFocus ->
-                if (hasFocus) {
-                    cvSearch.strokeWidth = pxToDp(2)
-                    cvSearch.strokeColor = ContextCompat.getColor(context, R.color.screenTextColor)
-                } else {
-                    cvSearch.strokeWidth = pxToDp(1)
-                    cvSearch.strokeColor = ContextCompat.getColor(context, R.color.colorOutline)
-                }
+                val strokeWidthInDp =
+                    if (hasFocus) Constants.Number.SELECT_CARD_STROKE_WIDTH else Constants.Number.DEFAULT_CARD_STROKE_WIDTH
+                val strokeWidthInPx = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    strokeWidthInDp.toFloat(),
+                    resources.displayMetrics
+                ).toInt()
+                cvSearch.strokeWidth = strokeWidthInPx
+                cvSearch.strokeColor = ContextCompat.getColor(
+                    context,
+                    if (hasFocus) R.color.colorPrimary else R.color.colorOutline
+                )
             }
             customTvSearch.addTextChangedListener { s ->
                 btnCancel.isVisible = s.toString().isNotEmpty()

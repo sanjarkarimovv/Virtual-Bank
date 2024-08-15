@@ -74,8 +74,13 @@
     <string name="str_add">Qo\'shish</string>
     <string name="str_this_send_phone_number_confirm_sms_code">На этот номер телефона был отправлен код подтверждения</string>
     <string name="str_success">Success</string>
-    <string name="str_payment">To\'lov</string>
     <string name="str_more">Yana</string>
     <string name="str_servers_payment">Xizmatga to\'lov</string>
     <string name="paymnet">Paymnet</string>
+    <string name="str_card_number">Kartaning raqami</string>
+    <string name="str_hint_card_number">0000 0000 0000 0000</string>
+    <string name="str_hint_validity_period">MM/YY</string>
+    <string name="str_validity_period">Amala qilish muddati</string>
+    <string name="str_card_name">Kartaning nomi</string>
+    <string name="str_add_card">Karta qo\'shish</string>
 </resources>
