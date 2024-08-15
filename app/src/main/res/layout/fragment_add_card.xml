@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/screenBackgroundColor">
+        <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/str_add_card"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@id/btn_add_card"
+            android:layout_marginBottom="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    app:tabMode="scrollable"
+                    android:background="@android:color/transparent"
+                    app:tabIndicatorColor="@android:color/transparent"/>
+
+                <uz.androbeck.virtualbank.ui.customViews.inputs.VirtualBankCardNumberInput
+                    android:id="@+id/et_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:id="@+id/validity_period_helper_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_validity_period"
+                    android:textColor="@color/colorScrim"
+                    android:layout_marginStart="32dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/exo2_medium"
+                    android:layout_marginTop="16dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcv_validity_period"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/colorOutline"
+                    android:layout_marginHorizontal="16dp"
+                    android:backgroundTint="@color/static_white">
+
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/met_validity_period"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorScrim"
+                        android:layout_marginHorizontal="12dp"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/str_hint_validity_period"
+                        app:mask="##/##"
+                        android:inputType="number"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/card_name_helper_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_card_name"
+                    android:textColor="@color/colorScrim"
+                    android:layout_marginStart="32dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/exo2_medium"
+                    android:layout_marginTop="16dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcv_card_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/colorOutline"
+                    android:layout_marginHorizontal="16dp"
+                    android:backgroundTint="@color/static_white">
+
+                    <EditText
+                        android:id="@+id/et_card_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorScrim"
+                        android:layout_marginHorizontal="12dp"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/str_card_name"
+                        android:inputType="text"/>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </ScrollView>
+        <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankProgressButton
+            android:id="@+id/btn_add_card"
+            style="@style/VirtualBankButton.Filled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:text="@string/str_add_card"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="16dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>
