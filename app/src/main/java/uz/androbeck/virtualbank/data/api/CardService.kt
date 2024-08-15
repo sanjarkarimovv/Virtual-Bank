@@ -2,7 +2,6 @@ package uz.androbeck.virtualbank.data.api
 
 import retrofit2.http.Body
 import retrofit2.http.DELETE
-import retrofit2.http.GET
 import retrofit2.http.POST
 import uz.androbeck.virtualbank.data.dto.common.response.MessageResDto
 import uz.androbeck.virtualbank.data.dto.request.card.UpdateCardReqDto

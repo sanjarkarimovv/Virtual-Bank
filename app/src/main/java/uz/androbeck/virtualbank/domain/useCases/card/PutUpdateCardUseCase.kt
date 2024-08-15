@@ -6,8 +6,9 @@ import uz.androbeck.virtualbank.data.repository.card.CardRepository
 import uz.androbeck.virtualbank.domain.mapper.card.UpdateCardMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.ui_models.card.UpdateCardUIModel
+import uz.androbeck.virtualbank.domain.ui_models.common.MessageUIModel
 import javax.inject.Inject
-
+import javax.inject.Singleton
 
 @Singleton
 class PutUpdateCardUseCase @Inject constructor(
@@ -15,14 +16,8 @@ class PutUpdateCardUseCase @Inject constructor(
     private val updateCardMapper: UpdateCardMapper,
     private val messageMapper: MessageMapper
 ) {
-    suspend operator fun invoke(uiReqModel: UpdateCardUIModel) : Flow<MessageMapper> {
+    operator fun invoke(uiReqModel: UpdateCardUIModel): Flow<MessageUIModel> {
         val request = updateCardMapper.toDTO(uiReqModel)
-        return cardRepository.updateCard(request).map { messageMapper.toUIModel(it) }
+        return cardRepository.putUpdateCard(request).map { messageMapper.toUIModel(it) }
     }
 }
-/**
- * operator fun invoke(uiReqModel: UpdateInfoUIModel): Flow<MessageUIModel> {
- *         val request = updateInfoMapper.toDTO(uiReqModel)
- *         return homeRepository.putUpdateInfo(request).map { messageMapper.toUIModel(it) }
- *     }
- */

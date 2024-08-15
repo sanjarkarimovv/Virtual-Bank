@@ -16,6 +16,9 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val vm by viewModels<ProfileViewModel>()
 
+    init {
+        setup()
+    }
     override fun setup() = Unit
 
     override fun clicks() = with(binding) {

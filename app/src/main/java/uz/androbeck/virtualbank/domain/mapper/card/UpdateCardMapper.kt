@@ -3,8 +3,9 @@ package uz.androbeck.virtualbank.domain.mapper.card
 import uz.androbeck.virtualbank.data.dto.request.card.UpdateCardReqDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
 import uz.androbeck.virtualbank.domain.ui_models.card.UpdateCardUIModel
+import javax.inject.Inject
 
-class UpdateCardMapper : BaseMapper<UpdateCardReqDto, UpdateCardUIModel> {
+class UpdateCardMapper @Inject constructor() : BaseMapper<UpdateCardReqDto, UpdateCardUIModel> {
     override fun toUIModel(dto: UpdateCardReqDto) = dto.run {
         UpdateCardUIModel(
             id = id,

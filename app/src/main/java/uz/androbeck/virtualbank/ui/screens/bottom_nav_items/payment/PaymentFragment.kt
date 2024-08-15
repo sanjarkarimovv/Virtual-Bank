@@ -23,6 +23,7 @@ class PaymentFragment : BaseFragment(R.layout.fragment_payment) {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun setup() {
+
         with(binding) {
 
             root.setOnTouchListener { _, _ ->
