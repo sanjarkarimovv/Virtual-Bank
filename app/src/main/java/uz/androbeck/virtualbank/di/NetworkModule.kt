@@ -20,6 +20,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
+import uz.androbeck.virtualbank.data.api.CardService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
@@ -136,6 +137,12 @@ object NetworkModule {
     fun provideHistoryService(
         retrofit: Retrofit
     ): HistoryService = retrofit.create(HistoryService::class.java)
+    @Provides
+    @Singleton
+    fun provideCardService(
+        retrofit: Retrofit
+    ): CardService = retrofit.create(CardService::class.java)
+
 
     @Provides
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {

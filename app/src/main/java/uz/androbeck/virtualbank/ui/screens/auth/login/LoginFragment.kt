@@ -14,10 +14,10 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentLoginBinding
 import uz.androbeck.virtualbank.domain.ui_models.authentication.SignInReqUIModel
+import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.enter_verify_code.EnterVerifyCodeDialogFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.screens.Screen
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
