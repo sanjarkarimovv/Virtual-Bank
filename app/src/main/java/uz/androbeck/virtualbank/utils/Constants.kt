@@ -23,6 +23,7 @@ object Constants {
         const val GET_HISTORY="transfer/transfer"
         const val DELETE_CARD="card"
         const val ADD_CARD="card"
+        const val GET_CARD="card"
         const val GET_FEE="transfer/fee"
 
     }
