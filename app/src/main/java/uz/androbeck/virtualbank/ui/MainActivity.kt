@@ -3,7 +3,6 @@ package uz.androbeck.virtualbank.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     fun changeTheme() {
         // shu yerda xatolik bo'layabdi.
-      //  AppCompatDelegate.setDefaultNightMode(preferencesProvider.theme)
+        //  AppCompatDelegate.setDefaultNightMode(preferencesProvider.theme)
     }
 
     fun changeLanguage() {
@@ -74,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
-
 
     private fun setupObservers(navHostFragment: NavHostFragment) {
         vm.observeNavGraphEvent().onEach { event ->
