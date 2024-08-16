@@ -174,6 +174,12 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
 
         etFirstName.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
+                etFirstName.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.colorPrimary
+                    )
+                )
                 helperFirstNameTitle.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -182,6 +188,12 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                 )
                 helperFirstNameTitle.textSize = 16f
             } else {
+                etFirstName.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.colorInverseSurface
+                    )
+                )
                 helperFirstNameTitle.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -193,6 +205,12 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         }
         etLastName.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
+                etLastName.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.colorPrimary
+                    )
+                )
                 helperLastNameTitle.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
@@ -201,6 +219,12 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                 )
                 helperLastNameTitle.textSize = 16f
             } else {
+                etLastName.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.colorInverseSurface
+                    )
+                )
                 helperLastNameTitle.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
