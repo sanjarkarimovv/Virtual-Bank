@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/static_transparent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -10,17 +10,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Karta yoki telefon raqamini kiriting "
-        android:textColor="#868888"
+        android:textColor="#858689"
         android:textSize="10sp"
         android:padding="5dp"
         android:fontFamily="@font/exo2_semi_bold"
-        android:textStyle="normal"
+        android:textStyle="bold"
         android:layout_marginStart="14dp"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_card"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/tv_title_input_card_number"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
@@ -35,16 +35,41 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:padding="2dp"
-                android:layout_weight="0.12">
+                android:layout_weight="0.14">
                 <ImageView
+                    android:id="@+id/iv_card_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_cards"
+                    android:src="@drawable/ic_card"
                     android:layout_gravity="center"/>
             </FrameLayout>
 
 
+        <com.vicmikhailau.maskededittext.MaskedEditText
+            android:id="@+id/met_card_phone_number"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.74"
+            android:hint="Karta yoki telefon raqamini kiriting"
+            android:backgroundTint="@android:color/transparent"
+            android:textSize="12sp"
+            android:fontFamily="@font/exo2_semi_bold"
+            android:textColor="@color/colorScrim"
+            app:mask="#### #### #### ####"
+            android:inputType="number"
+            />
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.12">
+                <ImageView
+                    android:id="@+id/iv_scan_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_credit_card_scan"
+                    android:padding="10dp"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

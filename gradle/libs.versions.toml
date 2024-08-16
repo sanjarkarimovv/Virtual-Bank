@@ -28,6 +28,9 @@ interceptor = "4.12.0"
 serialization-json = "1.2.2"
 serialization-converter = "0.8.0"
 chucker = "4.0.0"
+visionCommon = "17.3.0"
+playServicesMlkitTextRecognitionCommon = "19.1.0"
+playServicesMlkitTextRecognition = "19.0.1"
 
 
 [libraries]
@@ -61,6 +64,9 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "serialization-converter" }
 chucker-interceptor = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
 chucker-interceptor-no-op = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
+vision-common = { group = "com.google.mlkit", name = "vision-common", version.ref = "visionCommon" }
+play-services-mlkit-text-recognition-common = { group = "com.google.android.gms", name = "play-services-mlkit-text-recognition-common", version.ref = "playServicesMlkitTextRecognitionCommon" }
+play-services-mlkit-text-recognition = { group = "com.google.android.gms", name = "play-services-mlkit-text-recognition", version.ref = "playServicesMlkitTextRecognition" }
 
 
 [plugins]
