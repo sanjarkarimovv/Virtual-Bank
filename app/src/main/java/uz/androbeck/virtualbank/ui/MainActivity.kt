@@ -1,12 +1,15 @@
 package uz.androbeck.virtualbank.ui
 
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +20,7 @@ import uz.androbeck.virtualbank.databinding.ActivityMainBinding
 import uz.androbeck.virtualbank.network.GlobalErrorController
 import uz.androbeck.virtualbank.network.errors.ApiErrorType
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
+import uz.androbeck.virtualbank.ui.enums.Theme
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.getThemeByCode
@@ -38,7 +42,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var globalErrorController: GlobalErrorController
 
     override fun onCreate(savedInstanceState: Bundle?) {
-       // changeTheme()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         changeLanguage()
@@ -51,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationVisibility(navHostFragment.navController)
     }
 
+
     private fun bottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val isVisibleBottomNav = when (destination.id) {
@@ -60,9 +64,10 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigation.isVisible = isVisibleBottomNav
         }
     }
-    fun changeTheme(){
-       // val theme = preferencesProvider.theme.getThemeByCode()
-       // AppCompatDelegate.setDefaultNightMode(theme.code)
+
+    fun changeTheme() {
+        //shu yerda momo bo'layandi.
+       // AppCompatDelegate.setDefaultNightMode(preferencesProvider.theme)
     }
 
     fun changeLanguage() {
@@ -74,6 +79,20 @@ class MainActivity : AppCompatActivity() {
         createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
+
+    /*private fun updateAllViews() {
+        val rootView = findViewById<ViewGroup>(android.R.id.content)
+        updateView(rootView)
+    }
+
+    private fun updateView(view: View) {
+        view.invalidate()
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                updateView(view.getChildAt(i))
+            }
+        }
+    }*/
 
     private fun setupObservers(navHostFragment: NavHostFragment) {
         vm.observeNavGraphEvent().onEach { event ->
