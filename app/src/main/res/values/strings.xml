@@ -16,9 +16,9 @@
     <string name="str_born_date">Born date</string>
     <string name="str_gender">Gender</string>
     <string name="str_sign_up">Sign Up</string>
-    <string name="str_refresh_code">Kodni qayta olish</string>
-    <string name="str_confirm">Tastiqlash</string>
-    <string name="str_code_confirm_time">Kod tastiqlash vaqti</string>
+    <string name="str_refresh_code">Get the code</string>
+    <string name="str_confirm">Confirmation</string>
+    <string name="str_code_confirm_time">Code verification time</string>
     <string name="toolbar_title">Title </string>
     <string name="str_login">Login</string>
     <string name="settings">Settings</string>
@@ -49,16 +49,6 @@
     <string name="str_localization_uzb">Uzbek</string>
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
-    <string name="str_money_type_uzb">soum</string>
-    <string name="str_transfer_type_income">Income</string>
-    <string name="str_transfer_type_outcome">Outcome</string>
-    <string name="str_transfer_cofir">Confirmed</string>
-    <string name="str_transfer_cencle">Cancel</string>
-    <string name="str_history_toolbar_title">Monitoring</string>
-    <string name="str_histiry_sort_name_income">Received</string>
-    <string name="str_histiry_sort_name_outcome">Expenses</string>
-
-    <string name="str_payment">To\'lov</string>
     <string name="str_search">Izlash</string>
     <string name="str_saved_payments">Saqlangan to\'lovlar</string>
     <string name="my_home">Mening uyim</string>
