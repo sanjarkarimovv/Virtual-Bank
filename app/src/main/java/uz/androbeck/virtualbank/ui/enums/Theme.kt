@@ -1,7 +1,5 @@
 package uz.androbeck.virtualbank.ui.enums
 
-import androidx.appcompat.app.AppCompatDelegate
-
 enum class Theme(
     var code: Int
 ) {

@@ -1,13 +1,11 @@
 package uz.androbeck.virtualbank
 
 import android.app.Application
-import android.content.Context
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatDelegate
 import dagger.hilt.android.HiltAndroidApp
+import uz.androbeck.virtualbank.databinding.FragmentProfileBinding
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.utils.Constants
-import java.util.Locale
 import javax.inject.Inject
 
 //Hello Virtual Bank
@@ -15,8 +13,10 @@ import javax.inject.Inject
 class VirtualBankApplication : Application() {
     @Inject
     lateinit var preferencesProvider: PreferencesProvider
+    lateinit var binding: FragmentProfileBinding
     override fun onCreate() {
         super.onCreate()
+
         val themeCode = preferencesProvider.theme
         val nightMode = when (themeCode) {
             Constants.Theme.LIGHT-> AppCompatDelegate.MODE_NIGHT_NO
