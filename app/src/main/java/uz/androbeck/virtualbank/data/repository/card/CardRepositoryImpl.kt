@@ -11,4 +11,5 @@ class CardRepositoryImpl @Inject constructor(
     override fun addCard(addCardReqDto: AddCardReqDto) =
         cardRemoteDataSource.addCard(addCardReqDto)
 
+    override fun getCards() = cardRemoteDataSource.getCards()
 }
