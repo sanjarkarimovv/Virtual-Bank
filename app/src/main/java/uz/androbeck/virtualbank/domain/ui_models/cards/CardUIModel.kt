@@ -1,8 +1,6 @@
 package uz.androbeck.virtualbank.domain.ui_models.cards
 
-import kotlinx.serialization.SerialName
-
-data class CardInfoUIModel(
+data class CardUIModel(
     val id: Int? = 0,
     val amount: Double? = 0.0,
     val name: String? = null,
