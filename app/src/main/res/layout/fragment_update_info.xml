@@ -122,8 +122,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_change_date_parent"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="120dp"
                 android:layout_marginEnd="20dp"
@@ -131,7 +131,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:visibility="gone"
-                app:cardCornerRadius="25dp"
+                app:cardCornerRadius="20dp"
                 app:strokeColor="@color/colorPrimary">
 
                 <ImageView
@@ -173,8 +173,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_change_gender_parent"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_below="@+id/gender_info_receiver"
             android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
@@ -185,7 +185,7 @@
             android:clickable="true"
             android:focusable="true"
             android:visibility="gone"
-            app:cardCornerRadius="25dp"
+            app:cardCornerRadius="20dp"
             app:strokeColor="@color/colorPrimary">
 
             <ImageView

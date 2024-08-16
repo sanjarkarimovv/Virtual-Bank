@@ -3,6 +3,7 @@ package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info
 import android.app.DatePickerDialog
 import android.os.Build
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -89,6 +90,7 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
             ).collect { event ->
                 when (event) {
                     is UpdateFullInfoEvent.Error -> {
+                        progressSaverBar.gone()
                         println("Error buttons make invisible !")
                         toast(event.error)
                         btnSaverChanges.text = getString(R.string.str_save_changes)
@@ -96,11 +98,15 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                     }
 
                     UpdateFullInfoEvent.Loading -> {
+                        progressSaverBar.visible()
                         println("Update info Loading...")
                         changingButtonsMakeInvisible()
                     }
 
                     is UpdateFullInfoEvent.Success -> {
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                        toast(event.successMessage)
+                        progressSaverBar.gone()
                         println("Success buttons make invisible !")
                         changingButtonsMakeInvisible()
                         btnSaverChanges.text = getString(R.string.str_save_changes)
@@ -148,6 +154,24 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     }
 
     private fun listenings() = with(binding) {
+        etFirstName.addTextChangedListener {
+            val text = it.toString()
+            if (text.contains(" ")) {
+                val newText = text.replace(" ", "")
+                etFirstName.setText(newText)
+                etFirstName.setSelection(newText.length)
+            }
+        }
+
+        etLastName.addTextChangedListener {
+            val text = it.toString()
+            if (text.contains(" ")) {
+                val newText = text.replace(" ", "")
+                etLastName.setText(newText)
+                etLastName.setSelection(newText.length)
+            }
+        }
+
         etFirstName.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 helperFirstNameTitle.setTextColor(
