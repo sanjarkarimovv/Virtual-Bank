@@ -56,12 +56,12 @@
                     android:textColor="@color/static_white"
                     android:fontFamily="@font/exo2_semi_bold"
                     android:layout_toEndOf="@id/card_balance"
-                    android:layout_above="@id/user_full_name2"
+                    android:layout_above="@id/user_full_name"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="4dp"
                     android:textSize="14sp" />
                 <TextView
-                    android:id="@+id/user_full_name2"
+                    android:id="@+id/user_full_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BAXTIYOROV ISLOM OROL OGLI"
@@ -75,7 +75,7 @@
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="12dp"
-                    android:layout_below="@id/user_full_name2"
+                    android:layout_below="@id/user_full_name"
                     app:cardCornerRadius="20dp"
                     android:backgroundTint="@color/screenTextColor">
                     <TextView
