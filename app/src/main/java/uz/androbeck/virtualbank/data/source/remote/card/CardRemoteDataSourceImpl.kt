@@ -3,16 +3,19 @@ package uz.androbeck.virtualbank.data.source.remote.card
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.CardService
-import uz.androbeck.virtualbank.data.dto.response.card.CardResDto
+import uz.androbeck.virtualbank.data.dto.request.card.AddCardReqDto
 import uz.androbeck.virtualbank.data.dto.response.card.GetCardsResDto
 import javax.inject.Inject
 
 class CardRemoteDataSourceImpl @Inject constructor(
     private val cardService: CardService
 ):CardRemoteDataSource {
-    override suspend fun deleteCard()= flow {
+    override fun deleteCard()= flow {
         emit(cardService.deleteCard())
 
+    }
+    override  fun addCard(addCardReqDto: AddCardReqDto)= flow {
+        emit(cardService.addCard(addCardReqDto))
     }
 
     override suspend fun getCards(): Flow<GetCardsResDto> = flow {

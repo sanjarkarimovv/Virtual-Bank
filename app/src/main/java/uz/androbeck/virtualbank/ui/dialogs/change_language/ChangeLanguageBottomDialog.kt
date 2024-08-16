@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.change_language
+package uz.androbeck.virtualbank.ui.dialogs.change_language
 
 import android.view.View
 import androidx.fragment.app.FragmentManager
@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.databinding.FragmentChangeLanguageBinding
+import uz.androbeck.virtualbank.databinding.DialogBottomChangeLanguageBinding
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.MainActivity
 import uz.androbeck.virtualbank.ui.base.BaseBottomDialog
@@ -19,9 +19,9 @@ import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ChangeLanguageBottomDialog : BaseBottomDialog(R.layout.fragment_change_language) {
+class ChangeLanguageBottomDialog : BaseBottomDialog(R.layout.dialog_bottom_change_language) {
 
-    private val binding: FragmentChangeLanguageBinding by viewBinding()
+    private val binding: DialogBottomChangeLanguageBinding by viewBinding()
 
     @Inject
     lateinit var preferencesProvider: PreferencesProvider

@@ -21,7 +21,8 @@ object Constants {
         const val LAST_TRANSFERS = "home/last-transfers"
         const val TOTAL_BALANCE = "home/total-balance"
         const val GET_HISTORY="transfer/transfer"
-        const val DELETE_CARD="card/3"
+        const val DELETE_CARD="card"
+        const val ADD_CARD="card"
         const val GET_CARD="card"
     }
 
@@ -54,5 +55,8 @@ object Constants {
         const val FIVE_THOUSAND = 5000L
         const val ONE = 1
         const val reENTRY_GET_CODE_TIME = 180000L
+        const val OFFSCREEN_PAGE_LIMIT = 1
+        const val SELECT_CARD_STROKE_WIDTH = 2
+        const val DEFAULT_CARD_STROKE_WIDTH = 1
     }
 }
