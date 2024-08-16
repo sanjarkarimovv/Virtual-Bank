@@ -88,4 +88,10 @@
     <string name="str_add_card_succes">Karta muvaffaqiyatli qo‘shildi</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
+    <string name="security_settings">Xavfsizlik sozlamalari</string>
+    <string name="change_pin_code">Pin-kodni o\'zgartirish</string>
+    <string name="login_with_fingerprint_or_face_id">Barmoq izi yoki yuz yordamida kirish</string>
+    <string name="lock_app_when_closed">Yopib turganda blokirovka qilish</string>
+    <string name="confirm_payment">To\'lovni tasdiqlash</string>
+    <string name="str_security_time">%1$d sek</string>
 </resources>

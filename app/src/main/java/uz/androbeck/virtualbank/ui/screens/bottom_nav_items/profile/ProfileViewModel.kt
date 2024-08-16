@@ -11,13 +11,15 @@ import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val getFullInfoUseCase: GetFullInfoUseCase,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: ErrorHandler,
+    private val preferencesProvider: PreferencesProvider
     ): BaseViewModel() {
         private val _fullInfoEvent= Channel<FullInfoUIModel>()
     val fullInfoEvent = _fullInfoEvent.consumeAsFlow()
@@ -31,6 +33,10 @@ class ProfileViewModel @Inject constructor(
             errorHandler.handleError(it)
             //
         }.launchIn(viewModelScope)
+    }
+
+    fun usingBiometrics() : Boolean {
+        return preferencesProvider.useBiometric
     }
 }
 

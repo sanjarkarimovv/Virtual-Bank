@@ -87,4 +87,10 @@
     <string name="str_add_card_succes">Карта успешно добавлена</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
+    <string name="security_settings">Настройки безопасности</string>
+    <string name="change_pin_code">Изменить PIN-код</string>
+    <string name="login_with_fingerprint_or_face_id">Войти биометрически</string>
+    <string name="lock_app_when_closed">Блокировка при сворачивании</string>
+    <string name="confirm_payment">Подтвердить оплату</string>
+    <string name="str_security_time">%1$d сек</string>
 </resources>

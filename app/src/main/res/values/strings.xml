@@ -89,4 +89,10 @@
     <string name="str_add_card_succes">Card added successfully</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
+    <string name="security_settings">Security settings</string>
+    <string name="change_pin_code">Change PIN-code</string>
+    <string name="login_with_fingerprint_or_face_id">Login with fingerprint or Face ID</string>
+    <string name="lock_app_when_closed">Lock app when closed</string>
+    <string name="confirm_payment">Confirm payment</string>
+    <string name="str_security_time">%1$d sec</string>
 </resources>

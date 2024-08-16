@@ -4,8 +4,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
@@ -39,8 +37,18 @@ class MainViewModel @Inject constructor(
         prefsProvider.isAwayLong = System.currentTimeMillis()
     }
 
+    fun saveBiometricPref(boolean: Boolean){
+        prefsProvider.useBiometric = boolean && prefsProvider.useBiometric
+    }
+
     fun checkIsAwayLong() = viewModelScope.launch {
-        isAwayLong.send((System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000 && prefsProvider.token.isNotEmpty())
+        if (prefsProvider.useIsAwayLong) {
+            val timeAway = System.currentTimeMillis() - prefsProvider.isAwayLong
+            val isAwayTooLong = timeAway > prefsProvider.awayLongTime * 1000
+            val hasValidToken = prefsProvider.token.isNotEmpty()
+
+            isAwayLong.send(isAwayTooLong && hasValidToken)
+        }
     }
 
     fun observeIsAwayLong() : Flow<Boolean> {

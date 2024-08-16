@@ -17,6 +17,7 @@ import uz.androbeck.virtualbank.network.GlobalErrorController
 import uz.androbeck.virtualbank.network.errors.ApiErrorType
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
+import uz.androbeck.virtualbank.ui.screens.pin_code.utils.BiometricUtils
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.visible
@@ -130,5 +131,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         vm.checkIsAwayLong()
+        vm.saveBiometricPref(BiometricUtils.isBiometricReady(this))
     }
 }
