@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.databinding.ItemMyHomeBinding
 import uz.androbeck.virtualbank.databinding.MyCardsItemBinding
 import uz.androbeck.virtualbank.domain.mock_data.AppHardcodeData
-import uz.androbeck.virtualbank.ui.enums.CardType
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 

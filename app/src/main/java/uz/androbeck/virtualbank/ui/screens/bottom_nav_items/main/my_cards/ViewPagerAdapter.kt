@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.MyCardsItemPagerBinding
 
-class PagingAdapter : RecyclerView.Adapter<PagingAdapter.MyCardsViewHolder>() {
+class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.MyCardsViewHolder>() {
 
     private val cardsList= mutableListOf<String>()
 
