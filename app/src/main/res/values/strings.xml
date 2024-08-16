@@ -89,8 +89,6 @@
     <string name="str_add_card_succes">Card added successfully</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
-    <string name="str_card_name">Kartaning nomi</string>
-    <string name="str_add_card">Karta qo\'shish</string>
     <string name="str_light_mode">Light mode</string>
     <string name="str_dark_mode">Dark mode</string>
     <string name="str_system">System</string>
