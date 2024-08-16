@@ -64,7 +64,7 @@
     <string name="str_num_7">7</string>
     <string name="str_num_8">8</string>
     <string name="str_num_9">9</string>
-    <string name="confirm_pin">Confirm Pin</string>
+    <string name="confirm_pin">Confirm Pin</string>Z
     <string name="remove_pin">Remove Pin</string>
     <string name="timer_message">Please wait %1$d seconds before trying again.</string>
     <string name="pin_code_page_skip">Skip</string>
@@ -85,4 +85,7 @@
     <string name="str_hint_validity_period">MM/YY</string>
     <string name="str_card_name">Kartaning nomi</string>
     <string name="str_add_card">Karta qo\'shish</string>
+    <string name="str_light_mode">Light mode</string>
+    <string name="str_dark_mode">Dark mode</string>
+    <string name="str_system">System</string>
 </resources>

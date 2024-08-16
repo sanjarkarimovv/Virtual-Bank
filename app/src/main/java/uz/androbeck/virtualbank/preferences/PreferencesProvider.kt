@@ -15,6 +15,8 @@ class PreferencesProvider @Inject constructor(
     var refreshToken: String by preferences.string()
     var useBiometric: Boolean by preferences.boolean()
     var language: String by preferences.string(Constants.Localization.UZBEK)
+    var theme: Int by preferences.int(Constants.Theme.SYSTEM)
+
 
     fun clear() {
         preferences.edit().clear().apply()

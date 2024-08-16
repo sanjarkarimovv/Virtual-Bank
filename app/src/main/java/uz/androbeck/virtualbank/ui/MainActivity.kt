@@ -3,6 +3,7 @@ package uz.androbeck.virtualbank.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -18,6 +19,7 @@ import uz.androbeck.virtualbank.network.errors.ApiErrorType
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
+import uz.androbeck.virtualbank.utils.extentions.getThemeByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.visible
 import java.util.Locale
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var globalErrorController: GlobalErrorController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+       // changeTheme()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         changeLanguage()
@@ -56,6 +59,10 @@ class MainActivity : AppCompatActivity() {
             }
             binding.bottomNavigation.isVisible = isVisibleBottomNav
         }
+    }
+    fun changeTheme(){
+       // val theme = preferencesProvider.theme.getThemeByCode()
+       // AppCompatDelegate.setDefaultNightMode(theme.code)
     }
 
     fun changeLanguage() {

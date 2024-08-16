@@ -1,5 +1,10 @@
 package uz.androbeck.virtualbank.utils
 
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+
 object Constants {
     object FileName {
         const val SHARED_PREFS = "virtual_bank"
@@ -58,5 +63,11 @@ object Constants {
         const val OFFSCREEN_PAGE_LIMIT = 1
         const val SELECT_CARD_STROKE_WIDTH = 2
         const val DEFAULT_CARD_STROKE_WIDTH = 1
+    }
+    object Theme{
+        const val LIGHT = MODE_NIGHT_NO
+        const val DARK = MODE_NIGHT_YES
+        const val SYSTEM = MODE_NIGHT_FOLLOW_SYSTEM
+
     }
 }
