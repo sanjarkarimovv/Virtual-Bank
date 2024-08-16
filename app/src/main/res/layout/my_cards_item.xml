@@ -15,6 +15,7 @@
             android:layout_height="match_parent"
             tools:ignore="UselessLeaf">
             <ImageView
+                android:id="@+id/card_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/photo_1"
@@ -79,6 +80,7 @@
                     app:cardCornerRadius="20dp"
                     android:backgroundTint="@color/screenTextColor">
                     <TextView
+                        android:id="@+id/important_text"
                         android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
