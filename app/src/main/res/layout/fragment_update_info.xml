@@ -117,10 +117,11 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="120dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_date" />
+                android:src="@drawable/ic_date"
+                android:visibility="gone" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_change_date"
+                android:id="@+id/btn_change_date_parent"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -134,6 +135,7 @@
                 app:strokeColor="@color/colorPrimary">
 
                 <ImageView
+                    android:id="@+id/btn_change_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -152,9 +154,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/exo2_semi_bold"
+            android:text="@string/str_gender"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            android:text="@string/str_gender" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/gender_info_receiver"
@@ -164,13 +166,13 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="38dp"
-            tools:text="@string/str_male"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="@string/str_male" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btn_change_gender"
+            android:id="@+id/btn_change_gender_parent"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/gender_info_receiver"
@@ -187,6 +189,7 @@
             app:strokeColor="@color/colorPrimary">
 
             <ImageView
+                android:id="@+id/btn_change_gender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -204,7 +207,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/date_birth_and_gender_root"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/ripple_effect"
         android:clickable="true"
         android:drawablePadding="10dp"
@@ -245,7 +248,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_saver_changes"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_marginHorizontal="10dp"
             android:layout_weight="0.5"
             android:text="@string/str_save_changes"
@@ -255,7 +258,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_undo"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginHorizontal="10dp"
             android:layout_weight="0.5"
             android:backgroundTint="@color/colorInversePrimary"

@@ -16,8 +16,7 @@
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
         android:label="MainFragment"
-        tools:layout="@layout/fragment_main" />
-        android:label="MainFragment" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
@@ -36,7 +35,7 @@
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_updateInfoFragment"
             app:destination="@id/updateInfoFragment" />
@@ -53,7 +52,8 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
-        android:label="AddCardFragment" >
+        android:label="AddCardFragment"
+        tools:layout="@layout/fragment_add_card">
         <action
             android:id="@+id/action_addCardFragment_to_cardScannerFragment"
             app:destination="@id/cardScannerFragment" />

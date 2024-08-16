@@ -40,17 +40,27 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         }
         btnChangeDate.setOnClickListener {
             datePicker()
+            println("::: -> Button btnChangeDate")
         }
         btnChangeGender.setOnClickListener {
-            if (genderInfoReceiver.text == "Male") {
-                genderInfoReceiver.text = getString(R.string.str_female)
-            } else {
-                genderInfoReceiver.text = getString(R.string.str_male)
+            println("::: -> Button btnChangeGender")
+            when (genderInfoReceiver.text) {
+                getString(R.string.str_male) -> {
+                    genderInfoReceiver.text = getString(R.string.str_female)
+                }
+
+                getString(R.string.str_female) -> {
+                    genderInfoReceiver.text = getString(R.string.str_male)
+                }
+
+                else -> {
+                    genderInfoReceiver.text = "No data"
+                }
             }
         }
         btnSaverChanges.setOnClickListener {
             println("::: -> btn changes clicked")
-//            updateChanges()
+            updateChanges()
         }
     }
 
@@ -66,12 +76,14 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
             gender = "0"
         }
         val reqDate = dateToMillis(date)
+        println("::: -> $firstName $lastName $reqDate $gender")
+
         viewLifecycleOwner.lifecycleScope.launch {
             vm.updateUserInfo(
                 UpdateInfoReqUIModel(
                     firstName = firstName,
                     lastName = lastName,
-                    bornDate = millisToDate(reqDate),
+                    bornDate = reqDate.toString(),
                     gender = gender
                 )
             ).collect { event ->
@@ -84,8 +96,8 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                     }
 
                     UpdateFullInfoEvent.Loading -> {
+                        println("Update info Loading...")
                         changingButtonsMakeInvisible()
-                        btnSaverChanges.text = null
                     }
 
                     is UpdateFullInfoEvent.Success -> {
@@ -106,7 +118,8 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         }
         etFirstName.setText(uiModel?.firstName)
         etLastName.setText(uiModel?.lastName)
-        dateBirthReceiver.text = uiModel?.bornDate
+        val formattedDate = millisToDate(uiModel?.bornDate?.toLong() ?: 0L)
+        dateBirthReceiver.text = formattedDate
     }
 
     private fun getBundleData() {
@@ -178,8 +191,15 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     private fun changingButtonsMakeVisible() = with(binding) {
         icDateIv.gone()
         updateButtonsRoot.visible()
-        btnChangeDate.visible()
-        btnChangeGender.visible()
+        btnChangeDateParent.visible()
+        btnChangeGenderParent.visible()
+    }
+
+    private fun changingButtonsMakeInvisible() = with(binding) {
+        icDateIv.visible()
+        updateButtonsRoot.gone()
+        btnChangeDateParent.gone()
+        btnChangeGenderParent.gone()
     }
 
     private fun datePicker() = with(binding) {
@@ -195,13 +215,6 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         )
         datePickerDialog.setCancelable(true)
         datePickerDialog.show()
-    }
-
-    private fun changingButtonsMakeInvisible() = with(binding) {
-        icDateIv.visible(   )
-        updateButtonsRoot.gone()
-        btnChangeDate.gone()
-        btnChangeGender.gone()
     }
 
     private fun dateToMillis(dateString: String): Long {
