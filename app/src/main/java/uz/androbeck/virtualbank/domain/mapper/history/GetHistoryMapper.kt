@@ -7,30 +7,26 @@ import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
 import uz.androbeck.virtualbank.domain.ui_models.history.TransfersUIModel
 import javax.inject.Inject
 
-class GetHistoryMapper @Inject constructor():BaseMapper<GetHistoryResDto, TransfersUIModel> {
-    override fun toUIModel(dto: GetHistoryResDto)=dto.run {
-        TransfersUIModel(
-            transferUIModel = transferResDto?.map {
+class GetHistoryMapper @Inject constructor():BaseMapper<InComeAndOutComeResDto, InComeAndOutComeUIModel> {
+    override fun toUIModel(dto: InComeAndOutComeResDto)=dto.run {
                 InComeAndOutComeUIModel(
-                    type = it.type,
-                    from = it.from,
-                    to = it.to,
-                    amount = it.amount,
-                    time = it.time,
+                    type = type,
+                    from = from,
+                    to = to,
+                    amount = amount,
+                    time = time,
                 )
             }
-        )
-    }
 
-    override fun toDTO(uiModel: TransfersUIModel)=uiModel.run {
-        GetHistoryResDto(
-          transferResDto = transferUIModel?.map {
+
+    override fun toDTO(uiModel: InComeAndOutComeUIModel)=uiModel.run {
+
               InComeAndOutComeResDto(
-                  type = it.type,
-                  from = it.from,
-                  to = it.to,
-                  amount = it.amount,)
+                  type = type,
+                  from = from,
+                  to = to,
+                  amount = amount,)
           }
-        )
-    }
+
+
 }

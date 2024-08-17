@@ -1,5 +1,4 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history
-
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -27,9 +26,11 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
             }
             lifecycleScope.launch {
                 viewModel.response.observe(viewLifecycleOwner) { pagingData ->
-                    println(":::::::;HistoryList $pagingData")
-                    historyAdapter.submitData(viewLifecycleOwner.lifecycle, pagingData)
+                    println("::::::;HistFArgment____ $pagingData")
+                    historyAdapter.submitData(lifecycle, pagingData)
+                    println("::::::;HistFArgment ${historyAdapter.snapshot()}")
                 }
+
             }
             // tvIncomeAmount.text = "+ " + viewModel.getAmounts().first.toString()
             //tvOutcomeAmount.text = "- " + viewModel.getAmounts().second.toString()

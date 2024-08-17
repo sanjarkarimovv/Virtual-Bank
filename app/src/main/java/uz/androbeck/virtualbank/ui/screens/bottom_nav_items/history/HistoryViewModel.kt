@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
-import uz.androbeck.virtualbank.domain.ui_models.history.TransfersUIModel
+import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
 import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import uz.androbeck.virtualbank.utils.extentions.toStartOfDay
@@ -36,36 +36,32 @@ class HistoryViewModel @Inject constructor(
         getHistoryUseCase.invoke()
             .map { pagingData ->
                 pagingData.map { dto ->
+                    HistoryItem.Content(dto)
+                    HistoryItem.Header(dto.time.toStartOfDay())
+                    println(":::::::;HistoryGetHistory ${(dto.time.toStartOfDay())}")
                     mapDtoToHistoryItem(dto)
                 }
             }
             .cachedIn(viewModelScope)
             .onEach {
                 _response.value = it
-                println(":::::::;HistoryList $it")
+                println(":::::::;Historygetresponse $it")
             }
             .launchIn(viewModelScope)
     }
 
-    private fun mapDtoToHistoryItem(dto: TransfersUIModel): HistoryItem {
+    private fun mapDtoToHistoryItem(dto: InComeAndOutComeUIModel): HistoryItem {
         val items = mutableListOf<HistoryItem>()
-        var lastHeaderTime: Long? = null
-
-        if (dto.transferUIModel.isNullOrEmpty()) {
-            println(":::::::;HistoryList null")
+        if (dto.type == "INCOME") {
+            totalAmountIncome += dto.amount
+            println(":::::::;HistoryAmountIncome $totalAmountIncome")
+        } else {
+            totalAmountOutcome += dto.amount
         }
-        dto.transferUIModel?.forEach { child ->
-            println()
-            val currentHeaderTime = child.time.toStartOfDay()
-
-            if (lastHeaderTime == null || lastHeaderTime != currentHeaderTime) {
-                items.add(HistoryItem.Header(currentHeaderTime))
-                lastHeaderTime = currentHeaderTime
-            }
-
-            items.add(HistoryItem.Content(child))
-        }
-
+        val currentHeaderTime = dto.time.toStartOfDay()
+        items.add(HistoryItem.Header(currentHeaderTime))
+        items.add(HistoryItem.Content(dto))
         return items.last()
     }
+
 }

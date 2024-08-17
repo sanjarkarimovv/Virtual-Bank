@@ -12,7 +12,7 @@ class GetHistoryUseCase @Inject constructor(
 ) {
 
     operator fun invoke() =
-        historyRepository.getHistory().flow.map {pagingData->
+        historyRepository.getHistory().map {pagingData->
             pagingData.map { historyDto->
                 getHistoryMapper.toUIModel(historyDto)
             }

@@ -66,25 +66,13 @@ class HistoryAdapter(
 
     companion object {
         private val diffUtil = object : DiffUtil.ItemCallback<HistoryItem>() {
-            override fun areItemsTheSame(
-                oldItem: HistoryItem,
-                newItem: HistoryItem
-            ): Boolean {
-                if ((oldItem is HistoryItem.Header && newItem is HistoryItem.Header) || (oldItem is HistoryItem.Content && newItem is HistoryItem.Content)) {
+                override fun areItemsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
                     return oldItem == newItem
                 }
-                return false
-            }
 
-            override fun areContentsTheSame(
-                oldItem: HistoryItem,
-                newItem: HistoryItem
-            ): Boolean {
-                if ((oldItem is HistoryItem.Header && newItem is HistoryItem.Header) || (oldItem is HistoryItem.Content && newItem is HistoryItem.Content)) {
+                override fun areContentsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
                     return oldItem == newItem
                 }
-                return false
-            }
         }
     }
 
