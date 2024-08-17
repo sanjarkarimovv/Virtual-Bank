@@ -78,12 +78,19 @@ class SecurityFragment :BaseFragment(R.layout.fragment_security) {
     }
 
     private fun updateUI(settings: SecuritySettings) = with(binding) {
+        // Disable animations temporarily
+        switchBiometrics.jumpDrawablesToCurrentState()
+        switchPayment.jumpDrawablesToCurrentState()
+        switchLock.jumpDrawablesToCurrentState()
+
+        // Apply settings without animation
         settings.run {
-                switchBiometrics.isChecked = useBiometric
-                switchPayment.isChecked = useBiometricPayment
-                switchLock.isChecked = useIsAwayLong
-                seekBarTime.progress = awayLongTime
-                selectedTimeText.text = requireContext().getString(R.string.str_security_time, awayLongTime)
+            switchBiometrics.isChecked = useBiometric
+            switchPayment.isChecked = useBiometricPayment
+            switchLock.isChecked = useIsAwayLong
+            seekBarTime.progress = awayLongTime
+            selectedTimeText.text = requireContext().getString(R.string.str_security_time, awayLongTime)
         }
     }
+
 }

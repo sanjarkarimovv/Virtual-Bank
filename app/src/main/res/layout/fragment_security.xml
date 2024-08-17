@@ -17,152 +17,186 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/securityToolbar">
 
-        <FrameLayout
-            android:id="@+id/change_pin"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_effect_transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp">
+            android:layout_marginVertical="4dp"
+            android:backgroundTint="@color/colorSurfaceContainerLowest"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:id="@+id/change_pin"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/exo2_regular"
-                android:text="@string/change_pin_code"
-                android:textColor="@color/colorInverseSurface"
-                android:textSize="16sp" />
+                android:background="@drawable/ripple_effect"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_right_light_24" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/exo2_regular"
+                    android:text="@string/change_pin_code"
+                    android:textColor="@color/colorInverseSurface"
+                    android:textSize="16sp" />
 
-        </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_right_light_24" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorSurfaceDim" />
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
 
-        <FrameLayout
-            android:id="@+id/biometric_settings"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp">
+            android:layout_marginVertical="4dp"
+            android:backgroundTint="@color/colorSurfaceContainerLowest"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/exo2_regular"
-                android:text="@string/login_with_fingerprint_or_face_id"
-                android:textColor="@color/colorInverseSurface"
-                android:textSize="16sp" />
-
-            <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/switch_biometrics"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_gravity="end" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/payment_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/exo2_regular"
-                android:text="@string/confirm_payment"
-                android:textColor="@color/colorInverseSurface"
-                android:textSize="16sp" />
-
-            <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/switch_payment"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="end"/>
-        </FrameLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorSurfaceDim" />
-
-        <FrameLayout
-            android:id="@+id/lock_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:fontFamily="@font/exo2_regular"
-                android:text="@string/lock_app_when_closed"
-                android:textColor="@color/colorInverseSurface"
-                android:textSize="16sp" />
-
-            <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/switch_lock"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="end"/>
-        </FrameLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/time_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp">
-            <SeekBar
-                android:id="@+id/seekBar_time"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:progressTint="#6750A4"
-                android:progressBackgroundTint="#6750A4"
-                android:thumbTint="#6750A4"
-                android:layout_marginEnd="50dp"
-                android:max="60"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/selected_time_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/seekBar_time"
-                app:layout_constraintBottom_toBottomOf="@id/seekBar_time"
-                app:layout_constraintStart_toEndOf="@id/seekBar_time"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="16sp"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <FrameLayout
+                    android:id="@+id/biometric_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_effect"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/exo2_regular"
+                        android:text="@string/login_with_fingerprint_or_face_id"
+                        android:textColor="@color/colorInverseSurface"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_biometrics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_gravity="end" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/payment_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_effect"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/exo2_regular"
+                        android:text="@string/confirm_payment"
+                        android:textColor="@color/colorInverseSurface"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_gravity="end" />
+                </FrameLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:backgroundTint="@color/colorSurfaceContainerLowest"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/lock_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_effect_transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/exo2_regular"
+                        android:text="@string/lock_app_when_closed"
+                        android:textColor="@color/colorInverseSurface"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_lock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="end" />
+                </FrameLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp">
+
+                    <SeekBar
+                        android:id="@+id/seekBar_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="50dp"
+                        android:max="60"
+                        android:progressBackgroundTint="#6750A4"
+                        android:progressTint="#6750A4"
+                        android:thumbTint="#6750A4" />
+
+                    <TextView
+                        android:id="@+id/selected_time_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@id/seekBar_time"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/seekBar_time"
+                        app:layout_constraintTop_toTopOf="@id/seekBar_time" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
