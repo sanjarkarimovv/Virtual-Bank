@@ -14,7 +14,7 @@ data class CardResDto(
     @SerialName("owner")
     val owner: String? = null,
     @SerialName("pan")
-    val pan: Double? = 0.0,
+    val pan: String? = null,
     @SerialName("expired-year")
     val expiredYear: Int? = 0,
     @SerialName("expired-month")
