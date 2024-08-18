@@ -12,7 +12,7 @@ data class CardResDto(
     @SerialName("amount")
     val amount: Double? = 0.0,
     @SerialName("owner")
-    val owner: String? = null,
+    val owner: String? = null, //solved
     @SerialName("pan")
     val pan: String? = null,
     @SerialName("expired-year")
