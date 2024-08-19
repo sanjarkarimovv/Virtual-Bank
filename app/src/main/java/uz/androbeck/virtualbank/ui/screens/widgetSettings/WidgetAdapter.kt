@@ -16,6 +16,9 @@ class WidgetAdapter(
         fun bind(item: UiComponents?) = with(binding) {
             item?.run {
                 tvItemName.text = value
+                if (!isShow) {
+                    btnCancel.rotation = 0f
+                }
             }
             binding.root.setOnClickListener {
                 action.invoke(item)

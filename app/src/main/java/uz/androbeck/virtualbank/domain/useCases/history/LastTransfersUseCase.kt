@@ -11,7 +11,9 @@ class LastTransfersUseCase @Inject constructor(
 ) {
     operator fun invoke() =
         historyRepository.getLastTransfers().map {
-            lastTransfersMapper.toUIModel(it)
+            it.map {
+                lastTransfersMapper.toUIModel(it)
+            }
         }
 
 }

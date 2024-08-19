@@ -2,14 +2,16 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginTop="8dp"
+    android:layout_height="38dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginHorizontal="16dp"
     app:cardCornerRadius="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorCardLight">
+        android:background="@color/colorOnSecondary">
 
         <ImageView
             android:id="@+id/btn_cancel"
@@ -18,7 +20,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="8dp"
             android:padding="8dp"
-            android:src="@drawable/ic_cancel" />
+            android:rotation="45"
+            android:src="@drawable/ic_add" />
 
         <TextView
             android:id="@+id/tv_item_name"
@@ -29,7 +32,7 @@
             android:fontFamily="@font/exo2_medium"
             android:paddingHorizontal="8dp"
             android:text="Assalomu alaykum"
-            android:textColor="@color/colorBlueForHome"
+            android:textColor="@color/colorScrim"
             android:textSize="16sp" />
 
         <ImageView

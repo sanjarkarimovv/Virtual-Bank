@@ -13,6 +13,7 @@
     <string name="theme_of_the_application">Тема приложения</string>
     <string name="widget_setup">Настройка виджета</string>
     <string name="todo">TODO</string>
+
     <string name="security">Безопасность</string>
     <string name="permissions">Разрешения</string>
     <string name="notification">Уведомления</string>
@@ -80,11 +81,6 @@
     <string name="str_finances_service">Finances service</string>
     <string name="str_payment">Pul o\'tgazish</string>
     <string name="str_get_credit">Kridit oling</string>
-    <string name="str_search">Izlash</string>
-    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
-    <string name="my_home">Mening uyim</string>
-    <string name="places_payments">Joylarda to\'lov</string>
-    <string name="str_add">Qo\'shish</string>
     <string name="str_search">Поиск</string>
     <string name="str_saved_payments">Сохраненные платежи</string>
     <string name="my_home">Мой дом</string>
@@ -105,10 +101,6 @@
     <string name="str_add_card_succes">Карта успешно добавлена</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
-    <string name="str_hint_validity_period">MM/YY</string>
-    <string name="str_validity_period">Amala qilish muddati</string>
-    <string name="str_card_name">Kartaning nomi</string>
-    <string name="str_add_card">Karta qo\'shish</string>
     <string name="str_select">Select</string>
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>

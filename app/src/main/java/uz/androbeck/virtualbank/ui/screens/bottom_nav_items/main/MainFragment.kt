@@ -12,15 +12,13 @@ import uz.androbeck.virtualbank.databinding.FragmentMainBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.HomeBodyModels
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.customViews.forHome.HeaderUiEvent
-import uz.androbeck.virtualbank.ui.dialogs.show_cards.ShowCards
 import uz.androbeck.virtualbank.utils.extentions.toast
-
 @AndroidEntryPoint
 class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private val binding: FragmentMainBinding by viewBinding()
     override fun setup() {
-        setRv()
+        viewModel.getUiData()
         onClick()
     }
 
@@ -31,6 +29,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         btnSettings.setOnClickListener {
             // navigate to settings screen
             customBody.stopCounter()
+
             findNavController().navigate(R.id.action_mainFragment_to_widgetSettingsFragment)
         }
         customHeader.clicks.onEach {
@@ -40,7 +39,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 }
 
                 HeaderUiEvent.ClickMore -> {
-                    ShowCards().show(childFragmentManager, "show")
+
                 }
 
                 HeaderUiEvent.ClickNfs -> {
@@ -74,10 +73,12 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 llSwipe.isRefreshing = false
                 when (it) {
                     is HomeBodyModels.Card -> {
+                        customBody.cardsDefIconShow(it.data.isEmpty())
                         customBody.cardsAdapter.submitList(it.data)
                     }
 
                     is HomeBodyModels.LastTransfer -> {
+                        customBody.lastTransferDefIconShow(it.data.isEmpty())
                         customBody.lastTransferAdapter.submitList(it.data)
                     }
 
@@ -96,12 +97,4 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             }
         }
     }
-
-    private fun setRv() = with(binding) {
-        btnSettings.setOnClickListener {
-            toast("Update")
-            viewModel.updateComponent(1, true)
-        }
-    }
-
 }

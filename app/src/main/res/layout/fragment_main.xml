@@ -20,7 +20,11 @@
             <uz.androbeck.virtualbank.ui.customViews.forHome.CustomHomeHeader
                 android:id="@+id/custom_header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="0dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_rv_shape"
                     android:gravity="center_horizontal|bottom"
-                    android:minHeight="250dp">
+                    android:minHeight="100dp">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/btn_settings"

@@ -1,32 +1,38 @@
 package uz.androbeck.virtualbank.ui.customViews.forHome
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.ItemCardsBinding
-import uz.androbeck.virtualbank.domain.ui_models.home.CardModel
+import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 
-class CardsAdapter : ListAdapter<CardModel, CardsAdapter.CardsHolder>(diffUtil) {
+
+class CardsAdapter : ListAdapter<CardUIModel, CardsAdapter.CardsHolder>(diffUtil) {
     inner class CardsHolder(private val binding: ItemCardsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(cardModel: CardModel) = with(binding) {
+        @SuppressLint("SetTextI18n")
+        fun bind(cardModel: CardUIModel) = with(binding) {
             cardModel.run {
                 tvOwnerName.text = name
-                tvAmount.text = amount
+                tvAmount.text = amount.toString()
+                tvCardNumber.text = pan.toString()
+                tvCardExpired.text = expiredYear.toString() + "/" + expiredMonth.toString()
+                //tvAmount.text = amount
                 // ...
             }
         }
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<CardModel>() {
-            override fun areItemsTheSame(oldItem: CardModel, newItem: CardModel): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<CardUIModel>() {
+            override fun areItemsTheSame(oldItem: CardUIModel, newItem: CardUIModel): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: CardModel, newItem: CardModel): Boolean {
+            override fun areContentsTheSame(oldItem: CardUIModel, newItem: CardUIModel): Boolean {
                 return oldItem == newItem
             }
 
@@ -34,6 +40,7 @@ class CardsAdapter : ListAdapter<CardModel, CardsAdapter.CardsHolder>(diffUtil) 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardsHolder {
+
         return CardsHolder(
             ItemCardsBinding.inflate(
                 LayoutInflater.from(parent.context),

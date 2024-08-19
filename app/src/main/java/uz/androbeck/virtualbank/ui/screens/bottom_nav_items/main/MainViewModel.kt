@@ -6,23 +6,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.domain.ui_models.home.CardModel
 import uz.androbeck.virtualbank.domain.ui_models.home.HomeBodyModels
-import uz.androbeck.virtualbank.domain.ui_models.home.LastTransferModel
 import uz.androbeck.virtualbank.domain.ui_models.home.PaymentsModel
 import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
+import uz.androbeck.virtualbank.domain.useCases.card.GetCardsUseCase
+import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.UpdateComponentsInCatchUseCase
-import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.screens.HomeComponents
 import javax.inject.Inject
 
@@ -34,7 +32,8 @@ class MainViewModel @Inject constructor(
     private val putComponentsUseCase: PutComponentsUseCase,
     private val updateComponentsInCatchUseCase: UpdateComponentsInCatchUseCase,
     private val totalBalanceUseCase: GetTotalBalanceUseCase,
-    private val preferencesProvider: PreferencesProvider
+    private val getCardsUseCase: GetCardsUseCase,
+    private val lastTransferUseCase: LastTransfersUseCase,
 
 ) : ViewModel() {
     private val _homeComponents = MutableLiveData<HomeComponentsUiEvent>()
@@ -100,14 +99,10 @@ class MainViewModel @Inject constructor(
                     if (item.isShow) {
                         when (item.name) {
                             HomeComponents.Cards -> {
-                                // get from remote data
-                                _uiData.value = HomeBodyModels.Card(
-                                    item.name, listOf(
-                                        CardModel( cardStile = preferencesProvider.cardStile, "Normurodov", "100 000"),
-                                        CardModel( cardStile = preferencesProvider.cardStile, "Normurodov", "100 000"),
-                                        CardModel( cardStile = preferencesProvider.cardStile, "Normurodov", "100 000"),
-                                    )
-                                )
+                                //get from remote data
+//                                getCardsUseCase.invoke().onEach {
+//                                    _uiData.value = HomeBodyModels.Card(item.name, it)
+//                                }.launchIn(this)
                             }
 
                             HomeComponents.Payments -> {
@@ -120,25 +115,16 @@ class MainViewModel @Inject constructor(
                                         PaymentsModel("", R.drawable.bg_gas_logo),
                                         PaymentsModel("", R.drawable.bg_humo_logo),
                                         PaymentsModel("", R.drawable.bg_uzcard_logo),
-                                    )
-                                )
+                                    ))
                             }
 
                             HomeComponents.LastTransfers -> {
-                                _uiData.value = HomeBodyModels.LastTransfer(
-                                    item.name,
-                                    listOf(
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                        LastTransferModel(""),
-                                    )
-                                )
+
+//                                lastTransferUseCase.invoke().onEach {
+//                                    _uiData.value = HomeBodyModels.LastTransfer(
+//                                        item.name, it
+//                                    )
+//                                }.launchIn(this)
                             }
 
                             HomeComponents.PaymentForPhoneNumber -> {
@@ -162,11 +148,11 @@ class MainViewModel @Inject constructor(
 
     fun getTotalBalance() {
         viewModelScope.launch {
-            totalBalanceUseCase.invoke().onEach {
-                _uiData.value = HomeBodyModels.TotalBalance("${it.totalBalance}")
-            }.catch {
-                _uiData.value = HomeBodyModels.Error(it.message?:"Ko'zda tutilmagan xatolik")
-            }.launchIn(this)
+//            totalBalanceUseCase.invoke().onEach {
+//                _uiData.value = HomeBodyModels.TotalBalance("${it.totalBalance}")
+//            }.catch {
+//                _uiData.value = HomeBodyModels.Error(it.message?:"Ko'zda tutilmagan xatolik")
+//            }.launchIn(this)
         }
     }
 
@@ -175,14 +161,6 @@ class MainViewModel @Inject constructor(
             putComponentsUseCase.putComponents(
                 uiComponents = uiComponents
             )
-
         }
     }
-
-    fun updateComponent(id: Int, isVisibility: Boolean) {
-        viewModelScope.launch {
-            updateComponentsInCatchUseCase.updateComponents(id, isVisibility)
-        }
-    }
-
 }

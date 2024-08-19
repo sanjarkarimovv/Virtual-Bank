@@ -4,7 +4,7 @@
     android:id="@+id/scrollable_item1"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:background="@color/colorBlueForHome">
+>
 
     <LinearLayout
         android:id="@+id/layout_amount_root"
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="16dp"
-                android:src="@drawable/ic_nfsee" />
+                android:src="@drawable/ic_nfc" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView

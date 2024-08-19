@@ -5,6 +5,7 @@ import android.os.CountDownTimer
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomHomeBodyBinding
@@ -21,19 +22,9 @@ class CustomHomeBody @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyle) {
     private var binding = CustomHomeBodyBinding.inflate(LayoutInflater.from(context), this, true)
 
+    private var isCounter = true
     private val counter = object : CountDownTimer(21000L, 3000) {
         private var count = 0
-         var isStart = true
-            set(value) {
-                if (!value) {
-                    count = 0
-                    onFinish()
-                } else {
-                    count = 0
-                    start()
-                }
-                field = value
-            }
         override fun onTick(p0: Long) {
             if (count < 5) {
                 binding.rvAdvertising.currentItem = count
@@ -43,7 +34,9 @@ class CustomHomeBody @JvmOverloads constructor(
             }
         }
         override fun onFinish() {
-            if (isStart) start()
+            count = 0
+            isCounter = true
+            startCounter()
         }
     }
 
@@ -52,6 +45,15 @@ class CustomHomeBody @JvmOverloads constructor(
         gravity = Gravity.BOTTOM
         orientation = VERTICAL
     }
+
+    fun cardsDefIconShow(isShow: Boolean) {
+        binding.icCardNotFound.isShow(isShow)
+    }
+
+    fun lastTransferDefIconShow(isShow: Boolean) {
+        binding.icLastTransferInNotFound.isShow(isShow)
+    }
+
 
     val cardsAdapter by lazy {
         CardsAdapter()
@@ -116,21 +118,28 @@ class CustomHomeBody @JvmOverloads constructor(
                 HomeComponents.ForAdvertising -> {
                     layoutAdvertising.isShow(it.isShow)
                     rvAdvertising.adapter = advertisingAdapter
-                    counter.start()
+                    startCounter()
                 }
             }
         }
 
     }
 
-    private fun LinearLayout.isShow(isShow: Boolean) {
+    private fun View.isShow(isShow: Boolean) {
         if (isShow) {
             this.visible()
         } else this.gone()
     }
 
     fun stopCounter() {
-       counter.isStart = false
+        counter.cancel()
+    }
+
+    private fun startCounter() {
+        if (isCounter){
+            counter.start()
+            isCounter = false
+        }
     }
 
 

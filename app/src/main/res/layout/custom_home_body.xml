@@ -23,7 +23,7 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/exo2_medium"
             android:text="@string/str_cards"
-            android:textColor="@color/colorOnSecondary"
+            android:textColor="@color/colorScrim"
             android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -34,6 +34,15 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageView
+            android:id="@+id/ic_card_not_found"
+            android:layout_width="100dp"
+            android:scaleType="centerCrop"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_i_dont_know" />
+
 
     </LinearLayout>
 
@@ -53,7 +62,7 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/exo2_medium"
             android:text="@string/str_advertising"
-            android:textColor="@color/colorOnSecondary"
+            android:textColor="@color/colorScrim"
             android:textSize="16sp" />
 
         <androidx.viewpager2.widget.ViewPager2
@@ -80,7 +89,7 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/exo2_medium"
             android:text="@string/str_payments"
-            android:textColor="@color/colorOnSecondary"
+            android:textColor="@color/colorScrim"
             android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -108,19 +117,20 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/exo2_medium"
             android:text="@string/str_finances_service"
-            android:textColor="@color/colorOnSecondary"
+            android:textColor="@color/colorScrim"
             android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp">
+            android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
+                android:layout_marginVertical="8dp"
                 android:layout_height="60dp"
+                android:layout_marginStart="8dp"
                 android:layout_alignParentStart="true"
-                app:cardBackgroundColor="@color/colorOnSurface"
+                app:cardBackgroundColor="@color/colorOnSecondary"
                 app:cardCornerRadius="8dp">
 
                 <ImageView
@@ -136,15 +146,17 @@
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/exo2_medium"
                     android:text="@string/str_payment"
-                    android:textColor="@color/colorBlueForHome"
+                    android:textColor="@color/colorScrim"
                     android:textSize="12sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
                 android:layout_height="60dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_alignParentEnd="true"
-                app:cardBackgroundColor="@color/colorOnSurface"
+                app:cardBackgroundColor="@color/colorOnSecondary"
                 app:cardCornerRadius="8dp">
 
                 <ImageView
@@ -160,7 +172,7 @@
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/exo2_medium"
                     android:text="@string/str_get_credit"
-                    android:textColor="@color/colorBlueForHome"
+                    android:textColor="@color/colorScrim"
                     android:textSize="12sp" />
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
@@ -184,16 +196,23 @@
             android:fontFamily="@font/exo2_medium"
             android:text="@string/str_last_transfer"
 
-            android:textColor="@color/colorOnSecondary"
+            android:textColor="@color/colorScrim"
             android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_last_transfer"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+        <ImageView
+            android:id="@+id/ic_last_transfer_in_not_found"
+            android:layout_width="100dp"
+            android:scaleType="centerCrop"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_i_dont_know" />
 
     </LinearLayout>
 
@@ -213,14 +232,14 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/exo2_medium"
             android:text="@string/str_payment_for_phone_number"
-            android:textColor="@color/colorOnSecondary"
+            android:textColor="@color/colorScrim"
             android:textSize="16sp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            app:cardBackgroundColor="@color/colorOnSurface"
+            app:cardBackgroundColor="@color/colorOnSecondary"
             app:cardCornerRadius="8dp"
             app:strokeColor="@color/colorOnSurfaceVar">
 
@@ -231,11 +250,9 @@
                 android:hint="@string/str_hint_phone_number"
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="8dp"
-                android:textColorHint="@color/colorOnSurfaceVar"
+                android:textColorHint="@color/colorOnSecondaryContainer"
                 android:textSize="16sp" />
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-
-
 </LinearLayout>

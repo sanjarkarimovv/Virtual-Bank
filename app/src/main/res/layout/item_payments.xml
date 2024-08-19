@@ -5,9 +5,9 @@
     android:layout_height="100dp"
     android:layout_gravity="center"
     android:layout_marginStart="8dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginVertical="8dp"
     android:paddingVertical="8dp"
-    app:cardBackgroundColor="@color/colorSurfaceContainer"
+    app:cardBackgroundColor="@color/colorOnSecondary"
     app:cardCornerRadius="8dp">
 
     <ImageView
