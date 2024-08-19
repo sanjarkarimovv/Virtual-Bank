@@ -55,7 +55,7 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                 }
 
                 else -> {
-                    genderInfoReceiver.text = "No data"
+                    genderInfoReceiver.text = getString(R.string.str_no_data)
                 }
             }
         }
@@ -117,16 +117,20 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     }
 
     private fun setBundleDataToViews() = with(binding) {
-        if (uiModel?.gender?.toInt() == 1) {
-            genderInfoReceiver.text = getString(R.string.str_male)
-        } else {
-            genderInfoReceiver.text = getString(R.string.str_female)
+        if (uiModel != null) {
+            if (uiModel?.gender?.toInt() == 1) {
+                genderInfoReceiver.text = getString(R.string.str_male)
+            } else {
+                genderInfoReceiver.text = getString(R.string.str_female)
+            }
+            etFirstName.setText(uiModel?.firstName)
+            etLastName.setText(uiModel?.lastName)
+            val oneDayInMills = 86400000L
+            val formattedDate =
+                millisToDate((uiModel?.bornDate?.toLong()?.minus(oneDayInMills)) ?: 0L)
+            dateBirthReceiver.text = formattedDate
+            tvPhoneNumber.text = uiModel?.phone
         }
-        etFirstName.setText(uiModel?.firstName)
-        etLastName.setText(uiModel?.lastName)
-        val formattedDate = millisToDate(uiModel?.bornDate?.toLong() ?: 0L)
-        dateBirthReceiver.text = formattedDate
-        tvPhoneNumber.text = uiModel?.phone
     }
 
     private fun getBundleData() {

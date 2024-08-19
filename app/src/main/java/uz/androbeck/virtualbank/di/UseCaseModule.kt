@@ -21,6 +21,7 @@ import uz.androbeck.virtualbank.domain.mapper.card.DeleteCardMapper
 import uz.androbeck.virtualbank.domain.mapper.card.GetCardsMapper
 import uz.androbeck.virtualbank.domain.mapper.history.GetHistoryMapper
 import uz.androbeck.virtualbank.domain.mapper.history.TransfersMapper
+import uz.androbeck.virtualbank.domain.mapper.home.BasicInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.TotalBalanceMapper
@@ -36,6 +37,7 @@ import uz.androbeck.virtualbank.domain.useCases.card.DeleteCardUseCase
 import uz.androbeck.virtualbank.domain.useCases.card.GetCardsUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.BasicInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
@@ -95,7 +97,7 @@ object UseCaseModule {
     fun provideGetHistoryUseCase(
         historyRepository: HistoryRepository,
         getHistoryMapper: GetHistoryMapper,
-    ) = GetHistoryUseCase(historyRepository,getHistoryMapper)
+    ) = GetHistoryUseCase(historyRepository, getHistoryMapper)
 
     @Provides
     fun provideSignInResendUseCase(
@@ -123,16 +125,23 @@ object UseCaseModule {
         cardRepository: CardRepository,
         deleteCardMapper: DeleteCardMapper
     ) = DeleteCardUseCase(cardRepository, deleteCardMapper)
+
     @Provides
     fun provideAddCardUseCase(
         cardRepository: CardRepository,
         addCardMapper: AddCardMapper,
         messageMapper: MessageMapper
-    )= AddCardUseCase(cardRepository,addCardMapper,messageMapper)
+    ) = AddCardUseCase(cardRepository, addCardMapper, messageMapper)
 
-@Provides
-fun provideGetCardsUseCase(
-    cardRepository: CardRepository,
-    getCardsMapper: GetCardsMapper
-) = GetCardsUseCase(cardRepository, getCardsMapper)
+    @Provides
+    fun provideGetCardsUseCase(
+        cardRepository: CardRepository,
+        getCardsMapper: GetCardsMapper
+    ) = GetCardsUseCase(cardRepository, getCardsMapper)
+
+    @Provides
+    fun provideBasicInfoUseCase(
+        repository: HomeRepository,
+        basicInfoMapper: BasicInfoMapper
+    ) = BasicInfoUseCase(repository, basicInfoMapper)
 }

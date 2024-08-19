@@ -92,7 +92,7 @@
     <string name="str_validity_period">Срок действия</string>
     <string name="str_card_name">Название карты</string>
     <string name="str_add_card">Карта добавить</string>
-
+    <string name="str_no_data">Нет данных</string>
     <string name="str_add_card_succes">Карта успешно добавлена</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>

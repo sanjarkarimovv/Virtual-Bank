@@ -2,7 +2,6 @@ package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
@@ -16,7 +15,7 @@ class UpdateFullInfoViewModel @Inject constructor(
     private val errorHandler: ErrorHandler,
     private val useCase: PutUpdateInfoUseCase
 ) : ViewModel() {
-    fun updateUserInfo(updateInfoReqUIModel: UpdateInfoReqUIModel): Flow<UpdateFullInfoEvent> =
+    fun updateUserInfo(updateInfoReqUIModel: UpdateInfoReqUIModel) =
         flow {
             useCase(updateInfoReqUIModel).onEach {
                 emit(UpdateFullInfoEvent.Success(it.message.toString()))

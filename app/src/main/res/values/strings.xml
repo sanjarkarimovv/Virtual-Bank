@@ -83,8 +83,6 @@
     <string name="str_save_changes">Save changes</string>
     <string name="str_delete_account">Delete account</string>
     <string name="str_change_information">Change informations</string>
-
-
     <string name="str_more">More</string>
     <string name="str_servers_payment">Service payment</string>
     <string name="paymnet">Payment</string>
@@ -94,7 +92,7 @@
     <string name="str_hint_validity_period">MM/YY</string>
     <string name="str_card_name">Card name</string>
     <string name="str_add_card">Add card</string>
-
+    <string name="str_no_data">No data</string>
     <string name="str_add_card_succes">Card added successfully</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
