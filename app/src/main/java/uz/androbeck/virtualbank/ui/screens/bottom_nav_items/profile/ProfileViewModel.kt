@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.data.dto.common.request.CodeVerifyReqDto
+import uz.androbeck.virtualbank.domain.ui_models.common.CodeVerifyReqUIModel
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.TransferVerifyUseCase
@@ -37,9 +38,13 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun transferVerifyApiCall(request: CodeVerifyReqDto) = flow {
-        transferVerifyUseCase(request).onEach {
+        println("View Model working ")
+        transferVerifyUseCase(request).onEach{
+            println("View Model Success")
             emit(Event.Success(it.message.toString()))
         }.catch {
+            println("View Model Error ${it.message.toString()}")
+            errorHandler.handleError(it)
             emit(Event.Error(it.message))
         }
     }

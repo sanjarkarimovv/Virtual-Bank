@@ -14,7 +14,7 @@ class TransferVerifyMapper @Inject constructor() :
         )
     }
 
-    override fun toDTO(uiModel: CodeVerifyReqUIModel): CodeVerifyReqDto = uiModel.run {
+    override fun toDTO(uiModel: CodeVerifyReqUIModel) = uiModel.run {
         CodeVerifyReqDto(
             token = token,
             code = code
