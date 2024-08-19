@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
-        android:label="ProfileFragment" >
+        android:label="ProfileFragment">
         <action
             android:id="@+id/action_profileFragment_to_securityFragment"
             app:destination="@id/securityFragment" />
@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
-        android:label="AddCardFragment" >
+        android:label="AddCardFragment">
         <action
             android:id="@+id/action_addCardFragment_to_cardScannerFragment"
             app:destination="@id/cardScannerFragment" />
@@ -54,11 +54,29 @@
     <fragment
         android:id="@+id/securityFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.SecurityFragment"
-        android:label="SecurityFragment" >
+        android:label="SecurityFragment">
         <action
             android:id="@+id/action_securityFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
             app:popUpTo="@id/profileFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/profileFragment" />
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_securityFragment_to_changePinCodeFragment"
+            app:destination="@id/changePinCodeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/changePinCodeFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.change_pin_code.ChangePinCodeFragment"
+        android:label="ChangePinCodeFragment">
+        <action
+            android:id="@+id/action_changePinCodeFragment_to_securityFragment"
+            app:destination="@id/securityFragment"
+            app:popUpTo="@id/securityFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

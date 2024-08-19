@@ -33,6 +33,10 @@ class SecurityFragment :BaseFragment(R.layout.fragment_security) {
             findNavController().navigate(R.id.action_securityFragment_to_profileFragment)
         }
 
+        changePin.singleClickable{
+            findNavController().navigate(R.id.action_securityFragment_to_changePinCodeFragment)
+        }
+
         seekBarTime.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 selectedTimeText.text = requireContext().getString(R.string.str_security_time, progress)
