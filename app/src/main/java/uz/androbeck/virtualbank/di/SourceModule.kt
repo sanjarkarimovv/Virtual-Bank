@@ -11,6 +11,7 @@ import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.data.db.dao.HomeDao
 import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasource
 import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasourceImpl
+import uz.androbeck.virtualbank.data.api.TransferService
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSourceImpl
 import uz.androbeck.virtualbank.data.source.remote.card.CardRemoteDataSource
@@ -19,6 +20,8 @@ import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDataSour
 import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDatasource
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.home.HomeRemoteDataSourceImpl
+import uz.androbeck.virtualbank.data.source.remote.transfer.TransferRemoteDataSource
+import uz.androbeck.virtualbank.data.source.remote.transfer.TransferRemoteDataSourceImpl
 import javax.inject.Singleton
 
 @Module
@@ -54,6 +57,13 @@ object SourceModule {
         service: CardService
     ): CardRemoteDataSource {
         return CardRemoteDataSourceImpl(service)
+    }
+    @Singleton
+    @Provides
+    fun provideTransferRemoteDataSource(
+        service: TransferService
+    ): TransferRemoteDataSource {
+        return TransferRemoteDataSourceImpl(service)
     }
 
     @Singleton

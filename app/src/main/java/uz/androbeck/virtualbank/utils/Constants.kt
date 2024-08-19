@@ -24,6 +24,9 @@ object Constants {
         const val DELETE_CARD="card"
         const val ADD_CARD="card"
         const val GET_CARD="card"
+        const val GET_FEE="transfer/fee"
+        const val TRANSFER="transfer/transfer"
+
     }
 
     object Header {
