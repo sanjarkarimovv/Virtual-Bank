@@ -1,9 +1,13 @@
 package uz.androbeck.virtualbank.ui.dialogs.change_theme
 
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

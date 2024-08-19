@@ -3,9 +3,11 @@ package uz.androbeck.virtualbank.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,8 +40,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        changeLanguage()
-
         setContentView(binding.root)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     fun changeTheme() {
         // shu yerda xatolik bo'layabdi.
-        //  AppCompatDelegate.setDefaultNightMode(preferencesProvider.theme)
+        AppCompatDelegate.setDefaultNightMode(preferencesProvider.theme)
     }
 
     fun changeLanguage() {
@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
+
 
     private fun setupObservers(navHostFragment: NavHostFragment) {
         vm.observeNavGraphEvent().onEach { event ->
