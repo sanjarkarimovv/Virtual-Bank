@@ -29,6 +29,7 @@ import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.transfer.GetFeeReqMapper
 import uz.androbeck.virtualbank.domain.mapper.transfer.GetFeeResMapper
 import uz.androbeck.virtualbank.domain.mapper.transfer.TransferMapper
+import uz.androbeck.virtualbank.domain.mapper.transfer.TransferVerifyMapper
 import uz.androbeck.virtualbank.domain.useCases.authentication.AuthVerifyUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCase
@@ -45,6 +46,7 @@ import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.GetFeeUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.TransferUseCase
+import uz.androbeck.virtualbank.domain.useCases.transfer.TransferVerifyUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -101,7 +103,7 @@ object UseCaseModule {
     fun provideGetHistoryUseCase(
         historyRepository: HistoryRepository,
         getHistoryMapper: GetHistoryMapper,
-    ) = GetHistoryUseCase(historyRepository,getHistoryMapper)
+    ) = GetHistoryUseCase(historyRepository, getHistoryMapper)
 
     @Provides
     fun provideSignInResendUseCase(
@@ -129,12 +131,13 @@ object UseCaseModule {
         cardRepository: CardRepository,
         deleteCardMapper: DeleteCardMapper
     ) = DeleteCardUseCase(cardRepository, deleteCardMapper)
+
     @Provides
     fun provideAddCardUseCase(
         cardRepository: CardRepository,
         addCardMapper: AddCardMapper,
         messageMapper: MessageMapper
-    )= AddCardUseCase(cardRepository,addCardMapper,messageMapper)
+    ) = AddCardUseCase(cardRepository, addCardMapper, messageMapper)
 
     @Provides
     fun provideGetFeeUseCase(
@@ -142,15 +145,24 @@ object UseCaseModule {
         getFeeReqMapper: GetFeeReqMapper,
         getFeeResMapper: GetFeeResMapper,
     ) = GetFeeUseCase(transferRepository, getFeeReqMapper, getFeeResMapper)
-@Provides
-fun provideGetCardsUseCase(
-    cardRepository: CardRepository,
-    getCardsMapper: GetCardsMapper
-) = GetCardsUseCase(cardRepository, getCardsMapper)
+
+    @Provides
+    fun provideGetCardsUseCase(
+        cardRepository: CardRepository,
+        getCardsMapper: GetCardsMapper
+    ) = GetCardsUseCase(cardRepository, getCardsMapper)
+
     @Provides
     fun provideTransferUseCase(
         transferRepository: TransferRepository,
         transferMapper: TransferMapper,
         tokenMapper: TokenMapper,
     ) = TransferUseCase(transferRepository, transferMapper, tokenMapper)
+
+    @Provides
+    fun transferVerifyUseCase(
+        repository: TransferRepository,
+        mapper: TransferVerifyMapper,
+        messageMapper: MessageMapper
+    ) = TransferVerifyUseCase(repository, mapper, messageMapper)
 }

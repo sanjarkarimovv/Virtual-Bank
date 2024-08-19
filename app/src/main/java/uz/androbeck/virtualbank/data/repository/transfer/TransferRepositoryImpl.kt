@@ -10,9 +10,9 @@ import javax.inject.Inject
 
 class TransferRepositoryImpl @Inject constructor(
     private val transferRemoteDataSource: TransferRemoteDataSource,
-
-    ) : TransferRepository {
+) : TransferRepository {
     override fun getFee(request: GetFeeReqDto) = transferRemoteDataSource.getFee(request)
     override fun transfer(request: TransferRequestDto) = transferRemoteDataSource.transfer(request)
-    override fun transferVerify(request: CodeVerifyReqDto): Flow<MessageResDto> = transferRemoteDataSource.transferVerify(request)
+    override fun transferVerify(request: CodeVerifyReqDto): Flow<MessageResDto> =
+        transferRemoteDataSource.transferVerify(request)
 }

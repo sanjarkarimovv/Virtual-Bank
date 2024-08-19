@@ -14,11 +14,11 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private val binding: FragmentMainBinding by viewBinding()
     override fun setup() {
-        viewModel.aa()
-        binding.root.setOnClickListener {
-
-            findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
-            viewModel.aa()
-        }
+//        viewModel.aa()
+//        binding.root.setOnClickListener {
+//
+//            findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
+//            viewModel.aa()
+//        }
     }
 }
