@@ -168,8 +168,7 @@
             android:layout_marginEnd="38dp"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="@string/str_male" />
+            android:textStyle="bold" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_change_gender_parent"
