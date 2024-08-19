@@ -28,6 +28,7 @@ import uz.androbeck.virtualbank.domain.mapper.home.TotalBalanceMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.transfer.GetFeeReqMapper
 import uz.androbeck.virtualbank.domain.mapper.transfer.GetFeeResMapper
+import uz.androbeck.virtualbank.domain.mapper.transfer.TransferMapper
 import uz.androbeck.virtualbank.domain.useCases.authentication.AuthVerifyUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignInUseCase
 import uz.androbeck.virtualbank.domain.useCases.authentication.SignUpResendUseCase
@@ -43,6 +44,7 @@ import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.GetFeeUseCase
+import uz.androbeck.virtualbank.domain.useCases.transfer.TransferUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -145,4 +147,10 @@ fun provideGetCardsUseCase(
     cardRepository: CardRepository,
     getCardsMapper: GetCardsMapper
 ) = GetCardsUseCase(cardRepository, getCardsMapper)
+    @Provides
+    fun provideTransferUseCase(
+        transferRepository: TransferRepository,
+        transferMapper: TransferMapper,
+        tokenMapper: TokenMapper,
+    ) = TransferUseCase(transferRepository, transferMapper, tokenMapper)
 }
