@@ -126,6 +126,7 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         etLastName.setText(uiModel?.lastName)
         val formattedDate = millisToDate(uiModel?.bornDate?.toLong() ?: 0L)
         dateBirthReceiver.text = formattedDate
+        tvPhoneNumber.text = uiModel?.phone
     }
 
     private fun getBundleData() {
