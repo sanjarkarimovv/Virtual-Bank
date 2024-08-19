@@ -10,30 +10,31 @@ import uz.androbeck.virtualbank.domain.ui_models.transfer.TransferUIModel
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.TransferUseCase
+import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getFullInfoUseCase: GetFullInfoUseCase,
     private val putUpdateInfoUseCase: PutUpdateInfoUseCase,
+    private val errorHandler: ErrorHandler,
     private val transfersUseCase: TransferUseCase,
 ) : ViewModel() {
-//    fun aa() {
-//        println("start")
-//        transfersUseCase.invoke(
-//            uiReqModel = TransferUIModel(
-//                "third-card",
-//                "7",
-//                "1234567898765432",
-//                100100.0
-//            )
-//        ).onEach {
-//
-//            println(it.token)
-//        }.catch {
-//            println(it.message)
-//        }
-//            .launchIn(viewModelScope)
-//    }
+    fun aa() {
+        println("start")
+        transfersUseCase.invoke(
+            uiReqModel = TransferUIModel(
+                "third-card",
+                "7",
+                "2614686847470606",
+                100100
+            )
+        ).onEach {
+            println(it.token)
+        }.catch {
+            errorHandler.handleError(it)
+            println(it.message)
+        }.launchIn(viewModelScope)
+    }
 
 }
