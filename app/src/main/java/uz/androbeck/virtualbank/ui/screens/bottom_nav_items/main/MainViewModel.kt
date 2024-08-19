@@ -18,22 +18,22 @@ class MainViewModel @Inject constructor(
     private val putUpdateInfoUseCase: PutUpdateInfoUseCase,
     private val transfersUseCase: TransferUseCase,
 ) : ViewModel() {
-//    fun aa() {
-//        println("start")
-//        transfersUseCase.invoke(
-//            uiReqModel = TransferUIModel(
-//                "third-card",
-//                "7",
-//                "1234567898765432",
-//                100100.0
-//            )
-//        ).onEach {
-//
-//            println(it.token)
-//        }.catch {
-//            println(it.message)
-//        }
-//            .launchIn(viewModelScope)
-//    }
+    fun aa() {
+        println("start")
+        transfersUseCase.invoke(
+            uiReqModel = TransferUIModel(
+                "third-card",
+                "7",
+                "1234567898765432",
+                100100.0
+            )
+        ).onEach {
+
+            println(it.token)
+        }.catch {
+            println(it.message)
+        }
+            .launchIn(viewModelScope)
+    }
 
 }
