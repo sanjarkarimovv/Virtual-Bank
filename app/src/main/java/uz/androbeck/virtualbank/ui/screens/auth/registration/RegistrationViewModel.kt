@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: ErrorHandler,
 ) : BaseViewModel() {
 
     private val _signUpEvent = Channel<String>()
@@ -30,33 +30,23 @@ class RegistrationViewModel @Inject constructor(
     val accessSignUp = _accessSignUp.asStateFlow()
 
     fun accessSignUp(requestModel: SignUpReqUIModel, confirmPassword: String?) {
-        if (requestModel.firstName.isNullOrEmpty()) {
-            _accessSignUp.value = Triple(false, "First name is empty", null)
-            return
-        }
-        if (requestModel.lastName.isNullOrEmpty()) {
-            _accessSignUp.value = Triple(false, "Last name is empty", null)
-            return
-        }
-        if (requestModel.password.isNullOrEmpty()) {
+        if (requestModel.password?.length!! < 3) {
             _accessSignUp.value = Triple(false, "Password is empty", null)
             return
         }
-        if (confirmPassword.isNullOrEmpty()) {
-            _accessSignUp.value = Triple(false, "Confirm " +
-                    " is empty", null)
+        if (confirmPassword?.length!! < 3) {
+            _accessSignUp.value = Triple(
+                false, "Confirm " +
+                        " is empty", null
+            )
             return
         }
         if (requestModel.password != confirmPassword) {
             _accessSignUp.value = Triple(false, "Passwords do not match", null)
             return
         }
-        if (requestModel.phone.isNullOrEmpty()) {
+        if (requestModel.phone?.length!! < 13) {
             _accessSignUp.value = Triple(false, "Phone number is empty", null)
-            return
-        }
-        if (requestModel.bornDate.isNullOrEmpty()) {
-            _accessSignUp.value = Triple(false, "Born date is empty", null)
             return
         }
         _accessSignUp.value = Triple(true, "", requestModel)
