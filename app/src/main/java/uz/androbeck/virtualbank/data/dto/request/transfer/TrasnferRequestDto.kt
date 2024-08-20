@@ -10,5 +10,5 @@ data class TrasnferRequestDto(
     val sender_id : String? = null,
     @SerialName("receiver-id")
     val receiver_id : String? = null,
-    val amount : Double? = null
+    val amount : Long? = null
 )
