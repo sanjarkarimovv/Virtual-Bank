@@ -19,5 +19,4 @@ class GetFeeUseCase @Inject constructor(
         val request = getReqMapper.toDTO(uiReqModel)
         return transferRepository.getFee(request).map { getFeeResMapper.toUIModel(it) }
     }
-
 }
