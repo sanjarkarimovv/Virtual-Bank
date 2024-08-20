@@ -20,7 +20,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_card"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/tv_title_input_card_number"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"

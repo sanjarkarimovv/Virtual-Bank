@@ -1,6 +1,8 @@
 package uz.androbeck.virtualbank.ui
 
 import android.os.Bundle
+import android.widget.EditText
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -46,7 +48,21 @@ class MainActivity : AppCompatActivity() {
         vm.setNavGraphEvent()
         setupObservers(navHostFragment)
         bottomNavigationVisibility(navHostFragment.navController)
+        onBack()
     }
+
+
+    private fun onBack() {
+        onBackPressedDispatcher.addCallback(this) {
+            val currentFocus = currentFocus
+            if (currentFocus is EditText) {
+                currentFocus.clearFocus()
+            } else {
+                finish()
+            }
+        }
+    }
+
 
     private fun bottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->

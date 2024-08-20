@@ -8,12 +8,12 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.provider.MediaStore
 import android.text.Editable
+import android.text.InputFilter
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -24,6 +24,7 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomViewEnterCardNumberBinding
 import uz.androbeck.virtualbank.ui.enums.CardType
+import uz.androbeck.virtualbank.ui.enums.PhoneNumberType
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
@@ -51,7 +52,7 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
             }
             metCardPhoneNumber.setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
-                onClickEditText()
+                    onClickEditText()
                 }
                 val strokeWidthInDp = if (hasFocus) 2 else 1
                 val strokeWidthInPx = TypedValue.applyDimension(
@@ -64,7 +65,7 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
                     context,
                     if (hasFocus) R.color.colorPrimary else R.color.colorOutline
                 )
-                tvTitleInputCardNumber.setTextColorRes(if (hasFocus) R.color.colorPrimary else R.color.colorScrim)
+                tvTitleInputCardNumber.setTextColorRes(if (hasFocus) R.color.colorPrimary else R.color.colorOutline)
             }
             metCardPhoneNumber.addTextChangedListener { s ->
                 if (s.toString().isNotEmpty()) {
@@ -72,27 +73,103 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
                 } else {
                     ivScanCard.setImageResource(R.drawable.ic_credit_card_scan)
                 }
+
                 val str = s.toString().filter { it.isDigit() }
-                val cardType = if (str.length >= 4) CardType.fromCardNumber(
-                    str.substring(
-                        0,
-                        4
-                    )
-                ) else CardType.UNKNOWN
+                println("str: $str")
+                if (s != null && s.length >= 4 && s.toString().substring(0, 3) != "998") {
+                    // Your existing logic for card number
+                    println("Card Number: $str")
+                    //metCardPhoneNumber.setMask("#### #### #### ####")
+                    metCardPhoneNumber.filters = arrayOf(InputFilter.LengthFilter(19))
+                    val cardType = if (str.length >= 4) CardType.fromCardNumber(
+                        str.substring(
+                            0,
+                            4
+                        )
+                    ) else CardType.UNKNOWN
+                    when (cardType) {
+                        CardType.UZCARD -> {
 
-                when (cardType) {
-                    CardType.UZCARD -> {
-                        ivCardType.setImageResource(R.drawable.img_uzcard_logo)
+                            ivCardType.setImageResource(R.drawable.img_uzcard_logo)
+                        }
+
+                        CardType.HUMO -> {
+                            ivCardType.setImageResource(R.drawable.img_humo_logo)
+                        }
+
+                        CardType.UNKNOWN -> {
+                            ivCardType.setImageResource(R.drawable.ic_card)
+                        }
                     }
 
-                    CardType.HUMO -> {
-                        ivCardType.setImageResource(R.drawable.img_humo_logo)
-                    }
+                } else {
+                    println("Phone Number: $str")
+                    // Your existing logic for phone number
+                   // metCardPhoneNumber.setMask("### ## ### ## ##")
+                    metCardPhoneNumber.filters = arrayOf(InputFilter.LengthFilter(12))
+                    val phoneNumber = if (str.length >= 5)
+                        PhoneNumberType.fromPhoneNumber(str.substring(0, 5))
+                    else PhoneNumberType.UNKNOWN
+                    when (phoneNumber) {
+                        PhoneNumberType.UzMobile -> {
+                            ivCardType.setImageResource(R.drawable.img_uz_mobile)
+                        }
 
-                    CardType.UNKNOWN -> {
-                        ivCardType.setImageResource(R.drawable.ic_card)
+                        PhoneNumberType.Beeline -> {
+                            ivCardType.setImageResource(R.drawable.img_beeline)
+                        }
+
+                        PhoneNumberType.Ucell -> {
+                            ivCardType.setImageResource(R.drawable.ucell_logo)
+                        }
+
+                        PhoneNumberType.Mobiuz -> {
+                            ivCardType.setImageResource(R.drawable.img_mobiuz)
+                        }
+
+                        PhoneNumberType.Humons -> {
+                            ivCardType.setImageResource(R.drawable.img_humans)
+                        }
+
+                        PhoneNumberType.UNKNOWN -> {
+                            ivCardType.setImageResource(R.drawable.ic_card)
+                        }
                     }
                 }
+
+                /*if (s?.toString()?.substring(0,3) != "998"){
+
+                    }
+                }else {
+
+                    val phoneNumber = if (str.length >= 5)
+                        PhoneNumberType.fromPhoneNumber(str.substring(0, 5))
+                    else PhoneNumberType.UNKNOWN
+                    when (phoneNumber) {
+                        PhoneNumberType.UzMobile -> {
+                            ivCardType.setImageResource(R.drawable.img_uz_mobile)
+                        }
+
+                        PhoneNumberType.Beeline -> {
+                            ivCardType.setImageResource(R.drawable.img_beeline)
+                        }
+
+                        PhoneNumberType.Ucell -> {
+                            ivCardType.setImageResource(R.drawable.ucell_logo)
+                        }
+
+                        PhoneNumberType.Mobiuz -> {
+                            ivCardType.setImageResource(R.drawable.img_mobiuz)
+                        }
+
+                        PhoneNumberType.Humons -> {
+                            ivCardType.setImageResource(R.drawable.img_humans)
+                        }
+
+                        PhoneNumberType.UNKNOWN -> TODO()
+                    }
+                }*/
+
                 if (s.toString().isNotEmpty()) {
                     ivScanCard.singleClickable {
                         metCardPhoneNumber.text?.clear()
