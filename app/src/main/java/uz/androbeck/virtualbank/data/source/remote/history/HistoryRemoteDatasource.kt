@@ -9,6 +9,6 @@ interface HistoryRemoteDatasource {
 
     fun getLastTransfers(): Flow<LastTransfersResDto>
 
-     fun getHistory(size: Int, currentPage: Int): Flow<List<InComeAndOutComeResDto>>
+     suspend fun getHistory(size: Int, currentPage: Int): List<InComeAndOutComeResDto>
 
 }

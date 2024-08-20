@@ -15,5 +15,5 @@ interface HistoryService {
     suspend fun getHistory(
         @Query("size") size: Int,
         @Query("current-page") currentPage: Int
-    ):GetHistoryResDto
+    ): GetHistoryResDto
 }

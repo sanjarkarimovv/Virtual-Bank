@@ -35,11 +35,10 @@ class HistoryPagingSource @Inject constructor(
                 currentPage = page
             )
             println(":::HistoryPagingSource $responseFlow")
-            val response = responseFlow.first()
             LoadResult.Page(
-                data = response,
+                data = responseFlow,
                 prevKey = if (page > 1) page - 1 else null,
-                nextKey = if (response.isEmpty()) null else page + 1
+                nextKey = if (responseFlow.isEmpty()) null else page + 1
             )
 
         } catch (e:Exception){

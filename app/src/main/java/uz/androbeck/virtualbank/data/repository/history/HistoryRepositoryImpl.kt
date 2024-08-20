@@ -10,7 +10,6 @@ import uz.androbeck.virtualbank.data.source.remote.history.HistoryRemoteDatasour
 import javax.inject.Inject
 
 class HistoryRepositoryImpl @Inject constructor(
-    private val historyPagingSource: HistoryPagingSource,
     private val historyRemoteDatasource: HistoryRemoteDatasource
 ) : HistoryRepository {
 
@@ -19,7 +18,7 @@ class HistoryRepositoryImpl @Inject constructor(
     override fun getHistory(): Flow<PagingData<InComeAndOutComeResDto>> = Pager(
         config = PagingConfig(
             pageSize = 6,
-            enablePlaceholders = false // Agar kerak bo'lsa
+            enablePlaceholders = false
         ),
         pagingSourceFactory = { HistoryPagingSource(historyRemoteDatasource) }
     ).flow

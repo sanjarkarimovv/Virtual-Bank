@@ -53,10 +53,9 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideHistoryRepository(
-        historyRemoteDatasource: HistoryRemoteDatasource,
-        historyPagingSource: HistoryPagingSource
+        historyRemoteDatasource: HistoryRemoteDatasource
     ):HistoryRepository{
-        return HistoryRepositoryImpl(historyPagingSource,historyRemoteDatasource)
+        return HistoryRepositoryImpl(historyRemoteDatasource)
     }
 
     @Provides
