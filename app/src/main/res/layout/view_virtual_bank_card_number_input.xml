@@ -56,13 +56,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.12">
+
                 <ImageView
                     android:id="@+id/btn_scanner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:src="@drawable/ic_scanner"
-                    android:visibility="visible"
-                    android:layout_margin="10dp"/>
+                    android:visibility="visible"/>
                 <ImageView
                     android:id="@+id/btn_cancel"
                     android:layout_width="match_parent"

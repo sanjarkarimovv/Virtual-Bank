@@ -38,5 +38,13 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
-        android:label="AddCardFragment" />
+        android:label="AddCardFragment" >
+        <action
+            android:id="@+id/action_addCardFragment_to_cardScannerFragment"
+            app:destination="@id/cardScannerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardScannerFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.CardScannerFragment"
+        android:label="CardScannerFragment" />
 </navigation>

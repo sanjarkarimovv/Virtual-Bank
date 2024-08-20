@@ -50,7 +50,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         }
         btnSignUp.onClick = {
-            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_registrationAddPersonalInfoFragment)
         }
         customToolbar.onClickLeftIcon = {
             findNavController().popBackStack()
@@ -86,8 +86,6 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             when (it) {
                 is LoginUiEvent.Error -> {
                     toast(it.massage ?: getString(R.string.str_error_unexpected))
-                    println(it.massage)
-                    println(it)
                     binding.btnLogin.isProgress = false
                 }
 
