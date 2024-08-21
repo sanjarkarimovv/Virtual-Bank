@@ -14,7 +14,7 @@ interface AuthenticationRemoteDataSource {
 
     fun signInVerify(request: CodeVerifyReqDto): Flow<TokensResDto>
     fun signUpVerify(request: CodeVerifyReqDto): Flow<TokensResDto>
-    fun updateToken(request: UpdateTokenReqDto): Flow<TokensResDto>
+    suspend fun updateToken(request: UpdateTokenReqDto): TokensResDto
     fun signIn(reqDto: SignInReqDto): Flow<TokenResDto>
     fun signInResend(request: TokenReqDto): Flow<TokenResDto>
     fun signUpResend(request: TokenReqDto): Flow<TokenResDto>

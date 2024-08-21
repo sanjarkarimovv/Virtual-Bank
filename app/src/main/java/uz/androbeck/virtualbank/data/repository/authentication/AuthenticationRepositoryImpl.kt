@@ -17,7 +17,7 @@ class AuthenticationRepositoryImpl @Inject constructor(
     override fun signUpVerify(request: CodeVerifyReqDto) =
         remoteDataSource.signUpVerify(request)
 
-    override fun updateToken(request: UpdateTokenReqDto) =
+    override suspend fun updateToken(request: UpdateTokenReqDto) =
         remoteDataSource.updateToken(request)
 
     override fun signIn(request: SignInReqDto) =

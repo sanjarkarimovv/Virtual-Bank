@@ -96,4 +96,15 @@
     <string name="str_add_card_succes">Card added successfully</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
+    <string name="str_already_registered">If you have registered first</string>
+    <string name="str_next">Next</string>
+    <string name="str_male">Male</string>
+    <string name="str_family">Family</string>
+    <string name="str_sign_up_direction">To register, enter your name, surname, date of birth and gender</string>
+    <string name="str_back">Back</string>
+    <string name="str_main_part">The main part</string>
+    <string name="str_enter_basic_info">Enter a phone number, create a new password and confirm the password</string>
+    <string name="str_phone_region_code">+998</string>
+    <string name="str_enter_born_date_format">DD/MM/YYYY</string>
+    <string name="str_bracket">(</string>
 </resources>
