@@ -120,7 +120,6 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
         val keypadHeight = screenHeight - rect.bottom
 
         if (keypadHeight > screenHeight * 0.15) {
-            binding.btnContinue.visibility = View.VISIBLE
             binding.btnContinue.translationY = -keypadHeight.toFloat() + binding.btnContinue.height
         } else {
             binding.btnContinue.translationY = 0f
