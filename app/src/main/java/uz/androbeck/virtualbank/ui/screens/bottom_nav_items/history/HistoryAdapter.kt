@@ -67,7 +67,13 @@ class HistoryAdapter(
     companion object {
         private val diffUtil = object : DiffUtil.ItemCallback<HistoryItem>() {
             override fun areItemsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
-                return oldItem == newItem
+                return when {
+                    oldItem is HistoryItem.Header && newItem is HistoryItem.Header ->
+                        oldItem.time == newItem.time
+                    oldItem is HistoryItem.Content && newItem is HistoryItem.Content ->
+                        oldItem.child == newItem.child // Assuming each content has a unique ID
+                    else -> false
+                }
             }
 
             override fun areContentsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
@@ -75,6 +81,7 @@ class HistoryAdapter(
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {

@@ -20,6 +20,9 @@ class HistoryViewModel @Inject constructor(
 
     val response: Flow<PagingData<HistoryItem>> =
         getHistoryUseCase.invoke().cachedIn(viewModelScope)
+    fun getAmounts(): Pair<Long?, Long?>{
+     return   getHistoryUseCase.getTotalAmounts()
+    }
 
 }
 /* private val _response = MutableLiveData<PagingData<HistoryItem>>()

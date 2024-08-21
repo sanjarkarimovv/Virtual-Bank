@@ -32,6 +32,8 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
                 }
 
             }
+            //tvIncomeAmount.text = "+ " + viewModel.getAmounts().first.toString()
+            //tvOutcomeAmount.text = "- " + viewModel.getAmounts().second.toString()
         }
     }
 }
