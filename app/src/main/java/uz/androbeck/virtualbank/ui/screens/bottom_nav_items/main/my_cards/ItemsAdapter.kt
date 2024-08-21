@@ -1,44 +1,50 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards
 
 import android.annotation.SuppressLint
+import android.text.TextUtils.substring
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.databinding.MyCardsItemBinding
+import uz.androbeck.virtualbank.data.db.AppDatabase
+import uz.androbeck.virtualbank.databinding.MyCardsItemRecycleViewBinding
 import uz.androbeck.virtualbank.domain.mock_data.AppHardcodeData
+import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
-    private val cardsList = mutableListOf<GetCardUIModel>()
+    private val cardsList = mutableListOf<CardUIModel>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun loadCards(list: List<GetCardUIModel>) {
+    fun loadCards(list: List<CardUIModel>) {
         cardsList.clear()
         cardsList.addAll(list)
         notifyDataSetChanged()
     }
 
-    inner class ItemViewHolder(private val binding: MyCardsItemBinding) :
+    inner class ItemViewHolder(private val binding: MyCardsItemRecycleViewBinding) :
         RecyclerView.ViewHolder(binding.root){
 
-            @SuppressLint("SetTextI18n")
-            fun bind(card: GetCardUIModel){
-                val exYear= card.expiredYear?.dropLast(2)
-                binding.userFullName.text=card.owner
-                binding.cardNumber.text=card.pan
-                binding.cardBalance.text=card.amount
-                binding.expireData.text="${card.expiredMonth}/$exYear"
-                binding.importantText.text=card.cardImportant
-                binding.cardLogo.setImageResource(determineCardType(card.pan))
-                binding.cardName.text=card.cardName
-                binding.cardPhoto.setImageResource(AppHardcodeData.cardStyleImages[card.themeType?.toInt()?:0])
+        @SuppressLint("SetTextI18n")
+            fun bind(card: CardUIModel)= with(binding){
+                val exYear= (card.expiredYear)?.rem(1000)
+            val formattedText = card.pan?.substring(0, 4) + " " +
+                    card.pan?.substring(4, 6) + "** **** " +
+                    card.pan?.substring(12)
 
-
+                amount.text=card.amount.toString()
+                cardName.text=card.name
+                owner.text=card.owner
+                cardNumber.text=formattedText
+                expireData.text="${card.expiredMonth}/$exYear"
+                cardImportant.visibility=if (card.isVisible == true) View.VISIBLE else View.INVISIBLE
+                cardLogo.setImageResource(determineCardType(card.pan))
+                cardPhoto.setImageResource(AppHardcodeData.cardStyleImages[card.themeType?:0])
             }
         }
     fun determineCardType(cardNumber:String?):Int{
-        val card= cardNumber?.drop(4)
+        val card= cardNumber?.substring(0, 4)
         return when(card){
             "8600","5614"-> R.drawable.img_uzcard_logo
             "9860"->R.drawable.img_humo_logo
@@ -49,7 +55,7 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
-            MyCardsItemBinding.inflate(
+            MyCardsItemRecycleViewBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

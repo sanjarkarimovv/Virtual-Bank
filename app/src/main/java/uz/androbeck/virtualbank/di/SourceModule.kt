@@ -8,6 +8,9 @@ import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.api.CardService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
+import uz.androbeck.virtualbank.data.db.dao.CardInfoDao
+import uz.androbeck.virtualbank.data.source.local.CardsLocalDataSource
+import uz.androbeck.virtualbank.data.source.local.CardsLocalDataSourceImpl
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSourceImpl
 import uz.androbeck.virtualbank.data.source.remote.card.CardRemoteDataSource
@@ -49,6 +52,14 @@ object SourceModule {
         service: CardService
     ): CardRemoteDataSource {
         return CardRemoteDataSourceImpl(service)
+    }
+    @Singleton
+    @Provides
+    fun providerCardsLocalDataSource(
+        cardInfoDao: CardInfoDao)
+    :CardsLocalDataSource{
+        return CardsLocalDataSourceImpl(cardInfoDao)
+
     }
 
 }

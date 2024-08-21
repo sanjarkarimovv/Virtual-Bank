@@ -3,60 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/static_white">
 
-    <ScrollView
-        android:layout_alignParentTop="true"
+
+    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
+        android:id="@+id/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="My cards" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/custom_toolbar"
+        android:background="@android:color/white"
+        app:tabIndicatorColor="@color/screenTextColor"
+        app:tabIndicatorFullWidth="true"
+        app:tabGravity="center"
+        app:tabSelectedTextColor="@color/colorShadow"
+        app:tabTextAppearance="@style/CustomTabTextAppearance"
+        app:tabTextColor="@color/colorOutline" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_below="@id/tab_layout"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="UselessLeaf">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <LinearLayout
-           android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.viewpager2.widget.ViewPager2>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="UselessLeaf">
+    <androidx.cardview.widget.CardView
+        android:background="@drawable/ripple_effect"
 
-            <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="My cards" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </androidx.viewpager2.widget.ViewPager2>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="dddssdffsfsfssdfsfs"
-                android:textSize="50dp"/>
-        </LinearLayout>
-
-    </ScrollView>
-
-    <com.google.android.material.card.MaterialCardView
+        app:cardCornerRadius="25dp"
         android:id="@+id/btn_add_card"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="@color/colorPrimary">
+        app:cardBackgroundColor="@color/screenTextColor">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_add"
             android:layout_margin="8dp"
-            app:tint="@color/static_white"/>
-    </com.google.android.material.card.MaterialCardView>
+            android:src="@drawable/ic_add"
+            app:tint="@color/static_white" />
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

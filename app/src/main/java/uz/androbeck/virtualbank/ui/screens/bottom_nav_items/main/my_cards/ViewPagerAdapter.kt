@@ -4,32 +4,35 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import uz.androbeck.virtualbank.databinding.MyCardsItemPagerBinding
+import uz.androbeck.virtualbank.databinding.MyCardsItemViewPagerBinding
+import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 
 class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.MyCardsViewHolder>() {
 
-    private val cardsList= mutableListOf<String>()
+    private val cardsList= mutableListOf<List<CardUIModel>>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun load(list:List<String>){
+    fun load(list:List<List<CardUIModel>>){
         cardsList.clear()
         cardsList.addAll(list)
         notifyDataSetChanged()
     }
 
 
-    inner class MyCardsViewHolder(val binding: MyCardsItemPagerBinding) :
+    inner class MyCardsViewHolder(val binding: MyCardsItemViewPagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: String) {
-            binding.tvMyCards.text = item
+        fun bind(item: List<CardUIModel>) {
+            val  adapter = ItemsAdapter()
+            adapter.loadCards(item)
+            binding.recyclerView.adapter = adapter
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyCardsViewHolder {
         return MyCardsViewHolder(
-            MyCardsItemPagerBinding.inflate(
+            MyCardsItemViewPagerBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
