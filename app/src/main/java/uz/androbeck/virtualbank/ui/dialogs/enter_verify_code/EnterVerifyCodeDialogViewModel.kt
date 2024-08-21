@@ -69,7 +69,7 @@ class EnterVerifyCodeDialogViewModel @Inject constructor(
                 screen,
                 requestUIModel
             ).onEach { uiModel ->
-                preferencesProvider.token = uiModel.accessToken.orEmpty()
+                preferencesProvider.accessToken = uiModel.accessToken.orEmpty()
                 preferencesProvider.refreshToken = uiModel.refreshToken.orEmpty()
                 _authVerifyEvent.value = true
             }.catch { th ->
