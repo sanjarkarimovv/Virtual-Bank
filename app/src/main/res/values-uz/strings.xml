@@ -94,4 +94,6 @@
     <string name="lock_app_when_closed">Yopib turganda blokirovka qilish</string>
     <string name="confirm_payment">To\'lovni tasdiqlash</string>
     <string name="str_security_time">%1$d sek</string>
+    <string name="str_new_pin_code">Yangi PIN-kodni kiriting</string>
+    <string name="str_confirm_new_pin_code">Yangi PIN-kodni tasdiqlang</string>
 </resources>

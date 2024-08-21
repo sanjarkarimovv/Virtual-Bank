@@ -95,4 +95,6 @@
     <string name="lock_app_when_closed">Lock app when closed</string>
     <string name="confirm_payment">Confirm payment</string>
     <string name="str_security_time">%1$d sec</string>
+    <string name="str_new_pin_code">Enter a new PIN code</string>
+    <string name="str_confirm_new_pin_code">Confirm the new PIN code</string>
 </resources>

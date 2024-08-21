@@ -1,11 +1,10 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code
 
-import android.os.Handler
-import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
@@ -96,19 +95,20 @@ class PinCodeViewModel @Inject constructor(
             } else {
                 if (validatePinUseCase.isValidPin(pinCode)) {
                     _pinCodeEvent.value = PinCodeEvent.PinValidated
-                    Handler(Looper.getMainLooper()).postDelayed({ resetErrorAttempts() }, 2000L)
+                    delay(2000L)
+                    resetErrorAttempts()
                 } else {
                     _pinCodeEvent.value = PinCodeEvent.PinValidationFailed
                     _pinCodeList.value?.clear()
-                    Handler(Looper.getMainLooper()).postDelayed({ incrementErrorAttempts() }, 2000L)
+                    delay(2000L)
+                    incrementErrorAttempts()
                 }
             }
         }
     }
 
     fun handlePinCodeExit() {
-        prefsProvider.token = ""
-        prefsProvider.pinCode = ""
+        prefsProvider.clear()
         resetErrorAttempts()
     }
 
