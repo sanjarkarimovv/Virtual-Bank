@@ -99,9 +99,9 @@ class MainViewModel @Inject constructor(
                         when (item.name) {
                             HomeComponents.Cards -> {
                                 //get from remote data
-//                                getCardsUseCase.invoke().onEach {
-//                                    _uiData.value = HomeBodyModels.Card(item.name, it)
-//                                }.launchIn(this)
+                                getCardsUseCase.invoke().onEach {
+                                    _uiData.value = HomeBodyModels.Card(item.name, it)
+                                }.launchIn(this)
                             }
 
                             HomeComponents.Payments -> {
@@ -119,11 +119,11 @@ class MainViewModel @Inject constructor(
 
                             HomeComponents.LastTransfers -> {
 
-//                                lastTransferUseCase.invoke().onEach {
-//                                    _uiData.value = HomeBodyModels.LastTransfer(
-//                                        item.name, it
-//                                    )
-//                                }.launchIn(this)
+                                lastTransferUseCase.invoke().onEach {
+                                    _uiData.value = HomeBodyModels.LastTransfer(
+                                        item.name, it
+                                    )
+                                }.launchIn(this)
                             }
 
                             HomeComponents.PaymentForPhoneNumber -> {
@@ -147,11 +147,11 @@ class MainViewModel @Inject constructor(
 
     fun getTotalBalance() {
         viewModelScope.launch {
-//            totalBalanceUseCase.invoke().onEach {
-//                _uiData.value = HomeBodyModels.TotalBalance("${it.totalBalance}")
-//            }.catch {
-//                _uiData.value = HomeBodyModels.Error(it.message?:"Ko'zda tutilmagan xatolik")
-//            }.launchIn(this)
+            totalBalanceUseCase.invoke().onEach {
+                _uiData.value = HomeBodyModels.TotalBalance("${it.totalBalance}")
+            }.catch {
+                _uiData.value = HomeBodyModels.Error(it.message?:"Ko'zda tutilmagan xatolik")
+            }.launchIn(this)
         }
     }
 

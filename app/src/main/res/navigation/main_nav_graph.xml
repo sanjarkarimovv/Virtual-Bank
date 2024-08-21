@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/mainFragment">
 
@@ -14,8 +15,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
-        android:label="MainFragment"
-        tools:layout="@layout/fragment_main">
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_widgetSettingsFragment"
             app:destination="@id/widgetSettingsFragment" />
@@ -26,13 +26,11 @@
     <fragment
         android:id="@+id/transferFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer.TransferFragment"
-        android:label="TransferFragment"
-        tools:layout="@layout/fragment_transfer" />
+        android:label="TransferFragment" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.payment.PaymentFragment"
-        android:label="PaymentFragment"
-        tools:layout="@layout/fragment_payment" />
+        android:label="PaymentFragment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
