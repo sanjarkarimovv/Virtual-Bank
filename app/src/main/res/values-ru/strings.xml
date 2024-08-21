@@ -13,7 +13,6 @@
     <string name="theme_of_the_application">Тема приложения</string>
     <string name="widget_setup">Настройка виджета</string>
     <string name="todo">TODO</string>
-
     <string name="security">Безопасность</string>
     <string name="permissions">Разрешения</string>
     <string name="notification">Уведомления</string>
@@ -28,13 +27,13 @@
     <string name="defauld_languafe">English</string>
     <string name="default_theme_value">System</string>
     <string name="default_user_name">User User</string>
-    <string name="str_first_name">First name</string>
-    <string name="str_last_name">Last name</string>
-    <string name="str_confirm_password">Confirm password</string>
+    <string name="str_first_name">Имя</string>
+    <string name="str_last_name">Фамилия</string>
+    <string name="str_confirm_password">Подтвердите пароль</string>
     <string name="str_password">Пароль</string>
     <string name="str_phone_number">Номер телефона</string>
-    <string name="str_born_date">Born date</string>
-    <string name="str_gender">Gender</string>
+    <string name="str_born_date">Дата рождения</string>
+    <string name="str_gender">Пол </string>
     <string name="str_sign_up">Регистрация</string>
     <string name="str_refresh_code">Получить код</string>
     <string name="str_confirm">Подтверждение</string>
@@ -105,4 +104,15 @@
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
     <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
+    <string name="str_already_registered">Если вы зарегистрировались первым</string>
+    <string name="str_next">Следующий</string>
+    <string name="str_male">Мужской</string>
+    <string name="str_family">Женщина</string>
+    <string name="str_sign_up_direction">Для регистрации введите свое имя, фамилию, дату рождения и пол.</string>
+    <string name="str_back">Назад</string>
+    <string name="str_main_part">Основная часть</string>
+    <string name="str_enter_basic_info">Введите номер телефона, придумайте новый пароль и подтвердите пароль</string>
+    <string name="str_phone_region_code">+998</string>
+    <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
+    <string name="str_bracket">(</string>
 </resources>

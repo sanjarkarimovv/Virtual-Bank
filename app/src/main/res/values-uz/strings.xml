@@ -28,12 +28,12 @@
     <string name="defauld_languafe">English</string>
     <string name="default_theme_value">System</string>
     <string name="default_user_name">User User</string>
-    <string name="str_last_name">Last name</string>
-    <string name="str_confirm_password">Confirm password</string>
+    <string name="str_last_name">Familiya</string>
+    <string name="str_confirm_password">Parolni tasdiqlang</string>
     <string name="str_password">Parol</string>
     <string name="str_phone_number">Telefon raqam</string>
-    <string name="str_born_date">Born date</string>
-    <string name="str_gender">Gender</string>
+    <string name="str_born_date">Tug\'ulgan sanasi</string>
+    <string name="str_gender">Jins</string>
     <string name="str_sign_up">Ro\'yxatdan o\'tish</string>
     <string name="str_refresh_code">Kodni qayta olish</string>
     <string name="str_confirm">Tastiqlash</string>
@@ -105,4 +105,15 @@
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
     <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
+    <string name="str_already_registered">Avval ro\'yxatdan o\'tgan bo\'lsangiz</string>
+    <string name="str_next">Kengisi</string>
+    <string name="str_male">Erkak</string>
+    <string name="str_family">Ayol</string>
+    <string name="str_sign_up_direction">Ro\'yxatdan o\'tish uchun ism, familya, tug\'ulgan sana va jinsingizni kiriting</string>
+    <string name="str_back">Orqaga</string>
+    <string name="str_main_part">Asosiy qism</string>
+    <string name="str_enter_basic_info">Telefon raqam kiriting, yangi parol yarating va parolni tasdiqlang</string>
+    <string name="str_phone_region_code">+998</string>
+    <string name="str_enter_born_date_format">DD/MM/YYYY</string>
+    <string name="str_bracket">(</string>
 </resources>

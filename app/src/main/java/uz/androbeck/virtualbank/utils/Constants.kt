@@ -37,6 +37,10 @@ object Constants {
     }
 
     object ArgumentKey {
+        const val USER_FIRST_NAME = "user_first_name"
+        const val USER_LAST_NAME = "user_last_name"
+        const val USER_BORN_DATE = "user_born_date"
+        const val USER_GENDER = "user_gender"
         const val TOKEN_FOR_VERIFY = "token_for_verify"
         const val PHONE_NUMBER_FOR_VERIFY = "phone_number_for_verify"
         const val SCREEN = "screen"
