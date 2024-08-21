@@ -9,37 +9,39 @@ import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import javax.inject.Inject
 
 class AuthInterceptor @Inject constructor(
-    private val updateTokenUseCase: UpdateTokenUseCase,
-    private val preferencesProvider: PreferencesProvider
+    private val preferencesProvider: PreferencesProvider,
 ) : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val originalRequest = chain.request()
-        val response = chain.proceed(originalRequest)
-        val accessToken = preferencesProvider.token
-        if (response.code == 401) {
-            val refreshToken = preferencesProvider.refreshToken
-            val refreshedToken = runBlocking {
-                val updateTokenResponse =
-                    updateTokenUseCase.invoke(UpdateTokenReqUIModel(refreshToken))
-                updateTokenResponse.accessToken?.let {
-                    preferencesProvider.token = it
-                }
-                updateTokenResponse.refreshToken?.let {
-                    preferencesProvider.refreshToken = it
-                }
-                updateTokenResponse.refreshToken
-            }
-            if (refreshedToken != null) {
-                val newRequest =
-                    originalRequest.newBuilder().header("Authorization", "Bearer $refreshedToken")
-                        .build()
-                return chain.proceed(newRequest)
-            }
-        }
-        // Add the access token to the request header
-        val authorizedRequest =
-            originalRequest.newBuilder().header("Authorization", "Bearer $accessToken").build()
+    @Inject
+     lateinit var updateTokenUseCase: UpdateTokenUseCase
 
-        return chain.proceed(authorizedRequest)
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val originalRequest = chain.request()
+            val response = chain.proceed(originalRequest)
+            val accessToken = preferencesProvider.token
+            if (response.code == 401) {
+                val refreshToken = preferencesProvider.refreshToken
+                val refreshedToken = runBlocking {
+                            val updateTokenResponse =
+                                updateTokenUseCase.invoke(UpdateTokenReqUIModel(refreshToken))
+                            updateTokenResponse.accessToken?.let {
+                                preferencesProvider.token = it
+                            }
+                            updateTokenResponse.refreshToken?.let {
+                                preferencesProvider.refreshToken = it
+                            }
+                          updateTokenResponse.refreshToken
+                }
+                if (refreshedToken != null) {
+                    val newRequest =
+                        originalRequest.newBuilder().header("Authorization", "Bearer $refreshedToken")
+                            .build()
+                    return chain.proceed(newRequest)
+                }
+            }
+            // Add the access token to the request header
+            val authorizedRequest =
+                originalRequest.newBuilder().header("Authorization", "Bearer $accessToken").build()
+
+            return chain.proceed(authorizedRequest)
+        }
     }
-}

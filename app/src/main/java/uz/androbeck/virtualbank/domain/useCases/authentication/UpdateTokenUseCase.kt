@@ -13,7 +13,7 @@ class UpdateTokenUseCase @Inject constructor(
     private val tokensMapper: TokensMapper,
     private val updateTokenMapper: UpdateTokenMapper
 ) {
-    suspend fun invoke(uiReqModel: UpdateTokenReqUIModel) =
+    suspend operator fun invoke(uiReqModel: UpdateTokenReqUIModel) =
         authenticationRepository.updateToken(updateTokenMapper.toDTO(uiReqModel)).run {
             tokensMapper.toUIModel(this)
         }

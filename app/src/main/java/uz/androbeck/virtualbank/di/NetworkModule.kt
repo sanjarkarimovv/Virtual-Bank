@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter 
+import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
@@ -24,10 +24,6 @@ import uz.androbeck.virtualbank.data.api.CardService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.data.api.TransferService
-import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
-import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
-import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
-import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
@@ -80,7 +76,6 @@ object NetworkModule {
     fun provideOkHttpClient(
         prefsProvider: PreferencesProvider,
         @ApplicationContext context: Context,
-        updateTokenUseCase: UpdateTokenUseCase
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
@@ -108,7 +103,11 @@ object NetworkModule {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             )
-            .addInterceptor(AuthInterceptor(updateTokenUseCase, prefsProvider))
+            .addInterceptor(
+                AuthInterceptor(
+                    prefsProvider
+                )
+            )
             .addInterceptor(ChuckerInterceptor(context))
             .build()
     }
@@ -129,7 +128,6 @@ object NetworkModule {
     }
 
     @Provides
-
     @Singleton
     fun provideAuthService(
         retrofit: Retrofit,
@@ -162,12 +160,4 @@ object NetworkModule {
     fun provideTransferService(
         retrofit: Retrofit
     ): TransferService = retrofit.create(TransferService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideUpdateTokenUseCase(
-        authenticationRepository: AuthenticationRepository,
-        tokensMapper: TokensMapper,
-        updateTokenMapper: UpdateTokenMapper
-    ) = UpdateTokenUseCase(authenticationRepository, tokensMapper, updateTokenMapper)
 }
