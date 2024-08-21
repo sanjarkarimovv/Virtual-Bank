@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
     private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
         supportFragmentManager.beginTransaction().setPrimaryNavigationFragment(navHostFragment)
             .commit()
-    }
+    }//
 
     override fun onPause() {
         super.onPause()
