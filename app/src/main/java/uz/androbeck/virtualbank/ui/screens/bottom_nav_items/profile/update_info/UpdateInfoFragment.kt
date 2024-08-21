@@ -36,15 +36,19 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     }
 
     override fun clicks() = with(binding) {
+
+        binding.toolbar.onClickLeftIcon = {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         btnUndo.setOnClickListener {
+            setBundleDataToViews()
             changingButtonsMakeInvisible()
         }
         btnChangeDate.setOnClickListener {
             datePicker()
-            println("::: -> Button btnChangeDate")
         }
         btnChangeGender.setOnClickListener {
-            println("::: -> Button btnChangeGender")
             when (genderInfoReceiver.text) {
                 getString(R.string.str_male) -> {
                     genderInfoReceiver.text = getString(R.string.str_female)
@@ -60,13 +64,11 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
             }
         }
         btnSaverChanges.setOnClickListener {
-            println("::: -> btn changes clicked")
             updateChanges()
         }
     }
 
     private fun updateChanges() = with(binding) {
-        println("::: -> update changes")
         val firstName = etFirstName.text.toString()
         val lastName = etLastName.text.toString()
         val date = dateBirthReceiver.text.toString()
