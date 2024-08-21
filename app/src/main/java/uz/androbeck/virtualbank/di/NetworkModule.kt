@@ -23,9 +23,15 @@ import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.api.CardService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
+import uz.androbeck.virtualbank.data.api.TransferService
+import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
+import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
+import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
+import uz.androbeck.virtualbank.network.interceptors.AuthInterceptor
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.utils.Constants
 import javax.inject.Singleton
@@ -73,7 +79,8 @@ object NetworkModule {
     @[Provides Singleton]
     fun provideOkHttpClient(
         prefsProvider: PreferencesProvider,
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        updateTokenUseCase: UpdateTokenUseCase
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
@@ -101,6 +108,7 @@ object NetworkModule {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             )
+            .addInterceptor(AuthInterceptor(updateTokenUseCase, prefsProvider))
             .addInterceptor(ChuckerInterceptor(context))
             .build()
     }
@@ -138,6 +146,7 @@ object NetworkModule {
     fun provideHistoryService(
         retrofit: Retrofit
     ): HistoryService = retrofit.create(HistoryService::class.java)
+
     @Provides
     @Singleton
     fun provideCardService(
@@ -149,5 +158,16 @@ object NetworkModule {
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {
         return errorHandlerImpl
     }
+    @Provides
+    fun provideTransferService(
+        retrofit: Retrofit
+    ): TransferService = retrofit.create(TransferService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideUpdateTokenUseCase(
+        authenticationRepository: AuthenticationRepository,
+        tokensMapper: TokensMapper,
+        updateTokenMapper: UpdateTokenMapper
+    ) = UpdateTokenUseCase(authenticationRepository, tokensMapper, updateTokenMapper)
 }
