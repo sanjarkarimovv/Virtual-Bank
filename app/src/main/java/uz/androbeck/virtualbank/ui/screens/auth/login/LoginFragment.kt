@@ -50,7 +50,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         }
         btnSignUp.onClick = {
-            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_registrationAddPersonalInfoFragment)
         }
         customToolbar.onClickLeftIcon = {
             findNavController().popBackStack()

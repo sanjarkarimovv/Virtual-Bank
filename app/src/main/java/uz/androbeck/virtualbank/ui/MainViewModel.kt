@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun setNavGraphEvent() = viewModelScope.launch {
-        if (prefsProvider.token.isNotEmpty()) {
+        if (prefsProvider.accessToken.isNotEmpty()) {
             navGraphEvent.send(NavGraphEvent.PinCode)
         } else {
             navGraphEvent.send(NavGraphEvent.Auth)
@@ -45,7 +45,7 @@ class MainViewModel @Inject constructor(
         if (prefsProvider.useIsAwayLong) {
             val timeAway = System.currentTimeMillis() - prefsProvider.isAwayLong
             val isAwayTooLong = timeAway > prefsProvider.awayLongTime * 1000
-            val hasValidToken = prefsProvider.token.isNotEmpty()
+            val hasValidToken = prefsProvider.accessToken.isNotEmpty()
 
             isAwayLong.send(isAwayTooLong && hasValidToken)
         }
