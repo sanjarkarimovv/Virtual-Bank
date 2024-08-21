@@ -13,6 +13,5 @@ class TransferRepositoryImpl @Inject constructor(
 ) : TransferRepository {
     override fun getFee(request: GetFeeReqDto) = transferRemoteDataSource.getFee(request)
     override fun transfer(request: TransferRequestDto) = transferRemoteDataSource.transfer(request)
-    override fun transferVerify(request: CodeVerifyReqDto): Flow<MessageResDto> =
-        transferRemoteDataSource.transferVerify(request)
+    override fun transferVerify(request: CodeVerifyReqDto) = transferRemoteDataSource.transferVerify(request)
 }

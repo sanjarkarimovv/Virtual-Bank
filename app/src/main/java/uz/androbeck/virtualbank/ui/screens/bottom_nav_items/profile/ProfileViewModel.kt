@@ -43,10 +43,10 @@ class ProfileViewModel @Inject constructor(
             println("View Model Success")
             emit(Event.Success(it.message.toString()))
         }.catch {
-            println("View Model Error ${it.message.toString()}")
             errorHandler.handleError(it)
+            println("View Model Error ${it.message.toString()}")
             emit(Event.Error(it.message))
-        }
+        }.launchIn(viewModelScope)
     }
 }
 

@@ -17,5 +17,4 @@ class TransferVerifyUseCase @Inject constructor(
 ) {
     operator fun invoke(dto: CodeVerifyReqDto) =
         repository.transferVerify(dto).map { messageMapper.toUIModel(it) }
-
 }
