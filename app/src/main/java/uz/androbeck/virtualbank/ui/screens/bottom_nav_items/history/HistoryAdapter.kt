@@ -35,7 +35,7 @@ class HistoryAdapter(
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n", "SuspiciousIndentation")
         fun bind(content: HistoryItem.Content) {
-
+            println("HistoryPagingAdapter Binding item: $content")
             with(binding) {
                 val context = root.context
                 tvTransactionDate.text = content.child.time.formatToHourMinute()
@@ -66,13 +66,13 @@ class HistoryAdapter(
 
     companion object {
         private val diffUtil = object : DiffUtil.ItemCallback<HistoryItem>() {
-                override fun areItemsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
-                    return oldItem == newItem
-                }
+            override fun areItemsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
+                return oldItem == newItem
+            }
 
-                override fun areContentsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
-                    return oldItem == newItem
-                }
+            override fun areContentsTheSame(oldItem: HistoryItem, newItem: HistoryItem): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 
@@ -100,19 +100,30 @@ class HistoryAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = getItem(position)) {
-            is HistoryItem.Header -> (holder as HeaderVH).bind(item)
-            is HistoryItem.Content -> (holder as ContentVH).bind(item)
+            is HistoryItem.Header -> {
+                println("HistoryAdapter Binding Header at position $position")
+                (holder as HeaderVH).bind(item)
+            }
+
+            is HistoryItem.Content -> {
+                println("HistoryAdapter Binding Content at position $position")
+                (holder as ContentVH).bind(item)
+            }
+
             null -> Unit
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (getItem(position)) {
+        val item = getItem(position)
+        println("HistoryAdapter Getting item view type for position $position: ${item?.javaClass?.simpleName}")
+        return when (item) {
             is HistoryItem.Header -> HistoryItemViewType.Header.ordinal
             is HistoryItem.Content -> HistoryItemViewType.Content.ordinal
             else -> throw IllegalArgumentException("Invalid item type")
         }
     }
+
 
     fun findHeaderViewForPosition1(position: Int, parent: RecyclerView): View? {
         val currentItem = getItem(position)

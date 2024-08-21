@@ -1,20 +1,13 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.map
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.Flow
 import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
-import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
 import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
-import uz.androbeck.virtualbank.utils.extentions.toStartOfDay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,43 +18,47 @@ class HistoryViewModel @Inject constructor(
     private var totalAmountIncome: Float = 0f
     private var totalAmountOutcome: Float = 0f
 
-    private val _response = MutableLiveData<PagingData<HistoryItem>>()
-    val response: LiveData<PagingData<HistoryItem>> get() = _response
-
-    init {
-        getHistory()
-    }
-
-    fun getHistory() {
-        getHistoryUseCase.invoke()
-            .map { pagingData ->
-                pagingData.map { dto ->
-                    HistoryItem.Content(dto)
-                    HistoryItem.Header(dto.time.toStartOfDay())
-                    println(":::::::;HistoryGetHistory ${(dto.time.toStartOfDay())}")
-                    mapDtoToHistoryItem(dto)
-                }
-            }
-            .cachedIn(viewModelScope)
-            .onEach {
-                _response.value = it
-                println(":::::::;Historygetresponse $it")
-            }
-            .launchIn(viewModelScope)
-    }
-
-    private fun mapDtoToHistoryItem(dto: InComeAndOutComeUIModel): HistoryItem {
-        val items = mutableListOf<HistoryItem>()
-        if (dto.type == "INCOME") {
-            totalAmountIncome += dto.amount
-            println(":::::::;HistoryAmountIncome $totalAmountIncome")
-        } else {
-            totalAmountOutcome += dto.amount
-        }
-        val currentHeaderTime = dto.time.toStartOfDay()
-        items.add(HistoryItem.Header(currentHeaderTime))
-        items.add(HistoryItem.Content(dto))
-        return items.last()
-    }
+    val response: Flow<PagingData<HistoryItem>> =
+        getHistoryUseCase.invoke().cachedIn(viewModelScope)
 
 }
+/* private val _response = MutableLiveData<PagingData<HistoryItem>>()
+ val response: LiveData<PagingData<HistoryItem>> get() = _response
+
+ init {
+     getHistory()
+ }
+
+ fun getHistory() {
+     getHistoryUseCase.invoke()
+         .map { pagingData ->
+             pagingData.map { dto ->
+
+                 println(":::::::;HistoryGetHistory ${(dto.time.toStartOfDay())}")
+                 mapDtoToHistoryItem(dto)
+             }
+         }
+         .cachedIn(viewModelScope)
+         .onEach {
+             _response.value = it
+             println(":::::::;Historygetresponse $it")
+         }
+         .launchIn(viewModelScope)
+ }
+
+ private fun mapDtoToHistoryItem(dto: InComeAndOutComeUIModel): HistoryItem {
+     val items = mutableListOf<HistoryItem>()
+     if (dto.type == "INCOME") {
+         totalAmountIncome += dto.amount
+         println(":::::::;HistoryAmountIncome $totalAmountIncome")
+     } else {
+         totalAmountOutcome += dto.amount
+     }
+
+         val currentHeaderTime = dto.time.toStartOfDay()
+         return HistoryItem.Header(currentHeaderTime)
+             .apply { items.add(this) }
+             .also { items.add(HistoryItem.Content(dto)) }
+     }*/
+
+

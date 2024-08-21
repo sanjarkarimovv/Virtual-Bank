@@ -12,6 +12,6 @@ data class GetHistoryResDto(
     val total_pages: Int? = null,
     @SerialName("current-page")
     val current_page: Int? = null,
-    @SerialName("transfers")
+    @SerialName("child")
     val transferResDto: List<InComeAndOutComeResDto>? = null
 )
