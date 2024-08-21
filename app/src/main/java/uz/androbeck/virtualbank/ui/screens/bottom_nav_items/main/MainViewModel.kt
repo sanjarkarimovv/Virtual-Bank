@@ -31,22 +31,13 @@ class MainViewModel @Inject constructor(
 
 
     init {
-        viewModelScope.launch (Dispatchers.IO){
-            getTransfer(
-                TransferUIModel(
-                    "third-card",
-                    "7",
-                    "1234567898765432",
-                    100100
-                )
-            ).onEach {
-                viewModelScope.launch {
-
-                println(it.token)
-                }
-            }.catch {
-                errorHandler.handleError(it)
-            }.launchIn(this)
-        }
+        getTransfer(
+            TransferUIModel(
+                "third-card",
+                "7",
+                "1234567898765432",
+                100100
+            )
+        )
     }
 }

@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main
 
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -17,6 +18,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val binding: FragmentMainBinding by viewBinding()
     override fun setup() {
             binding.root.singleClickable{
+                Toast.makeText(requireActivity(), "ishla", Toast.LENGTH_SHORT).show()
                 val transferUIModel= TransferUIModel(
                     "third-card",
                     "7",
