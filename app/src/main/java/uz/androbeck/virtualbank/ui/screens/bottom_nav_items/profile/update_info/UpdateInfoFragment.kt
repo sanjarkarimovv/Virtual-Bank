@@ -42,6 +42,7 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         }
 
         btnUndo.setOnClickListener {
+            setBundleDataToViews()
             changingButtonsMakeInvisible()
         }
         btnChangeDate.setOnClickListener {
