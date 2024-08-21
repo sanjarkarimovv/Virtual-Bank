@@ -36,6 +36,11 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     }
 
     override fun clicks() = with(binding) {
+
+        binding.toolbar.onClickLeftIcon = {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         btnUndo.setOnClickListener {
             changingButtonsMakeInvisible()
         }
