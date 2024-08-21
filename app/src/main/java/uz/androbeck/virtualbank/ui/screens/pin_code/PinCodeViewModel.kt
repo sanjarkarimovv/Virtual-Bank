@@ -107,7 +107,7 @@ class PinCodeViewModel @Inject constructor(
     }
 
     fun handlePinCodeExit() {
-        prefsProvider.token = ""
+        prefsProvider.accessToken = ""
         prefsProvider.pinCode = ""
         resetErrorAttempts()
     }

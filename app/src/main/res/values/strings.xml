@@ -74,8 +74,15 @@
     <string name="biometric_prompt_title">Biometric Authentication</string>
     <string name="biometric_prompt_subtitle">Authenticate with your biometrics</string>
     <string name="biometric_prompt_cancel">Cancel</string>
-
-
+    <string name="str_my_information">My Information</string>
+    <string name="str_date_of_birth">Date of Birth</string>
+    <string name="str_change">Change</string>
+    <string name="str_male">Male</string>
+    <string name="str_female">Female</string>
+    <string name="str_undo_changes">Undo changes</string>
+    <string name="str_save_changes">Save changes</string>
+    <string name="str_delete_account">Delete account</string>
+    <string name="str_change_information">Change informations</string>
     <string name="str_more">More</string>
     <string name="str_servers_payment">Service payment</string>
     <string name="paymnet">Payment</string>
@@ -85,8 +92,18 @@
     <string name="str_hint_validity_period">MM/YY</string>
     <string name="str_card_name">Card name</string>
     <string name="str_add_card">Add card</string>
-
+    <string name="str_no_data">No data</string>
     <string name="str_add_card_succes">Card added successfully</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
+    <string name="str_already_registered">If you have registered first</string>
+    <string name="str_next">Next</string>
+    <string name="str_family">Family</string>
+    <string name="str_sign_up_direction">To register, enter your name, surname, date of birth and gender</string>
+    <string name="str_back">Back</string>
+    <string name="str_main_part">The main part</string>
+    <string name="str_enter_basic_info">Enter a phone number, create a new password and confirm the password</string>
+    <string name="str_phone_region_code">+998</string>
+    <string name="str_enter_born_date_format">DD/MM/YYYY</string>
+    <string name="str_bracket">(</string>
 </resources>
