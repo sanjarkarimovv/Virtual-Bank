@@ -155,10 +155,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
                 }
 
-                else -> {
-                    visaList.add(cardUIModel)
-
-                }
+                else -> {}
             }
 
         }

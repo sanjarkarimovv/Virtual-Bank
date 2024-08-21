@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import uz.androbeck.virtualbank.domain.ui_models.cards.GetCardsUIModel
 import uz.androbeck.virtualbank.domain.useCases.card.GetCardsUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
@@ -26,12 +25,18 @@ class MyCardsViewModel @Inject constructor(
     val getCardsEvent = _getCardsEvent.consumeAsFlow().share(viewModelScope)
 
     fun getCards() = viewModelScope.launch(Dispatchers.IO) {
+
         getCardsUseCase.getCardsFromNetwork().onEach { getCardsFromNetwork ->
+            println("AAAAAAA ::::: getCardnetvork= $getCardsFromNetwork}")
+            println("ASASAS::::  ${getCardsUseCase.getCardsFromCache()} ")
             getCardsUseCase.getCardsFromCache().forEach { getCardsFromCache ->
+                if (getCardsFromCache.pan == null) return@forEach
+                println(" BBBBBB  ::::::  $getCardsFromCache")
                 val matchingCardPan = getCardsFromNetwork.find {
                     it.pan == getCardsFromCache.pan?.takeLast(4)
 
                 }
+                println("SSSSS :::: ${getCardsFromCache.pan?.takeLast(4)}")
                 println("it.pan ${matchingCardPan?.pan}")
 
                 if (matchingCardPan != null) {

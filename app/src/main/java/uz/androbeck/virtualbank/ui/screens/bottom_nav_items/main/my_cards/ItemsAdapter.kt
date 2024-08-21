@@ -29,10 +29,12 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
         @SuppressLint("SetTextI18n")
             fun bind(card: CardUIModel)= with(binding){
                 val exYear= (card.expiredYear)?.rem(1000)
-            val formattedText = card.pan?.substring(0, 4) + " " +
-                    card.pan?.substring(4, 6) + "** **** " +
-                    card.pan?.substring(12)
-
+            var formattedText="**** **** **** ${card.pan}"
+            if(card.pan?.length!! > 4){
+                 formattedText= card.pan?.substring(0, 4) + " " +
+                        card.pan?.substring(4, 6) + "** **** " +
+                        card.pan?.substring(12)
+            }
                 amount.text=card.amount.toString()
                 cardName.text=card.name
                 owner.text=card.owner

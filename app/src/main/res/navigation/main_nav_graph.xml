@@ -56,8 +56,7 @@
     <fragment
         android:id="@+id/myCardsFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.MyCardsFragment"
-        android:label="MyCardsFragment" >
-        android:label="AddCardFragment"
+        android:label="MyCardsFragment"
         tools:layout="@layout/fragment_add_card">
         <action
             android:id="@+id/action_myCardsFragment_to_addCardFragment"

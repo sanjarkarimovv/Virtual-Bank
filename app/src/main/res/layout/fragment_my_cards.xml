@@ -47,7 +47,6 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:backgroundTint="@drawable/ripple_effect"
         app:cardCornerRadius="30dp"
         android:id="@+id/btn_add_card"
         android:layout_width="60dp"
