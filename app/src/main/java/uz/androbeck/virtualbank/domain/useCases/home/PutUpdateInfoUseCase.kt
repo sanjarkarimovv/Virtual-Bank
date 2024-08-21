@@ -6,7 +6,7 @@ import uz.androbeck.virtualbank.data.repository.home.HomeRepository
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.UpdateInfoMapper
 import uz.androbeck.virtualbank.domain.ui_models.common.MessageUIModel
-import uz.androbeck.virtualbank.domain.ui_models.home.UpdateInfoUIModel
+import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqUIModel
 import javax.inject.Inject
 
 class PutUpdateInfoUseCase @Inject constructor(
@@ -14,7 +14,7 @@ class PutUpdateInfoUseCase @Inject constructor(
     private val updateInfoMapper: UpdateInfoMapper,
     private val messageMapper: MessageMapper
 ) {
-    operator fun invoke(uiReqModel: UpdateInfoUIModel): Flow<MessageUIModel> {
+    operator fun invoke(uiReqModel: UpdateInfoReqUIModel): Flow<MessageUIModel> {
         val request = updateInfoMapper.toDTO(uiReqModel)
         return homeRepository.putUpdateInfo(request).map { messageMapper.toUIModel(it) }
     }

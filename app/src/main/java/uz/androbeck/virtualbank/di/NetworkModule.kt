@@ -24,6 +24,10 @@ import uz.androbeck.virtualbank.data.api.CardService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.data.api.TransferService
+import uz.androbeck.virtualbank.data.repository.authentication.AuthenticationRepository
+import uz.androbeck.virtualbank.domain.mapper.auth.TokensMapper
+import uz.androbeck.virtualbank.domain.mapper.auth.UpdateTokenMapper
+import uz.androbeck.virtualbank.domain.useCases.authentication.UpdateTokenUseCase
 import uz.androbeck.virtualbank.network.ErrorHandlingCallAdapterFactory
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.network.errors.ErrorHandlerImpl
@@ -53,15 +57,10 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideChuckerInterceptor(
-        context: Context,
-        collector: ChuckerCollector
-    ) = ChuckerInterceptor.Builder(context)
-        .collector(collector)
-        .maxContentLength(250_000L)
+        context: Context, collector: ChuckerCollector
+    ) = ChuckerInterceptor.Builder(context).collector(collector).maxContentLength(250_000L)
         .redactHeaders(Constants.Header.TOKEN_TITLE, Constants.Header.TOKEN_TYPE)
-        .alwaysReadResponseBody(true)
-        .createShortcut(true)
-        .build()
+        .alwaysReadResponseBody(true).createShortcut(true).build()
 
     @[Provides Singleton]
     fun provideJsonSerializer(): Json {
@@ -75,41 +74,31 @@ object NetworkModule {
     @[Provides Singleton]
     fun provideOkHttpClient(
         prefsProvider: PreferencesProvider,
-        @ApplicationContext context: Context,
+        @ApplicationContext context: Context
     ): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(prefsProvider))
             .addInterceptor { chain ->
-                val original = chain.request()
-                val request = original.newBuilder().apply {
-                    if (prefsProvider.token.isNotEmpty()) {
-                        addHeader(
-                            Constants.Header.TOKEN_TITLE,
-                            Constants.Header.TOKEN_TYPE + " " + prefsProvider.token
-                        )
-                    }
+            val original = chain.request()
+            val request = original.newBuilder().apply {
+                if (prefsProvider.accessToken.isNotEmpty()) {
                     addHeader(
-                        Constants.Header.ACCEPT_TITLE,
-                        Constants.Header.APPLICATION_JSON_VALUE
+                        Constants.Header.TOKEN_TITLE,
+                        Constants.Header.TOKEN_TYPE + " " + prefsProvider.accessToken
                     )
                 }
-                    .method(original.method, original.body)
-                    .build()
-                chain.proceed(request)
-            }
-            .addInterceptor(
-                HttpLoggingInterceptor { message ->
-                    Log.d("OkHttp", message)
-                }.apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                }
-            )
-            .addInterceptor(
-                AuthInterceptor(
-                    prefsProvider
+                addHeader(
+                    Constants.Header.ACCEPT_TITLE, Constants.Header.APPLICATION_JSON_VALUE
                 )
-            )
-            .addInterceptor(ChuckerInterceptor(context))
-            .build()
+            }.method(original.method, original.body).build()
+            chain.proceed(request)
+        }
+            .addInterceptor(HttpLoggingInterceptor { message ->
+                Log.d("OkHttp", message)
+            }.apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .addInterceptor(ChuckerInterceptor(context)).build()
     }
 
     @Provides
@@ -119,15 +108,12 @@ object NetworkModule {
         converter: Converter.Factory,
         callFactory: ErrorHandlingCallAdapterFactory,
     ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(converter)
-            .addCallAdapterFactory(callFactory)
-            .build()
+        return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL).client(okHttpClient)
+            .addConverterFactory(converter).addCallAdapterFactory(callFactory).build()
     }
 
     @Provides
+
     @Singleton
     fun provideAuthService(
         retrofit: Retrofit,
@@ -156,8 +142,17 @@ object NetworkModule {
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {
         return errorHandlerImpl
     }
+
     @Provides
     fun provideTransferService(
         retrofit: Retrofit
     ): TransferService = retrofit.create(TransferService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUpdateTokenUseCase(
+        authenticationRepository: AuthenticationRepository,
+        tokensMapper: TokensMapper,
+        updateTokenMapper: UpdateTokenMapper
+    ) = UpdateTokenUseCase(authenticationRepository, tokensMapper, updateTokenMapper)
 }

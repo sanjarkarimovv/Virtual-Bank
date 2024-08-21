@@ -44,6 +44,7 @@ object Constants {
         const val TOKEN_FOR_VERIFY = "token_for_verify"
         const val PHONE_NUMBER_FOR_VERIFY = "phone_number_for_verify"
         const val SCREEN = "screen"
+        const val USER_FULL_INFO = "user_full_info_key"
     }
 
     object String {

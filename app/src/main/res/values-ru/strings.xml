@@ -87,6 +87,15 @@
     <string name="str_add">Добавлять</string>
     <string name="str_this_send_phone_number_confirm_sms_code">На этот номер телефона был отправлен код подтверждения</string>
     <string name="str_success">Success</string>
+    <string name="str_my_information">Моя информация</string>
+    <string name="str_date_of_birth">Дата рождения</string>
+    <string name="str_change">Изменять</string>
+    <string name="str_male">Мужской</string>
+    <string name="str_female">женский</string>
+    <string name="str_undo_changes">Отменить изменения</string>
+    <string name="str_save_changes">Сохранить изменения</string>
+    <string name="str_delete_account">Удалить аккаунт</string>
+    <string name="str_change_information">Изменить информацию</string>
     <string name="str_more">Ещё</string>
     <string name="str_servers_payment">Плата за обслуживание</string>
     <string name="paymnet">Оплата</string>
@@ -96,7 +105,7 @@
     <string name="str_validity_period">Срок действия</string>
     <string name="str_card_name">Название карты</string>
     <string name="str_add_card">Карта добавить</string>
-
+    <string name="str_no_data">Нет данных</string>
     <string name="str_add_card_succes">Карта успешно добавлена</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
@@ -106,7 +115,6 @@
     <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
     <string name="str_already_registered">Если вы зарегистрировались первым</string>
     <string name="str_next">Следующий</string>
-    <string name="str_male">Мужской</string>
     <string name="str_family">Женщина</string>
     <string name="str_sign_up_direction">Для регистрации введите свое имя, фамилию, дату рождения и пол.</string>
     <string name="str_back">Назад</string>
