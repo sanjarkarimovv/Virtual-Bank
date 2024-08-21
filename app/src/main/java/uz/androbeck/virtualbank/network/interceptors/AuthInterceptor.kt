@@ -9,9 +9,11 @@ import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import javax.inject.Inject
 
 class AuthInterceptor @Inject constructor(
-    private val updateTokenUseCase: UpdateTokenUseCase,
     private val preferencesProvider: PreferencesProvider
 ) : Interceptor {
+
+    @Inject
+    lateinit var  updateTokenUseCase: UpdateTokenUseCase
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val response = chain.proceed(originalRequest)
@@ -40,6 +42,6 @@ class AuthInterceptor @Inject constructor(
         val authorizedRequest =
             originalRequest.newBuilder().header("Authorization", "Bearer $accessToken").build()
 
-        return chain.proceed(authorizedRequest)
+        return response
     }
 }

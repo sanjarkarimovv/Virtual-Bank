@@ -47,12 +47,11 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:background="@drawable/ripple_effect"
-
-        app:cardCornerRadius="25dp"
+        android:backgroundTint="@drawable/ripple_effect"
+        app:cardCornerRadius="30dp"
         android:id="@+id/btn_add_card"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="30dp"

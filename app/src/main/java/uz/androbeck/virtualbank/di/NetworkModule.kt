@@ -16,7 +16,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter 
+import retrofit2.Converter
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.BuildConfig
 import uz.androbeck.virtualbank.data.api.AuthenticationService
@@ -80,7 +80,7 @@ object NetworkModule {
     fun provideOkHttpClient(
         prefsProvider: PreferencesProvider,
         @ApplicationContext context: Context,
-        updateTokenUseCase: UpdateTokenUseCase
+        //updateTokenUseCase: UpdateTokenUseCase
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
@@ -108,7 +108,8 @@ object NetworkModule {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             )
-            .addInterceptor(AuthInterceptor(updateTokenUseCase, prefsProvider))
+            .addInterceptor(AuthInterceptor(
+                prefsProvider))
             .addInterceptor(ChuckerInterceptor(context))
             .build()
     }
@@ -158,6 +159,7 @@ object NetworkModule {
     fun provideErrorHandler(errorHandlerImpl: ErrorHandlerImpl): ErrorHandler {
         return errorHandlerImpl
     }
+
     @Provides
     fun provideTransferService(
         retrofit: Retrofit

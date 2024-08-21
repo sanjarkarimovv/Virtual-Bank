@@ -68,13 +68,17 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     }
 
-    override fun clicks() {
+    override fun clicks()= with(binding){
 
-        binding.swipeRefreshLayout.setOnRefreshListener {
+        swipeRefreshLayout.setOnRefreshListener {
             vm.getCards()
         }
 
-        binding.btnAddCard.setOnClickListener {
+        customToolbar.onClickLeftIcon={
+            findNavController().popBackStack()
+        }
+
+        btnAddCard.setOnClickListener {
             findNavController().navigate(R.id.action_myCardsFragment_to_addCardFragment)
         }
     }
