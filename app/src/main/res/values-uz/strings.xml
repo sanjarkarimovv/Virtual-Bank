@@ -98,7 +98,6 @@
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
     <string name="str_already_registered">Avval ro\'yxatdan o\'tgan bo\'lsangiz</string>
     <string name="str_next">Kengisi</string>
-    <string name="str_male">Erkak</string>
     <string name="str_family">Ayol</string>
     <string name="str_sign_up_direction">Ro\'yxatdan o\'tish uchun ism, familya, tug\'ulgan sana va jinsingizni kiriting</string>
     <string name="str_back">Orqaga</string>

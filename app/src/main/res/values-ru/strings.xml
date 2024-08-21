@@ -98,7 +98,6 @@
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
     <string name="str_already_registered">Если вы зарегистрировались первым</string>
     <string name="str_next">Следующий</string>
-    <string name="str_male">Мужской</string>
     <string name="str_family">Женщина</string>
     <string name="str_sign_up_direction">Для регистрации введите свое имя, фамилию, дату рождения и пол.</string>
     <string name="str_back">Назад</string>
