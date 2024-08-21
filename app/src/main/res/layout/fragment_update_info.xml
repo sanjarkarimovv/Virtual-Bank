@@ -100,7 +100,7 @@
 
             <TextView
                 android:id="@+id/date_birth_receiver"
-                android:layout_width="120dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:gravity="center"
@@ -115,7 +115,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="120dp"
+                android:layout_marginStart="125dp"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_date"
                 android:visibility="visible" />
@@ -165,7 +165,6 @@
             android:layout_below="@+id/gender_tv"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:text="@string/str_no_data"
             android:textColor="@color/colorPrimary"
