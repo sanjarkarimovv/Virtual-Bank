@@ -7,6 +7,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import uz.androbeck.virtualbank.BuildConfig
+import uz.androbeck.virtualbank.data.dto.common.response.Tokens2ResDto
 import uz.androbeck.virtualbank.data.dto.common.response.TokensResDto
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import javax.inject.Inject
@@ -30,7 +31,7 @@ class AuthInterceptor @Inject constructor(
                     chain.proceed(api).body?.string()
                 }
                 val dto = Gson().fromJson(
-                    updateTokenResponse, TokensResDto::class.java
+                    updateTokenResponse, Tokens2ResDto::class.java
                 )
                 dto.access_token?.let {
                     preferencesProvider.accessToken = it

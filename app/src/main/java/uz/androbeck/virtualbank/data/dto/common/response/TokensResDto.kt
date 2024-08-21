@@ -6,6 +6,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TokensResDto(
+    @SerialName("refresh-token")
+    val refresh_token: String? = null,
+    @SerialName("access-token")
+    val access_token: String? = null,
+)
+
+@Serializable
+data class Tokens2ResDto(
     @SerializedName("refresh-token")
     val refresh_token: String? = null,
     @SerializedName("access-token")
