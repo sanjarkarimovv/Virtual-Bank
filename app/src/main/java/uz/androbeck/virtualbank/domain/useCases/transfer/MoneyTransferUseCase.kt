@@ -17,6 +17,6 @@ class TransferUseCase@Inject constructor(
 ) {
     operator fun invoke(uiReqModel: TransferUIModel): Flow<TokenUIModel> {
         val request = transferMapper.toDTO(uiReqModel)
-        return transferRepository.transfer(request).map { tokenMapper.toUIModel(it) }
+        return transferRepository.moneyTransfer(request).map { tokenMapper.toUIModel(it) }
     }
 }

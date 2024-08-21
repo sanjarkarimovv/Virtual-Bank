@@ -8,6 +8,6 @@ import uz.androbeck.virtualbank.data.dto.response.transfer.GetFeeResDto
 
 interface TransferRemoteDataSource  {
     fun getFee(request: GetFeeReqDto): Flow<GetFeeResDto>
-    fun transfer(transferReqDto: TrasnferRequestDto): Flow<TokenResDto>
+    fun moneyTransfer(transferReqDto: TrasnferRequestDto): Flow<TokenResDto>
 
 }

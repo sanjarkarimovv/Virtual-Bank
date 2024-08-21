@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/ll_swipe"
     android:layout_height="match_parent">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/ll_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorBlueForHome"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
 
             <uz.androbeck.virtualbank.ui.customViews.forHome.CustomHomeHeader
@@ -47,7 +51,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="30dp"
-                        app:cardBackgroundColor="@color/colorBlueForHome"
+                        app:cardBackgroundColor="@color/colorPrimary"
                         app:cardCornerRadius="4dp">
 
                         <LinearLayout
@@ -81,5 +85,12 @@
         </RelativeLayout>
 
     </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolbarForHome
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

@@ -14,7 +14,7 @@ interface TransferService {
         @Body request: GetFeeReqDto
     ): GetFeeResDto
     @POST(Constants.Endpoint.TRANSFER)
-    suspend fun transfer(
+    suspend fun moneyTransfer(
         @Body request: TrasnferRequestDto
     ) :TokenResDto
 }

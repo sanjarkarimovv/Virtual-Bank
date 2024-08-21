@@ -11,6 +11,7 @@ import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
 class WidgetAdapter(
     private val action: (item: UiComponents?) -> Unit
 ) : ListAdapter<UiComponents, WidgetAdapter.WidgetHolder>(diffUtil) {
+
     inner class WidgetHolder(private val binding: ItemWidgetSettingsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: UiComponents?) = with(binding) {
@@ -26,6 +27,7 @@ class WidgetAdapter(
         }
     }
 
+    fun getList() = currentList.toMutableList()
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<UiComponents>() {
@@ -38,6 +40,7 @@ class WidgetAdapter(
             }
 
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WidgetHolder {
@@ -49,4 +52,5 @@ class WidgetAdapter(
     override fun onBindViewHolder(holder: WidgetHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
 }

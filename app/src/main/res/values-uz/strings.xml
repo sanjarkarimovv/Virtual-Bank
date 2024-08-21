@@ -77,8 +77,8 @@
     <string name="str_payment_for_phone_number">Payment for phone</string>
     <string name="str_advertising">Advertising</string>
     <string name="str_finances_service">Finances service</string>
-    <string name="str_payment">Pul o\'tgazish</string>
-    <string name="str_get_credit">Kridit oling</string>
+    <string name="str_payment">Bir bosishda to\'lang </string>
+    <string name="str_get_credit">Bir zumda kridit oling</string>
     <string name="str_paymnet">Paymnet</string>
     <string name="str_search">Izlash</string>
     <string name="str_saved_payments">Saqlangan to\'lovlar</string>

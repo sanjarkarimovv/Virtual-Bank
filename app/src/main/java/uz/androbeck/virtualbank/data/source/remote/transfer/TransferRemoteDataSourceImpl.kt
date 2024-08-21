@@ -13,7 +13,7 @@ class TransferRemoteDataSourceImpl @Inject constructor(
     override fun getFee(request: GetFeeReqDto) = flow {
         emit(transferService.getFee(request))
     }
-    override fun transfer(transferReqDto: TrasnferRequestDto) = flow {
-        emit(transferService.transfer(transferReqDto))
+    override fun moneyTransfer(transferReqDto: TrasnferRequestDto) = flow {
+        emit(transferService.moneyTransfer(transferReqDto))
     }
 }

@@ -2,6 +2,7 @@ package uz.androbeck.virtualbank.ui.screens.widgetSettings
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
@@ -40,8 +41,15 @@ class WidgetSettingsFragment : BaseFragment(R.layout.fragment_widget_settings) {
     }
 
     private fun setRv() = with(binding) {
-        rvSelected.adapter = adapterSelected
-        rvNotSelect.adapter = adapterNotSelect
+        rvSelected.apply {
+            adapter = adapterSelected
+            ItemTouchHelper(ItemTouch(adapterSelected)).attachToRecyclerView(this)
+        }
+        rvNotSelect.apply {
+            adapter = adapterNotSelect
+            ItemTouchHelper(ItemTouch(adapterNotSelect)).attachToRecyclerView(this)
+        }
+
     }
 
     override fun observe() {

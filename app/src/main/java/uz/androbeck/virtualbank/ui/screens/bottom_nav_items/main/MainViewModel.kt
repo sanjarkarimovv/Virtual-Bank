@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -20,7 +21,6 @@ import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
-import uz.androbeck.virtualbank.domain.useCases.home.UpdateComponentsInCatchUseCase
 import uz.androbeck.virtualbank.ui.screens.HomeComponents
 import javax.inject.Inject
 
@@ -30,7 +30,6 @@ class MainViewModel @Inject constructor(
     private val putUpdateInfoUseCase: PutUpdateInfoUseCase,
     private val getComponentsFromCacheUseCase: GetComponentsFromCacheUseCase,
     private val putComponentsUseCase: PutComponentsUseCase,
-    private val updateComponentsInCatchUseCase: UpdateComponentsInCatchUseCase,
     private val totalBalanceUseCase: GetTotalBalanceUseCase,
     private val getCardsUseCase: GetCardsUseCase,
     private val lastTransferUseCase: LastTransfersUseCase,

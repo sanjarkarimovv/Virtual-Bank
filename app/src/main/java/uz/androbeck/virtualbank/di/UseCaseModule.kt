@@ -48,7 +48,6 @@ import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.UpdateComponentsInCatchUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.GetFeeUseCase
-import uz.androbeck.virtualbank.domain.useCases.transfer.TransferUseCase
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -163,21 +162,16 @@ object UseCaseModule {
 
 
     @Provides
-    @Provides
     fun provideGetFeeUseCase(
         transferRepository: TransferRepository,
         getFeeReqMapper: GetFeeReqMapper,
         getFeeResMapper: GetFeeResMapper,
     ) = GetFeeUseCase(transferRepository, getFeeReqMapper, getFeeResMapper)
-@Provides
-fun provideGetCardsUseCase(
+
+    @Provides
+    fun provideGetCardsUseCase(
     cardRepository: CardRepository,
     getCardsMapper: GetCardsMapper
-) = GetCardsUseCase(cardRepository, getCardsMapper)
-    @Provides
-    fun provideTransferUseCase(
-        transferRepository: TransferRepository,
-        transferMapper: TransferMapper,
-        tokenMapper: TokenMapper,
-    ) = TransferUseCase(transferRepository, transferMapper, tokenMapper)
+    ) = GetCardsUseCase(cardRepository, getCardsMapper)
+
 }

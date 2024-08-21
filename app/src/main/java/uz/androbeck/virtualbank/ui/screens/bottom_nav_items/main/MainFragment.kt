@@ -39,15 +39,15 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 }
 
                 HeaderUiEvent.ClickMore -> {
-
+                    // 3 dot
                 }
 
                 HeaderUiEvent.ClickNfs -> {
-
+                    // click nfs
                 }
 
                 HeaderUiEvent.ClickQR -> {
-
+                    // click qrd
                 }
 
                 is HeaderUiEvent.ClickShowAmount -> {

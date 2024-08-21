@@ -7,6 +7,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomHomeBodyBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.AdvertisingModel
@@ -44,6 +47,23 @@ class CustomHomeBody @JvmOverloads constructor(
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         gravity = Gravity.BOTTOM
         orientation = VERTICAL
+        setup()
+    }
+
+    private fun setup() {
+        binding.rvAdvertising.apply {
+            clipChildren = false
+            clipToPadding = false
+            offscreenPageLimit = 3
+            getChildAt(0).overScrollMode = ViewPager2.OVER_SCROLL_NEVER
+            val composition = CompositePageTransformer()
+            composition.addTransformer(MarginPageTransformer(0))
+            composition.addTransformer { page, position ->
+                val r = 1 - kotlin.math.abs(position)
+                page.scaleY = 0.95f + r * 0.14f
+            }
+            setPageTransformer(composition)
+        }
     }
 
     fun cardsDefIconShow(isShow: Boolean) {
