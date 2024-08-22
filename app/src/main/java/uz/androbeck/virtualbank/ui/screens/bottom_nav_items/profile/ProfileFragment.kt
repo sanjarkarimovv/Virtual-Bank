@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile
 
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -45,16 +46,16 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             vm.getUserData().collect { event ->
                 when (event) {
                     is ProfileFragmentEvent.Error -> {
-                        println("::: Error -> ${event.massage.toString()}")
+                        Log.d("::: State Error UseData -> ", " ${event.massage.toString()}")
                     }
 
-                    ProfileFragmentEvent.Loading -> println("User Informations Loading...")
+                    ProfileFragmentEvent.Loading -> {}
 
                     is ProfileFragmentEvent.Success -> {
                         event.model?.let {
                             userModel = it
                         }
-                        println("::: -> Success User data -> ${event.model}")
+                        Log.d("::: State Success UseData -> ", " ${event.model}")
                         val fullName = "${event.model?.firstName} ${event.model?.lastName}"
                         tvUser.text = fullName
                     }
