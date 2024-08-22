@@ -15,7 +15,8 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.MainFragment"
-        android:label="MainFragment">
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_widgetSettingsFragment"
             app:destination="@id/widgetSettingsFragment" />
@@ -26,11 +27,13 @@
     <fragment
         android:id="@+id/transferFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer.TransferFragment"
-        android:label="TransferFragment" />
+        android:label="TransferFragment"
+        tools:layout="@layout/fragment_transfer" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.payment.PaymentFragment"
-        android:label="PaymentFragment" />
+        android:label="PaymentFragment"
+        tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.ProfileFragment"
