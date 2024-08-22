@@ -17,9 +17,9 @@ interface HomeDao {
     @Insert
     suspend fun addComponent(homeEntity: HomeEntity)
 
-    @Query("SELECT * FROM home_entity WHERE id =:id")
-    suspend fun deleteItemBy(id: Int): Int
+//    @Query("SELECT * FROM home_entity WHERE id =:id")
+//    suspend fun deleteItemBy(id: Int): Int
 
-    @Query("UPDATE home_entity SET `is show` =:isVisible WHERE id = :id")
+    @Query("UPDATE home_entity SET `is_show` =:isVisible WHERE id = :id")
     suspend fun updateComponent(id:Int,isVisible:Boolean)
 }

@@ -9,7 +9,7 @@ import uz.androbeck.virtualbank.data.db.entity.UserEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Database(entities = [UserEntity::class, HomeEntity::class], version = 1)
+@Database(entities = [UserEntity::class, HomeEntity::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun homeDao(): HomeDao

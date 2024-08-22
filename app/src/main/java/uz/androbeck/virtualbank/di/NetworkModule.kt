@@ -5,6 +5,9 @@ import android.util.Log
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
+import com.google.firebase.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.storage
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -155,4 +158,10 @@ object NetworkModule {
         tokensMapper: TokensMapper,
         updateTokenMapper: UpdateTokenMapper
     ) = UpdateTokenUseCase(authenticationRepository, tokensMapper, updateTokenMapper)
+
+    @Provides
+    @Singleton
+    fun provideFireBaseStorageReference() =
+        Firebase.storage.reference
+
 }

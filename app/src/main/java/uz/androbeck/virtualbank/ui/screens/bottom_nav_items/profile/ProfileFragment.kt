@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile
 
+import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -21,8 +22,12 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     private val vm by viewModels<ProfileViewModel>()
     private var userModel: FullInfoUIModel? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun setup(): Unit {
-        vm.getUserData()
+
     }
 
     override fun clicks() = with(binding) {
