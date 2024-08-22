@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/static_white">
+    >
 
 
     <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
@@ -41,27 +41,28 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
         </androidx.viewpager2.widget.ViewPager2>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        app:cardCornerRadius="30dp"
-        android:id="@+id/btn_add_card"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="@color/screenTextColor">
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="30dp"
+            android:id="@+id/btn_add_card"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="30dp"
+            app:cardBackgroundColor="@color/screenTextColor">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_add"
+                app:tint="@color/static_white" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_add"
-            app:tint="@color/static_white" />
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>

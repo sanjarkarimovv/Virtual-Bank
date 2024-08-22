@@ -1,16 +1,15 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards
 
 import android.annotation.SuppressLint
-import android.text.TextUtils.substring
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.data.db.AppDatabase
 import uz.androbeck.virtualbank.databinding.MyCardsItemRecycleViewBinding
 import uz.androbeck.virtualbank.domain.mock_data.AppHardcodeData
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
+import uz.androbeck.virtualbank.utils.Constants
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
@@ -29,10 +28,10 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
         @SuppressLint("SetTextI18n")
             fun bind(card: CardUIModel)= with(binding){
                 val exYear= (card.expiredYear)?.rem(1000)
-            var formattedText="**** **** **** ${card.pan}"
+            var formattedText=Constants.String.FULL_CARD_NUMBER_STARS + card.pan
             if(card.pan?.length!! > 4){
                  formattedText= card.pan?.substring(0, 4) + " " +
-                        card.pan?.substring(4, 6) + "** **** " +
+                        card.pan?.substring(4, 6) + Constants.String.HALF_CARD_NUMBER +
                         card.pan?.substring(12)
             }
                 amount.text=card.amount.toString()
