@@ -25,12 +25,8 @@ class CustomHomeHeader @JvmOverloads constructor(
     init {
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         onClick()
-        setup()
     }
 
-    private fun setup() {
-
-    }
 
     fun setAmount(amount: String) {
         if (isShowAmount)
