@@ -4,7 +4,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import uz.androbeck.virtualbank.data.dto.common.response.TokenResDto
 import uz.androbeck.virtualbank.data.dto.request.transfer.GetFeeReqDto
-import uz.androbeck.virtualbank.data.dto.request.transfer.TrasnferRequestDto
+import uz.androbeck.virtualbank.data.dto.request.transfer.TransferRequestDto
 import uz.androbeck.virtualbank.data.dto.response.transfer.GetFeeResDto
 import uz.androbeck.virtualbank.utils.Constants
 
@@ -14,7 +14,7 @@ interface TransferService {
         @Body request: GetFeeReqDto
     ): GetFeeResDto
     @POST(Constants.Endpoint.TRANSFER)
-    suspend fun moneyTransfer(
-        @Body request: TrasnferRequestDto
+    suspend fun transfer(
+        @Body request: TransferRequestDto
     ) :TokenResDto
 }

@@ -3,7 +3,7 @@ package uz.androbeck.virtualbank.data.source.remote.transfer
 import kotlinx.coroutines.flow.flow
 import uz.androbeck.virtualbank.data.api.TransferService
 import uz.androbeck.virtualbank.data.dto.request.transfer.GetFeeReqDto
-import uz.androbeck.virtualbank.data.dto.request.transfer.TrasnferRequestDto
+import uz.androbeck.virtualbank.data.dto.request.transfer.TransferRequestDto
 import javax.inject.Inject
 
 class TransferRemoteDataSourceImpl @Inject constructor(
@@ -13,7 +13,7 @@ class TransferRemoteDataSourceImpl @Inject constructor(
     override fun getFee(request: GetFeeReqDto) = flow {
         emit(transferService.getFee(request))
     }
-    override fun moneyTransfer(transferReqDto: TrasnferRequestDto) = flow {
-        emit(transferService.moneyTransfer(transferReqDto))
+    override fun transfer(transferReqDto: TransferRequestDto) = flow {
+        emit(transferService.transfer(transferReqDto))
     }
 }

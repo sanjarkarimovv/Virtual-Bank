@@ -34,6 +34,7 @@ class MainViewModel @Inject constructor(
     private val getCardsUseCase: GetCardsUseCase,
     private val lastTransferUseCase: LastTransfersUseCase,
 
+    private val errorHandler: ErrorHandler,
 ) : ViewModel() {
     private val _homeComponents = MutableLiveData<HomeComponentsUiEvent>()
     val homeComponents: LiveData<HomeComponentsUiEvent> = _homeComponents
