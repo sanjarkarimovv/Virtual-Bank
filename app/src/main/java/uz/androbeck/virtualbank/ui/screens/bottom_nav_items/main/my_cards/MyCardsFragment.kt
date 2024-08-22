@@ -27,18 +27,6 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         binding.swipeRefreshLayout.isRefreshing = false
 
         binding.viewPager.adapter = pagingAdapter
-
-//        pagingAdapter.load(cardSortedList)
-//        TabLayoutMediator(
-//            binding.tabLayout,
-//            binding.viewPager
-//        ) { tab, position ->
-//            tab.setText(CardType.values()[position].name)
-//        }.attach()
-
-
-
-
     }
 
     override fun observe(): Unit = with(viewLifecycleOwner.lifecycleScope) {
@@ -55,14 +43,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                     binding.viewPager.adapter = pagingAdapter
 
                     pagingAdapter.load(cardSortedList)
-                    TabLayoutMediator(
-                        binding.tabLayout,
-                        binding.viewPager
-                    ) { tab, position ->
-                        tab.setText(CardType.values()[position].name)
-                    }.attach()
-
-                }
+                    }
             }
         }.launchIn(this)
 
@@ -147,14 +128,11 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
             when (panPrefix) {
                 "8600", "5614" -> {
                     uzCardList.add(cardUIModel)
-
                 }
 
                 "9860" -> {
                     humoList.add(cardUIModel)
-
                 }
-
                 else -> {}
             }
 

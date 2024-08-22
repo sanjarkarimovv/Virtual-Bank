@@ -27,25 +27,15 @@ class MyCardsViewModel @Inject constructor(
     fun getCards() = viewModelScope.launch(Dispatchers.IO) {
 
         getCardsUseCase.getCardsFromNetwork().onEach { getCardsFromNetwork ->
-            println("AAAAAAA ::::: getCardnetvork= $getCardsFromNetwork}")
-            println("ASASAS::::  ${getCardsUseCase.getCardsFromCache()} ")
             getCardsUseCase.getCardsFromCache().forEach { getCardsFromCache ->
                 if (getCardsFromCache.pan == null) return@forEach
-                println(" BBBBBB  ::::::  $getCardsFromCache")
                 val matchingCardPan = getCardsFromNetwork.find {
                     it.pan == getCardsFromCache.pan?.takeLast(4)
-
                 }
-                println("SSSSS :::: ${getCardsFromCache.pan?.takeLast(4)}")
-                println("it.pan ${matchingCardPan?.pan}")
-
                 if (matchingCardPan != null) {
-
                     getCardsFromNetwork.forEach { it.pan = matchingCardPan.pan }
                 }
-
             }
-
             viewModelScope.launch {
                 _getCardsEvent.send(MyCardsUIEvent.Success(getCardsFromNetwork))
             }
