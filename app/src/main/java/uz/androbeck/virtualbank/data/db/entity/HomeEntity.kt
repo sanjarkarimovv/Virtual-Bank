@@ -9,11 +9,13 @@ import uz.androbeck.virtualbank.ui.screens.HomeComponents
 data class HomeEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: Int = 0,
+    val id: Int = 0,
     @ColumnInfo(name = "component")
-    var name: HomeComponents = HomeComponents.Cards,
-    @ColumnInfo(name = "is_show")
-    var isShow: Boolean = true,
+    val name: HomeComponents,
+    @ColumnInfo(name = "is show")
+    val isShow: Boolean,
     @ColumnInfo(name = "value")
     var value: String? = null
-)
+    ){
+   // constructor(): this(0, HomeComponents.Cards, true, null)
+}
