@@ -106,4 +106,10 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">DD/MM/YYYY</string>
     <string name="str_bracket">(</string>
+
+    <string name="str_send_qr_code">QR ni ulashish</string>
+    <string name="str_fill_card">To\'ldirish</string>
+    <string name="str_history">Tarix</string>
+    <string name="str_delete">Olib tashlash</string>
+    <string name="str_requisites">Rekvizitlar</string>
 </resources>

@@ -106,4 +106,11 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
     <string name="str_bracket">(</string>
+
+    <string name="str_send_qr_code">Отправить QR-код</string>
+    <string name="str_fill_card">Заполнить карту</string>
+    <string name="str_history">История</string>
+    <string name="str_delete">Удалить</string>
+    <string name="str_requisites">Реквизит</string>
+
 </resources>
