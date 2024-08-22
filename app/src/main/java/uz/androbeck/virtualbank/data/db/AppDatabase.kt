@@ -10,12 +10,9 @@ import uz.androbeck.virtualbank.data.db.dao.UserDao
 import uz.androbeck.virtualbank.data.db.entity.CardInfoEntity
 import uz.androbeck.virtualbank.data.db.entity.HomeEntity
 import uz.androbeck.virtualbank.data.db.entity.UserEntity
-import javax.inject.Inject
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Database(entities = [UserEntity::class,CardInfoEntity::class], version = 1)
-@Database(entities = [UserEntity::class, HomeEntity::class], version = 1)
+@Database(entities = [UserEntity::class,CardInfoEntity::class,HomeEntity::class], version = 1)
+
 abstract class AppDatabase : RoomDatabase() {
 
     companion object{
@@ -36,4 +33,5 @@ abstract class AppDatabase : RoomDatabase() {
     }
     abstract fun userDao(): UserDao
     abstract fun homeDao(): HomeDao
+    abstract fun cardIndoDao(): CardInfoDao
 }

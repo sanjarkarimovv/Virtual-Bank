@@ -48,7 +48,8 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideCardRepository(
-        cardRemoteDataSource: CardRemoteDataSource
+        cardRemoteDataSource: CardRemoteDataSource,
+        cardsLocalDataSource: CardsLocalDataSource
     ):CardRepository {
         return CardRepositoryImpl(cardRemoteDataSource,cardsLocalDataSource)
     }
