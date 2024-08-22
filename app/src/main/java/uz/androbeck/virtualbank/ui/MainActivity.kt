@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.ui
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -19,6 +20,7 @@ import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.toast
 import uz.androbeck.virtualbank.utils.extentions.visible
 import java.util.Locale
 import javax.inject.Inject
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         changeLanguage()
         setContentView(binding.root)
+        toast("Hello")
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         binding.bottomNavigation.setupWithNavController(navHostFragment.navController)
@@ -120,7 +123,7 @@ class MainActivity : AppCompatActivity() {
     private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {
         supportFragmentManager.beginTransaction().setPrimaryNavigationFragment(navHostFragment)
             .commit()
-    }
+    }////
 
     override fun onPause() {
         super.onPause()

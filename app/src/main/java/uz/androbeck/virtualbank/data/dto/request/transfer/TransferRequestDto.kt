@@ -5,10 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TransferRequestDto(
-    val type  : String? = null,
+    @SerialName("type")
+    val type: String? = null,
     @SerialName("sender-id")
-    val sender_id : String? = null,
-    @SerialName("receiver-id")
-    val receiver_id : String? = null,
-    val amount : Int? = null
+    val sender_id: String? = null,
+    @SerialName("receiver-pan")
+    val receiver_pan: String? = null,
+    @SerialName("amount")
+    val amount: Long? = null,
 )
