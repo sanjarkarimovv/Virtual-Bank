@@ -12,9 +12,9 @@ object Constants {
         const val SIGN_IN = "auth/sign-in"
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
         const val UPDATE_TOKEN = "auth/update-token"
-        const val FULL_INFO = "/home/user-info/details"
+        const val FULL_INFO = "home/user-info/details"
         const val UPDATE_INFO = "home/user-info"
-        const val BASIC_INFO = "/home/user-info"
+        const val BASIC_INFO = "home/user-info"
         const val SIGN_IN_RESEND = "auth/sign-in/resend"
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
@@ -36,9 +36,14 @@ object Constants {
     }
 
     object ArgumentKey {
+        const val USER_FIRST_NAME = "user_first_name"
+        const val USER_LAST_NAME = "user_last_name"
+        const val USER_BORN_DATE = "user_born_date"
+        const val USER_GENDER = "user_gender"
         const val TOKEN_FOR_VERIFY = "token_for_verify"
         const val PHONE_NUMBER_FOR_VERIFY = "phone_number_for_verify"
         const val SCREEN = "screen"
+        const val USER_FULL_INFO = "user_full_info_key"
     }
 
     object String {
@@ -53,7 +58,7 @@ object Constants {
         const val RUSSIAN = "ru"
     }
 
-    object Number{
+    object Number {
         const val FIVE_THOUSAND = 5000L
         const val ONE = 1
         const val reENTRY_GET_CODE_TIME = 180000L

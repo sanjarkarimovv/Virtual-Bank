@@ -62,7 +62,7 @@ class CustomOutlinedTextField @JvmOverloads constructor(
 
 
             if (clearable) {
-                textInputLayout.setEndIconDrawable(R.drawable.icon1_36)
+                textInputLayout.setEndIconDrawable(R.drawable.ic_cancel)
                 textInputLayout.setEndIconOnClickListener {
                     textInputEditText.text?.clear()
                 }
