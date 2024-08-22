@@ -7,6 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentMainBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
+import uz.androbeck.virtualbank.ui.dialogs.card_options.CardOptionBottomDialog
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment(R.layout.fragment_main) {
@@ -14,7 +15,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val binding: FragmentMainBinding by viewBinding()
     override fun setup() {
         binding.root.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
+        //    findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
+       CardOptionBottomDialog().show(childFragmentManager,"")
         }
     }
 }

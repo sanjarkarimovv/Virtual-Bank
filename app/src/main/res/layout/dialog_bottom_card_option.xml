@@ -4,14 +4,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/vb_btn_big"
     android:orientation="vertical"
-    android:paddingTop="16dp"
-    android:paddingBottom="32dp">
+    android:paddingTop="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-       android:paddingHorizontal="14dp"
+        android:paddingHorizontal="14dp"
         android:weightSum="4">
 
         <LinearLayout
@@ -25,13 +24,13 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginVertical="5dp"
-                android:src="@drawable/ic_qr_code_send" />
+                android:src="@drawable/ic_qr_card" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginVertical="5dp"
-                android:src="@drawable/ic_transfer_card" />
+                android:src="@drawable/ic_fill_card" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -45,7 +44,7 @@
                 android:layout_height="30dp"
                 android:layout_marginVertical="5dp"
 
-                android:src="@drawable/ic_requizite_card" />
+                android:src="@drawable/ic_requizit" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -61,26 +60,32 @@
             android:layout_height="match_parent"
             android:layout_weight="3.5"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center_vertical"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
-                android:textSize="16sp"
-                android:text="@string/str_send_qr_code" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center_vertical"
-                android:textSize="16sp"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
-                android:text="@string/str_fill_card" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/exo2_medium"
+                android:gravity="center_vertical"
+                android:text="@string/str_send_qr_code"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/exo2_medium"
+
+                android:gravity="center_vertical"
+                android:text="@string/str_fill_card"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:fontFamily="@font/exo2_medium"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="5dp"
                 android:gravity="center_vertical"
@@ -90,23 +95,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
+                android:fontFamily="@font/exo2_medium"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="5dp"
-                android:text="@string/str_requisites" />
+                android:gravity="center_vertical"
+                android:text="@string/str_requisites"
+                android:textSize="16sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:textSize="16sp"
-                android:gravity="center_vertical"
+                android:fontFamily="@font/exo2_medium"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="5dp"
-                android:text="@string/str_delete" />
-
+                android:gravity="center_vertical"
+                android:text="@string/str_delete"
+                android:textSize="16sp" />
 
 
         </LinearLayout>
 
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
