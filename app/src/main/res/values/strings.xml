@@ -67,11 +67,6 @@
     <string name="my_home">My home</string>
     <string name="places_payments">Places payments</string>
     <string name="str_add">Add</string>
-    <string name="str_search">Izlash</string>
-    <string name="str_saved_payments">Saqlangan to\'lovlar</string>
-    <string name="my_home">Mening uyim</string>
-    <string name="places_payments">Joylarda to\'lov</string>
-    <string name="str_add">Qo\'shish</string>
     <string name="str_num_0">0</string>
     <string name="str_num_1">1</string>
     <string name="str_num_2">2</string>
@@ -92,8 +87,6 @@
     <string name="biometric_prompt_title">Biometric Authentication</string>
     <string name="biometric_prompt_subtitle">Authenticate with your biometrics</string>
     <string name="biometric_prompt_cancel">Cancel</string>
-
-
     <string name="str_transfer_type_income">Daromad</string>
     <string name="str_transfer_type_outcome">To\'lov</string>
     <string name="str_money_type_uzb">so\'m</string>
@@ -110,8 +103,6 @@
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
     <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
-
-
     <string name="str_my_information">My Information</string>
     <string name="str_date_of_birth">Date of Birth</string>
     <string name="str_change">Change</string>
