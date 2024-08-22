@@ -252,7 +252,11 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
             .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
             .build()
 
-        biometricPrompt.authenticate(promptInfo)
+        viewLifecycleOwner.lifecycleScope.launch {
+            if(isResumed) {
+                biometricPrompt.authenticate(promptInfo)
+            }
+        }
     }
 
     private fun setButtonsEnabled(enabled: Boolean) {

@@ -1,12 +1,13 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code.biometrics
 
-import android.os.Handler
-import android.os.Looper
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentBiometricPermissionBinding
 import uz.androbeck.virtualbank.ui.MainViewModel
@@ -62,12 +63,17 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
             .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
             .build()
 
-        biometricPrompt.authenticate(promptInfo)
+        viewLifecycleOwner.lifecycleScope.launch {
+            if (isResumed) {
+                biometricPrompt.authenticate(promptInfo)
+            }
+        }
     }
 
     private fun navigateWithDelay(event: NavGraphEvent) {
-        Handler(Looper.getMainLooper()).postDelayed({
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(500L)
             sharedVM.setNavGraphEvent(event)
-        }, 500L)
+        }
     }
 }

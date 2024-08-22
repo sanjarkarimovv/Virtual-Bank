@@ -13,15 +13,11 @@ import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentProfileBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
-import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.change_language.ChangeLanguageBottomDialog
 import uz.androbeck.virtualbank.utils.Constants
-import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.pin_code.utils.BiometricUtils
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import java.util.concurrent.Executors
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
@@ -97,7 +93,11 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
             .build()
 
-        biometricPrompt.authenticate(promptInfo)
+        viewLifecycleOwner.lifecycleScope.launch {
+            if(isResumed) {
+                biometricPrompt.authenticate(promptInfo)
+            }
+        }
     }
 
 

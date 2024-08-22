@@ -108,18 +108,20 @@ class ChangePinCodeViewModel @Inject constructor(
         val pinCode = _pinCodeList.value.toString()
         if (pinCode == prefsProvider.pinCode) {
             _errorAnim.value = ChangePinAnimEvent.PinValidated
-            Handler(Looper.getMainLooper()).postDelayed({
+            viewModelScope.launch {
+                delay(900L)
                 _errorAnim.value = ChangePinAnimEvent.PinNeutral
                 currentStep = PinStep.SET_NEW_PIN
                 clearPinCode()
                 _pinCodeProgress.value = ChangePinCodeEvent.PinSet
-            }, 900L)
+            }
 
         } else {
             _errorAnim.value = ChangePinAnimEvent.PinNotValidated
-            Handler(Looper.getMainLooper()).postDelayed({
+            viewModelScope.launch {
+                delay(2000L)
                 _errorAnim.value = ChangePinAnimEvent.PinNeutral
-            }, 2000L)
+            }
             incrementErrorAttempts()
         }
     }
@@ -127,12 +129,14 @@ class ChangePinCodeViewModel @Inject constructor(
     private fun setNewPin() {
         currentPin = _pinCodeList.value.toString()
         if (currentPin != prefsProvider.pinCode) {
-            currentStep = PinStep.VALIDATE_NEW_PIN
-            clearPinCode()
             _errorAnim.value = ChangePinAnimEvent.PinValidated
-            Handler(Looper.getMainLooper()).postDelayed({
+            viewModelScope.launch {
+                delay(900L)
+                _errorAnim.value = ChangePinAnimEvent.PinNeutral
+                currentStep = PinStep.VALIDATE_NEW_PIN
+                clearPinCode()
                 _pinCodeProgress.value = ChangePinCodeEvent.PinValidate
-            }, 900L)
+            }
         } else {
             _errorAnim.value = ChangePinAnimEvent.PinNotValidated
             viewModelScope.launch {
@@ -147,17 +151,19 @@ class ChangePinCodeViewModel @Inject constructor(
         val enteredPin = _pinCodeList.value.toString()
         if (enteredPin == currentPin) {
             _errorAnim.value = ChangePinAnimEvent.PinValidated
-            Handler(Looper.getMainLooper()).postDelayed({
+            viewModelScope.launch {
+                delay(900L)
                 _errorAnim.value = ChangePinAnimEvent.PinNeutral
                 _pinCodeProgress.value = ChangePinCodeEvent.PinSuccess
                 prefsProvider.pinCode = enteredPin
                 prefsProvider.pinCodeReserve = enteredPin
-            }, 900L)
+            }
         } else {
             _errorAnim.value = ChangePinAnimEvent.PinNotValidated
-            Handler(Looper.getMainLooper()).postDelayed({
+            viewModelScope.launch {
+                delay(2000L)
                 _errorAnim.value = ChangePinAnimEvent.PinNeutral
-            }, 2000L)
+            }
         }
     }
 }

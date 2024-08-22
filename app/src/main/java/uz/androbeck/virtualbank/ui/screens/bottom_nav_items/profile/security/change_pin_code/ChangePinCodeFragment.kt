@@ -104,12 +104,14 @@ class ChangePinCodeFragment : BaseFragment(R.layout.fragment_change_pincode) {
                 }
 
                 ChangePinCodeEvent.PinSet -> {
+                    setButtonsEnabled(true)
                     binding.toolbarText.gone()
                     binding.btnConfirm.gone()
                     binding.pinActionText.text = getString(R.string.str_new_pin_code)
                 }
 
                 ChangePinCodeEvent.PinValidate -> {
+                    setButtonsEnabled(true)
                     binding.toolbarText.visible()
                     binding.btnConfirm.visible()
                     binding.pinActionText.text = getString(R.string.str_confirm_new_pin_code)
@@ -150,7 +152,7 @@ class ChangePinCodeFragment : BaseFragment(R.layout.fragment_change_pincode) {
             delay(200L)
             pinCodeViewModel.clearPinCode()
 
-            delay(300L)
+            delay(200L)
             checkPinAnim()
 
             if (isError) {
@@ -158,10 +160,6 @@ class ChangePinCodeFragment : BaseFragment(R.layout.fragment_change_pincode) {
                 errorPinAnim()
 
                 delay(1000L)
-                pinCodeViewModel.clearPinCode()
-                setButtonsEnabled(true)
-            } else {
-                delay(900L)
                 pinCodeViewModel.clearPinCode()
                 setButtonsEnabled(true)
             }
