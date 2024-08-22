@@ -20,6 +20,8 @@ hilt = "2.49"
 coil = "2.6.0"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
+swiperefreshlayout = "1.1.0"
+swiperefreshlayoutVersion = "1.2.0-alpha01"
 viewbinding = "1.5.9"
 securityCryptoKtx = "1.1.0-alpha06"
 redmadrobot = "7.2.4"
@@ -34,6 +36,8 @@ media3Common = "1.4.0"
 [libraries]
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometricVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+androidx-swiperefreshlayout-v120alpha01 = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayoutVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

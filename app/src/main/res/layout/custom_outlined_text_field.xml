@@ -9,6 +9,7 @@
         android:id="@+id/text_input_edit_text_outlined"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:fontFamily="@font/exo2_medium"/>
 
 </com.google.android.material.textfield.TextInputLayout>
