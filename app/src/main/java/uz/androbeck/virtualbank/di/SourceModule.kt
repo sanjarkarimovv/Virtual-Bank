@@ -11,6 +11,9 @@ import uz.androbeck.virtualbank.data.api.HomeService
 import uz.androbeck.virtualbank.data.db.dao.CardInfoDao
 import uz.androbeck.virtualbank.data.source.local.CardsLocalDataSource
 import uz.androbeck.virtualbank.data.source.local.CardsLocalDataSourceImpl
+import uz.androbeck.virtualbank.data.db.dao.HomeDao
+import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasource
+import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasourceImpl
 import uz.androbeck.virtualbank.data.api.TransferService
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSourceImpl
@@ -70,6 +73,14 @@ object SourceModule {
         service: TransferService
     ): TransferRemoteDataSource {
         return TransferRemoteDataSourceImpl(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHomeLocalDataSource(
+        dao: HomeDao
+    ): HomeLocalDatasource {
+        return HomeLocalDatasourceImpl(dao)
     }
 
 }

@@ -2,9 +2,7 @@ package uz.androbeck.virtualbank.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import dagger.Module
@@ -14,6 +12,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import uz.androbeck.virtualbank.data.db.AppDatabase
 import uz.androbeck.virtualbank.data.db.dao.CardInfoDao
+import uz.androbeck.virtualbank.data.db.dao.HomeDao
 import uz.androbeck.virtualbank.data.db.dao.UserDao
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.utils.Constants
@@ -63,5 +62,12 @@ object DatabaseModule {
     @Provides
     fun  provideCardInfoDao(roomDatabase: AppDatabase): CardInfoDao {
         return roomDatabase.cardInfoDao()
+    }
+
+    @Provides
+    fun provideHomeDao(
+        roomDatabase: AppDatabase
+    ): HomeDao {
+        return roomDatabase.homeDao()
     }
 }

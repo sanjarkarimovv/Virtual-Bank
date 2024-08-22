@@ -3,7 +3,7 @@ package uz.androbeck.virtualbank.utils
 object Constants {
     object FileName {
         const val SHARED_PREFS = "virtual_bank"
-        const val DATABASE_NAME = "virtual_bank_database"
+        const val DATABASE_NAME= "virtual_bank_database"
     }
 
     object Endpoint {
@@ -25,6 +25,7 @@ object Constants {
         const val ADD_CARD="card"
         const val GET_CARD="card"
         const val GET_FEE="transfer/fee"
+        const val TRANSFER="transfer/transfer"
 
     }
 

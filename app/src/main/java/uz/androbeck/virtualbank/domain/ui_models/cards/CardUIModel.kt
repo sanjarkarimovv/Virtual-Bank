@@ -10,5 +10,4 @@ data class CardUIModel(
     val expiredMonth: Int? = 0,
     val themeType: Int? = 0,
     val isVisible: Boolean? = false
-
 )
