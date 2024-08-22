@@ -10,6 +10,8 @@ import uz.androbeck.virtualbank.domain.mapper.history.GetHistoryMapper
 import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
 import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
 import uz.androbeck.virtualbank.utils.Constants
+import uz.androbeck.virtualbank.utils.extentions.formatAmountWithSpaces
+import uz.androbeck.virtualbank.utils.extentions.toStartOfDay
 import javax.inject.Inject
 
 class GetHistoryUseCase @Inject constructor(
@@ -24,19 +26,15 @@ class GetHistoryUseCase @Inject constructor(
                         getHistoryMapper.toUIModel(historyDto)
                     }
                     .map { uiModel ->
-                       // calculateAmounts(uiModel)
+                        calculateAmounts(uiModel)
                         HistoryItem.Content(uiModel)
                     }
-                    // agar vaqt ozgarsa headerga vaqt oldi
                     .insertSeparators { before, after ->
                         if (after == null) {
-                            // agar ohirgi element bo'lsa, header yo'q
                             null
                         } else if (before == null) {
-                            // listni boshi bo'lsa
                             HistoryItem.Header(after.child.time)
                         } else if (!isSameDate(before.child.time, after.child.time)) {
-                            // agar vaqtla xarxil bolmasa header ni yangilaydi
                             HistoryItem.Header(after.child.time)
                         } else {
                             null
@@ -45,46 +43,36 @@ class GetHistoryUseCase @Inject constructor(
             }
     }
 
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private fun isSameDate(time1: Long, time2: Long): Boolean {
-//
-//        val date1 = time1.toLocalDate()
-//        val date2 = time2.toLocalDate()
-//        return date1 == date2
-//    }
+
     private fun isSameDate(time1: Long, time2: Long): Boolean {
-        // 1 kun ichida millisekundlar soni: 24 * 60 * 60 * 1000
-        val oneDayMillis = 24 * 60 * 60 * 1000
-
-        // Har bir timestampdan UTC 0 bo'yicha olingan kunni hisoblash
-        val days1 = time1 / oneDayMillis
-        val days2 = time2 / oneDayMillis
-
-        return days1 == days2
+       // val oneDayMillis = 24 * 60 * 60 * 1000
+      //  val days1 = time1 / oneDayMillis
+       // val days2 = time2 / oneDayMillis
+        //return days1 == days2
+        return time1.toStartOfDay() == time2.toStartOfDay()
     }
+
     private var totalAmountIncome: Long = 0
     private var totalAmountOutcome: Long = 0
 
-    private fun calculateAmounts(child:InComeAndOutComeUIModel){
-
-                val amountIncome: Long =
-                    (child.amount.takeIf { Constants.History.INCOME == child.type } ?: 0).toLong()
-                val amountOutcome: Long =
-                    (child.amount.takeIf { Constants.History.OUTCOME == child.type } ?: 0).toLong()
-                totalAmountIncome = totalAmountIncome.plus(amountIncome)
-                totalAmountOutcome = totalAmountOutcome.plus(amountOutcome)
-                println("totalAmountIncome: $totalAmountIncome ")
+    private fun calculateAmounts(child: InComeAndOutComeUIModel) {
+        val amountIncome: Long =
+            (child.amount.takeIf { Constants.History.INCOME == child.type } ?: 0).toLong()
+        val amountOutcome: Long =
+            (child.amount.takeIf { Constants.History.OUTCOME == child.type } ?: 0).toLong()
+        totalAmountIncome = totalAmountIncome.plus(amountIncome)
+        totalAmountOutcome = totalAmountOutcome.plus(amountOutcome)
 
         return
     }
-    fun getTotalAmounts(): Pair<Long?, Long?>{
-        return Pair(totalAmountOutcome,totalAmountIncome)
+
+    fun resetTotals() {
+        totalAmountIncome = 0
+        totalAmountOutcome = 0
     }
 
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    private fun Long.toLocalDate(): java.time.LocalDate {
-//        return java.time.Instant.ofEpochMilli(this)
-//            .atZone(java.time.ZoneId.systemDefault())
-//            .toLocalDate()
-//    }
+    fun getTotalAmounts(): Pair<String?, String?> {
+        return Pair(formatAmountWithSpaces( totalAmountOutcome), formatAmountWithSpaces(totalAmountIncome))
+    }
+
 }

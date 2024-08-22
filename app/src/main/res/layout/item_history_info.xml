@@ -28,9 +28,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/ll_image_service"
+        android:fontFamily="@font/exo2_semi_bold"
         android:textColor="@color/colorScrim"
         android:textSize="12sp"
-        android:fontFamily="@font/exo2_semi_bold"
         android:textStyle="bold" />
 
     <TextView
@@ -41,9 +41,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ll_image_service"
+        android:fontFamily="@font/exo2_medium"
         android:textColor="@color/colorScrim"
         android:textSize="10sp"
-        android:fontFamily="@font/exo2_medium"
         android:textStyle="normal" />
 
 
@@ -54,21 +54,21 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/exo2_bold"
         android:textColor="@color/colorScrim"
         android:textSize="12sp"
-        android:fontFamily="@font/exo2_bold"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_transaction_statuses"
-        android:layout_width="56dp"
+        android:layout_width="wrap_content"
         android:layout_height="14dp"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/tv_amount"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="20dp"
-        android:gravity="center"
         android:background="@drawable/bg_shape_corner_radius_4"
+        android:gravity="center"
         android:text="@string/str_transfer_cofir"
         android:textColor="#5DC486"
         android:textSize="10sp"
@@ -87,4 +87,4 @@
         android:textStyle="italic" />
 
 
-    </RelativeLayout>
+</RelativeLayout>

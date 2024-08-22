@@ -102,7 +102,6 @@
     <string name="str_add_card">Karta qo\'shish</string>
     <string name="str_add_card_succes">Karta muvaffaqiyatli qo\‘shildi</string>
     <string name="str_no_data">Ma`lumot yo`q</string>
-    <string name="str_add_card_succes">Karta muvaffaqiyatli qo‘shildi</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
 
@@ -116,4 +115,6 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">DD/MM/YYYY</string>
     <string name="str_bracket">(</string>
+    <string name="str_plus">+ </string>
+    <string name="str_minus">- </string>
 </resources>

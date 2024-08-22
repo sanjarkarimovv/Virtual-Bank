@@ -25,12 +25,12 @@ class HistoryLoadStateVH(
         }
 
     fun bind(loadState: LoadState) {
-//       if (loadState is LoadState.Error) {
-//            binding.tvErrorMsg.text = loadState.error.localizedMessage
-//        }
+       if (loadState is LoadState.Error) {
+            binding.tvErrorMsg.text = loadState.error.localizedMessage
+        }
 
         progressBar.isVisible = loadState is LoadState.Loading
         retry.isVisible = loadState is LoadState.Error
-       // binding.tvErrorMsg.isVisible = loadState is LoadState.Error
+       binding.tvErrorMsg.isVisible = loadState is LoadState.Error
     }
 }

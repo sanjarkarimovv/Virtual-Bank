@@ -13,6 +13,7 @@ import uz.androbeck.virtualbank.databinding.ItemHistoryInfoBinding
 import uz.androbeck.virtualbank.domain.ui_models.history.HistoryItem
 import uz.androbeck.virtualbank.ui.enums.HistoryItemViewType
 import uz.androbeck.virtualbank.utils.Constants
+import uz.androbeck.virtualbank.utils.extentions.formatAmountWithSpaces
 import uz.androbeck.virtualbank.utils.extentions.formatToDayMonthYear
 import uz.androbeck.virtualbank.utils.extentions.formatToHourMinute
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
@@ -42,7 +43,9 @@ class HistoryAdapter(
                 if (content.child.type == Constants.History.INCOME) {
                     tvTransactionName.text = content.child.from
                     tvAmount.text =
-                        " + " + content.child.amount.toString() + " " + context.getString(R.string.str_money_type_uzb)
+                        context.getString(R.string.str_plus) + formatAmountWithSpaces(content.child.amount) + " " + context.getString(
+                            R.string.str_money_type_uzb
+                        )
                     llImageService.setBackgroundResource(R.drawable.bg_shape_corner_radius_12)
                     tvSecondaryTransactionName.text =
                         context.getString(R.string.str_transfer_type_income)
@@ -50,7 +53,9 @@ class HistoryAdapter(
                 }
                 if (content.child.type == Constants.History.OUTCOME) {
                     tvAmount.text =
-                        " - " + content.child.amount.toString() + " " + context.getString(R.string.str_money_type_uzb)
+                        context.getString(R.string.str_minus) + formatAmountWithSpaces(content.child.amount) + " " + context.getString(
+                            R.string.str_money_type_uzb
+                        )
                     tvTransactionName.text = content.child.to
                     tvSecondaryTransactionName.text =
                         context.getString(R.string.str_transfer_type_outcome)
@@ -70,8 +75,10 @@ class HistoryAdapter(
                 return when {
                     oldItem is HistoryItem.Header && newItem is HistoryItem.Header ->
                         oldItem.time == newItem.time
+
                     oldItem is HistoryItem.Content && newItem is HistoryItem.Content ->
-                        oldItem.child == newItem.child // Assuming each content has a unique ID
+                        oldItem.child == newItem.child
+
                     else -> false
                 }
             }
@@ -150,7 +157,6 @@ class HistoryAdapter(
         }
         return null
     }
-
 
 
 }
