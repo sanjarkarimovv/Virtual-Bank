@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSurface">
+    android:background="@color/colorSurfaceContainerLowest">
 
     <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@color/colorSurface"
+        android:background="@color/colorSurfaceContainerLowest"
         app:title="@string/str_history_toolbar_title"
         tools:ignore="UnusedAttribute" />
 
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@+id/toolbar"
-        android:background="@color/colorSurface"
+        android:background="@color/colorSurfaceContainerLowest"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorSurface"
+            android:background="@color/colorSurfaceContainerLowest"
             android:orientation="vertical">
 
             <TextView
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorSurface"
+            android:background="@color/colorSurfaceContainerLowest"
             android:orientation="vertical">
 
             <TextView
