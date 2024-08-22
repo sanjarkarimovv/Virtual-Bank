@@ -20,24 +20,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getFullInfoUseCase: GetFullInfoUseCase,
     private val putUpdateInfoUseCase: PutUpdateInfoUseCase,
-    private val transferUseCase: TransferUseCase,
     private val errorHandler: ErrorHandler,
 ) : ViewModel() {
 
-    private val _transfer = MutableLiveData<TransferUIModel>()
-    val transfer get() = _transfer
-
-    fun getTransfer(transferUIModel: TransferUIModel) = transferUseCase(transferUIModel)
-
-
-    init {
-        getTransfer(
-            TransferUIModel(
-                "third-card",
-                "7",
-                "1234567898765432",
-                100100
-            )
-        )
     }
-}
+
