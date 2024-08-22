@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.consumeAsFlow
 import uz.androbeck.virtualbank.databinding.CustomHomeHeaderBinding
 import uz.androbeck.virtualbank.utils.extentions.invisible
 import uz.androbeck.virtualbank.utils.extentions.visible
@@ -17,12 +16,10 @@ class CustomHomeHeader @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyle) {
     private val binding = CustomHomeHeaderBinding.inflate(LayoutInflater.from(context), this, true)
 
-    private val _clicks = Channel<HeaderUiEvent>()
-    val clicks = _clicks.consumeAsFlow()
+    var clicks: ((HeaderUiEvent) -> Unit)? = null
     private var isShowAmount = true
         set(value) {
             field = value
-
         }
 
     init {
@@ -45,25 +42,25 @@ class CustomHomeHeader @JvmOverloads constructor(
         btnShowAmount.setOnClickListener {
             binding.layoutAmountNotShowRoot.visible()
             binding.layoutAmountRoot.invisible()
-            _clicks.trySend(HeaderUiEvent.ClickShowAmount(false))
+            clicks?.invoke(HeaderUiEvent.ClickShowAmount(false))
         }
         btnShowAmountInNotShow.setOnClickListener {
             binding.layoutAmountNotShowRoot.invisible()
             binding.layoutAmountRoot.visible()
-            _clicks.trySend(HeaderUiEvent.ClickShowAmount(true))
+            clicks?.invoke(HeaderUiEvent.ClickShowAmount(true))
         }
 
         btnMore.setOnClickListener {
-            _clicks.trySend(HeaderUiEvent.ClickMore)
+            clicks?.invoke(HeaderUiEvent.ClickMore)
         }
         btnCard.setOnClickListener {
-            _clicks.trySend(HeaderUiEvent.ClickCards)
+            clicks?.invoke(HeaderUiEvent.ClickCards)
         }
         btnQrCode.setOnClickListener {
-            _clicks.trySend(HeaderUiEvent.ClickQR)
+            clicks?.invoke(HeaderUiEvent.ClickQR)
         }
         btnNfsee.setOnClickListener {
-            _clicks.trySend(HeaderUiEvent.ClickNfs)
+            clicks?.invoke(HeaderUiEvent.ClickNfs)
         }
     }
 }
