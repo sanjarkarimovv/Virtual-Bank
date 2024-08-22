@@ -5,7 +5,7 @@ data class CardUIModel(
     val amount: Double? = 0.0,
     val name: String? = null,
     val owner: String? = null,
-    val pan: Double? = 0.0,
+    val pan: String,
     val expiredYear: Int? = 0,
     val expiredMonth: Int? = 0,
     val themeType: Int? = 0,
