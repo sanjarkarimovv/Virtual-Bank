@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.enums.SecuritySettingKey
-import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.model.SecuritySettings
+import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.models.SecuritySettings
 import javax.inject.Inject
 
 @HiltViewModel

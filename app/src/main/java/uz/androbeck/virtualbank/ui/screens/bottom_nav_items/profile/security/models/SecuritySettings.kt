@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.model
+package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.models
 
 data class SecuritySettings(
     val useBiometric: Boolean,

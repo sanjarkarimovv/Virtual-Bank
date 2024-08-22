@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.change_pin_code
+package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.screens.change_pin_code
 
 import android.os.Handler
 import android.os.Looper

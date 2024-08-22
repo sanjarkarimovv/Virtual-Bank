@@ -9,7 +9,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentSecurityBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.enums.SecuritySettingKey
-import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.model.SecuritySettings
+import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.models.SecuritySettings
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
 @AndroidEntryPoint
@@ -23,7 +23,6 @@ class SecurityFragment :BaseFragment(R.layout.fragment_security) {
         viewModel.apply {
             securitySettings.observe(viewLifecycleOwner) {
                 updateUI(it)
-                println(it.toString())
             }
         }
     }

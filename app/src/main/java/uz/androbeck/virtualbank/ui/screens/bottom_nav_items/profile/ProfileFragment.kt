@@ -15,6 +15,7 @@ import uz.androbeck.virtualbank.databinding.FragmentProfileBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.change_language.ChangeLanguageBottomDialog
+import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import java.util.concurrent.Executors
@@ -74,18 +75,20 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         }
     }
 
+
+
     private fun promptBiometricAuthentication() {
-        val executor = Executors.newSingleThreadExecutor()
         val biometricPrompt = BiometricPrompt(
-            this, executor, object : BiometricPrompt.AuthenticationCallback() {
+            requireActivity(),
+            Executors.newSingleThreadExecutor(),
+            object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     Handler(Looper.getMainLooper()).post {
                         findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
                     }
                 }
-            }
-        )
+            })
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle(getString(R.string.biometric_prompt_title))
@@ -94,11 +97,11 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             .build()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            if(isResumed) {
+            if (isAdded && isResumed && !isRemoving && !isDetached) {
                 biometricPrompt.authenticate(promptInfo)
             }
         }
-    }
+    }}
 
 
 

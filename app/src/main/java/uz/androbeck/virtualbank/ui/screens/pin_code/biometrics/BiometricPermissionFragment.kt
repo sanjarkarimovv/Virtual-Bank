@@ -35,9 +35,10 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
         }
     }
 
+
     private fun promptBiometricAuthentication() {
         val biometricPrompt = BiometricPrompt(
-            this,
+            requireActivity(),
             Executors.newSingleThreadExecutor(),
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
@@ -46,13 +47,13 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
                     navigateWithDelay(NavGraphEvent.Main)
                 }
 
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
                     viewModel.setBiometrics(false)
                 }
 
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
                     viewModel.setBiometrics(false)
                 }
             })
@@ -64,11 +65,13 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
             .build()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            if (isResumed) {
+            if (isAdded && isResumed && !isRemoving && !isDetached) {
                 biometricPrompt.authenticate(promptInfo)
             }
         }
     }
+
+
 
     private fun navigateWithDelay(event: NavGraphEvent) {
         viewLifecycleOwner.lifecycleScope.launch {

@@ -236,7 +236,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
 
     private fun promptBiometricAuthentication() {
         val biometricPrompt = BiometricPrompt(
-            this,
+            requireActivity(),
             Executors.newSingleThreadExecutor(),
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
@@ -253,7 +253,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
             .build()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            if(isResumed) {
+            if (isAdded && isResumed && !isRemoving && !isDetached) {
                 biometricPrompt.authenticate(promptInfo)
             }
         }

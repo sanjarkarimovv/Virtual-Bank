@@ -87,7 +87,7 @@
     </fragment>
     <fragment
         android:id="@+id/changePinCodeFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.change_pin_code.ChangePinCodeFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.screens.change_pin_code.ChangePinCodeFragment"
         android:label="ChangePinCodeFragment" >
         <action
             android:id="@+id/action_changePinCodeFragment_to_securityFragment"
