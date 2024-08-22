@@ -1,9 +1,9 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile
 
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.biometric.BiometricPrompt
-import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +16,6 @@ import uz.androbeck.virtualbank.databinding.FragmentProfileBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.change_language.ChangeLanguageBottomDialog
-import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import java.util.concurrent.Executors
@@ -37,7 +36,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     override fun clicks() = with(binding) {
         security.singleClickable {
-            if(vm.usingBiometrics()){
+            if (vm.usingBiometrics()) {
                 promptBiometricAuthentication()
             } else {
                 findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
@@ -81,7 +80,6 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     }
 
 
-
     private fun promptBiometricAuthentication() {
         val biometricPrompt = BiometricPrompt(
             requireActivity(),
@@ -106,8 +104,5 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
                 biometricPrompt.authenticate(promptInfo)
             }
         }
-    }}
-
-
-
+    }
 }

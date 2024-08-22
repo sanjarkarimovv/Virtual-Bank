@@ -1,8 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code
 
 import android.animation.ValueAnimator
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator

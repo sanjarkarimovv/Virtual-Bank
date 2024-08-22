@@ -131,4 +131,5 @@
     <string name="str_security_time">%1$d sek</string>
     <string name="str_new_pin_code">Yangi PIN-kodni kiriting</string>
     <string name="str_confirm_new_pin_code">Yangi PIN-kodni tasdiqlang</string>
+    <string name="close">Yopish</string>
 </resources>
