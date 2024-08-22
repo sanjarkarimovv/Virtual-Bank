@@ -11,7 +11,7 @@ data class UserEntity(
     var id: Int = 0,
     // for example
     @ColumnInfo(name = "name")
-    var nem: String? = null,
+    var name: String? = null,
     @ColumnInfo(name = "password")
     var password: String? = null,
     @ColumnInfo(name = "token")

@@ -15,6 +15,7 @@
     <string name="str_phone_number">Phone number</string>
     <string name="str_born_date">Born date</string>
     <string name="str_gender">Gender</string>
+    <string name="str_get_credit">Bir zumda kridit oling</string>
     <string name="str_sign_up">Sign Up</string>
     <string name="str_refresh_code">Get the code</string>
     <string name="str_confirm">Confirmation</string>
@@ -27,6 +28,7 @@
     <string name="widget_setup">Widget setup</string>
     <string name="todo">TODO</string>
     <string name="security">Security</string>
+    <string name="str_this_send_phone_number_confiry_sms_code">Ushbu telefon raqamga tastiqlash kodi yuborildi</string>
     <string name="permissions">Permissions</string>
     <string name="notification">Notification</string>
     <string name="actions">Actions</string>
@@ -44,11 +46,22 @@
     <string name="str_error_unexpected">Kozda tutilmagan xatolik</string>
     <string name="str_this_send_phone_number_confirm_sms_code">A verification code has been sent to this phone number</string>
     <string name="str_success">Success</string>
+    <string name="str_currency">so\'m</string>
+    <string name="str_cards">Cards</string>
+    <string name="str_last_transfer">Last transfer</string>
+    <string name="str_payments">Payments</string>
     <string name="str_choose_language_title">Choose app language</string>
     <string name="str_choose_title">Choose</string>
     <string name="str_localization_uzb">Uzbek</string>
     <string name="str_localization_rus">Russian</string>
     <string name="str_localization_eng">English</string>
+    <string name="str_payment">To\'lov</string>
+    <string name="str_paymnet">Paymnet</string>
+    <string name="str_widget_settings">Vidjet sozlamalari</string>
+    <string name="str_hint_phone_number">+998 Telefon raqami</string>
+    <string name="str_payment_for_phone_number">Payment for phone</string>
+    <string name="str_advertising">Advertising</string>
+    <string name="str_finances_service">Finances service</string>
     <string name="str_search">Search</string>
     <string name="str_saved_payments">Saved payments</string>
     <string name="my_home">My home</string>
@@ -74,6 +87,12 @@
     <string name="biometric_prompt_title">Biometric Authentication</string>
     <string name="biometric_prompt_subtitle">Authenticate with your biometrics</string>
     <string name="biometric_prompt_cancel">Cancel</string>
+    <string name="str_select">Select</string>
+    <string name="str_show_amount">Ballansni Ko\'rsatish</string>
+    <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
+    <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
+
+
     <string name="str_my_information">My Information</string>
     <string name="str_date_of_birth">Date of Birth</string>
     <string name="str_change">Change</string>

@@ -17,6 +17,7 @@ class GetCardsMapper @Inject constructor() :
             amount = amount,
             expiredYear = expiredYear,
             expiredMonth = expiredMonth,
+            pan = pan
         )
     }
 

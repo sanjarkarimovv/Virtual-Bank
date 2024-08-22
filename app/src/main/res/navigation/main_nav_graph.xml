@@ -18,6 +18,9 @@
         android:label="MainFragment"
         tools:layout="@layout/fragment_main">
         <action
+            android:id="@+id/action_mainFragment_to_widgetSettingsFragment"
+            app:destination="@id/widgetSettingsFragment" />
+        <action
             android:id="@+id/action_mainFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
     </fragment>
@@ -47,6 +50,10 @@
         android:id="@+id/historyFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryFragment"
         android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/widgetSettingsFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.widgetSettings.WidgetSettingsFragment"
+        android:label="WidgetSettingsFragment" />
     <fragment
         android:id="@+id/updateInfoFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info.UpdateInfoFragment"

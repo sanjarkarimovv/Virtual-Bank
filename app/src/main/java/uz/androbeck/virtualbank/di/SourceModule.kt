@@ -8,6 +8,9 @@ import uz.androbeck.virtualbank.data.api.AuthenticationService
 import uz.androbeck.virtualbank.data.api.CardService
 import uz.androbeck.virtualbank.data.api.HistoryService
 import uz.androbeck.virtualbank.data.api.HomeService
+import uz.androbeck.virtualbank.data.db.dao.HomeDao
+import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasource
+import uz.androbeck.virtualbank.data.source.local.home.HomeLocalDatasourceImpl
 import uz.androbeck.virtualbank.data.api.TransferService
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSource
 import uz.androbeck.virtualbank.data.source.remote.auth.AuthenticationRemoteDataSourceImpl
@@ -32,6 +35,7 @@ object SourceModule {
     ): AuthenticationRemoteDataSource {
         return AuthenticationRemoteDataSourceImpl(service)
     }
+
     @Singleton
     @Provides
     fun provideMainRemoteDataSource(
@@ -39,11 +43,12 @@ object SourceModule {
     ): HomeRemoteDataSource {
         return HomeRemoteDataSourceImpl(service)
     }
+
     @Singleton
     @Provides
     fun provideHistoryRemoteDataSource(
         service: HistoryService
-    ):HistoryRemoteDatasource{
+    ): HistoryRemoteDatasource {
         return HistoryRemoteDataSourceImpl(service)
     }
     @Singleton
@@ -59,6 +64,14 @@ object SourceModule {
         service: TransferService
     ): TransferRemoteDataSource {
         return TransferRemoteDataSourceImpl(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideHomeLocalDataSource(
+        dao: HomeDao
+    ): HomeLocalDatasource {
+        return HomeLocalDatasourceImpl(dao)
     }
 
 }
