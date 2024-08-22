@@ -8,6 +8,6 @@ import uz.androbeck.virtualbank.data.dto.response.history.GetHistoryResDto
 import uz.androbeck.virtualbank.data.dto.response.history.LastTransfersResDto
 
 interface HistoryRepository {
-    fun getLastTransfers(): Flow<LastTransfersResDto>
+    fun getLastTransfers(): Flow<List<InComeAndOutComeResDto>>
     fun getHistory(): Flow<PagingData<InComeAndOutComeResDto>>
 }
