@@ -61,7 +61,7 @@ object DatabaseModule {
 
     @Provides
     fun  provideCardInfoDao(roomDatabase: AppDatabase): CardInfoDao {
-        return roomDatabase.cardIndoDao()
+        return roomDatabase.cardInfoDao()
     }
 
     @Provides
