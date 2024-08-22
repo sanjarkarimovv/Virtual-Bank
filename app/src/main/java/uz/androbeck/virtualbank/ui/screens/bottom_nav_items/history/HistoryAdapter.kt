@@ -133,6 +133,10 @@ class HistoryAdapter(
 
 
     fun findHeaderViewForPosition1(position: Int, parent: RecyclerView): View? {
+        if (position < 0 || position >= itemCount) {
+            return null
+        }
+
         val currentItem = getItem(position)
         if (currentItem is HistoryItem.Header) {
             val binding = ItemHistoryHeaderBinding.inflate(
@@ -146,6 +150,7 @@ class HistoryAdapter(
         }
         return null
     }
+
 
 
 }

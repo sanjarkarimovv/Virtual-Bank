@@ -23,13 +23,18 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
         }
         with(binding) {
             recyclerView.apply {
-                adapter = historyAdapter
+                adapter = historyAdapter.withLoadStateHeaderAndFooter(
+                header = HistoryLoadStateAdapter { historyAdapter.retry() },
+                    footer = HistoryLoadStateAdapter { historyAdapter.retry() }
+                )
                 addItemDecoration(StickyHeaderDecoration(historyAdapter))
             }
+
             lifecycleScope.launch {
                 viewModel.response.collectLatest { pagingData ->
                     historyAdapter.submitData(pagingData)
                 }
+
 
             }
             //tvIncomeAmount.text = "+ " + viewModel.getAmounts().first.toString()
