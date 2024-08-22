@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
