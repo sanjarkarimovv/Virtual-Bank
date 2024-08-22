@@ -15,6 +15,11 @@ class ProfileViewModel @Inject constructor(
     private val fullInfoUseCase: GetFullInfoUseCase,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
+
+    init {
+        getUserData()
+    }
+
     fun getUserData(): Flow<ProfileFragmentEvent> = flow {
         fullInfoUseCase().onEach {
             emit(ProfileFragmentEvent.Success(it))

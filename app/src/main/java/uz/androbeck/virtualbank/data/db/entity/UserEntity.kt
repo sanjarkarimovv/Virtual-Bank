@@ -16,4 +16,6 @@ data class UserEntity(
     var password: String? = null,
     @ColumnInfo(name = "token")
     var token: String? = null
-)
+){
+    constructor() : this(0, null, null, null)
+}
