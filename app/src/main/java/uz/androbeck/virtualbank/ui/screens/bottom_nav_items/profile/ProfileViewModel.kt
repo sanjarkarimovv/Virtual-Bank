@@ -7,13 +7,15 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val fullInfoUseCase: GetFullInfoUseCase,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: ErrorHandler,
+    private val preferencesProvider: PreferencesProvider
 ) : BaseViewModel() {
 
     init {
@@ -29,6 +31,10 @@ class ProfileViewModel @Inject constructor(
         }.collect {
             emit(ProfileFragmentEvent.Loading)
         }
+    }
+
+    fun usingBiometrics() : Boolean {
+        return preferencesProvider.useBiometric
     }
 }
 
