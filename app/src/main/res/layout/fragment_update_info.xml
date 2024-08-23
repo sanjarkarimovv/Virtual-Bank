@@ -3,279 +3,86 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/static_white">
+    android:background="@color/screenBackgroundColor">
 
-    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
-        android:id="@+id/toolbar"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/name_root"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/updater_info_page_menu"
-        app:title="@string/str_my_information" />
-
-    <LinearLayout
-        android:id="@+id/first_name_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/helper_first_name_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/str_first_name"
-            android:textColor="@color/colorInverseSurface"
-            android:textSize="14sp" />
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="40dp"
+        app:cardBackgroundColor="@color/static_white"
+        app:strokeWidth="0.8dp">
 
         <EditText
-            android:id="@+id/et_first_name"
+            android:id="@+id/et_name"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="@drawable/custom_input_background"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp"
-            android:singleLine="true"
-            android:textColor="@color/colorInverseSurface"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/last_name_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/first_name_ll"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/helper_last_name_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/str_last_name"
-            android:textColor="@color/colorInverseSurface"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/exo2_semi_bold"
+            android:hint="@string/str_first_name"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/last_name_root"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/name_root"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/static_white"
+        app:strokeWidth="0.8dp">
 
         <EditText
             android:id="@+id/et_last_name"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="@drawable/custom_input_background"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="12dp"
-            android:singleLine="true"
-            android:textColor="@color/colorInverseSurface"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/date_birth_and_gender_root"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/last_name_ll"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:id="@+id/date_birth_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:background="@android:color/transparent"
             android:fontFamily="@font/exo2_semi_bold"
-            android:text="@string/str_date_of_birth"
+            android:hint="@string/str_last_name"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
+    </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/date_birth_tv"
-            android:layout_marginTop="20dp"
-            app:strokeColor="@color/colorPrimary">
-
-            <TextView
-                android:id="@+id/date_birth_receiver"
-                android:layout_width="125dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:gravity="center"
-                android:padding="20dp"
-                android:text="@string/str_no_data"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ic_date_iv"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="125dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_date"
-                android:visibility="visible" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btn_change_date_parent"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="120dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/ripple_effect"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="gone"
-                app:cardCornerRadius="20dp"
-                app:strokeColor="@color/colorPrimary">
-
-                <ImageView
-                    android:id="@+id/btn_change_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ripple_for_image_back"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_change" />
-            </com.google.android.material.card.MaterialCardView>
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/gender_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="@font/exo2_semi_bold"
-            android:text="@string/str_gender"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/gender_info_receiver"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/gender_tv"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/str_no_data"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btn_change_gender_parent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/gender_info_receiver"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/ripple_effect"
-            android:clickable="true"
-            android:focusable="true"
-            android:visibility="gone"
-            app:cardCornerRadius="20dp"
-            app:strokeColor="@color/colorPrimary">
-
-            <ImageView
-                android:id="@+id/btn_change_gender"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/ripple_for_image_back"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="10dp"
-                android:src="@drawable/ic_change" />
-        </com.google.android.material.card.MaterialCardView>
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tv_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/date_birth_and_gender_root"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/ripple_effect"
-        android:clickable="true"
-        android:drawablePadding="10dp"
-        android:focusable="true"
-        android:paddingHorizontal="30dp"
-        android:paddingVertical="20dp"
-        android:text="@string/str_no_data"
-        android:textSize="16sp"
-        app:drawableEndCompat="@drawable/ic_next"
-        app:drawableStartCompat="@drawable/ic_telephone" />
-
-    <TextView
-        android:id="@+id/tv_delete_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_phone_number"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/last_name_root"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/ripple_effect"
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingHorizontal="30dp"
-        android:paddingVertical="10dp"
-        android:text="@string/str_delete_account"
-        android:textColor="@color/colorRed"
-        android:textSize="16sp"
-        app:drawableEndCompat="@drawable/ic_next" />
+        app:strokeColor="@color/colorPrimary">
 
-    <LinearLayout
-        android:id="@+id/update_buttons_root"
+        <com.vicmikhailau.maskededittext.MaskedEditText
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="start|center_vertical"
+            android:hint="dd-mm-yyyy"
+            android:paddingHorizontal="30dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:mask="04-04-0404" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:padding="6dp"
+            android:src="@drawable/ic_date" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <DatePicker
+        android:id="@+id/date_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="1">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_saver_changes"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="0.5"
-            android:text="@string/str_save_changes"
-            android:textColor="@color/static_white"
-            app:cornerRadius="10dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_undo"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="0.5"
-            android:backgroundTint="@color/colorInversePrimary"
-            android:text="@string/str_undo_changes"
-            android:textColor="@color/colorPrimary"
-            app:cornerRadius="10dp"
-            app:strokeColor="@color/colorPrimary"
-            app:strokeWidth="1dp" />
-    </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/progress_saver_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp"
-        android:visibility="gone" />
-
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
 </RelativeLayout>
