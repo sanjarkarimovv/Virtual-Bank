@@ -131,7 +131,7 @@ class ChangePinCodeFragment : BaseFragment(R.layout.fragment_change_pincode) {
     private fun observePinCodeSame() {
         pinCodeViewModel.pinCodeSame.observe(viewLifecycleOwner) {
             if(it == true){
-                (activity as? MainActivity)?.showActionSnackBar(R.color.colorOrange, R.drawable.ic_face_scan, getString(R.string.str_pin_code_same))
+                (activity as? MainActivity)?.showActionSnackBar(R.color.colorOrange, R.drawable.ic_warning, getString(R.string.str_pin_code_same))
             }
         }
     }
