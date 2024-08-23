@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.1"
+agp = "8.4.2"
 biometricVersion = "1.1.0"
 kotlin = "1.9.21"
 coreKtx = "1.13.1"
