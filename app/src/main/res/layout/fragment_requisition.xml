@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorSurface"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
@@ -89,4 +90,15 @@
         android:layout_below="@id/txt_name_card"
         android:fontFamily="@font/exo2_bold"
         android:text="Uzcard" />
+
+    <ImageView
+        android:id="@+id/eye_icon"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/txt_date_value"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/txt_card_number"
+        android:src="@drawable/ic_eye" />
+
 </RelativeLayout>
