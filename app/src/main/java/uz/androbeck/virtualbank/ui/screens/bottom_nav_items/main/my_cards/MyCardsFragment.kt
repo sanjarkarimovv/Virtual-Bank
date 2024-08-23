@@ -64,58 +64,6 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         }
     }
 
-    private fun loadList(): List<CardUIModel> {
-        val getCardsUIModel = listOf<CardUIModel>(
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "5614682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 2,
-                isVisible = true
-            ),
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "9860682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 3,
-                isVisible = false
-            ),
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "8600682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 4,
-                isVisible = false
-            ),
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "8600682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 5,
-                isVisible = false
-
-            )
-        )
-        return getCardsUIModel
-    }
-
-
     private fun cardSortedList(list: List<CardUIModel>): List<List<CardUIModel>> {
         val allList = mutableListOf<CardUIModel>()
         val uzCardList = mutableListOf<CardUIModel>()
