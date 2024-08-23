@@ -20,12 +20,17 @@ object Constants {
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
         const val TOTAL_BALANCE = "home/total-balance"
-        const val GET_HISTORY="transfer/transfer"
+        const val GET_HISTORY="transfer/history"
         const val DELETE_CARD="card"
         const val ADD_CARD="card"
         const val GET_CARD="card"
         const val GET_FEE="transfer/fee"
         const val TRANSFER="transfer/transfer"
+
+    }
+    object History {
+        const val INCOME = "income"
+        const val OUTCOME = "outcome"
 
     }
 
