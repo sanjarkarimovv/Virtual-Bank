@@ -7,12 +7,12 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.databinding.FragmentDepositCardBinding
+import uz.androbeck.virtualbank.databinding.FragmentTransferMyCardBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.extentions.color
 
-class TransferMyCardFragment : BaseFragment(R.layout.fragment_deposit_card) {
-    private val binding: FragmentDepositCardBinding by viewBinding()
+class TransferMyCardFragment : BaseFragment(R.layout.fragment_transfer_my_card) {
+    private val binding: FragmentTransferMyCardBinding by viewBinding()
     @SuppressLint("SetTextI18n")
     override fun setup() = with(binding) {
         cvTransferCard.setOnClickListener {
