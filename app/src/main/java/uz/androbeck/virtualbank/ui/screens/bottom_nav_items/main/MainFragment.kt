@@ -34,7 +34,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         customHeader.clicks = {
             when (it) {
                 HeaderUiEvent.ClickCards -> {
-                    findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
+                    findNavController().navigate(R.id.action_mainFragment_to_myCardsFragment)
                 }
 
                 HeaderUiEvent.ClickMore -> {

@@ -1,12 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorSurfaceContainerLowest">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="History"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorSurfaceContainerLowest"
+        app:title="@string/str_history_toolbar_title"
+        tools:ignore="UnusedAttribute" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_sort"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/colorSurfaceContainerLowest"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorSurfaceContainerLowest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_income"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/exo2_medium"
+                android:paddingHorizontal="15dp"
+                android:text="@string/str_histiry_sort_name_income"
+                android:textColor="@color/colorSecondary"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_income_amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/exo2_bold"
+                android:paddingHorizontal="15dp"
+                android:text="+ 124000 so'm "
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorSurfaceContainerLowest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_outcome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/exo2_medium"
+                android:paddingHorizontal="15dp"
+                android:text="@string/str_histiry_sort_name_outcome"
+                android:textColor="@color/colorSecondary"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_outcome_amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/exo2_semi_bold"
+                android:paddingHorizontal="15dp"
+                android:text="- 55200.00 so'm"
+                android:textColor="@color/colorError"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_sort"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </RelativeLayout>

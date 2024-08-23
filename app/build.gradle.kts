@@ -6,6 +6,8 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id ("kotlin-android")
+
 }
 
 android {
@@ -57,6 +59,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.media3.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -107,6 +110,8 @@ dependencies {
     // refresh layout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
+
+
     //Biometrics
     implementation(libs.androidx.biometric)
 
@@ -125,4 +130,7 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.2.3")
     implementation("androidx.camera:camera-view:1.2.3")
     implementation("androidx.camera:camera-extensions:1.2.3")
+
+    // swiperefreshlayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }
