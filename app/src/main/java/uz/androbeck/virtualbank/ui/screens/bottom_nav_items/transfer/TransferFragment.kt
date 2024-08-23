@@ -8,6 +8,7 @@ import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
@@ -40,6 +41,7 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
                     vm.cardOwnerResponse.observe(viewLifecycleOwner) {
                         if (it) {
                             btnContinue.isEnable = true
+                            findNavController().navigate(R.id.action_transferFragment_to_secondaryTransferFragment)
                         }
                     }
                     vm.isGetCardOwnerByPanEvent.observe(viewLifecycleOwner) {
