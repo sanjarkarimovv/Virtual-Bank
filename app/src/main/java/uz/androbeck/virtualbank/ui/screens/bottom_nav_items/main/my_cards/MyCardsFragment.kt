@@ -4,7 +4,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -12,7 +11,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentMyCardsBinding
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.enums.CardType
+import uz.androbeck.virtualbank.ui.dialogs.card_options.CardOptionBottomDialog
 
 @AndroidEntryPoint
 class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
@@ -20,10 +19,18 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
     private val binding: FragmentMyCardsBinding by viewBinding()
     private val vm: MyCardsViewModel by viewModels()
     private lateinit var pagingAdapter: ViewPagerAdapter
+    private lateinit var itemsAdapter: ItemsAdapter
+
     override fun setup() {
 
-        pagingAdapter = ViewPagerAdapter()
 
+        val listener:(CardUIModel)->Unit={card->
+            CardOptionBottomDialog(
+                card
+            ).show(parentFragmentManager,"")
+        }
+
+        pagingAdapter = ViewPagerAdapter(listener)
         binding.swipeRefreshLayout.isRefreshing = false
 
         binding.viewPager.adapter = pagingAdapter
@@ -62,6 +69,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         btnAddCard.setOnClickListener {
             findNavController().navigate(R.id.action_myCardsFragment_to_addCardFragment)
         }
+
     }
 
     private fun loadList(): List<CardUIModel> {

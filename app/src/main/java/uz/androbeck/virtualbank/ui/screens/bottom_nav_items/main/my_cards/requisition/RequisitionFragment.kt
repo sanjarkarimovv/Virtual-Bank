@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.requisition
+package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.requisition
 
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.ui.base.BaseFragment

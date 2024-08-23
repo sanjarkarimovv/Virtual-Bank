@@ -2,9 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSurface"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/static_white"
     android:orientation="vertical"
     android:paddingTop="16dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center|top"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/colorOutline"
+        android:scaleType="centerCrop"
+        app:cardCornerRadius="2.5dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,30 +30,30 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginVertical="5dp"
-                android:src="@drawable/ic_qr_card" />
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/ic_qr_code" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginVertical="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginVertical="10dp"
                 android:src="@drawable/ic_fill_card" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginVertical="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginVertical="10dp"
 
                 android:src="@drawable/ic_history_card" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginVertical="5dp"
+                android:layout_marginVertical="10dp"
 
-                android:src="@drawable/ic_requizit" />
+                android:src="@drawable/ic_requzite_card" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -62,20 +71,22 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_qr_code"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="25dp"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
+                android:layout_marginVertical="10dp"
                 android:fontFamily="@font/exo2_medium"
                 android:gravity="center_vertical"
                 android:text="@string/str_send_qr_code"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tv_fill_card"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="25dp"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
+                android:layout_marginVertical="10dp"
                 android:fontFamily="@font/exo2_medium"
 
                 android:gravity="center_vertical"
@@ -83,31 +94,34 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tv_history_card"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:fontFamily="@font/exo2_medium"
+                android:layout_height="25dp"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/exo2_medium"
                 android:gravity="center_vertical"
                 android:text="@string/str_history"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tv_requisites"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:fontFamily="@font/exo2_medium"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/exo2_medium"
                 android:gravity="center_vertical"
                 android:text="@string/str_requisites"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tv_delete_card"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:fontFamily="@font/exo2_medium"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="5dp"
+                android:fontFamily="@font/exo2_medium"
                 android:gravity="center_vertical"
                 android:text="@string/str_delete"
                 android:textSize="16sp" />
