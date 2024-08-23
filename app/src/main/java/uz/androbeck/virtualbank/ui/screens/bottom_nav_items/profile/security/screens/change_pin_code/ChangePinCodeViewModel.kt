@@ -33,6 +33,9 @@ class ChangePinCodeViewModel @Inject constructor(
     private val _errorAnim = MutableLiveData<ChangePinAnimEvent>()
     val errorAnim: LiveData<ChangePinAnimEvent> get() = _errorAnim
 
+    private val _pinCodeSame = MutableLiveData<Boolean>()
+    val pinCodeSame: LiveData<Boolean> get() = _pinCodeSame
+
     private var currentStep = PinStep.CHECK_CURRENT_PIN
     private var currentPin = ""
 
@@ -138,6 +141,7 @@ class ChangePinCodeViewModel @Inject constructor(
             _errorAnim.value = ChangePinAnimEvent.PinNotValidated
             viewModelScope.launch {
                 delay(2000L)
+                _pinCodeSame.value = true
                 _errorAnim.value = ChangePinAnimEvent.PinNeutral
             }
         }

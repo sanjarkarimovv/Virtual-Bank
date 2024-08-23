@@ -1,11 +1,14 @@
 package uz.androbeck.virtualbank.ui
 
+import android.widget.ImageView
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import uz.androbeck.virtualbank.domain.ui_models.home.SnackBarContainerModel
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
@@ -58,4 +61,6 @@ class MainViewModel @Inject constructor(
     fun observeNavGraphEvent(): Flow<NavGraphEvent> {
         return navGraphEvent.consumeAsFlow().share(viewModelScope)
     }
+
+
 }

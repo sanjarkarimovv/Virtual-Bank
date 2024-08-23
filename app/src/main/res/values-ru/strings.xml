@@ -132,4 +132,6 @@
     <string name="str_new_pin_code">Введите новый ПИН код</string>
     <string name="str_confirm_new_pin_code">Подтвердите новый ПИН код</string>
     <string name="close">Закрыть</string>
+    <string name="snackbar_icon">Snackbar icon</string>
+    <string name="str_pin_code_same">Новый ПИН должен отличаться от старого</string>
 </resources>

@@ -132,4 +132,6 @@
     <string name="str_new_pin_code">Yangi PIN-kodni kiriting</string>
     <string name="str_confirm_new_pin_code">Yangi PIN-kodni tasdiqlang</string>
     <string name="close">Yopish</string>
+    <string name="snackbar_icon">Snackbar icon</string>
+    <string name="str_pin_code_same">Yangi PIN kod eskisida farqli bo\'lishi lozim</string>
 </resources>
