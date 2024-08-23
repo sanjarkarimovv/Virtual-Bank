@@ -98,7 +98,7 @@ class MainViewModel @Inject constructor(
                         when (item.name) {
                             HomeComponents.Cards -> {
                                 //get from remote data
-                                getCardsUseCase.invoke().onEach {
+                                getCardsUseCase.getCardsFromNetwork().onEach {
                                     _uiData.value = HomeBodyModels.Card(item.name, it)
                                 }.launchIn(this)
                             }

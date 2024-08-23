@@ -22,7 +22,7 @@ class CardScannerBottomDialog : BaseBottomDialog(R.layout.dialog_button_card_sca
             showCardScannerByNfcDialog()
         }
         btnScannerByCamera.singleClickable{
-            findNavController().navigate(R.id.action_addCardFragment_to_cardScannerFragment)
+           // findNavController().navigate(R.id.action_addCardFragment_to_cardScannerFragment)
         }
     }
 
