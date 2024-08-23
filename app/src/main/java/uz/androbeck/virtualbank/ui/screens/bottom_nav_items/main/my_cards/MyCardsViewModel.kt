@@ -4,6 +4,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
@@ -21,8 +23,8 @@ class MyCardsViewModel @Inject constructor(
     private val errorHandler: ErrorHandler
 ) : BaseViewModel() {
 
-    private val _getCardsEvent = Channel<MyCardsUIEvent>()
-    val getCardsEvent = _getCardsEvent.consumeAsFlow().share(viewModelScope)
+    private val _getCardsEvent = MutableStateFlow<MyCardsUIEvent>(MyCardsUIEvent.Loading)
+    val getCardsEvent = _getCardsEvent.asStateFlow()
 
     fun getCards() = viewModelScope.launch(Dispatchers.IO) {
 
@@ -37,11 +39,11 @@ class MyCardsViewModel @Inject constructor(
                 }
             }
             viewModelScope.launch {
-                _getCardsEvent.send(MyCardsUIEvent.Success(getCardsFromNetwork))
+                _getCardsEvent.value = (MyCardsUIEvent.Success(getCardsFromNetwork))
             }
         }.catch {
             errorHandler.handleError(it)
-            _getCardsEvent.trySend(MyCardsUIEvent.Error(it.message))
+            _getCardsEvent.value = (MyCardsUIEvent.Error(it.message))
         }.launchIn(this)
     }
 
