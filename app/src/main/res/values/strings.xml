@@ -145,4 +145,6 @@
     <string name="snackbar_icon">Snackbar icon</string>
     <string name="str_pin_code_same">New PIN code should not coincide with the old one</string>
 
+    <string name="str_nfc">Nfc</string>
+    <string name="str_qrd">QR</string>
 </resources>
