@@ -74,6 +74,10 @@ class VirtualBankCardNumberInput @JvmOverloads constructor(
                     CardType.UNKNOWN -> {
                         ivCard.setImageResource(R.drawable.ic_cards)
                     }
+
+                    CardType.AllCARDS -> {
+                        ivCard.setImageResource(R.drawable.ic_cards)
+                    }
                 }
             }
             btnCancel.singleClickable {

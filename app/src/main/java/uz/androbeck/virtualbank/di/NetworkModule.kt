@@ -116,7 +116,6 @@ object NetworkModule {
     }
 
     @Provides
-
     @Singleton
     fun provideAuthService(
         retrofit: Retrofit,

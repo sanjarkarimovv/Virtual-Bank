@@ -9,7 +9,7 @@ espressoCore = "3.6.1"
 appcompat = "1.7.0"
 kotlinStdlib = "1.9.22"
 material = "1.12.0"
-activity = "1.9.1"
+activity = "1.9.0"
 constraintlayout = "2.1.4"
 firebaseCrashlytics = "19.0.3"
 googleGmsGoogleServices = "4.4.2"
@@ -32,6 +32,7 @@ serialization-converter = "0.8.0"
 chucker = "4.0.0"
 firebaseStorageKtx = "21.0.0"
 firebaseStorage = "21.0.0"
+media3Common = "1.4.0"
 
 
 [libraries]
@@ -69,6 +70,7 @@ chucker-interceptor = { group = "com.github.chuckerteam.chucker", name = "librar
 chucker-interceptor-no-op = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
+androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3Common" }
 
 
 [plugins]
