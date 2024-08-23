@@ -88,4 +88,13 @@
     <string name="str_add_card_succes">Karta muvaffaqiyatli qo‘shildi</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
+    <string name="where_to_transfer">Qayerga o\'tkazish kerak</string>
+    <string name="transfer_to_my_card">Mening kartamga o\'tkazing</string>
+    <string name="from_1_000_to_15_000_000_sum">1 000 dan 15 000 000 so\'mgacha</string>
+    <string name="transfer_amount">O\'tkazma summasi</string>
+    <string name="_50_000">50 000</string>
+    <string name="_100_000">100 000</string>
+    <string name="_200_000">200 000</string>
+    <string name="_500_000">500 000</string>
+    <string name="next">Keyingisi</string>
 </resources>

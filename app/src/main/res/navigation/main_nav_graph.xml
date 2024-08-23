@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_mainFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_depositCardFragment"
+            app:destination="@id/depositCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/transferFragment"
@@ -47,4 +50,8 @@
         android:id="@+id/cardScannerFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.CardScannerFragment"
         android:label="CardScannerFragment" />
+    <fragment
+        android:id="@+id/depositCardFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.deposit_card.DepositCardFragment"
+        android:label="DepositCardFragment" />
 </navigation>

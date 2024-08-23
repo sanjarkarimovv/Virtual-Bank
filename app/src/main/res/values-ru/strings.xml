@@ -87,4 +87,13 @@
     <string name="str_add_card_succes">Карта успешно добавлена</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
+    <string name="where_to_transfer">куда перевести</string>
+    <string name="transfer_to_my_card">Перевод на мою карту</string>
+    <string name="from_1_000_to_15_000_000_sum">от 1 000 до 15 000 000 sum</string>
+    <string name="transfer_amount">Сумма перевода</string>
+    <string name="_50_000">50 000</string>
+    <string name="_100_000">100 000</string>
+    <string name="_200_000">200 000</string>
+    <string name="_500_000">500 000</string>
+    <string name="next">Следующий</string>
 </resources>
