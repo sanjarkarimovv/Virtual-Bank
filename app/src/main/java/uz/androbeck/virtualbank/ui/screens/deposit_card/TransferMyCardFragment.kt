@@ -11,7 +11,7 @@ import uz.androbeck.virtualbank.databinding.FragmentDepositCardBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.extentions.color
 
-class DepositCardFragment : BaseFragment(R.layout.fragment_deposit_card) {
+class TransferMyCardFragment : BaseFragment(R.layout.fragment_deposit_card) {
     private val binding: FragmentDepositCardBinding by viewBinding()
     @SuppressLint("SetTextI18n")
     override fun setup() = with(binding) {

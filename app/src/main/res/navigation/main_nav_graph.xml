@@ -74,7 +74,7 @@
         android:label="CardScannerFragment" />
     <fragment
         android:id="@+id/depositCardFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.deposit_card.DepositCardFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.deposit_card.TransferMyCardFragment"
         android:label="DepositCardFragment"
         tools:layout="@layout/fragment_deposit_card"/>
 </navigation>
