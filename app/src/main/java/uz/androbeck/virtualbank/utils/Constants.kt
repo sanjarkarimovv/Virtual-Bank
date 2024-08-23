@@ -55,6 +55,8 @@ object Constants {
     object String {
         const val EMPTY = ""
         const val ADD_HOME = "Uy qo'shish"
+        const val FULL_CARD_NUMBER_STARS = "**** **** **** "
+        const val HALF_CARD_NUMBER = "** **** "
     }
 
     object Localization {
