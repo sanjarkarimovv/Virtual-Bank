@@ -22,6 +22,7 @@ import uz.androbeck.virtualbank.domain.mapper.card.DeleteCardMapper
 import uz.androbeck.virtualbank.domain.mapper.card.GetCardsMapper
 import uz.androbeck.virtualbank.domain.mapper.history.GetHistoryMapper
 import uz.androbeck.virtualbank.domain.mapper.history.TransfersMapper
+import uz.androbeck.virtualbank.domain.mapper.home.ComponentsMapper
 import uz.androbeck.virtualbank.domain.mapper.home.FullInfoMapper
 import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
 import uz.androbeck.virtualbank.domain.mapper.home.TotalBalanceMapper
@@ -39,10 +40,14 @@ import uz.androbeck.virtualbank.domain.useCases.card.DeleteCardUseCase
 import uz.androbeck.virtualbank.domain.useCases.card.GetCardsUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.GetHistoryUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.UpdateComponentsInCatchUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.GetFeeUseCase
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -54,13 +59,6 @@ object UseCaseModule {
         tokenMapper: TokenMapper,
         signUpMapper: SignUpMapper,
     ) = SignUpUseCase(authenticationRepository, tokenMapper, signUpMapper)
-
-    @Provides
-    fun provideUpdateTokenUseCase(
-        authenticationRepository: AuthenticationRepository,
-        tokensMapper: TokensMapper,
-        updateTokenMapper: UpdateTokenMapper
-    ) = UpdateTokenUseCase(authenticationRepository, tokensMapper, updateTokenMapper)
 
 
     @Provides
@@ -99,7 +97,7 @@ object UseCaseModule {
     fun provideGetHistoryUseCase(
         historyRepository: HistoryRepository,
         getHistoryMapper: GetHistoryMapper,
-    ) = GetHistoryUseCase(historyRepository,getHistoryMapper)
+    ) = GetHistoryUseCase(historyRepository, getHistoryMapper)
 
     @Provides
     fun provideSignInResendUseCase(
@@ -123,16 +121,38 @@ object UseCaseModule {
     ) = AuthVerifyUseCase(authenticationRepository, signInVerifyMapper, tokensMapper)
 
     @Provides
+    fun provideGetComponentsFromCacheUseCase(
+        homeRepository: HomeRepository,
+        componentsMapper: ComponentsMapper
+    ) = GetComponentsFromCacheUseCase(homeRepository, componentsMapper)
+
+    @Provides
+    fun providePutComponentsUseCase(
+        homeRepository: HomeRepository,
+        mapper: ComponentsMapper
+    ) = PutComponentsUseCase(homeRepository, mapper)
+
+    @Provides
+    fun provideUpdateUseCase(
+        homeRepository: HomeRepository,
+        mapper: ComponentsMapper
+    ) = UpdateComponentsInCatchUseCase(
+        homeRepository
+    )
+
+    @Provides
     fun provideDeleteCardUseCase(
         cardRepository: CardRepository,
         deleteCardMapper: DeleteCardMapper
     ) = DeleteCardUseCase(cardRepository, deleteCardMapper)
+
     @Provides
     fun provideAddCardUseCase(
         cardRepository: CardRepository,
         addCardMapper: AddCardMapper,
         messageMapper: MessageMapper
-    )= AddCardUseCase(cardRepository,addCardMapper,messageMapper)
+    ) = AddCardUseCase(cardRepository, addCardMapper, messageMapper)
+
 
     @Provides
     fun provideGetFeeUseCase(
@@ -140,9 +160,23 @@ object UseCaseModule {
         getFeeReqMapper: GetFeeReqMapper,
         getFeeResMapper: GetFeeResMapper,
     ) = GetFeeUseCase(transferRepository, getFeeReqMapper, getFeeResMapper)
-@Provides
-fun provideGetCardsUseCase(
+
+    @Provides
+    fun provideGetCardsUseCase(
     cardRepository: CardRepository,
     getCardsMapper: GetCardsMapper
-) = GetCardsUseCase(cardRepository, getCardsMapper)
+    ) = GetCardsUseCase(cardRepository, getCardsMapper)
+
+    @Provides
+    @Singleton
+    fun provideUpdateTokenUseCase(
+        authenticationRepository: AuthenticationRepository,
+        tokensMapper: TokensMapper,
+        updateTokenMapper: UpdateTokenMapper
+    ) = UpdateTokenUseCase(
+        authenticationRepository,
+        tokensMapper,
+        updateTokenMapper
+    )
+
 }

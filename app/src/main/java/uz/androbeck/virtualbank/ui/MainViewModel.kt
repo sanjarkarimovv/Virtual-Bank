@@ -4,8 +4,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
@@ -16,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val prefsProvider: PreferencesProvider
+    private val prefsProvider: PreferencesProvider,
 ) : BaseViewModel() {
 
     private val navGraphEvent = Channel<NavGraphEvent>()
@@ -28,7 +26,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun setNavGraphEvent() = viewModelScope.launch {
-        if (prefsProvider.token.isNotEmpty()) {
+        if (prefsProvider.accessToken.isNotEmpty()) {
             navGraphEvent.send(NavGraphEvent.PinCode)
         } else {
             navGraphEvent.send(NavGraphEvent.Auth)
@@ -40,7 +38,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun checkIsAwayLong() = viewModelScope.launch {
-        isAwayLong.send((System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000 && prefsProvider.token.isNotEmpty())
+        isAwayLong.send((System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000 && prefsProvider.accessToken.isNotEmpty())
     }
 
     fun observeIsAwayLong() : Flow<Boolean> {

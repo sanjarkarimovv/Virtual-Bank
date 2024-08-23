@@ -44,6 +44,8 @@
     <color name="colorShadow">#000000</color>
     <color name="screenBackgroundColor">#20202C</color>
     <color name="screenTextColor">#6DC7CE</color>
-    <color name="screenPayMeDarkColor">#27313d</color>
+    //home
+    <color name="colorBlueForHome">#02BDD5</color>
+    <color name="colorDarkFoeHome">#1C182B</color>
 
 </resources>

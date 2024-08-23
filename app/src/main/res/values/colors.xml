@@ -45,8 +45,15 @@
     <color name="colorInversePrimary">#D0BCFF</color>
     <color name="colorScrim">#000000</color>
     <color name="colorShadow">#000000</color>
+    // home
+    <color name="colorBlueForHome">#02BDD5</color>
+    <color name="colorDarkFoeHome">#1C182B</color>
+
+    <color name="colorCardLight">#CC16131F</color>
     <color name="screenBackgroundColor">#F6F7F9</color>
     <color name="screenTextColor">#6DC7CE</color>
     <color name="screenPayMeDarkColor">#27313d</color>
+    <color name="colorRed">#F60C14</color>
+    <color name="colorWeakPrimary">#806750A4</color>
 
 </resources>
