@@ -133,4 +133,15 @@
     <string name="str_bracket">(</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
+    <string name="security_settings">Xavfsizlik sozlamalari</string>
+    <string name="change_pin_code">Pin-kodni o\'zgartirish</string>
+    <string name="login_with_fingerprint_or_face_id">Barmoq izi yoki yuz yordamida kirish</string>
+    <string name="lock_app_when_closed">Yopib turganda blokirovka qilish</string>
+    <string name="confirm_payment">To\'lovni tasdiqlash</string>
+    <string name="str_security_time">%1$d sek</string>
+    <string name="str_new_pin_code">Yangi PIN-kodni kiriting</string>
+    <string name="str_confirm_new_pin_code">Yangi PIN-kodni tasdiqlang</string>
+    <string name="close">Yopish</string>
+    <string name="snackbar_icon">Snackbar icon</string>
+    <string name="str_pin_code_same">Yangi PIN kod eskisida farqli bo\'lishi lozim</string>
 </resources>

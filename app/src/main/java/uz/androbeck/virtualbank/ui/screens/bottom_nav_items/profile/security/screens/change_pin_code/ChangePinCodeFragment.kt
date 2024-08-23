@@ -1,10 +1,9 @@
-package uz.androbeck.virtualbank.ui.screens.pin_code
+package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.screens.change_pin_code
 
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
-import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,52 +13,49 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
-import uz.androbeck.virtualbank.databinding.FragmentPinCodeBinding
+import uz.androbeck.virtualbank.databinding.FragmentChangePincodeBinding
+import uz.androbeck.virtualbank.ui.MainActivity
 import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.pin_code.events.PinCodeEvent
+import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.events.ChangePinAnimEvent
+import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.events.ChangePinCodeEvent
 import uz.androbeck.virtualbank.utils.extentions.gone
-import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.vibrate
 import uz.androbeck.virtualbank.utils.extentions.visible
-import java.util.concurrent.Executors
 
 @AndroidEntryPoint
-class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
-    private val binding by viewBinding(FragmentPinCodeBinding::bind)
-    private val pinCodeViewModel: PinCodeViewModel by viewModels()
+class ChangePinCodeFragment : BaseFragment(R.layout.fragment_change_pincode) {
+    private val binding by viewBinding(FragmentChangePincodeBinding::bind)
+    private val pinCodeViewModel: ChangePinCodeViewModel by viewModels()
     private val sharedVM: MainViewModel by activityViewModels()
-
     override fun setup() {
-
     }
 
     override fun clicks() {
         setupButtonClicks()
-        setupFingerprintClick()
     }
 
     override fun observe() {
         observePinCodeList()
-        observeFromRegister()
-        observePinCodeEvent()
-        observeErrorAttempts()
         observeErrorLogout()
+        observePinCodeEvent()
+        observeErrorAnim()
+        observePinCodeSame()
     }
 
     private fun setupButtonClicks() = with(binding) {
         val buttonIds = listOf(
-            binding.btn01 to getString(R.string.str_num_1),
-            binding.btn02 to getString(R.string.str_num_2),
-            binding.btn03 to getString(R.string.str_num_3),
-            binding.btn04 to getString(R.string.str_num_4),
-            binding.btn05 to getString(R.string.str_num_5),
-            binding.btn06 to getString(R.string.str_num_6),
-            binding.btn07 to getString(R.string.str_num_7),
-            binding.btn08 to getString(R.string.str_num_8),
-            binding.btn09 to getString(R.string.str_num_9),
-            binding.btn00 to getString(R.string.str_num_0)
+            btn01 to getString(R.string.str_num_1),
+            btn02 to getString(R.string.str_num_2),
+            btn03 to getString(R.string.str_num_3),
+            btn04 to getString(R.string.str_num_4),
+            btn05 to getString(R.string.str_num_5),
+            btn06 to getString(R.string.str_num_6),
+            btn07 to getString(R.string.str_num_7),
+            btn08 to getString(R.string.str_num_8),
+            btn09 to getString(R.string.str_num_9),
+            btn00 to getString(R.string.str_num_0)
         )
 
         buttonIds.forEach { (button, digit) ->
@@ -69,22 +65,20 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
             }
         }
 
+        pinToolbar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_changePinCodeFragment_to_securityFragment)
+        }
+
         btnRemove.setOnClickListener {
             vibrate()
             pinCodeViewModel.removeLastDigit()
         }
 
-        actionExit.setOnClickListener {
-            vibrate()
-            pinCodeViewModel.handlePinCodeExit()
-            navigateWithDelay(NavGraphEvent.Auth, 500L)
-        }
-    }
-
-    private fun setupFingerprintClick() {
-        binding.btnFingerprint.singleClickable {
-            vibrate()
-            promptBiometricAuthentication()
+        listOf(btnConfirm, toolbarText).forEach { button ->
+            button.setOnClickListener {
+                vibrate()
+                pinCodeViewModel.confirmPinValidation()
+            }
         }
     }
 
@@ -94,59 +88,68 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
         }
     }
 
-    private fun observeFromRegister() {
-        pinCodeViewModel.fromRegister.observe(viewLifecycleOwner) {
-            if (it) {
-                if (pinCodeViewModel.checkBiometrics()) {
-                    promptBiometricAuthentication()
-                    binding.btnFingerprint.visible()
-                } else {
-                    binding.btnFingerprint.gone()
-                }
-                binding.actionExit.visible()
-            } else {
-                binding.actionExit.gone()
-                binding.btnFingerprint.gone()
-            }
+    private fun observeErrorLogout() {
+        pinCodeViewModel.errorLogout.observe(viewLifecycleOwner) {
+            if (it) navigateWithDelay(NavGraphEvent.Auth, 2000L)
         }
     }
 
     private fun observePinCodeEvent() {
-        pinCodeViewModel.pinCodeEvent.observe(viewLifecycleOwner) {
-            handlePinCodeEvent(it)
-        }
-    }
+        pinCodeViewModel.pinCodeProgress.observe(viewLifecycleOwner) {
+            when (it) {
+                ChangePinCodeEvent.PinCheck -> {
+                    binding.toolbarText.gone()
+                    binding.btnConfirm.gone()
+                    binding.pinActionText.text = getString(R.string.pin_code_page_enter_pin)
+                }
 
-    private fun observeErrorAttempts() {
-        pinCodeViewModel.errorAttempts.observe(viewLifecycleOwner) {
-            binding.errorAttempts.text =
-                if (it >= 1) getString(R.string.pin_mismatch_message, 5 - it) else ""
-        }
-    }
+                ChangePinCodeEvent.PinSet -> {
+                    setButtonsEnabled(true)
+                    binding.toolbarText.gone()
+                    binding.btnConfirm.gone()
+                    binding.pinActionText.text = getString(R.string.str_new_pin_code)
+                }
 
-    private fun observeErrorLogout() {
-        pinCodeViewModel.errorLogout.observe(viewLifecycleOwner) {
-            if (it) navigateWithDelay(NavGraphEvent.Auth, 0L)
-        }
-    }
+                ChangePinCodeEvent.PinValidate -> {
+                    setButtonsEnabled(true)
+                    binding.toolbarText.visible()
+                    binding.btnConfirm.visible()
+                    binding.pinActionText.text = getString(R.string.str_confirm_new_pin_code)
+                }
 
-    private fun handlePinCodeEvent(event: PinCodeEvent) {
-        when (event) {
-            PinCodeEvent.PinRegistered -> {
-                performPinCodeAnimation(false)
-                viewLifecycleOwner.lifecycleScope.launch {
-                    delay(1200L)
-                    findNavController().navigate(R.id.action_pinCodeFragment_to_confirmPinCodeFragment)
+                ChangePinCodeEvent.PinSuccess -> {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        delay(100L)
+                        findNavController().navigate(R.id.action_changePinCodeFragment_to_securityFragment)
+                    }
+
                 }
             }
+        }
+    }
 
-            PinCodeEvent.PinValidated -> {
-                performPinCodeAnimation(false)
-                navigateWithDelay(NavGraphEvent.Main, 1200L)
+    private fun observePinCodeSame() {
+        pinCodeViewModel.pinCodeSame.observe(viewLifecycleOwner) {
+            if(it == true){
+                (activity as? MainActivity)?.showActionSnackBar(R.color.colorOrange, R.drawable.ic_warning, getString(R.string.str_pin_code_same))
             }
+        }
+    }
 
-            PinCodeEvent.PinValidationFailed -> {
-                performPinCodeAnimation(true)
+    private fun observeErrorAnim() {
+        pinCodeViewModel.errorAnim.observe(viewLifecycleOwner) {
+            when (it) {
+                ChangePinAnimEvent.PinValidated -> {
+                    performPinCodeAnimation(false)
+                }
+
+                ChangePinAnimEvent.PinNotValidated -> {
+                    performPinCodeAnimation(true)
+                }
+
+                ChangePinAnimEvent.PinNeutral -> {
+                    //Do nothing
+                }
             }
         }
     }
@@ -167,7 +170,6 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
                 delay(1000L)
                 pinCodeViewModel.clearPinCode()
                 setButtonsEnabled(true)
-                binding.errorAttempts.visible()
             }
         }
     }
@@ -232,38 +234,13 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
         }
     }
 
-    private fun promptBiometricAuthentication() {
-        val biometricPrompt = BiometricPrompt(
-            requireActivity(),
-            Executors.newSingleThreadExecutor(),
-            object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                    super.onAuthenticationSucceeded(result)
-                    navigateWithDelay(NavGraphEvent.Main, 0L)
-                    pinCodeViewModel.resetErrorAttempts()
-                }
-            })
-
-        val promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle(getString(R.string.biometric_prompt_title))
-            .setSubtitle(getString(R.string.biometric_prompt_subtitle))
-            .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
-            .build()
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            if (isAdded && isResumed && !isRemoving && !isDetached) {
-                biometricPrompt.authenticate(promptInfo)
-            }
-        }
-    }
-
     private fun setButtonsEnabled(enabled: Boolean) {
         with(binding) {
             listOf(
                 btn01, btn02, btn03,
                 btn04, btn05, btn06,
                 btn07, btn08, btn09,
-                btn00, btnRemove, btnFingerprint
+                btn00, btnRemove
             ).forEach {
                 it.isEnabled = enabled
             }
