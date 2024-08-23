@@ -75,5 +75,6 @@
     <fragment
         android:id="@+id/depositCardFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.deposit_card.DepositCardFragment"
-        android:label="DepositCardFragment" />
+        android:label="DepositCardFragment"
+        tools:layout="@layout/fragment_deposit_card"/>
 </navigation>

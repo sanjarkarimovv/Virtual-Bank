@@ -25,6 +25,9 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         llSwipe.setOnRefreshListener {
             viewModel.getUiData()
         }
+        customHeader.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_depositCardFragment)
+        }
         btnSettings.setOnClickListener {
             // navigate to settings screen
             customBody.stopCounter()
