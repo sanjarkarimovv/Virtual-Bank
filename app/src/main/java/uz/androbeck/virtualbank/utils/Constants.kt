@@ -26,7 +26,7 @@ object Constants {
         const val GET_CARD="card"
         const val GET_FEE="transfer/fee"
         const val TRANSFER="transfer/transfer"
-
+        const val Get_CARD_OWNER_BY_PAN="transfer/card-owner"
     }
 
     object Header {

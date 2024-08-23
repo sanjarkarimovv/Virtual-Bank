@@ -9,12 +9,17 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.data.dto.request.card.AddCardReqDto
 import uz.androbeck.virtualbank.databinding.FragmentTransferBinding
+import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
+import uz.androbeck.virtualbank.domain.ui_models.transfer.GetCardOwnerByPanReqUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.customViews.inputs.CustomViewEnterCardOrPhoneNumber
+import uz.androbeck.virtualbank.utils.extentions.toast
 
+@AndroidEntryPoint
 class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
     private val binding by viewBinding(FragmentTransferBinding::bind)
     private val vm: TransferFragmentViewModel by viewModels()
@@ -26,11 +31,23 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
         }
         adjustButtonPositionForKeyboard()
         with(binding) {
-            etCardOrPhoneNumber.addTextChangedListener {
-                if (it?.length == 19 || it?.length == 16)
-                    btnContinue.isEnable = true
-                else
+            etCardOrPhoneNumber.addTextChangedListener { enterNumber->
+                println("enterNumber $enterNumber")
+                if(enterNumber?.length == 19){
+                    println("______________ ${enterNumber.toString().replace(" ", "")}")
+                    val getCardOwnerByPanReqUIModel = GetCardOwnerByPanReqUIModel(enterNumber.toString().replace(" ", ""))
+                    vm.getCardOwnerByPan(getCardOwnerByPanReqUIModel)
+                    vm.cardOwnerResponse.observe(viewLifecycleOwner) {
+                        if (it) {
+                            btnContinue.isEnable = true
+                        }
+                    }
+                    vm.isGetCardOwnerByPanEvent.observe(viewLifecycleOwner) {
+                        toast("it ${it.pan}")
+                    }
+                } else{
                     btnContinue.isEnable = false
+                }
             }
             etCardOrPhoneNumber.onClickEditText = {
                 btnContinue.visibility = View.VISIBLE
@@ -87,30 +104,16 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
 
         setupOnBackPressed()
     }
+    val listgetCard: List<CardUIModel> = listOf()
 
-    //    private fun adjustButtonPositionForKeyboard() {
-//        val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
-//        rootView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-//            override fun onGlobalLayout() {
-//                val rect = Rect()
-//                rootView.getWindowVisibleDisplayFrame(rect)
-//                val screenHeight = rootView.height
-//
-//                val keypadHeight = screenHeight - rect.bottom
-//
-//                // If the keyboard is open
-//                if (keypadHeight > screenHeight * 0.15) {
-//                    binding.btnContinue.visibility = View.VISIBLE
-//                    // Move the button above the keyboard
-//                    binding.btnContinue.translationY = -keypadHeight.toFloat() + binding.btnContinue.height
-//                } else {
-//                    // Reset the button position when the keyboard is hidden
-//                    binding.btnContinue.translationY = 0f
-//                    binding.btnContinue.visibility = View.GONE
-//                }
-//            }
-//        })
-//    }
+    override fun observe() {
+        vm.cardsResponse.observe(viewLifecycleOwner) {
+            listgetCard.plus(it)
+        }
+    }
+
+
+
     private val onGlobalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
         val rect = Rect()
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)

@@ -2,12 +2,14 @@ package uz.androbeck.virtualbank.data.source.remote.transfer
 
 import kotlinx.coroutines.flow.Flow
 import uz.androbeck.virtualbank.data.dto.common.response.TokenResDto
+import uz.androbeck.virtualbank.data.dto.request.transfer.GetCardOwnerByPanReqDto
 import uz.androbeck.virtualbank.data.dto.request.transfer.GetFeeReqDto
 import uz.androbeck.virtualbank.data.dto.request.transfer.TransferRequestDto
+import uz.androbeck.virtualbank.data.dto.response.transfer.GetCardOwnerByPanResDto
 import uz.androbeck.virtualbank.data.dto.response.transfer.GetFeeResDto
 
 interface TransferRemoteDataSource  {
     fun getFee(request: GetFeeReqDto): Flow<GetFeeResDto>
     fun transfer(transferReqDto: TransferRequestDto): Flow<TokenResDto>
-
+    fun getCardOwner(getCardOwnerByPanReqDto: GetCardOwnerByPanReqDto):Flow<GetCardOwnerByPanResDto>
 }
