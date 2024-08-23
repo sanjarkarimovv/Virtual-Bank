@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import uz.androbeck.virtualbank.databinding.CustomHomeHeaderBinding
+import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.invisible
 import uz.androbeck.virtualbank.utils.extentions.visible
 
@@ -29,8 +30,10 @@ class CustomHomeHeader @JvmOverloads constructor(
 
     fun setAmount(amount: String) {
         if (isShowAmount) {
-
             binding.tvTextAmount.text = toSum(amount)
+            binding.tvTextAmount.visible()
+            binding.loadingTotalBalance.gone()
+
         }
         else return
     }

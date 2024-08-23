@@ -90,7 +90,6 @@ class MainViewModel @Inject constructor(
                         }
                         list
                     }
-                    getUiData()
                 }
             }.launchIn(this)
         }

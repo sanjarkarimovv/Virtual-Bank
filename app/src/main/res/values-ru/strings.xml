@@ -123,4 +123,6 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
     <string name="str_bracket">(</string>
+    <string name="str_nfc">Nfc</string>
+    <string name="str_qrd">QR</string>
 </resources>
