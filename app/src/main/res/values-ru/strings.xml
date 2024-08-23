@@ -123,4 +123,10 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
     <string name="str_bracket">(</string>
+    <string name="transfer_to_my_card">Перевод на мою карту</string>
+    <string name="where_to_transfer">Куда перевести</string>
+    <string name="transfer_amount">Сумма перевода</string>
+    <string name="from_1_000_to_15_000_000_sum">от 1 000 до 15 000 000 сум</string>
+    <string name="next">Следующий</string>
+    <string name="select_receiving_card">Выберите карту получения</string>
 </resources>

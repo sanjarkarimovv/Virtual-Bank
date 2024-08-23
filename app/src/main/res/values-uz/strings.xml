@@ -123,4 +123,10 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">DD/MM/YYYY</string>
     <string name="str_bracket">(</string>
+    <string name="transfer_to_my_card">Mening kartamga o\'tkazing</string>
+    <string name="where_to_transfer">Qayerga o\'tkazish kerak</string>
+    <string name="transfer_amount">Transfer summasi</string>
+    <string name="from_1_000_to_15_000_000_sum">1 000 dan 15 000 000 so\'mgacha</string>
+    <string name="next">Keyingisi</string>
+    <string name="select_receiving_card">Qabul qiluvchi kartani tanlang</string>
 </resources>
