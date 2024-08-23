@@ -1,7 +1,6 @@
 package uz.androbeck.virtualbank.data.source.remote.home
 
 import com.google.firebase.Firebase
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
