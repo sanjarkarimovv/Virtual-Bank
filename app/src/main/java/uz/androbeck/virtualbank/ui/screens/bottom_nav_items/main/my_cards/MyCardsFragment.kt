@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,10 +25,22 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
     override fun setup() {
 
 
-        val listener:(CardUIModel)->Unit={card->
+        val listener: (CardUIModel) -> Unit = { card ->
             CardOptionBottomDialog(
+                toHistoryScreen = {
+                    findNavController().navigate(R.id.action_myCardsFragment_to_cardHistoryFragment)
+                },
+                toRequisitionScreen = {
+//                    val bundle = bundleOf("sss" to it)
+                    findNavController().navigate(
+                        R.id.action_myCardsFragment_to_requisitionFragment,
+                    )
+                },
+                toTransferScreen = {
+//                    findNavController().navigate(R.id.action_myCardsFragment_to_transferFragment)
+                },
                 card
-            ).show(parentFragmentManager,"")
+            ).show(parentFragmentManager, "")
         }
 
         pagingAdapter = ViewPagerAdapter(listener)
@@ -50,19 +63,19 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                     binding.viewPager.adapter = pagingAdapter
 
                     pagingAdapter.load(cardSortedList)
-                    }
+                }
             }
         }.launchIn(this)
 
     }
 
-    override fun clicks()= with(binding){
+    override fun clicks() = with(binding) {
 
         swipeRefreshLayout.setOnRefreshListener {
             vm.getCards()
         }
 
-        customToolbar.onClickLeftIcon={
+        customToolbar.onClickLeftIcon = {
             findNavController().popBackStack()
         }
 
@@ -72,8 +85,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     }
 
-    private fun loadList(): List<CardUIModel> {
-        val getCardsUIModel = listOf<CardUIModel>(
+        val getCardsUIModel = listOf(
             CardUIModel(
                 id = 1,
                 amount = 5600.5,
@@ -120,8 +132,6 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
             )
         )
-        return getCardsUIModel
-    }
 
 
     private fun cardSortedList(list: List<CardUIModel>): List<List<CardUIModel>> {
@@ -141,6 +151,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                 "9860" -> {
                     humoList.add(cardUIModel)
                 }
+
                 else -> {}
             }
 
@@ -162,6 +173,10 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         }
         return mainList
     }
+
+    override fun onResume() {
+        super.onResume()
+}
 }
 
 

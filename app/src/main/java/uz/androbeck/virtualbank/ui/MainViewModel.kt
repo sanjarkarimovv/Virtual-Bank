@@ -3,6 +3,7 @@ package uz.androbeck.virtualbank.ui
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
@@ -21,7 +22,15 @@ class MainViewModel @Inject constructor(
 
     private val isAwayLong = Channel<Boolean>()
 
+    private val _openHistoryItem = Channel<Unit>()
+    val openHistoryItem = _openHistoryItem.consumeAsFlow().share(viewModelScope)
+
+    fun openHistoryItem() = viewModelScope.launch {
+        _openHistoryItem.send(Unit)
+    }
+
     fun setNavGraphEvent(event: NavGraphEvent) = viewModelScope.launch {
+        delay(500L)
         navGraphEvent.send(event)
     }
 

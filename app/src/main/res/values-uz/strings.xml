@@ -133,10 +133,10 @@
     <string name="str_bracket">(</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
-
     <string name="str_send_qr_code">QR ni ulashish</string>
     <string name="str_fill_card">To\'ldirish</string>
     <string name="str_history">Tarix</string>
     <string name="str_delete">Olib tashlash</string>
     <string name="str_requisites">Rekvizitlar</string>
+
 </resources>

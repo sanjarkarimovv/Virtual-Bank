@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
@@ -115,6 +116,10 @@ class MainActivity : AppCompatActivity() {
                 else -> Unit
             }
         }.launchIn(lifecycleScope)
+
+        vm.openHistoryItem.onEach {
+            binding.bottomNavigation.setSelectedItemId(R.id.historyFragment)
+        }.launchIn(MainScope())
     }
 
     private fun defaultNavHostTrue(navHostFragment: NavHostFragment) {

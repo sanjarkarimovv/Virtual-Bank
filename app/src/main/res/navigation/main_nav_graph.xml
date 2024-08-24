@@ -64,13 +64,16 @@
         android:id="@+id/myCardsFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.MyCardsFragment"
         android:label="MyCardsFragment"
-        tools:layout="@layout/fragment_add_card">
+        tools:layout="@layout/fragment_my_cards">
         <action
             android:id="@+id/action_myCardsFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
         <action
             android:id="@+id/action_myCardsFragment_to_requisitionFragment"
             app:destination="@id/requisitionFragment" />
+        <action
+            android:id="@+id/action_myCardsFragment_to_cardHistoryFragment"
+            app:destination="@id/cardHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/cardScannerFragment"
@@ -81,4 +84,9 @@
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.requisition.RequisitionFragment"
         android:label="RequisitionFragment"
         tools:layout="@layout/fragment_requisition"/>
+    <fragment
+        android:id="@+id/cardHistoryFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.history.CardHistoryFragment"
+        android:label="CardHistoryFragment"
+        tools:layout="@layout/fragment_history_card"/>
 </navigation>
