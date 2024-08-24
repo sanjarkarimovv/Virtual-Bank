@@ -24,8 +24,6 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     override fun setup() {
 
-
-
         val listener: (CardUIModel) -> Unit = { card ->
             CardOptionBottomDialog(
                 toHistoryScreen = {

@@ -113,7 +113,6 @@
     <string name="str_validity_period">Amala qilish muddati</string>
     <string name="str_card_name">Kartaning nomi</string>
     <string name="str_add_card">Karta qo\'shish</string>
-    <string name="str_add_card_succes">Karta muvaffaqiyatli qo\‘shildi</string>
     <string name="str_no_data">Ma`lumot yo`q</string>
     <string name="str_add_card_succes">Karta muvaffaqiyatli qo‘shildi</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
@@ -134,7 +133,6 @@
     <string name="str_bracket">(</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
-    <string name="str_send_qr_code">QR ni ulashish</string>
     <string name="str_fill_card">To\'ldirish</string>
     <string name="str_history">Tarix</string>
     <string name="str_delete">Olib tashlash</string>
@@ -153,4 +151,10 @@
     <string name="str_pin_code_same">Yangi PIN kod eskisida farqli bo\'lishi lozim</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_f.i.ish">F.S.L</string>
+    <string name="str_date_card">Kartaning amal qilish muddati</string>
+    <string name="str_card_nuber">Karta raqami</string>
+    <string name="str_name_of_card">Karta nomi</string>
+
+
 </resources>

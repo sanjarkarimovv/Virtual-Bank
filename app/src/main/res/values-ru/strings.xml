@@ -133,7 +133,6 @@
     <string name="str_transfer_cencle">Amalga oshmadi</string>
     <string name="str_histiry_sort_name_income">Tushum</string>
     <string name="str_histiry_sort_name_outcome">Chiqim</string>
-    <string name="str_send_qr_code">Отправить QR-код</string>
     <string name="str_fill_card">Заполнить карту</string>
     <string name="str_history">История</string>
     <string name="str_delete">Удалить</string>
@@ -152,4 +151,10 @@
     <string name="str_pin_code_same">Новый ПИН должен отличаться от старого</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_f.i.ish">И.Ф.О</string>
+    <string name="str_date_card">Срок действия карты</string>
+    <string name="str_card_nuber">Номер карты</string>
+    <string name="str_name_of_card">Имя карты</string>
+
+
 </resources>

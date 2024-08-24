@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_profileFragment_to_updateInfoFragment"
             app:destination="@id/updateInfoFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_securityFragment"
+            app:destination="@id/securityFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"

@@ -148,9 +148,15 @@
     <string name="str_pin_code_same">New PIN code should not coincide with the old one</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
-    <string name="str_send_qr_code">QR ni ulashish</string>
     <string name="str_fill_card">To\'ldirish</string>
     <string name="str_history">Tarix</string>
     <string name="str_delete">Olib tashlash</string>
     <string name="str_requisites">Rekvizitlar</string>
+
+    <string name="str_f.i.ish">F.S.L</string>
+    <string name="str_date_card">Card expiration date</string>
+    <string name="str_card_nuber">Pan</string>
+    <string name="str_name_of_card">Card name</string>
+
+
 </resources>
