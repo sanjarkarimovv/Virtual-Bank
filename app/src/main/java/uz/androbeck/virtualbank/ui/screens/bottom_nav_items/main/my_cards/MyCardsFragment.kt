@@ -31,9 +31,9 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                     findNavController().navigate(R.id.action_myCardsFragment_to_cardHistoryFragment)
                 },
                 toRequisitionScreen = {
-//                    val bundle = bundleOf("sss" to it)
+                    val bundle = bundleOf("card" to it)
                     findNavController().navigate(
-                        R.id.action_myCardsFragment_to_requisitionFragment,
+                        R.id.action_myCardsFragment_to_requisitionFragment, bundle
                     )
                 },
                 toTransferScreen = {
@@ -85,54 +85,6 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     }
 
-        val getCardsUIModel = listOf(
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "5614682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 2,
-                isVisible = true
-            ),
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "9860682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 3,
-                isVisible = false
-            ),
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "8600682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 4,
-                isVisible = false
-            ),
-            CardUIModel(
-                id = 1,
-                amount = 5600.5,
-                name = "Personal",
-                owner = "Islom Baxtiyorov",
-                pan = "8600682005949500",
-                expiredMonth = 7,
-                expiredYear = 2025,
-                themeType = 5,
-                isVisible = false
-
-            )
-        )
-
 
     private fun cardSortedList(list: List<CardUIModel>): List<List<CardUIModel>> {
         val allList = mutableListOf<CardUIModel>()
@@ -176,7 +128,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     override fun onResume() {
         super.onResume()
-}
+    }
 }
 
 

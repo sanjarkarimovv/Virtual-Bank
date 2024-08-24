@@ -46,14 +46,14 @@
                 android:layout_height="25dp"
                 android:layout_marginVertical="10dp"
 
-                android:src="@drawable/ic_history_card" />
+                android:src="@drawable/ic_history" />
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginVertical="10dp"
 
-                android:src="@drawable/ic_requzite_card" />
+                android:src="@drawable/ic_requizite_card" />
 
             <ImageView
                 android:layout_width="30dp"
