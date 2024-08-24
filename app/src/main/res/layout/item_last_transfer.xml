@@ -19,15 +19,28 @@
             android:layout_marginBottom="0dp"
             android:background="@color/colorOnSecondary" />
 
-        <TextView
-            android:id="@+id/tv_amount"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/exo2_medium"
-            android:paddingHorizontal="8dp"
-            android:textColor="@color/colorScrim"
-            android:textSize="16sp" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ic_income_or_outcome"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo2_medium"
+                android:paddingHorizontal="8dp"
+                android:textColor="@color/colorScrim"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

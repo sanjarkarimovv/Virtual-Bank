@@ -19,6 +19,14 @@ sealed class HomeBodyModels {
         val name: HomeComponents,
         val data: List<InComeAndOutComeUIModel>
     ) : HomeBodyModels()
+
+    data class Advertising(
+        val data: List<AdvertisingModel>?=null,
+        val error: String? = null,
+        val loading: Boolean? = null
+
+    ) : HomeBodyModels()
+
     data class TotalBalance(val amount: String):HomeBodyModels()
     data class Error(val massage: String):HomeBodyModels()
 }

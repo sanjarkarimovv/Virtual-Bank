@@ -24,6 +24,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     override fun setup() {
 
+        pagingAdapter = ViewPagerAdapter()
 
         val listener: (CardUIModel) -> Unit = { card ->
             CardOptionBottomDialog(
@@ -49,7 +50,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         binding.viewPager.adapter = pagingAdapter
     }
 
-    override fun observe(): Unit = with(viewLifecycleOwner.lifecycleScope) {
+    override fun observe(): Unit {
         vm.getCardsEvent.onEach {
             when (it) {
                 is MyCardsUIEvent.Error -> {
@@ -63,19 +64,21 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                     binding.viewPager.adapter = pagingAdapter
 
                     pagingAdapter.load(cardSortedList)
+                    }
+
+                MyCardsUIEvent.Loading -> {}
                 }
             }
-        }.launchIn(this)
+        }.launchIn(lifecycleScope)
 
     }
 
-    override fun clicks() = with(binding) {
-
+    override fun clicks()= with(binding){
         swipeRefreshLayout.setOnRefreshListener {
             vm.getCards()
         }
 
-        customToolbar.onClickLeftIcon = {
+        customToolbar.onClickLeftIcon={
             findNavController().popBackStack()
         }
 
@@ -103,7 +106,6 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                 "9860" -> {
                     humoList.add(cardUIModel)
                 }
-
                 else -> {}
             }
 
@@ -124,10 +126,6 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
         }
         return mainList
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 }
 
