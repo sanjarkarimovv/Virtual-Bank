@@ -24,7 +24,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
     override fun setup() {
 
-        pagingAdapter = ViewPagerAdapter()
+
 
         val listener: (CardUIModel) -> Unit = { card ->
             CardOptionBottomDialog(
@@ -68,10 +68,10 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
                 MyCardsUIEvent.Loading -> {}
                 }
-            }
-        }.launchIn(lifecycleScope)
+            }.launchIn(lifecycleScope)
+        }
 
-    }
+
 
     override fun clicks()= with(binding){
         swipeRefreshLayout.setOnRefreshListener {
@@ -128,6 +128,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         return mainList
     }
 }
+
 
 
 
