@@ -11,9 +11,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
+import uz.androbeck.virtualbank.data.dto.request.card.DeleteCardReqDto
+import uz.androbeck.virtualbank.domain.mapper.card.DeleteCardMapper
+import uz.androbeck.virtualbank.domain.ui_models.card.DeleteCardReqUIModel
 import uz.androbeck.virtualbank.domain.ui_models.home.HomeBodyModels
 import uz.androbeck.virtualbank.domain.ui_models.home.PaymentsModel
 import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
+import uz.androbeck.virtualbank.domain.useCases.card.DeleteCardUseCase
 import uz.androbeck.virtualbank.domain.useCases.card.GetCardsUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
@@ -26,6 +30,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
+    private val deleteCardUseCase: DeleteCardUseCase,
     private val getFullInfoUseCase: GetFullInfoUseCase,
     private val putUpdateInfoUseCase: PutUpdateInfoUseCase,
     private val getComponentsFromCacheUseCase: GetComponentsFromCacheUseCase,
@@ -40,7 +45,13 @@ class MainViewModel @Inject constructor(
     private val _uiData = MutableLiveData<HomeBodyModels>()
     val uiData: LiveData<HomeBodyModels> = _uiData
 
+    private val _deleteCard = MutableLiveData<String>()
+    val deleteCard: LiveData<String> = _deleteCard
+
+
     init {
+        deleteCardById(String())
+
         viewModelScope.launch(Dispatchers.IO) {
             getComponentsFromCacheUseCase().onEach { it ->
                 viewModelScope.launch {
@@ -88,6 +99,10 @@ class MainViewModel @Inject constructor(
                 }
             }.launchIn(this)
         }
+    }
+    fun deleteCardById(id:String) {
+        println(":::::::::::::: deleteCardById id $id")
+        println( "AAAAAAAAAAAAAAAAAAAAAA::: " + deleteCardUseCase.invoke(id))
     }
 
     fun getUiData() {

@@ -4,21 +4,31 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import coil.map.Mapper
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentMainBinding
+import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
+import uz.androbeck.virtualbank.domain.ui_models.card.DeleteCardReqUIModel
 import uz.androbeck.virtualbank.domain.ui_models.home.HomeBodyModels
+import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.customViews.forHome.HeaderUiEvent
 import uz.androbeck.virtualbank.utils.extentions.toast
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private val binding: FragmentMainBinding by viewBinding()
+   @Inject
+   lateinit var messageController: MessageController
     override fun setup() {
         viewModel.getUiData()
         onClick()
+
+        viewModel.deleteCardById("5")
     }
 
     private fun onClick() = with(binding) {
@@ -59,6 +69,16 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     }
 
     override fun observe() {
+        println(":::::::::::::: observe")
+
+        viewModel.deleteCard.observe(viewLifecycleOwner){
+            println(":::::::::::::: viewModel deleteCard.observe $it")
+        }
+
+        messageController.observeMessage().onEach {
+            toast("Message: $it")
+        }
+
         viewModel.homeComponents.observe(this) {
             when (it) {
                 // get all components for room data base and show ui custom ui 2
