@@ -133,4 +133,6 @@
     <string name="str_bracket">(</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_select_date">Select date</string>
 </resources>

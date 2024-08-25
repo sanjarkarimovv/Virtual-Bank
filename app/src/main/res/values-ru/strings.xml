@@ -111,7 +111,7 @@
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
-    <string name="str_select">Select</string>
+    <string name="str_select">Выбирать</string>
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
     <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
@@ -125,4 +125,6 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
     <string name="str_bracket">(</string>
+    <string name="str_cancel">Отмена</string>
+    <string name="str_select_date">Выберите дату</string>
 </resources>

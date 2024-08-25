@@ -18,7 +18,7 @@ class LastTransferAdapter :
         fun bind(lastTransferModel: InComeAndOutComeUIModel) = with(binding) {
             lastTransferModel.run {
                 tvAmount.text = "+$amount"
-                tvDate.text = SimpleDateFormat("dd MMMM").format(time)
+                etDate.text = SimpleDateFormat("dd MMMM").format(time)
                 // ...
             }
         }
