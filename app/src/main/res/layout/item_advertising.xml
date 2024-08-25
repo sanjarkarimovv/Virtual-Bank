@@ -15,4 +15,12 @@
         android:scaleType="centerCrop"
         android:src="@drawable/bg_card_1" />
 
+    <ProgressBar
+        android:id="@+id/ic_loading"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/colorPrimary"
+        android:src="@drawable/ic_i_dont_know" />
+
 </androidx.cardview.widget.CardView>

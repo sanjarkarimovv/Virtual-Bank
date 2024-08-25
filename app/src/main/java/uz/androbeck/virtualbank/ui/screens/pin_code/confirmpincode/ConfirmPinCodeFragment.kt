@@ -1,23 +1,24 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code.confirmpincode
 
 import android.animation.ValueAnimator
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentConfirmPinCodeBinding
 import uz.androbeck.virtualbank.ui.MainViewModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
-import uz.androbeck.virtualbank.ui.screens.pin_code.utils.BiometricUtils
 import uz.androbeck.virtualbank.ui.screens.pin_code.events.ConfirmPinCodeEvent
+import uz.androbeck.virtualbank.ui.screens.pin_code.utils.BiometricUtils
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.vibrate
 import uz.androbeck.virtualbank.utils.extentions.visibleIf
@@ -32,45 +33,43 @@ class ConfirmPinCodeFragment : BaseFragment(R.layout.fragment_confirm_pin_code) 
     override fun setup() {
     }
 
-    override fun clicks() {
-        with(binding) {
-            val buttonIds = listOf(
-                btn01 to getString(R.string.str_num_1),
-                btn02 to getString(R.string.str_num_2),
-                btn03 to getString(R.string.str_num_3),
-                btn04 to getString(R.string.str_num_4),
-                btn05 to getString(R.string.str_num_5),
-                btn06 to getString(R.string.str_num_6),
-                btn07 to getString(R.string.str_num_7),
-                btn08 to getString(R.string.str_num_8),
-                btn09 to getString(R.string.str_num_9),
-                btn00 to getString(R.string.str_num_0)
-            )
+    override fun clicks() = with(binding) {
+        val buttonIds = listOf(
+            btn01 to getString(R.string.str_num_1),
+            btn02 to getString(R.string.str_num_2),
+            btn03 to getString(R.string.str_num_3),
+            btn04 to getString(R.string.str_num_4),
+            btn05 to getString(R.string.str_num_5),
+            btn06 to getString(R.string.str_num_6),
+            btn07 to getString(R.string.str_num_7),
+            btn08 to getString(R.string.str_num_8),
+            btn09 to getString(R.string.str_num_9),
+            btn00 to getString(R.string.str_num_0)
+        )
 
-            buttonIds.forEach { (button, digit) ->
-                button.setOnClickListener {
-                    vibrate()
-                    confirmPinCodeViewModel.addDigit(digit)
-                }
-            }
-
-            actionBack.singleClickable {
+        buttonIds.forEach { (button, digit) ->
+            button.setOnClickListener {
                 vibrate()
-                confirmPinCodeViewModel.clearReservePinCode()
-                findNavController().navigate(R.id.action_confirmPinCodeFragment_to_pinCodeFragment)
+                confirmPinCodeViewModel.addDigit(digit)
             }
+        }
 
-            listOf(btnConfirm, actionConfirm).forEach { button ->
-                button.setOnClickListener {
-                    vibrate()
-                    confirmPinCodeViewModel.handlePinCodeCompletion()
-                }
-            }
+        actionBack.singleClickable {
+            vibrate()
+            confirmPinCodeViewModel.clearReservePinCode()
+            findNavController().navigate(R.id.action_confirmPinCodeFragment_to_pinCodeFragment)
+        }
 
-            btnRemove.setOnClickListener {
+        listOf(btnConfirm, actionConfirm).forEach { button ->
+            button.setOnClickListener {
                 vibrate()
-                confirmPinCodeViewModel.removeLastDigit()
+                confirmPinCodeViewModel.handlePinCodeCompletion()
             }
+        }
+
+        btnRemove.setOnClickListener {
+            vibrate()
+            confirmPinCodeViewModel.removeLastDigit()
         }
     }
 
@@ -89,7 +88,7 @@ class ConfirmPinCodeFragment : BaseFragment(R.layout.fragment_confirm_pin_code) 
                         findNavController().navigate(R.id.action_confirmPinCodeFragment_to_biometricPermissionFragment)
                     } else {
                         confirmPinCodeViewModel.setBiometrics(false)
-                        navigateWithDelay(NavGraphEvent.Main, 600)
+                        navigateWithDelay(NavGraphEvent.Main, 600L)
                     }
                 }
             }
@@ -105,12 +104,20 @@ class ConfirmPinCodeFragment : BaseFragment(R.layout.fragment_confirm_pin_code) 
 
     private fun performPinCodeAnimation(onAnimationEnd: () -> Unit) {
         setButtonsEnabled(false)
-        Handler(Looper.getMainLooper()).postDelayed({
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(200L)
             confirmPinCodeViewModel.clearPinCode()
-        }, 200)
-        Handler(Looper.getMainLooper()).postDelayed({ checkPinAnim() }, 400)
-        Handler(Looper.getMainLooper()).postDelayed({ setButtonsEnabled(true) }, 1000)
-        Handler(Looper.getMainLooper()).postDelayed(onAnimationEnd, 1000)
+
+            delay(200L)
+            checkPinAnim()
+
+            delay(600L)
+            setButtonsEnabled(true)
+
+            delay(400L)
+            onAnimationEnd()
+        }
     }
 
     private fun updatePinCode(pinCode: MutableList<String>) {
@@ -130,17 +137,19 @@ class ConfirmPinCodeFragment : BaseFragment(R.layout.fragment_confirm_pin_code) 
     }
 
     private fun navigateWithDelay(event: NavGraphEvent, delay: Long) {
-        Handler(Looper.getMainLooper()).postDelayed({
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(delay)
             sharedVM.setNavGraphEvent(event)
-        }, delay)
+        }
     }
 
     private fun checkPinAnim() {
         val pinViews = listOf(binding.view01, binding.view02, binding.view03, binding.view04)
         pinViews.forEachIndexed { index, view ->
-            Handler(Looper.getMainLooper()).postDelayed({
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(index * 100L)
                 view.setBackgroundResource(R.drawable.bg_pin_active)
-            }, index * 100L)
+            }
         }
     }
 

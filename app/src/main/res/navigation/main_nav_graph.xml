@@ -26,6 +26,8 @@
         <action
             android:id="@+id/action_mainFragment_to_depositCardFragment"
             app:destination="@id/depositCardFragment" />
+            android:id="@+id/action_mainFragment_to_myCardsFragment"
+            app:destination="@id/myCardsFragment" />
     </fragment>
     <fragment
         android:id="@+id/transferFragment"
@@ -45,6 +47,9 @@
         <action
             android:id="@+id/action_profileFragment_to_updateInfoFragment"
             app:destination="@id/updateInfoFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_securityFragment"
+            app:destination="@id/securityFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -62,11 +67,21 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
-        android:label="AddCardFragment"
-        tools:layout="@layout/fragment_add_card">
+        android:label="AddCardFragment" />
+    <fragment
+        android:id="@+id/myCardsFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.MyCardsFragment"
+        android:label="MyCardsFragment"
+        tools:layout="@layout/fragment_my_cards">
         <action
-            android:id="@+id/action_addCardFragment_to_cardScannerFragment"
-            app:destination="@id/cardScannerFragment" />
+            android:id="@+id/action_myCardsFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_myCardsFragment_to_requisitionFragment"
+            app:destination="@id/requisitionFragment" />
+        <action
+            android:id="@+id/action_myCardsFragment_to_cardHistoryFragment"
+            app:destination="@id/cardHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/cardScannerFragment"
@@ -77,4 +92,37 @@
         android:name="uz.androbeck.virtualbank.ui.screens.deposit_card.TransferMyCardFragment"
         android:label="DepositCardFragment"
         tools:layout="@layout/fragment_transfer_my_card"/>
+    <fragment
+        android:id="@+id/requisitionFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.requisition.RequisitionFragment"
+        android:label="RequisitionFragment"
+        tools:layout="@layout/fragment_requisition"/>
+    <fragment
+        android:id="@+id/cardHistoryFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.history.CardHistoryFragment"
+        android:label="CardHistoryFragment"
+        tools:layout="@layout/fragment_history_card"/>
+    <fragment
+        android:id="@+id/securityFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.SecurityFragment"
+        android:label="SecurityFragment" >
+        <action
+            android:id="@+id/action_securityFragment_to_profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_securityFragment_to_changePinCodeFragment"
+            app:destination="@id/changePinCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePinCodeFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.security.screens.change_pin_code.ChangePinCodeFragment"
+        android:label="ChangePinCodeFragment" >
+        <action
+            android:id="@+id/action_changePinCodeFragment_to_securityFragment"
+            app:destination="@id/securityFragment"
+            app:popUpTo="@id/securityFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

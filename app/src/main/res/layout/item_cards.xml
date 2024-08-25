@@ -2,8 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="150dp"
-    android:layout_height="100dp"
+    android:layout_width="180dp"
+    android:layout_height="120dp"
     android:layout_gravity="center"
     android:layout_marginStart="8dp"
     app:cardCornerRadius="8dp">
@@ -27,9 +27,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/exo2_extra_light"
             android:letterSpacing=".05"
-            android:text="250 000"
             android:textColor="@color/colorOnPrimary"
-            android:textSize="12sp"
+            android:textSize="16sp"
             tools:ignore="SmallSp" />
 
         <TextView
@@ -38,9 +37,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/exo2_extra_light"
             android:letterSpacing=".05"
-            android:text="1234 1234 1234 1234"
             android:textColor="@color/colorOnPrimary"
-            android:textSize="12sp"
+            android:textSize="16sp"
             tools:ignore="SmallSp" />
 
         <TextView
@@ -49,9 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/exo2_extra_light"
-            android:text="10/28"
             android:textColor="@color/colorOnPrimary"
-            android:textSize="8sp"
+            android:textSize="12sp"
             tools:ignore="SmallSp" />
 
         <TextView
@@ -59,9 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/exo2_extra_light"
-            android:text="Normurodov Komil"
             android:textColor="@color/colorOnPrimary"
-            android:textSize="10sp"
+            android:textSize="15sp"
             tools:ignore="SmallSp" />
     </LinearLayout>
 

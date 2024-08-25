@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import uz.androbeck.virtualbank.data.dto.common.response.ErrorResDto
 import uz.androbeck.virtualbank.network.errors.ApiErrorType
+import uz.androbeck.virtualbank.network.errors.Error400Exception
 import uz.androbeck.virtualbank.network.errors.Error404Exception
 import uz.androbeck.virtualbank.network.errors.ErrorResponseEmptyException
 import uz.androbeck.virtualbank.network.errors.HttpResponseException
@@ -134,6 +135,7 @@ internal class HttpErrorToThrowableCall<T>(
             ApiErrorType.ERROR_RESPONSE_EMPTY -> ErrorResponseEmptyException()
             ApiErrorType.ERROR_404 -> Error404Exception(errorResponse.message)
             ApiErrorType.ERROR_401 -> TODO()
+            ApiErrorType.ERROR_400 -> Error400Exception(errorResponse.message)
         }
     }
 }

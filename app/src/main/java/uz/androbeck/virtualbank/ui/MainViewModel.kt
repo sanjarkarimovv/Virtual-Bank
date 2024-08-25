@@ -1,11 +1,14 @@
 package uz.androbeck.virtualbank.ui
 
+import android.widget.ImageView
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
+import uz.androbeck.virtualbank.domain.ui_models.home.SnackBarContainerModel
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
@@ -21,7 +24,15 @@ class MainViewModel @Inject constructor(
 
     private val isAwayLong = Channel<Boolean>()
 
+    private val _openHistoryItem = Channel<Unit>()
+    val openHistoryItem = _openHistoryItem.consumeAsFlow().share(viewModelScope)
+
+    fun openHistoryItem() = viewModelScope.launch {
+        _openHistoryItem.send(Unit)
+    }
+
     fun setNavGraphEvent(event: NavGraphEvent) = viewModelScope.launch {
+        delay(500L)
         navGraphEvent.send(event)
     }
 
@@ -37,8 +48,18 @@ class MainViewModel @Inject constructor(
         prefsProvider.isAwayLong = System.currentTimeMillis()
     }
 
+    fun saveBiometricPref(boolean: Boolean){
+        prefsProvider.useBiometric = boolean && prefsProvider.useBiometric
+    }
+
     fun checkIsAwayLong() = viewModelScope.launch {
-        isAwayLong.send((System.currentTimeMillis() - prefsProvider.isAwayLong) > 20000 && prefsProvider.accessToken.isNotEmpty())
+        if (prefsProvider.useIsAwayLong) {
+            val timeAway = System.currentTimeMillis() - prefsProvider.isAwayLong
+            val isAwayTooLong = timeAway > prefsProvider.awayLongTime * 1000
+            val hasValidToken = prefsProvider.accessToken.isNotEmpty()
+
+            isAwayLong.send(isAwayTooLong && hasValidToken)
+        }
     }
 
     fun observeIsAwayLong() : Flow<Boolean> {
@@ -48,4 +69,6 @@ class MainViewModel @Inject constructor(
     fun observeNavGraphEvent(): Flow<NavGraphEvent> {
         return navGraphEvent.consumeAsFlow().share(viewModelScope)
     }
+
+
 }

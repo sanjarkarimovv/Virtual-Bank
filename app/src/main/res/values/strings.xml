@@ -87,6 +87,14 @@
     <string name="biometric_prompt_title">Biometric Authentication</string>
     <string name="biometric_prompt_subtitle">Authenticate with your biometrics</string>
     <string name="biometric_prompt_cancel">Cancel</string>
+    <string name="str_transfer_type_income">Daromad</string>
+    <string name="str_transfer_type_outcome">To\'lov</string>
+    <string name="str_money_type_uzb">so\'m</string>
+    <string name="str_transfer_cofir">Muvaffaqiyatli</string>
+    <string name="str_transfer_cencle">Amalga oshmadi</string>
+    <string name="str_history_toolbar_title">Kirim-Chiqim</string>
+    <string name="str_histiry_sort_name_income">Tushum</string>
+    <string name="str_histiry_sort_name_outcome">Chiqim</string>
     <string name="str_select">Select</string>
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
@@ -131,4 +139,30 @@
     <string name="from_1_000_to_15_000_000_sum">from 1 000 to 15 000 000 sum</string>
     <string name="next">next</string>
     <string name="select_receiving_card">Select receiving card</string>
+    <string name="str_plus">+ </string>
+    <string name="str_minus">- </string>
+    <string name="security_settings">Security settings</string>
+    <string name="change_pin_code">Change PIN-code</string>
+    <string name="login_with_fingerprint_or_face_id">Login with fingerprint or Face ID</string>
+    <string name="lock_app_when_closed">Lock app when closed</string>
+    <string name="confirm_payment">Confirm payment</string>
+    <string name="str_security_time">%1$d sec</string>
+    <string name="str_new_pin_code">Enter a new PIN code</string>
+    <string name="str_confirm_new_pin_code">Confirm the new PIN code</string>
+    <string name="close">Close</string>
+    <string name="snackbar_icon">Snackbar icon</string>
+    <string name="str_pin_code_same">New PIN code should not coincide with the old one</string>
+    <string name="str_nfc">Nfc</string>
+    <string name="str_qrd">QR</string>
+    <string name="str_fill_card">To\'ldirish</string>
+    <string name="str_history">Tarix</string>
+    <string name="str_delete">Olib tashlash</string>
+    <string name="str_requisites">Rekvizitlar</string>
+
+    <string name="str_f.i.ish">F.S.L</string>
+    <string name="str_date_card">Card expiration date</string>
+    <string name="str_card_nuber">Pan</string>
+    <string name="str_name_of_card">Card name</string>
+
+
 </resources>

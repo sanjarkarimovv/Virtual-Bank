@@ -1,7 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +35,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         customHeader.clicks = {
             when (it) {
                 HeaderUiEvent.ClickCards -> {
-                    findNavController().navigate(R.id.action_mainFragment_to_addCardFragment)
+                    findNavController().navigate(R.id.action_mainFragment_to_myCardsFragment)
                 }
 
                 HeaderUiEvent.ClickMore -> {
@@ -74,8 +73,8 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 llSwipe.isRefreshing = false
                 when (it) {
                     is HomeBodyModels.Card -> {
-                        customBody.cardsDefIconShow(it.data.isEmpty())
-                        customBody.cardsAdapter.submitList(it.data)
+                        // customBody.cardsDefIconShow(it.data.isEmpty())
+                        customBody.cardsAdapterSubmitList(it.data)
                     }
 
                     is HomeBodyModels.LastTransfer -> {
@@ -93,6 +92,12 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
                     is HomeBodyModels.Error -> {
                         toast(it.massage)
+                    }
+
+                    is HomeBodyModels.Advertising -> {
+                        it.data?.let { list ->
+                            binding.customBody.advertisingAdapterLoadList(list)
+                        }
                     }
                 }
             }
