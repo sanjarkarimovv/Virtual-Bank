@@ -180,190 +180,140 @@
                 android:textSize="12sp"
                 android:textStyle="normal" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cv_et_transfer_sum"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="3dp"
-                android:background="@color/colorInverseOnSurface"
-                app:cardCornerRadius="12dp"
-                app:strokeColor="@color/colorSecondary"
-                app:strokeWidth="1dp">
 
-                <LinearLayout
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
                         android:id="@+id/et_input_transfer_sum"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/from_1_000_to_15_000_000_sum"
-                        android:inputType="number"
-                        android:textSize="16sp"
-                        tools:ignore="Autofill,TextContrastCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+                        android:layout_centerInParent="true"
+                        app:boxBackgroundColor="@color/colorSurfaceContainer"
+                        app:clearable="true"
+                        app:hintText="@string/from_1_000_to_15_000_000_sum"
+                        app:scrollHorizontally="true"/>
+                </RelativeLayout>
 
-                    <ImageView
-                        android:id="@+id/iv_cancel_transfer_sum"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="12dp"
-                        android:background="@drawable/icon1_36"
-                        android:visibility="gone"
-                        tools:ignore="ContentDescription" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:id="@+id/tv_error_input_transfer_sum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="3dp"
-                android:text="@string/from_1_000_to_15_000_000_sum"
-                android:textColor="@color/colorError"
-                android:textSize="12sp"
-                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:layout_marginTop="12dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:id="@+id/cv_transfer_50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/colorInverseOnSurface"
-                    app:cardCornerRadius="11dp"
-                    app:cardElevation="0dp">
-
-                    <TextView
+                    android:padding="8dp">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginVertical="2dp"
-                        android:text="50 000"
-                        android:textColor="@color/colorSecondary"
-                        tools:ignore="HardcodedText" />
-                </androidx.cardview.widget.CardView>
+                        android:backgroundTint="@color/colorInverseOnSurface"
+                        app:cardCornerRadius="11dp"
+                        app:cardElevation="0dp"
+                        android:layout_gravity="center">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_transfer_100"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:layout_marginVertical="2dp"
+                            android:text="50 000"
+                            android:textColor="@color/colorSecondary"
+                            tools:ignore="HardcodedText" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/colorInverseOnSurface"
-                    app:cardCornerRadius="11dp"
-                    app:cardElevation="0dp">
-
-                    <TextView
+                    android:padding="8dp"
+                    android:id="@+id/cv_transfer_100">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginVertical="2dp"
-                        android:text="100 000"
-                        android:textColor="@color/colorSecondary"
-                        tools:ignore="HardcodedText" />
-                </androidx.cardview.widget.CardView>
+                        android:backgroundTint="@color/colorInverseOnSurface"
+                        app:cardCornerRadius="11dp"
+                        app:cardElevation="0dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_transfer_200"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:layout_marginVertical="2dp"
+                            android:text="100 000"
+                            android:textColor="@color/colorSecondary"
+                            tools:ignore="HardcodedText" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/colorInverseOnSurface"
-                    app:cardCornerRadius="11dp"
-                    app:cardElevation="0dp">
-
-                    <TextView
+                    android:padding="8dp"
+                    android:id="@+id/cv_transfer_200">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginVertical="2dp"
-                        android:text="200 000"
-                        android:textColor="@color/colorSecondary"
-                        tools:ignore="HardcodedText" />
-                </androidx.cardview.widget.CardView>
+                        android:backgroundTint="@color/colorInverseOnSurface"
+                        app:cardCornerRadius="11dp"
+                        app:cardElevation="0dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_transfer_500"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:layout_marginVertical="2dp"
+                            android:text="200 000"
+                            android:textColor="@color/colorSecondary"
+                            tools:ignore="HardcodedText" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/colorInverseOnSurface"
-                    app:cardCornerRadius="11dp"
-                    app:cardElevation="0dp">
-
-                    <TextView
+                    android:padding="8dp"
+                    android:id="@+id/cv_transfer_500">
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginVertical="2dp"
-                        android:text="500 000"
-                        android:textColor="@color/colorSecondary"
-                        tools:ignore="HardcodedText" />
-                </androidx.cardview.widget.CardView>
+                        android:backgroundTint="@color/colorInverseOnSurface"
+                        app:cardCornerRadius="11dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:layout_marginVertical="2dp"
+                            android:text="500 000"
+                            android:textColor="@color/colorSecondary"
+                            tools:ignore="HardcodedText" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:id="@+id/rl_next_transfer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="24dp"
-                tools:ignore="UselessParent">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_et_not_empty"
+                <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankProgressButton
+                    android:id="@+id/next_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="26dp"
                     android:layout_marginHorizontal="16dp"
-                    android:backgroundTint="@color/screenTextColor"
-                    android:visibility="gone"
-                    app:cardCornerRadius="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="next"
-                        android:textColor="@color/static_white"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_et_empty"
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:backgroundTint="@color/screenPayMeDarkColor"
-                    app:cardCornerRadius="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/next"
-                        android:textColor="@color/screenTextColor"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
+                    android:enabled="true"
+                    android:text="@string/next"/>
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

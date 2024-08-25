@@ -20,13 +20,12 @@ class CardsDialog(private val action: (CardUIModel) -> Unit):BaseBottomDialog(R.
     lateinit var getCardsUseCase: GetCardsUseCase
     private val binding: DialogBottomChooseCardsBinding by viewBinding()
     override fun setup(): Unit = with(binding){
+
         lifecycleScope.launch {
             getCardsUseCase().collect{cardUiModel->
-                bottomAdapter= BottomDialogAdapter(cardUiModel){ item,isChecked ->
+                bottomAdapter= BottomDialogAdapter(cardUiModel,requireContext()){ item ->
                    action.invoke(item)
-                    if (isChecked){
                         dismiss()
-                    }
                 }
                 rvCards.layoutManager=LinearLayoutManager(requireContext())
                 rvCards.adapter=bottomAdapter

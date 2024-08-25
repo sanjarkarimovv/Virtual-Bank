@@ -1,21 +1,20 @@
 package uz.androbeck.virtualbank.ui.screens.deposit_card
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.ItemChooseCardBinding
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
-import uz.androbeck.virtualbank.preferences.PreferencesProvider
-import javax.inject.Inject
 
 @Suppress("DEPRECATION")
 class BottomDialogAdapter(
     private val cards: List<CardUIModel>,
-    private val onClickListener: (CardUIModel,Boolean) -> Unit
+    context: Context,
+    private val onClickListener: (CardUIModel) -> Unit
 ) : RecyclerView.Adapter<BottomDialogAdapter.ViewHolder>() {
-    private var selectedPosition = -1
-    @Inject
-    lateinit var preferencesProvider: PreferencesProvider
+    private val sharedPreferences = context.getSharedPreferences("shared", Context.MODE_PRIVATE)
+    private var selectedPosition = sharedPreferences.getInt("selected_position", -1)
     inner class ViewHolder(
         val binding: ItemChooseCardBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -23,23 +22,27 @@ class BottomDialogAdapter(
             tvCardName.text = getCardsUiModel.name
             tvCardBalance.text = getCardsUiModel.amount.toString()
             tvCardNumber.text = getCardsUiModel.pan
+            chooseCard.isChecked=selectedPosition==adapterPosition
             chooseCard.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked){
                     if (selectedPosition!=-1 && selectedPosition!=adapterPosition){
-                        notifyItemChanged(selectedPosition)
+                           notifyItemChanged(selectedPosition)
                     }
                     selectedPosition=adapterPosition
-                    onClickListener(getCardsUiModel,chooseCard.isChecked)
+                    val editor = sharedPreferences.edit()
+                    editor.putInt("selected_position", selectedPosition)
+                    editor.putBoolean("switch_state_${getCardsUiModel.id}", true)
+                    editor.apply()
                 }
                 else{
                     if (selectedPosition==adapterPosition){
                         selectedPosition=-1
                     }
                 }
+                onClickListener(getCardsUiModel)
             }
             root.setOnClickListener {
                 chooseCard.isChecked=true
-                onClickListener(getCardsUiModel,chooseCard.isChecked)
             }
         }
     }
@@ -52,6 +55,5 @@ class BottomDialogAdapter(
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(cards[position])
-        holder.binding.chooseCard.isChecked=position==selectedPosition
     }
 }

@@ -20,7 +20,7 @@ class CustomOutlinedTextField @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs1, defStyleAttr) {
 
-    private var textInputLayout: TextInputLayout
+    var textInputLayout: TextInputLayout
     var textInputEditText: TextInputEditText
 
     init {
