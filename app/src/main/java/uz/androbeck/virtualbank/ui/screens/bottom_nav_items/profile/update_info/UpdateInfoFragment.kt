@@ -2,7 +2,6 @@ package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
@@ -12,12 +11,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
+import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqUIModel
 import uz.androbeck.virtualbank.databinding.FragmentUpdateInfoBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.Constants
-import uz.androbeck.virtualbank.utils.extentions.dpToPx
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -38,6 +37,22 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         setBundleDataToViews()
         listenChanges()
         genderChangerProgress()
+    }
+
+    private fun updateUserInformations(
+        firstName: String,
+        lastName: String,
+        bornDate: String,
+        gender: String
+    ) {
+        vm.updateUserInfo(
+            UpdateInfoReqUIModel(
+                firstName = firstName,
+                lastName = lastName,
+                bornDate = bornDate,
+                gender = gender
+            )
+        )
     }
 
     override fun clicks() = with(binding) {
@@ -72,6 +87,10 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                 getString(R.string.str_female) -> 1
                 else -> -1
             }
+            when (position) {
+                0 -> genderImage.setImageResource(R.drawable.avatar_male)
+                1 -> genderImage.setImageResource(R.drawable.avatar_female)
+            }
         }
     }
 
@@ -92,34 +111,27 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
             btnSaveChanges.isEnabled = it.toString() != prefsProvider.dateOFBirth
         }
         genderInput.addTextChangedListener {
-            if (it.toString() == getString(R.string.str_male) && uiModel?.gender?.toInt() == 1) {
-                println("::: it -> $it || uiModel?.gender?.toInt() -> ${uiModel?.gender?.toInt()}")
-                btnSaveChanges.isEnabled = false
-            } else if (it.toString() == getString(R.string.str_male) && uiModel?.gender?.toInt() == 0){
-                println("::: it -> $it || uiModel?.gender?.toInt() -> ${uiModel?.gender?.toInt()}")
-                btnSaveChanges.isEnabled = false
+            if (uiModel?.gender?.toInt() == 1) {
+                btnSaveChanges.isEnabled = it.toString() != getString(R.string.str_male)
+            } else {
+                btnSaveChanges.isEnabled = it.toString() != getString(R.string.str_female)
             }
         }
     }
 
     private fun showCustomScrollableDialog() = with(binding) {
-        val layoutParams = WindowManager.LayoutParams()
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(R.layout.custom_scrollable_date_picker_dialog)
             .setCancelable(true)
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
-        layoutParams.copyFrom(dialog.window?.attributes)
-
-        layoutParams.height = (dpToPx(550))
         val selectButton = dialog.findViewById<MaterialButton>(R.id.btn_select)
         val datePicker = dialog.findViewById<DatePicker>(R.id.scrollable_date_picker)
         selectButton?.setOnClickListener {
             val day = datePicker?.dayOfMonth
-            val month = datePicker?.month?.plus(1) // Add 1 to get the actual month number
+            val month = datePicker?.month?.plus(1)
             val year = datePicker?.year
-
             val dayStr = if (day!! < 10) "0$day" else day.toString()
             val monthStr = if (month!! < 10) "0$month" else month.toString()
             val formattedDate = "$dayStr$monthStr$year"
@@ -157,7 +169,6 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         }
         println(uiModel)
     }
-
 
     private fun dateToMillis(dateString: String): Long {
         val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
