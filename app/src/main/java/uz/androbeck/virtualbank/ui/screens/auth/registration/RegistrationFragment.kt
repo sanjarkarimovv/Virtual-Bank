@@ -1,6 +1,10 @@
 package uz.androbeck.virtualbank.ui.screens.auth.registration
 
+import android.content.res.Resources
+import android.graphics.Rect
 import android.text.InputType
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.os.bundleOf
@@ -42,6 +46,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     private val vm by viewModels<RegistrationViewModel>()
     private var isShowPassword = false
     private var isShowConfirmPassword = false
+    private var isKeyboardVisible = false
 
     @Inject
     lateinit var prefsProvider: PreferencesProvider
@@ -55,6 +60,9 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     override fun setup() {
         binding.btnSignUp.isEnable = false
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content).viewTreeObserver.addOnGlobalLayoutListener(
+            on
+        )
     }
 
     override fun clicks(): Unit = with(binding) {
@@ -171,6 +179,48 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         return phoneNumber.replace("\\D".toRegex(), "").let {
             "${getString(R.string.str_phone_region_code)}$it"
         }
+    }
+
+    private val on = ViewTreeObserver.OnGlobalLayoutListener {
+        if (view == null || !isAdded) return@OnGlobalLayoutListener
+
+        val rect = Rect()
+        val rootView =
+            requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        rootView.getWindowVisibleDisplayFrame(rect)
+        val screenHeight = rootView.height
+        val keypadHeight = screenHeight - rect.bottom
+
+        val isKeyboardNowVisible = keypadHeight > screenHeight * 0.15
+
+        if (isKeyboardNowVisible != isKeyboardVisible) {
+            isKeyboardVisible = isKeyboardNowVisible
+            onKeyboardVisibilityChanged(isKeyboardVisible, keypadHeight)
+        }
+    }
+
+
+    private fun onKeyboardVisibilityChanged(visible: Boolean, keypadHeight: Int) {
+        if (view == null || !isAdded) return
+
+        val params = binding.btnSignUp.layoutParams as ViewGroup.MarginLayoutParams
+        if (visible) {
+            params.bottomMargin = keypadHeight + binding.btnSignUp.height
+        } else {
+            params.bottomMargin = 20.dpToPx()
+        }
+        binding.btnSignUp.layoutParams = params
+    }
+
+    private fun Int.dpToPx(): Int {
+        val density = Resources.getSystem().displayMetrics.density
+        return (this * density).toInt()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+            .viewTreeObserver.removeOnGlobalLayoutListener(on)
     }
 
     override fun onDestroy() {

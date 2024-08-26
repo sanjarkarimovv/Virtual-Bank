@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:scrollbars="none"
         tools:ignore="UselessParent">
 
         <RelativeLayout
@@ -51,7 +52,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="30dp"
-                        app:cardBackgroundColor="@color/colorPrimary"
+                        app:cardBackgroundColor="@color/colorPrimaryFixedDim"
                         app:cardCornerRadius="4dp">
 
                         <LinearLayout
@@ -89,8 +90,9 @@
 
     <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolbarForHome
         android:layout_width="match_parent"
+        android:id="@id/toolbar"
         android:layout_alignParentTop="true"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
 
 </RelativeLayout>

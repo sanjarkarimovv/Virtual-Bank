@@ -1,25 +1,33 @@
 package uz.androbeck.virtualbank.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.ActivityMainBinding
 import uz.androbeck.virtualbank.network.GlobalErrorController
 import uz.androbeck.virtualbank.network.errors.ApiErrorType
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.events.NavGraphEvent
+import uz.androbeck.virtualbank.ui.screens.pin_code.utils.BiometricUtils
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.visible
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.Locale
 import javax.inject.Inject
 
@@ -46,6 +54,15 @@ class MainActivity : AppCompatActivity() {
         vm.setNavGraphEvent()
         setupObservers(navHostFragment)
         bottomNavigationVisibility(navHostFragment.navController)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                println("FCM Token: $token")
+            } else {
+                println("FCM Token Error: ${task.exception?.message}")
+            }
+        }
     }
 
     private fun bottomNavigationVisibility(navController: NavController) {
@@ -130,5 +147,32 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         vm.checkIsAwayLong()
+        vm.saveBiometricPref(BiometricUtils.isBiometricReady(this))
+    }
+
+    fun showActionSnackBar(background: Int, image: Int, text: String, delay : Long = 6000L) = lifecycleScope.launch{
+        binding.viewSnackbarContainer.setBackgroundResource(background)
+        binding.snackbarIcon.setImageResource(image)
+        binding.snackbarText.text = text
+
+        binding.viewSnackbarContainer.translationY = 0f
+        binding.viewSnackbarContainer.visible()
+
+        binding.closeSnackbar.singleClickable {
+            hideSnackBarWithAnimation()
+        }
+
+        delay(delay)
+        hideSnackBarWithAnimation()
+    }
+
+    private fun hideSnackBarWithAnimation() {
+        binding.viewSnackbarContainer.animate()
+            .translationY(-binding.viewSnackbarContainer.height.toFloat())
+            .setDuration(300)
+            .withEndAction {
+                binding.viewSnackbarContainer.gone()
+            }
+            .start()
     }
 }

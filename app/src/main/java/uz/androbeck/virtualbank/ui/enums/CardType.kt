@@ -3,6 +3,7 @@ package uz.androbeck.virtualbank.ui.enums
 enum class CardType(
     val typeCodes: List<String>,
 ) {
+    AllCARDS(listOf()),
     UZCARD(listOf("8600", "5614")),
     HUMO(listOf("9860")),
     UNKNOWN(listOf(""));

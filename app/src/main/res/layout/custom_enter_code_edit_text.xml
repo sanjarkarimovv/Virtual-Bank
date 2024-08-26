@@ -12,7 +12,8 @@
         app:boxCornerRadiusBottomEnd="4dp"
         app:boxCornerRadiusBottomStart="4dp"
         app:boxCornerRadiusTopEnd="4dp"
-        app:boxCornerRadiusTopStart="4dp">
+        app:boxCornerRadiusTopStart="4dp"
+        app:boxBackgroundColor="@android:color/transparent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name_edit_text"

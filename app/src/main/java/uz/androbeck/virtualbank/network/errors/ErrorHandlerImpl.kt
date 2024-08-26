@@ -16,6 +16,7 @@ class ErrorHandlerImpl @Inject constructor(
             is UnauthorizedException -> messageController.show("Iltimos qaytadan login qiling")
             is UnknownException -> messageController.show("Nimadir xato, birozdan keyin qayta urunib ko'ring")
             is Error404Exception -> messageController.show(error.message)
+            is Error400Exception -> messageController.show(error.message)
             is HttpResponseException -> messageController.show(error.message)
             else -> messageController.show("Kutilmagan xatolik")
         }
