@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card
+package uz.androbeck.virtualbank.ui.screens.add_card
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import uz.androbeck.virtualbank.databinding.ItemAddCardImagesBinding
 
+@Suppress("DEPRECATION")
 class ViewPagerAdapter(
     val cardStyleImages: List<Int>,
 ) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder>() {
@@ -16,7 +17,6 @@ class ViewPagerAdapter(
         fun bind() {
             with(binding) {
                 iv.load(cardStyleImages[adapterPosition])
-                //iv.setImageResource(cardStyleColors[adapterPosition])
             }
         }
     }

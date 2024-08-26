@@ -10,6 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:fontFamily="@font/exo2_medium"/>
+        android:textSize="14sp"
+        android:textColor="@color/colorScrim"
+        android:fontFamily="@font/exo2_medium"
+        android:layout_gravity="bottom"/>
 
 </com.google.android.material.textfield.TextInputLayout>

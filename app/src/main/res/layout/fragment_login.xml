@@ -4,75 +4,190 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="16dp">
 
-    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
-        android:id="@+id/custom_toolbar"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:tooltipText="@string/toolbar_title"
-        app:toolbarColor="@color/colorSurface"
-        app:title="@string/str_login"
-        tools:ignore="UnusedAttribute" />
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/exo2_medium"
+        android:text="@string/str_back"
+        android:textColor="@color/colorScrim"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
-    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
-        android:id="@+id/et_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="16dp"
-        app:boxBackgroundColor="@color/colorSurfaceContainer"
-        app:clearable="true"
-        app:hintText="@string/str_phone_number"
-        app:scrollHorizontally="true" />
 
-    <uz.androbeck.virtualbank.ui.customViews.inputs.CustomOutlinedTextField
-        android:id="@+id/et_password"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_phone"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        app:boxBackgroundColor="@color/colorSurfaceContainer"
-        app:clearable="true"
-        app:hintText="@string/str_password"
-        app:scrollHorizontally="true" />
+        android:layout_marginTop="56dp"
+        android:layout_below="@id/btn_back"
+        android:fontFamily="@font/exo2_medium"
+        android:text="@string/str_login"
+        android:textColor="@color/colorScrim"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:layout_below="@id/text2"
+        android:fontFamily="@font/exo2_medium"
+        android:text="@string/str_enter_phone_number_password"
+        android:textColor="@color/colorScrim"
+        android:textSize="14sp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/colorOutline"
+        android:layout_below="@id/text3"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:background="@color/colorPrimaryFixedDim"
+                android:fontFamily="@font/exo2_medium"
+                android:gravity="center"
+                android:text="@string/str_phone_region_code"
+                android:textColor="@color/colorScrim"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorScrim" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo2_medium"
+                android:textColor="@color/colorScrim"
+                android:textSize="16sp"
+                android:text="@string/str_bracket"
+                android:layout_marginStart="8dp"/>
+            <com.vicmikhailau.maskededittext.MaskedEditText
+                android:id="@+id/et_phone_number"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/exo2_medium"
+                android:hint="@string/str_phone_number"
+                android:inputType="number"
+                android:textColor="@color/colorScrim"
+                android:textSize="16sp"
+                app:mask="##) ### ##-##" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/colorOutline"
+        android:layout_below="@id/card1"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_weight="0.86"
+                android:background="@android:color/transparent"
+                android:hint="@string/str_password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorScrim"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/btn_password"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.14"
+                android:padding="12dp"
+                android:src="@drawable/ic_password_hide" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/btn_forget_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_sign_up"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_below="@id/card2"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"
         android:fontFamily="@font/exo2_medium"
         android:text="@string/forget_password" />
-
-    <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankButton
-        android:id="@+id/btn_sign_up"
-        style="@style/VirtualBankButton.Filled"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_login"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="16dp"
-        android:text="@string/str_sign_up" />
 
     <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankProgressButton
         android:id="@+id/btn_login"
         style="@style/VirtualBankButton.Filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="30dp"
+        android:layout_above="@id/ll"
         android:enabled="true"
-
         android:text="@string/str_login" />
 
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/exo2_medium"
+            android:text="@string/str_if_dont_account"
+            android:textColor="@color/colorScrim"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/btn_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/exo2_medium"
+            android:text="@string/str_sign_up"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"/>
+    </LinearLayout>
 </RelativeLayout>

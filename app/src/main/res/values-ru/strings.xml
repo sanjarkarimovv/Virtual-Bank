@@ -111,7 +111,7 @@
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
-    <string name="str_select">Select</string>
+    <string name="str_select">Выбирать</string>
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
     <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
@@ -125,6 +125,16 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
     <string name="str_bracket">(</string>
+    <string name="str_cancel">Отмена</string>
+    <string name="str_select_date">Выберите дату</string>
+    <string name="str_date_is_wrong">Напишите дату рождения правильно</string>
+    <string name="str_updated_information_success">Ваша информация успешно обновлена!</string>
+    <string name="str_kirim_chikimlar">Исторя переводов</string>
+    <string name="str_histiry_sort_name_income">Обший Прибыль</string>
+    <string name="str_histiry_sort_name_outcome">Обший Расходы</string>
+    <string name="str_tramsfer_history_is_empty">Ещё не осуществлено</string>
+    <string name="str_transfer_cofir">Успешно</string>
+    <string name="str_money_type_uzb">сум</string>
     <string name="transfer_to_my_card">Перевод на мою карту</string>
     <string name="where_to_transfer">Куда перевести</string>
     <string name="transfer_amount">Сумма перевода</string>
@@ -134,11 +144,7 @@
     <string name="str_history_toolbar_title">Kirim-Chiqim</string>
     <string name="str_transfer_type_income">Daromad</string>
     <string name="str_transfer_type_outcome">To\'lov</string>
-    <string name="str_money_type_uzb">so\'m</string>
-    <string name="str_transfer_cofir">Muvaffaqiyatli</string>
     <string name="str_transfer_cencle">Amalga oshmadi</string>
-    <string name="str_histiry_sort_name_income">Tushum</string>
-    <string name="str_histiry_sort_name_outcome">Chiqim</string>
     <string name="str_fill_card">Заполнить карту</string>
     <string name="str_history">История</string>
     <string name="str_delete">Удалить</string>
@@ -162,5 +168,17 @@
     <string name="str_card_nuber">Номер карты</string>
     <string name="str_name_of_card">Имя карты</string>
 
+
+    <string name="str_notifications">Bildirishnomalar</string>
+    <string name="str_you_money_transfer">Sizga pul o\'tkazildi</string>
+    <string name="str_open_chek">Chekni ochish</string>
+    <string name="str_recipient_card">Oluvchi kartasi:</string>
+    <string name="str_interest_free_transfer">Беспроцентный перевод</string>
+    <string name="str_update">Обновлять</string>
+    <string name="str_enter_phone_number_password">Enter phone number and password</string>
+    <string name="str_if_dont_account">If you don\'t have an account</string>
+    <string name="str_from">от</string>
+    <string name="str_soums_transfer_received">поступил перевод сумов</string>
+    <string name="str_logout_from_account">Выйти из этого аккаунта</string>
 
 </resources>

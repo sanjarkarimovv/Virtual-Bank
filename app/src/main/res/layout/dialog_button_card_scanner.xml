@@ -3,7 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/screenBackgroundColor">
+    android:background="@drawable/bg_rv_shape">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="40dp"
+        android:layout_height="3dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/colorOutline"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

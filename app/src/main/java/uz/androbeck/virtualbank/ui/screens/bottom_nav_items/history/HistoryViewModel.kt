@@ -20,9 +20,12 @@ class HistoryViewModel @Inject constructor(
         getHistoryUseCase.invoke().onStart {
             getHistoryUseCase.resetTotals()
         }.cachedIn(viewModelScope)
+
     fun getAmounts(): Pair<String?, String?>{
      return   getHistoryUseCase.getTotalAmounts()
     }
-
+    fun isTotalBalanceEmpty(): Boolean {
+        return getHistoryUseCase.isTotalBalanceEmpty()
+    }
 }
 

@@ -27,6 +27,12 @@
             android:id="@+id/action_mainFragment_to_depositCardFragment"
             app:destination="@id/depositCardFragment" />
         <action
+            android:id="@+id/action_mainFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
             android:id="@+id/action_mainFragment_to_myCardsFragment"
             app:destination="@id/myCardsFragment" />
     </fragment>
@@ -67,13 +73,17 @@
         tools:layout="@layout/fragment_update_info" />
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
-        android:label="AddCardFragment" />
+        android:name="uz.androbeck.virtualbank.ui.screens.add_card.AddCardFragment"
+        android:label="AddCardFragment">
+        <action
+            android:id="@+id/action_addCardFragment_to_cardScannerFragment"
+            app:destination="@id/cardScannerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myCardsFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.MyCardsFragment"
         android:label="MyCardsFragment"
-        tools:layout="@layout/fragment_my_cards">
+        tools:layout="@layout/fragment_add_card">
         <action
             android:id="@+id/action_myCardsFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
@@ -96,6 +106,28 @@
         android:name="uz.androbeck.virtualbank.ui.screens.deposit_card.TransferMyCardFragment"
         android:label="DepositCardFragment"
         tools:layout="@layout/fragment_transfer_my_card"/>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.notification.NotificationFragment"
+        android:label="NotificationFragment" >
+        <action
+            android:id="@+id/action_notificationFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_transferFragment"
+            app:destination="@id/transferFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/notificationInfoBottomDialog"
+        android:name="uz.androbeck.virtualbank.ui.dialogs.notification_info.NotificationInfoBottomDialog"
+        android:label="NotificationInfoBottomDialog" >
+        <action
+            android:id="@+id/action_notificationInfoBottomDialog_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_notificationInfoBottomDialog_to_transferFragment"
+            app:destination="@id/transferFragment" />
+    </dialog>
     <fragment
         android:id="@+id/requisitionFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.requisition.RequisitionFragment"

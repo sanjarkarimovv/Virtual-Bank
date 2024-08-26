@@ -3,7 +3,7 @@ package uz.androbeck.virtualbank.utils
 object Constants {
     object FileName {
         const val SHARED_PREFS = "virtual_bank"
-        const val DATABASE_NAME= "virtual_bank_database"
+        const val DATABASE_NAME = "virtual_bank_database"
     }
 
     object Endpoint {
@@ -56,6 +56,8 @@ object Constants {
         const val ADD_HOME = "Uy qo'shish"
         const val FULL_CARD_NUMBER_STARS = "**** **** **** "
         const val HALF_CARD_NUMBER = "** **** "
+        const val INCOME = "income"
+        const val TO_PLAY_STORE_URL="https://play.google.com/store"
     }
 
     object Localization {
@@ -72,5 +74,16 @@ object Constants {
         const val OFFSCREEN_PAGE_LIMIT = 1
         const val SELECT_CARD_STROKE_WIDTH = 2
         const val DEFAULT_CARD_STROKE_WIDTH = 1
+        const val NUM_NOTIFICATION_TABS = 2
+        const val VIEW_TYPE_TRANSFER = 1
+        const val VIEW_TYPE_GENERAL = 2
+    }
+
+    object Firebase {
+        const val FIREBASE_REAL_TIME_DATABASE_URL =
+            "https://virtual-bank-20dcc-default-rtdb.firebaseio.com/"
+        const val FIREBASE_NOTIFICATION = "notifications"
+        const val CHANNEL_ID = "uz.androbeck.virtualbank.notifications"
+        const val DEFAULT_CHANNEL_NAME = "Default Channel"
     }
 }

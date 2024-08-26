@@ -71,6 +71,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
                         event.model?.let {
                             userModel = it
                         }
+                        println("::: -> Success User data -> ${event.model}")
                         val fullName = "${event.model?.firstName} ${event.model?.lastName}"
                         tvUser.text = fullName
                     }
@@ -81,7 +82,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
 
     private fun promptBiometricAuthentication() {
-        val biometricPrompt = BiometricPrompt(
+        val biometricPrompt = androidx.biometric.BiometricPrompt(
             requireActivity(),
             Executors.newSingleThreadExecutor(),
             object : BiometricPrompt.AuthenticationCallback() {
