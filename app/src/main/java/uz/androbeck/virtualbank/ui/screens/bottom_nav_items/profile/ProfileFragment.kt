@@ -1,6 +1,9 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.biometric.BiometricPrompt
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +18,6 @@ import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.change_language.ChangeLanguageBottomDialog
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
-import uz.androbeck.virtualbank.utils.extentions.toast
 import uz.androbeck.virtualbank.utils.extentions.toast
 import java.util.concurrent.Executors
 
@@ -80,7 +82,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
 
     private fun promptBiometricAuthentication() {
-        val biometricPrompt = BiometricPrompt(
+        val biometricPrompt = androidx.biometric.BiometricPrompt(
             requireActivity(),
             Executors.newSingleThreadExecutor(),
             object : BiometricPrompt.AuthenticationCallback() {
