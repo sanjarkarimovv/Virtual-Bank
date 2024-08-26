@@ -1,17 +1,18 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code
 
 import android.animation.ValueAnimator
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentPinCodeBinding
 import uz.androbeck.virtualbank.ui.MainViewModel
@@ -47,7 +48,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
         observeErrorLogout()
     }
 
-    private fun setupButtonClicks() {
+    private fun setupButtonClicks() = with(binding) {
         val buttonIds = listOf(
             binding.btn01 to getString(R.string.str_num_1),
             binding.btn02 to getString(R.string.str_num_2),
@@ -68,15 +69,15 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
             }
         }
 
-        binding.btnRemove.setOnClickListener {
+        btnRemove.setOnClickListener {
             vibrate()
             pinCodeViewModel.removeLastDigit()
         }
 
-        binding.actionExit.setOnClickListener {
+        actionExit.setOnClickListener {
             vibrate()
             pinCodeViewModel.handlePinCodeExit()
-            navigateWithDelay(NavGraphEvent.Auth, 500)
+            navigateWithDelay(NavGraphEvent.Auth, 500L)
         }
     }
 
@@ -125,7 +126,7 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
 
     private fun observeErrorLogout() {
         pinCodeViewModel.errorLogout.observe(viewLifecycleOwner) {
-            if (it) navigateWithDelay(NavGraphEvent.Auth, 0)
+            if (it) navigateWithDelay(NavGraphEvent.Auth, 0L)
         }
     }
 
@@ -133,14 +134,15 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
         when (event) {
             PinCodeEvent.PinRegistered -> {
                 performPinCodeAnimation(false)
-                Handler(Looper.getMainLooper()).postDelayed({
+                viewLifecycleOwner.lifecycleScope.launch {
+                    delay(1200L)
                     findNavController().navigate(R.id.action_pinCodeFragment_to_confirmPinCodeFragment)
-                }, 1200)
+                }
             }
 
             PinCodeEvent.PinValidated -> {
                 performPinCodeAnimation(false)
-                navigateWithDelay(NavGraphEvent.Main, 1200)
+                navigateWithDelay(NavGraphEvent.Main, 1200L)
             }
 
             PinCodeEvent.PinValidationFailed -> {
@@ -151,21 +153,22 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
 
     private fun performPinCodeAnimation(isError: Boolean) {
         setButtonsEnabled(false)
-        Handler(Looper.getMainLooper()).postDelayed({
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(200L)
             pinCodeViewModel.clearPinCode()
-        }, 200)
-        Handler(Looper.getMainLooper()).postDelayed({
+
+            delay(200L)
             checkPinAnim()
-        }, 400)
-        if (isError) {
-            Handler(Looper.getMainLooper()).postDelayed({
+
+            if (isError) {
+                delay(600L)
                 errorPinAnim()
-            }, 1000)
-            Handler(Looper.getMainLooper()).postDelayed({
+
+                delay(1000L)
                 pinCodeViewModel.clearPinCode()
                 setButtonsEnabled(true)
                 binding.errorAttempts.visible()
-            }, 2000)
+            }
         }
     }
 
@@ -186,17 +189,19 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
     }
 
     private fun navigateWithDelay(event: NavGraphEvent, delay: Long) {
-        Handler(Looper.getMainLooper()).postDelayed({
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(delay)
             sharedVM.setNavGraphEvent(event)
-        }, delay)
+        }
     }
 
     private fun checkPinAnim() {
         val pinViews = listOf(binding.view01, binding.view02, binding.view03, binding.view04)
         pinViews.forEachIndexed { index, view ->
-            Handler(Looper.getMainLooper()).postDelayed({
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(index * 100L)
                 view.setBackgroundResource(R.drawable.bg_pin_active)
-            }, index * 100L)
+            }
         }
     }
 
@@ -229,12 +234,12 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
 
     private fun promptBiometricAuthentication() {
         val biometricPrompt = BiometricPrompt(
-            this,
+            requireActivity(),
             Executors.newSingleThreadExecutor(),
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    navigateWithDelay(NavGraphEvent.Main, 0)
+                    navigateWithDelay(NavGraphEvent.Main, 0L)
                     pinCodeViewModel.resetErrorAttempts()
                 }
             })
@@ -245,7 +250,11 @@ class PinCodeFragment : BaseFragment(R.layout.fragment_pin_code) {
             .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
             .build()
 
-        biometricPrompt.authenticate(promptInfo)
+        viewLifecycleOwner.lifecycleScope.launch {
+            if (isAdded && isResumed && !isRemoving && !isDetached) {
+                biometricPrompt.authenticate(promptInfo)
+            }
+        }
     }
 
     private fun setButtonsEnabled(enabled: Boolean) {

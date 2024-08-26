@@ -9,7 +9,6 @@ object Constants {
     object Endpoint {
         const val SIGN_UP = "auth/sign-up"
         const val SIGN_IN_VERIFY = "auth/sign-in/verify"
-
         const val SIGN_IN = "auth/sign-in"
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
         const val UPDATE_TOKEN = "auth/update-token"
@@ -26,7 +25,7 @@ object Constants {
         const val GET_CARD="card"
         const val GET_FEE="transfer/fee"
         const val TRANSFER="transfer/transfer"
-
+        const val TRANSFER_VERIFY="transfer/transfer/verify"
     }
     object History {
         const val INCOME = "income"
@@ -55,6 +54,8 @@ object Constants {
     object String {
         const val EMPTY = ""
         const val ADD_HOME = "Uy qo'shish"
+        const val FULL_CARD_NUMBER_STARS = "**** **** **** "
+        const val HALF_CARD_NUMBER = "** **** "
     }
 
     object Localization {

@@ -16,6 +16,8 @@ import uz.androbeck.virtualbank.ui.dialogs.change_language.ChangeLanguageBottomD
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
+import uz.androbeck.virtualbank.utils.extentions.toast
+import java.util.concurrent.Executors
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
@@ -32,6 +34,13 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     }
 
     override fun clicks() = with(binding) {
+        security.singleClickable {
+            if (vm.usingBiometrics()) {
+                promptBiometricAuthentication()
+            } else {
+                findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
+            }
+        }
         appLanguage.singleClickable {
             val dialog = ChangeLanguageBottomDialog.show(childFragmentManager)
             dialog.onLanguageChanged = {
@@ -60,10 +69,38 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
                         event.model?.let {
                             userModel = it
                         }
+                        println("::: -> Success User data -> ${event.model}")
                         val fullName = "${event.model?.firstName} ${event.model?.lastName}"
                         tvUser.text = fullName
                     }
                 }
+            }
+        }
+    }
+
+
+    private fun promptBiometricAuthentication() {
+        val biometricPrompt = BiometricPrompt(
+            requireActivity(),
+            Executors.newSingleThreadExecutor(),
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    Handler(Looper.getMainLooper()).post {
+                        findNavController().navigate(R.id.action_profileFragment_to_securityFragment)
+                    }
+                }
+            })
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle(getString(R.string.biometric_prompt_title))
+            .setSubtitle(getString(R.string.biometric_prompt_subtitle))
+            .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
+            .build()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            if (isAdded && isResumed && !isRemoving && !isDetached) {
+                biometricPrompt.authenticate(promptInfo)
             }
         }
     }

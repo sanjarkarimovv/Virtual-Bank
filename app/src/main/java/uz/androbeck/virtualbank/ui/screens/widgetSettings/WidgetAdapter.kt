@@ -27,7 +27,6 @@ class WidgetAdapter(
         }
     }
 
-    fun getList() = currentList.toMutableList()
 
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<UiComponents>() {
