@@ -144,11 +144,11 @@
     <string name="close">Close</string>
     <string name="snackbar_icon">Snackbar icon</string>
     <string name="str_pin_code_same">New PIN code should not coincide with the old one</string>
-
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
     <string name="str_cancel">Cancel</string>
     <string name="str_select_date">Select date</string>
     <string name="str_date_is_wrong">Write your born date correctly</string>
     <string name="str_updated_information_success">Your informations successfully updated!</string>
+    <string name="str_logout_from_account">Logout from this account</string>
 </resources>

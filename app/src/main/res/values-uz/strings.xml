@@ -150,4 +150,5 @@
     <string name="str_pin_code_same">Yangi PIN kod eskisida farqli bo\'lishi lozim</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_logout_from_account">Accountdan chiqish</string>
 </resources>

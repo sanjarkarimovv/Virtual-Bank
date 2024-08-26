@@ -142,4 +142,5 @@
     <string name="str_pin_code_same">Новый ПИН должен отличаться от старого</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_logout_from_account">Выйти из этого аккаунта</string>
 </resources>

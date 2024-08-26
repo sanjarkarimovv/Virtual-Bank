@@ -215,12 +215,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="16dp"
-            android:text="@string/str_delete_account"
+            android:text="@string/str_logout_from_account"
             android:textColor="@color/colorRed"
             android:textSize="16sp" />
 
         <ImageView
-
             android:layout_width="24dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
