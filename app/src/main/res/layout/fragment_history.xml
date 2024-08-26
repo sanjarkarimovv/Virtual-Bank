@@ -6,22 +6,25 @@
     android:layout_height="match_parent"
     android:background="@color/colorSurfaceContainerLowest">
 
-    <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolBar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorSurfaceContainerLowest"
-        app:title="@string/str_history_toolbar_title"
-        tools:ignore="UnusedAttribute" />
 
+<TextView
+    android:id="@+id/tv_title"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:text="@string/str_kirim_chikimlar"
+    android:textColor="@color/colorDarkFoeHome"
+    android:gravity="start|center_vertical"
+    android:layout_marginStart="16dp"
+    android:fontFamily="@font/exo2_bold"
+    android:textSize="18sp"/>
 
     <LinearLayout
         android:id="@+id/ll_sort"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/toolbar"
-        android:background="@color/colorSurfaceContainerLowest"
+        android:layout_below="@id/tv_title"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -29,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorSurfaceContainerLowest"
+            android:background="@android:color/transparent"
             android:orientation="vertical">
 
             <TextView
@@ -62,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorSurfaceContainerLowest"
+            android:background="@android:color/transparent"
             android:orientation="vertical">
 
             <TextView
@@ -96,6 +99,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Нет данных"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

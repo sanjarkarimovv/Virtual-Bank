@@ -1,23 +1,19 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card
+package uz.androbeck.virtualbank.ui.screens.add_card
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.androbeck.virtualbank.domain.ui_models.card.AddCardReqUIModel
 import uz.androbeck.virtualbank.domain.useCases.card.AddCardUseCase
 import uz.androbeck.virtualbank.network.errors.ErrorHandler
 import uz.androbeck.virtualbank.ui.base.BaseViewModel
-import uz.androbeck.virtualbank.ui.screens.auth.login.LoginUiEvent
-import uz.androbeck.virtualbank.utils.extentions.share
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,11 +31,12 @@ class AddCardViewModel @Inject constructor(
     private val _isFormValid = MutableStateFlow(false)
     val isFormValid: StateFlow<Boolean> get() = _isFormValid.asStateFlow()
 
-    fun validateFields(cardNumber: String, validityPeriod: String) {
+    fun validateFields(cardNumber: String, validityPeriod: String, cardName: String) {
         val cardNumberLength = cardNumber.replace(" ", "").length
         val validityPeriodLength = validityPeriod.length
+        val cardNameLength = cardName.replace(" ", "").trim().length
         _isFormValid.value =
-            cardNumberLength == 16 && validityPeriodLength == 5 && cardNumber.isNotEmpty()
+            cardNumberLength == 16 && validityPeriodLength == 5 && cardNameLength >= 5
     }
 
     fun resultCardNumber(inputString: String): String {

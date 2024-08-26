@@ -24,7 +24,15 @@ class MainViewModel @Inject constructor(
 
     private val isAwayLong = Channel<Boolean>()
 
+    private val _openHistoryItem = Channel<Unit>()
+    val openHistoryItem = _openHistoryItem.consumeAsFlow().share(viewModelScope)
+
+    fun openHistoryItem() = viewModelScope.launch {
+        _openHistoryItem.send(Unit)
+    }
+
     fun setNavGraphEvent(event: NavGraphEvent) = viewModelScope.launch {
+        delay(500L)
         navGraphEvent.send(event)
     }
 

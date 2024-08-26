@@ -55,6 +55,15 @@ class MainActivity : AppCompatActivity() {
         setupObservers(navHostFragment)
         bottomNavigationVisibility(navHostFragment.navController)
         onBack()
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                println("FCM Token: $token")
+            } else {
+                println("FCM Token Error: ${task.exception?.message}")
+            }
+        }
     }
 
 

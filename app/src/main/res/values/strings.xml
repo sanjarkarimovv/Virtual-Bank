@@ -89,12 +89,12 @@
     <string name="biometric_prompt_cancel">Cancel</string>
     <string name="str_transfer_type_income">Daromad</string>
     <string name="str_transfer_type_outcome">To\'lov</string>
-    <string name="str_money_type_uzb">so\'m</string>
-    <string name="str_transfer_cofir">Muvaffaqiyatli</string>
+    <string name="str_money_type_uzb">soum</string>
+    <string name="str_transfer_cofir">Successfully</string>
     <string name="str_transfer_cencle">Amalga oshmadi</string>
     <string name="str_history_toolbar_title">Kirim-Chiqim</string>
-    <string name="str_histiry_sort_name_income">Tushum</string>
-    <string name="str_histiry_sort_name_outcome">Chiqim</string>
+    <string name="str_histiry_sort_name_income">Total profit</string>
+    <string name="str_histiry_sort_name_outcome">Total expenses</string>
     <string name="str_servers_payment">Xizmatga to\'lov</string>
     <string name="paymnet">Paymnet</string>
     <string name="str_card_number">Kartaning raqami</string>
@@ -133,6 +133,8 @@
     <string name="str_bracket">(</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
+    <string name="str_kirim_chikimlar">Transaction history</string>\
+    <string name="str_tramsfer_history_is_empty">Not implemented yet</string>
     <string name="security_settings">Security settings</string>
     <string name="change_pin_code">Change PIN-code</string>
     <string name="login_with_fingerprint_or_face_id">Login with fingerprint or Face ID</string>
@@ -144,7 +146,32 @@
     <string name="close">Close</string>
     <string name="snackbar_icon">Snackbar icon</string>
     <string name="str_pin_code_same">New PIN code should not coincide with the old one</string>
-
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_select_date">Select date</string>
+    <string name="str_date_is_wrong">Write your born date correctly</string>
+    <string name="str_updated_information_success">Your informations successfully updated!</string>
+    <string name="str_logout_from_account">Logout from this account</string>
+    <string name="str_notifications">Bildirishnomalar</string>
+    <string name="str_you_money_transfer">Sizga pul o\'tkazildi</string>
+    <string name="str_open_chek">Chekni ochish</string>
+    <string name="str_recipient_card">Oluvchi kartasi:</string>
+    <string name="str_interest_free_transfer">Interest free transfer</string>
+    <string name="str_update">Update</string>
+    <string name="str_enter_phone_number_password">Enter phone number and password</string>
+    <string name="str_if_dont_account">If you don\'t have an account</string>
+    <string name="str_from">from</string>
+    <string name="str_soums_transfer_received">a transfer of soums was received</string>
+    <string name="str_fill_card">To\'ldirish</string>
+    <string name="str_history">Tarix</string>
+    <string name="str_delete">Olib tashlash</string>
+    <string name="str_requisites">Rekvizitlar</string>
+
+    <string name="str_f.i.ish">F.S.L</string>
+    <string name="str_date_card">Card expiration date</string>
+    <string name="str_card_nuber">Pan</string>
+    <string name="str_name_of_card">Card name</string>
+
+
 </resources>

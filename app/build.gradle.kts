@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -128,6 +129,9 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.2.3")
     implementation("androidx.camera:camera-view:1.2.3")
     implementation("androidx.camera:camera-extensions:1.2.3")
+
+    //Firebase-messaging
+    implementation("com.google.firebase:firebase-messaging:23.2.0")
 
     // coil
     implementation("io.coil-kt:coil:2.4.0")

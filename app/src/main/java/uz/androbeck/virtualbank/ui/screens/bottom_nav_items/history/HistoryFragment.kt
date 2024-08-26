@@ -1,6 +1,7 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history
 
 import android.annotation.SuppressLint
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -21,15 +22,20 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
     private lateinit var historyAdapter: HistoryAdapter
 
     override fun setup() {
-
         setupRecyclerView()
         setupObservers()
-
     }
 
-    private fun setupObservers() {
+    private fun setupObservers() = with(binding) {
         lifecycleScope.launch {
+
             viewModel.response.collectLatest { pagingData ->
+                val isEmpty = viewModel.isTotalBalanceEmpty()
+                if (isEmpty) {
+                    tvNoData.visibility = View.VISIBLE
+                    tvIncomeAmount.text = getString(R.string.str_tramsfer_history_is_empty)
+                    tvOutcomeAmount.text = getString(R.string.str_tramsfer_history_is_empty)
+                } else tvNoData.visibility = View.GONE
                 historyAdapter.submitData(pagingData)
             }
         }
@@ -47,15 +53,26 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history) {
                     footer = HistoryLoadStateAdapter { historyAdapter.retry() }
                 )
                 historyAdapter.addLoadStateListener {
-                    tvIncomeAmount.text = getString(R.string.str_plus) + viewModel.getAmounts().second
-                    tvOutcomeAmount.text = getString(R.string.str_minus) + viewModel.getAmounts().first
+                    if (viewModel.isTotalBalanceEmpty()) {
+                        tvIncomeAmount.text = getString(R.string.str_tramsfer_history_is_empty)
+                        tvOutcomeAmount.text = getString(R.string.str_tramsfer_history_is_empty)
+                    } else {
+                        tvIncomeAmount.text =
+                            getString(R.string.str_plus) + viewModel.getAmounts().second
+                        tvOutcomeAmount.text =
+                            getString(R.string.str_minus) + viewModel.getAmounts().first
+                    }
                     if (it.refresh == androidx.paging.LoadState.Loading) {
                         pbLoading.visible()
                     } else {
                         pbLoading.gone()
                     }
                 }
+
                 addItemDecoration(StickyHeaderDecoration(historyAdapter))
+                val stickyHeaderView =
+                    layoutInflater.inflate(R.layout.item_history_header, this, false)
+                StickyHeaderScrollListener(this, historyAdapter, stickyHeaderView)
             }
 
 

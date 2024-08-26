@@ -2,6 +2,10 @@ package uz.androbeck.virtualbank.ui.screens.auth.registration
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.res.Resources
+import android.graphics.Rect
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -25,9 +29,13 @@ class RegistrationAddPersonalInfoFragment :
 
     private val binding by viewBinding(FragmentRegistrationAddPersonalInfoBinding::bind)
     private var genderValue = -1
+    private var isKeyboardVisible = false
 
     override fun setup() {
         binding.btnNext.isEnabled = false
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content).viewTreeObserver.addOnGlobalLayoutListener(
+            on
+        )
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -131,5 +139,47 @@ class RegistrationAddPersonalInfoFragment :
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val date = dateFormat.parse(dateString)
         return "${date?.time ?: 0L}"
+    }
+
+    private val on = ViewTreeObserver.OnGlobalLayoutListener {
+        if (view == null || !isAdded) return@OnGlobalLayoutListener
+
+        val rect = Rect()
+        val rootView =
+            requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        rootView.getWindowVisibleDisplayFrame(rect)
+        val screenHeight = rootView.height
+        val keypadHeight = screenHeight - rect.bottom
+
+        val isKeyboardNowVisible = keypadHeight > screenHeight * 0.15
+
+        if (isKeyboardNowVisible != isKeyboardVisible) {
+            isKeyboardVisible = isKeyboardNowVisible
+            onKeyboardVisibilityChanged(isKeyboardVisible, keypadHeight)
+        }
+    }
+
+
+    private fun onKeyboardVisibilityChanged(visible: Boolean, keypadHeight: Int) {
+        if (view == null || !isAdded) return
+
+        val params = binding.ll.layoutParams as ViewGroup.MarginLayoutParams
+        if (visible) {
+            params.bottomMargin = keypadHeight + binding.ll.height
+        } else {
+            params.bottomMargin = 20.dpToPx()
+        }
+        binding.ll.layoutParams = params
+    }
+
+    private fun Int.dpToPx(): Int {
+        val density = Resources.getSystem().displayMetrics.density
+        return (this * density).toInt()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+            .viewTreeObserver.removeOnGlobalLayoutListener(on)
     }
 }
