@@ -1,12 +1,13 @@
 package uz.androbeck.virtualbank.ui.screens.pin_code.biometrics
 
-import android.os.Handler
-import android.os.Looper
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentBiometricPermissionBinding
 import uz.androbeck.virtualbank.ui.MainViewModel
@@ -34,9 +35,10 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
         }
     }
 
+
     private fun promptBiometricAuthentication() {
         val biometricPrompt = BiometricPrompt(
-            this,
+            requireActivity(),
             Executors.newSingleThreadExecutor(),
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
@@ -45,13 +47,13 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
                     navigateWithDelay(NavGraphEvent.Main)
                 }
 
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
                     viewModel.setBiometrics(false)
                 }
 
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
                     viewModel.setBiometrics(false)
                 }
             })
@@ -62,12 +64,19 @@ class BiometricPermissionFragment : BaseFragment(R.layout.fragment_biometric_per
             .setNegativeButtonText(getString(R.string.biometric_prompt_cancel))
             .build()
 
-        biometricPrompt.authenticate(promptInfo)
+        viewLifecycleOwner.lifecycleScope.launch {
+            if (isAdded && isResumed && !isRemoving && !isDetached) {
+                biometricPrompt.authenticate(promptInfo)
+            }
+        }
     }
 
+
+
     private fun navigateWithDelay(event: NavGraphEvent) {
-        Handler(Looper.getMainLooper()).postDelayed({
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(500L)
             sharedVM.setNavGraphEvent(event)
-        }, 500L)
+        }
     }
 }

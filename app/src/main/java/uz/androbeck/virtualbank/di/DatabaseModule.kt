@@ -11,6 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import uz.androbeck.virtualbank.data.db.AppDatabase
+import uz.androbeck.virtualbank.data.db.dao.CardInfoDao
 import uz.androbeck.virtualbank.data.db.dao.HomeDao
 import uz.androbeck.virtualbank.data.db.dao.UserDao
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
@@ -54,10 +55,13 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideUserDao(
-        roomDatabase: AppDatabase
-    ): UserDao {
+    fun provideUserDao(roomDatabase: AppDatabase): UserDao {
         return roomDatabase.userDao()
+    }
+
+    @Provides
+    fun  provideCardInfoDao(roomDatabase: AppDatabase): CardInfoDao {
+        return roomDatabase.cardInfoDao()
     }
 
     @Provides

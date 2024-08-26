@@ -5,12 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
+import uz.androbeck.virtualbank.data.dto.response.home.fireBaseResDto.GetTvBannerResEvent
 import uz.androbeck.virtualbank.domain.ui_models.home.HomeBodyModels
 import uz.androbeck.virtualbank.domain.ui_models.home.PaymentsModel
 import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
@@ -19,6 +23,7 @@ import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetFullInfoUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetTotalBalanceUseCase
+import uz.androbeck.virtualbank.domain.useCases.home.GetTvBannersFromFirebaseUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutComponentsUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.PutUpdateInfoUseCase
 import uz.androbeck.virtualbank.ui.screens.HomeComponents
@@ -33,6 +38,7 @@ class MainViewModel @Inject constructor(
     private val totalBalanceUseCase: GetTotalBalanceUseCase,
     private val getCardsUseCase: GetCardsUseCase,
     private val lastTransferUseCase: LastTransfersUseCase,
+    private val getTvBannersFromFirebaseUseCase: GetTvBannersFromFirebaseUseCase
 ) : ViewModel() {
     private val _homeComponents = MutableLiveData<HomeComponentsUiEvent>()
     val homeComponents: LiveData<HomeComponentsUiEvent> = _homeComponents
@@ -84,7 +90,6 @@ class MainViewModel @Inject constructor(
                         }
                         list
                     }
-                    getUiData()
                 }
             }.launchIn(this)
         }
@@ -98,7 +103,7 @@ class MainViewModel @Inject constructor(
                         when (item.name) {
                             HomeComponents.Cards -> {
                                 //get from remote data
-                                getCardsUseCase.invoke().onEach {
+                                getCardsUseCase.getCardsFromNetwork().onEach {
                                     _uiData.value = HomeBodyModels.Card(item.name, it)
                                 }.launchIn(this)
                             }
@@ -135,6 +140,23 @@ class MainViewModel @Inject constructor(
 
                             HomeComponents.ForAdvertising -> {
                                 // get from local data
+                                getTvBannersFromFirebaseUseCase.getTvBannerFromFireBase().onEach {
+                                    when (it) {
+                                        is GetTvBannerResEvent.Error -> {
+                                           _uiData.value = HomeBodyModels.Error(it.message)
+                                        }
+
+                                        GetTvBannerResEvent.Loading -> {
+                                            _uiData.value = HomeBodyModels.Advertising(loading =  true)
+                                        }
+
+                                        is GetTvBannerResEvent.Success -> {
+                                            _uiData.value = HomeBodyModels.Advertising(it.data)
+                                        }
+                                    }
+
+                                }.launchIn(this)
+
                             }
                         }
                     }

@@ -54,5 +54,10 @@
         <item name="fontFamily">@font/exo2_medium</item>
         <item name="android:fontFamily">@font/exo2_medium</item>
     </style>
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 
 </resources>

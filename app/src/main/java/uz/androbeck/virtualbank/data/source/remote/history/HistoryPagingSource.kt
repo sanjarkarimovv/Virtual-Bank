@@ -2,35 +2,45 @@ package uz.androbeck.virtualbank.data.source.remote.history
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import uz.androbeck.virtualbank.data.dto.response.history.GetHistoryResDto
+import uz.androbeck.virtualbank.data.dto.common.response.InComeAndOutComeResDto
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class HistoryPagingSource @Inject constructor(
     private val historyRemoteDataSource: HistoryRemoteDatasource
-) : PagingSource<Int, GetHistoryResDto>() {
-    override fun getRefreshKey(state: PagingState<Int, GetHistoryResDto>): Int? {
-        val anchorPosition = state.anchorPosition?.let { anchorPosition ->
-            val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+) : PagingSource<Int, InComeAndOutComeResDto>() {
 
+    override fun getRefreshKey(state: PagingState<Int, InComeAndOutComeResDto>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
-        return anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GetHistoryResDto> {
-        try {
-            val nextPageNumber = params.key ?: 0
-            val response = historyRemoteDataSource.getHistory(
-                size = params.loadSize,
-                currentPage = nextPageNumber
-            )
-            return LoadResult.Page(
-                data = response,
-                prevKey = if(nextPageNumber>1) nextPageNumber-1 else null,
-                nextKey = if(response.isEmpty()) null else nextPageNumber+1,
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, InComeAndOutComeResDto> {
+        return try {
+            val page = params.key ?: 1
+            val response =
+                historyRemoteDataSource.getHistory(size = params.loadSize, currentPage = page)
+
+            val data = response.transferResDto ?: emptyList()
+            println(":::Response Data: $data")
+
+            if (data.isEmpty()) {
+                println(":::Warning: Response data is empty")
+            }
+
+            LoadResult.Page(
+                data = data,
+                prevKey = if (page > 1) page - 1 else null,
+                nextKey = if (data.isEmpty()) null else page + 1
             )
         } catch (e: Exception) {
-            return LoadResult.Error(e)
+            println(":::Exception $e")
+            LoadResult.Error(e)
         }
     }
+
 }

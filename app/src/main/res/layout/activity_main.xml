@@ -12,9 +12,9 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/auth_nav_graph"
-        android:layout_above="@+id/bottom_navigation" />
+        app:navGraph="@navigation/auth_nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -24,5 +24,49 @@
         android:visibility="gone"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_snackbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:background="@color/colorRed">
+
+        <TextView
+            android:id="@+id/close_snackbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/exo2_semi_bold"
+            android:textColor="@color/static_white"
+            android:textSize="16sp"
+            android:text="@string/close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/snackbar_icon"
+            android:contentDescription="@string/snackbar_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/snackbar_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/exo2_regular"
+            android:textColor="@color/static_white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/snackbar_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/snackbar_icon"
+            app:layout_constraintTop_toTopOf="@id/snackbar_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

@@ -26,4 +26,7 @@ abstract class BaseFragment(
     open fun setBackgroundColorToScreen(view: View, color: Int = R.color.colorSurface) {
         view.setBackgroundColor(color(color))
     }
+
+
+
 }
