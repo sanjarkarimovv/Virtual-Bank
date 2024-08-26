@@ -135,4 +135,6 @@
     <string name="str_minus">- </string>
     <string name="str_cancel">Cancel</string>
     <string name="str_select_date">Select date</string>
+    <string name="str_date_is_wrong">Write your born date correctly</string>
+    <string name="str_updated_information_success">Your informations successfully updated!</string>
 </resources>

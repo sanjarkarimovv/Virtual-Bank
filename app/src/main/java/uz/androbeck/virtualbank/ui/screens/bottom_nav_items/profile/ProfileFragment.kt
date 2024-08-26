@@ -15,6 +15,7 @@ import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.change_language.ChangeLanguageBottomDialog
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
+import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
@@ -50,16 +51,15 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             vm.getUserData().collect { event ->
                 when (event) {
                     is ProfileFragmentEvent.Error -> {
-                        println("::: Error -> ${event.massage.toString()}")
+                        toast(event.massage.toString())
                     }
 
-                    ProfileFragmentEvent.Loading -> println("User Informations Loading...")
+                    ProfileFragmentEvent.Loading -> {}
 
                     is ProfileFragmentEvent.Success -> {
                         event.model?.let {
                             userModel = it
                         }
-                        println("::: -> Success User data -> ${event.model}")
                         val fullName = "${event.model?.firstName} ${event.model?.lastName}"
                         tvUser.text = fullName
                     }

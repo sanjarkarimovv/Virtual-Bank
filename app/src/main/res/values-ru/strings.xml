@@ -127,4 +127,6 @@
     <string name="str_bracket">(</string>
     <string name="str_cancel">Отмена</string>
     <string name="str_select_date">Выберите дату</string>
+    <string name="str_date_is_wrong">Напишите дату рождения правильно</string>
+    <string name="str_updated_information_success">Ваша информация успешно обновлена!</string>
 </resources>

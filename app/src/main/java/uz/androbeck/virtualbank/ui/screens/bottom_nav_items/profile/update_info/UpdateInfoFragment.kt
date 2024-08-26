@@ -2,14 +2,17 @@ package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqUIModel
 import uz.androbeck.virtualbank.databinding.FragmentUpdateInfoBinding
@@ -17,6 +20,10 @@ import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
 import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.Constants
+import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
+import uz.androbeck.virtualbank.utils.extentions.toast
+import uz.androbeck.virtualbank.utils.extentions.visible
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -39,22 +46,6 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         genderChangerProgress()
     }
 
-    private fun updateUserInformations(
-        firstName: String,
-        lastName: String,
-        bornDate: String,
-        gender: String
-    ) {
-        vm.updateUserInfo(
-            UpdateInfoReqUIModel(
-                firstName = firstName,
-                lastName = lastName,
-                bornDate = bornDate,
-                gender = gender
-            )
-        )
-    }
-
     override fun clicks() = with(binding) {
         toolbar.onClickLeftIcon = {
             requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -65,6 +56,79 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         genderInput.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 genderInput.clearFocus()
+            }
+        }
+        btnSaveChanges.singleClickable {
+            if (etDate.text?.length!! == 10) {
+                val name = etName.text.toString()
+                val lastname = etLastName.text.toString()
+                val date = updatedDate()
+                val gender = updatedGender()
+                updateUserInformations(name, lastname, date, gender)
+            } else {
+                toast(getString(R.string.str_date_is_wrong))
+            }
+        }
+    }
+
+    private fun updatedGender(): String {
+        val updatedGender: String
+        binding.run {
+            if (genderInput.text.toString() == getString(R.string.str_male)) {
+                updatedGender = "1"
+            } else {
+                updatedGender = "0"
+            }
+        }
+        return updatedGender
+    }
+
+    private fun updatedDate(): String {
+        val milliseconds: String
+        binding.run {
+            milliseconds = dateToMillis(etDate.text.toString())
+        }
+        return milliseconds
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateUserInformations(
+        firstName: String,
+        lastName: String,
+        bornDate: String,
+        gender: String
+    ) = with(binding) {
+        binding.btnSaveChanges.isEnabled = false
+        viewLifecycleOwner.lifecycleScope.launch {
+            vm.updateUserInfo(
+                UpdateInfoReqUIModel(
+                    firstName = firstName,
+                    lastName = lastName,
+                    bornDate = bornDate,
+                    gender = gender
+                )
+            ).collect { event ->
+                when (event) {
+                    is UpdateFullInfoEvent.Error -> {
+                        btnSaveChanges.text = getString(R.string.str_save_changes)
+                        progressBar.gone()
+                        toast(event.error)
+                    }
+
+                    UpdateFullInfoEvent.Loading -> {
+                        println("::: -> Loading")
+                        btnSaveChanges.text = ""
+                        progressBar.visible()
+                    }
+
+                    is UpdateFullInfoEvent.Success -> {
+                        println("::: -> Success")
+                        btnSaveChanges.text = getString(R.string.str_save_changes)
+                        toast(getString(R.string.str_updated_information_success))
+                        progressBar.visibility = View.GONE
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                    }
+                }
             }
         }
     }
@@ -170,10 +234,10 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         println(uiModel)
     }
 
-    private fun dateToMillis(dateString: String): Long {
-        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+    private fun dateToMillis(dateString: String): String {
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val date = dateFormat.parse(dateString)
-        return date?.time ?: 0
+        return date?.time.toString()
     }
 
     private fun millisToDate(milliseconds: Long): String {

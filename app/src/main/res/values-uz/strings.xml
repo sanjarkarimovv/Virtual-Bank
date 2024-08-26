@@ -135,4 +135,6 @@
     <string name="str_minus">- </string>
     <string name="str_cancel">Bekor qilish</string>
     <string name="str_select_date">Sanani tanlang</string>
+    <string name="str_date_is_wrong">Tug`ilgan sana ma`lumotini to`g`ri kiriting !</string>
+    <string name="str_updated_information_success">Sizni ma`lumotlaringiz muvafaqiyatli yangilandi!</string>
 </resources>
