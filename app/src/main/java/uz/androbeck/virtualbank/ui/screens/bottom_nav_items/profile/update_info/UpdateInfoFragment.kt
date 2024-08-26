@@ -74,10 +74,10 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     private fun updatedGender(): String {
         val updatedGender: String
         binding.run {
-            if (genderInput.text.toString() == getString(R.string.str_male)) {
-                updatedGender = "1"
+            updatedGender = if (genderInput.text.toString() == getString(R.string.str_male)) {
+                "0"
             } else {
-                updatedGender = "0"
+                "1"
             }
         }
         return updatedGender
@@ -175,7 +175,7 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
             btnSaveChanges.isEnabled = it.toString() != prefsProvider.dateOFBirth
         }
         genderInput.addTextChangedListener {
-            if (uiModel?.gender?.toInt() == 1) {
+            if (uiModel?.gender?.toInt() == 0) {
                 btnSaveChanges.isEnabled = it.toString() != getString(R.string.str_male)
             } else {
                 btnSaveChanges.isEnabled = it.toString() != getString(R.string.str_female)
@@ -211,7 +211,7 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                 etLastName.setText(lastName)
                 etDate.setText(bornDate?.let { millisecond -> millisToDate(millisecond.toLong() - 86_400_000L) })
                 phoneNumberReceiver.text = phone.toString()
-                if (gender?.toInt() == 1) {
+                if (gender?.toInt() == 0) {
                     genderInput.setText(getString(R.string.str_male))
                     genderImage.setImageResource(R.drawable.avatar_male)
                 } else {
