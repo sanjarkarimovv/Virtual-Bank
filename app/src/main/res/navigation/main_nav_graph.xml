@@ -26,6 +26,7 @@
         <action
             android:id="@+id/action_mainFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <action
             android:id="@+id/action_mainFragment_to_myCardsFragment"
             app:destination="@id/myCardsFragment" />
     </fragment>
@@ -67,9 +68,7 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.add_card.AddCardFragment"
-        android:label="AddCardFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
-        android:label="AddCardFragment" />
+        android:label="AddCardFragment"/>
     <fragment
         android:id="@+id/myCardsFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards.MyCardsFragment"

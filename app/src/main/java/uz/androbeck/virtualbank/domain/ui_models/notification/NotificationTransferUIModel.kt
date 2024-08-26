@@ -6,7 +6,7 @@ data class NotificationTransferUIModel(
     var type: String? = null,
     var from: String? = null,
     var to: String? = null,
-    var amount: Float = 0f,
+    var amount: Long = 0,
     override var time: Long,
 ) : TimeBasedItem {
     fun toUIModel(it: NotificationTransferUIModel) {
