@@ -29,6 +29,7 @@ class RequisitionFragment : BaseFragment(R.layout.fragment_requisition) {
             if (cardNumberVisibility==false){
                 cardNumberVisibility=true
                 binding.txtCardNumberValue.text = "**********"+cardUiModel?.pan
+
                 binding.eyeIcon.setImageResource(R.drawable.ic_eye)
                 }else{
                 cardNumberVisibility=false

@@ -81,6 +81,12 @@
         <action
             android:id="@+id/action_myCardsFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_myCardsFragment_to_requisitionFragment"
+            app:destination="@id/requisitionFragment" />
+        <action
+            android:id="@+id/action_myCardsFragment_to_cardHistoryFragment"
+            app:destination="@id/cardHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/cardScannerFragment"
