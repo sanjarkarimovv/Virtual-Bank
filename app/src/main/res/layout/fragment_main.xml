@@ -90,7 +90,9 @@
 
     <uz.androbeck.virtualbank.ui.customViews.toolbar.CustomToolbarForHome
         android:layout_width="match_parent"
+        android:id="@id/toolbar"
         android:layout_alignParentTop="true"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
 
 </RelativeLayout>

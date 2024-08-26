@@ -13,6 +13,8 @@ import uz.androbeck.virtualbank.utils.extentions.singleClickable
 class CardScannerBottomDialog : BaseBottomDialog(R.layout.dialog_button_card_scanner) {
     private val binding by viewBinding(DialogButtonCardScannerBinding::bind)
 
+
+
     override fun initialize(view: View) {
         view.background = setCornerRadius()
     }
@@ -22,7 +24,7 @@ class CardScannerBottomDialog : BaseBottomDialog(R.layout.dialog_button_card_sca
             showCardScannerByNfcDialog()
         }
         btnScannerByCamera.singleClickable{
-           // findNavController().navigate(R.id.action_addCardFragment_to_cardScannerFragment)
+            findNavController().navigate(R.id.action_addCardFragment_to_cardScannerFragment)
         }
     }
 

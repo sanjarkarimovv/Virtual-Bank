@@ -138,4 +138,14 @@
     <string name="str_pin_code_same">Новый ПИН должен отличаться от старого</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_notifications">Bildirishnomalar</string>
+    <string name="str_you_money_transfer">Sizga pul o\'tkazildi</string>
+    <string name="str_open_chek">Chekni ochish</string>
+    <string name="str_recipient_card">Oluvchi kartasi:</string>
+    <string name="str_interest_free_transfer">Беспроцентный перевод</string>
+    <string name="str_update">Обновлять</string>
+    <string name="str_enter_phone_number_password">Enter phone number and password</string>
+    <string name="str_if_dont_account">If you don\'t have an account</string>
+    <string name="str_from">от</string>
+    <string name="str_soums_transfer_received">поступил перевод сумов</string>
 </resources>

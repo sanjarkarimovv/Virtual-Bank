@@ -33,6 +33,7 @@ chucker = "4.0.0"
 firebaseStorageKtx = "21.0.0"
 firebaseStorage = "21.0.0"
 media3Common = "1.4.0"
+firebaseDatabase = "21.0.0"
 
 
 [libraries]
@@ -68,6 +69,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "serialization-converter" }
 chucker-interceptor = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
 chucker-interceptor-no-op = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3Common" }

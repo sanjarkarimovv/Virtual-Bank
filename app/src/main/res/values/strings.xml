@@ -147,4 +147,14 @@
 
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_notifications">Bildirishnomalar</string>
+    <string name="str_you_money_transfer">Sizga pul o\'tkazildi</string>
+    <string name="str_open_chek">Chekni ochish</string>
+    <string name="str_recipient_card">Oluvchi kartasi:</string>
+    <string name="str_interest_free_transfer">Interest free transfer</string>
+    <string name="str_update">Update</string>
+    <string name="str_enter_phone_number_password">Enter phone number and password</string>
+    <string name="str_if_dont_account">If you don\'t have an account</string>
+    <string name="str_from">from</string>
+    <string name="str_soums_transfer_received">a transfer of soums was received</string>
 </resources>
