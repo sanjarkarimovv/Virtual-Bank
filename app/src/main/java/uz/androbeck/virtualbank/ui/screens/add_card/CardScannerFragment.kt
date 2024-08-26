@@ -1,4 +1,4 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card
+package uz.androbeck.virtualbank.ui.screens.add_card
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -74,7 +74,6 @@ class CardScannerFragment : BaseFragment(R.layout.fragment_card_scanner_by_camer
         super.onDestroyView()
         cameraExecutor.shutdown()
     }
-
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     }

@@ -87,7 +87,7 @@
     <string name="str_finances_service">Finances service</string>
     <string name="str_payment">Bir bosishda to\'lang </string>
     <string name="str_get_credit">Bir zumda kridit oling</string>
-    <string name="str_paymnet">Paymnet</string>
+    <string name="str_paymnet">To\'lov</string>
     <string name="str_search">Izlash</string>
     <string name="str_saved_payments">Saqlangan to\'lovlar</string>
     <string name="my_home">Mening uyim</string>
@@ -106,7 +106,7 @@
     <string name="str_change_information">Ma`lumotlarni o`zgartirish</string>
     <string name="str_more">Yana</string>
     <string name="str_servers_payment">Xizmatga to\'lov</string>
-    <string name="paymnet">Paymnet</string>
+    <string name="paymnet">To\'lov</string>
     <string name="str_card_number">Kartaning raqami</string>
     <string name="str_hint_card_number">0000 0000 0000 0000</string>
     <string name="str_hint_validity_period">MM/YY</string>
@@ -150,5 +150,15 @@
     <string name="str_pin_code_same">Yangi PIN kod eskisida farqli bo\'lishi lozim</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_notifications">Bildirishnomalar</string>
+    <string name="str_you_money_transfer">Sizga pul o\'tkazildi</string>
+    <string name="str_open_chek">Chekni ochish</string>
+    <string name="str_recipient_card">Oluvchi kartasi:</string>
+    <string name="str_interest_free_transfer">Foizsiz o\'tkizma</string>
+    <string name="str_update">Yangilash</string>
+    <string name="str_enter_phone_number_password">Enter phone number and password</string>
+    <string name="str_if_dont_account">If you don\'t have an account</string>
+    <string name="str_from">dan</string>
+    <string name="str_soums_transfer_received">so\'m o\'tkazma qilindi</string>
     <string name="str_logout_from_account">Accountdan chiqish</string>
 </resources>
