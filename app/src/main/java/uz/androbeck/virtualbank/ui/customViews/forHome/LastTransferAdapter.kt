@@ -1,7 +1,6 @@
 package uz.androbeck.virtualbank.ui.customViews.forHome
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -26,7 +25,7 @@ class LastTransferAdapter :
                     icIncomeOrOutcome.setImageResource(R.drawable.ic_outcome)
                     tvAmount.text = "-$amount"
                 }
-                tvDate.text = SimpleDateFormat("dd MMMM").format(time)
+                etDate.text = SimpleDateFormat("dd MMMM").format(time)
             }
         }
     }
