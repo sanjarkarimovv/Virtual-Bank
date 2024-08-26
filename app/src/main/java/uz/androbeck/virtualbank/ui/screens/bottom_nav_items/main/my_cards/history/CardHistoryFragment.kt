@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentHistoryBinding
+import uz.androbeck.virtualbank.databinding.FragmentHistoryCardBinding
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryAdapter
 import uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.HistoryLoadStateAdapter
@@ -20,7 +21,7 @@ import uz.androbeck.virtualbank.utils.extentions.visible
 
 @AndroidEntryPoint
 class CardHistoryFragment : BaseFragment(R.layout.fragment_history_card) {
-    private val binding: FragmentHistoryBinding by viewBinding()
+    private val binding: FragmentHistoryCardBinding by viewBinding()
 
     private val viewModel: HistoryViewModel by viewModels()
     private lateinit var historyAdapter: HistoryAdapter
