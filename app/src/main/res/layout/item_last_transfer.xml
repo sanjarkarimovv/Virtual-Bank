@@ -51,7 +51,7 @@
             android:paddingVertical="5dp">
 
             <TextView
-                android:id="@+id/tv_date"
+                android:id="@+id/et_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="13 avgust"

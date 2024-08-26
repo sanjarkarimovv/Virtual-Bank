@@ -1,5 +1,12 @@
 package uz.androbeck.virtualbank.ui.screens.auth.login
 
+import android.content.res.Resources
+import android.graphics.Rect
+import android.text.InputType
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
@@ -22,6 +29,7 @@ import uz.androbeck.virtualbank.ui.screens.Screen
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.PHONE_NUMBER_FOR_VERIFY
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.SCREEN
 import uz.androbeck.virtualbank.utils.Constants.ArgumentKey.TOKEN_FOR_VERIFY
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
@@ -31,16 +39,21 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private val sharedVM: MainViewModel by activityViewModels()
     private var signInReqUIModel: SignInReqUIModel? = null
     private var enterVerifyCodeDialogFragment: EnterVerifyCodeDialogFragment? = null
+    private var isShowPassword = false
+    private var isKeyboardVisible = false
     override fun setup() {
         with(binding) {
             btnLogin.isEnable = false
-            etPhone.textInputEditText.addTextChangedListener {
+            etPhoneNumber.addTextChangedListener {
                 access()
             }
-            etPassword.textInputEditText.addTextChangedListener {
+            etPassword.addTextChangedListener {
                 access()
             }
         }
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content).viewTreeObserver.addOnGlobalLayoutListener(
+            on
+        )
     }
 
     override fun clicks() = with(binding) {
@@ -49,17 +62,21 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 vm.signIn(it)
             }
         }
-        btnSignUp.onClick = {
+        btnSignUp.singleClickable {
             findNavController().navigate(R.id.action_loginFragment_to_registrationAddPersonalInfoFragment)
         }
-        customToolbar.onClickLeftIcon = {
+        btnBack.singleClickable {
             findNavController().popBackStack()
+        }
+        btnPassword.singleClickable {
+            isShowPassword = !isShowPassword
+            togglePasswordVisibility(etPassword, btnPassword, isShowPassword)
         }
     }
 
     private fun access() = with(binding) {
-        val phone = etPhone.textInputEditText.text?.toString()
-        val password = etPassword.textInputEditText.text?.toString()
+        val phone = formatPhoneNumber(etPhoneNumber.text?.toString().orEmpty())
+        val password = etPassword.text?.toString()
         vm.accessCheck(
             SignInReqUIModel(
                 phone = phone,
@@ -119,6 +136,68 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         enterVerifyCodeDialogFragment?.onSuccessVerify = {
             sharedVM.setNavGraphEvent(NavGraphEvent.PinCode)
         }
+    }
+
+    private fun togglePasswordVisibility(
+        editText: EditText,
+        button: ImageView,
+        isVisible: Boolean,
+    ) {
+        val inputType = if (isVisible) {
+            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        } else {
+            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
+        editText.inputType = inputType
+        button.setImageResource(if (isVisible) R.drawable.ic_password_show else R.drawable.ic_password_hide)
+        editText.setSelection(editText.text?.length ?: 0)
+    }
+
+    private fun formatPhoneNumber(phoneNumber: String): String {
+        return phoneNumber.replace("\\D".toRegex(), "").let {
+            "${getString(R.string.str_phone_region_code)}$it"
+        }
+    }
+    private val on = ViewTreeObserver.OnGlobalLayoutListener {
+        if (view == null || !isAdded) return@OnGlobalLayoutListener
+
+        val rect = Rect()
+        val rootView =
+            requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        rootView.getWindowVisibleDisplayFrame(rect)
+        val screenHeight = rootView.height
+        val keypadHeight = screenHeight - rect.bottom
+
+        val isKeyboardNowVisible = keypadHeight > screenHeight * 0.15
+
+        if (isKeyboardNowVisible != isKeyboardVisible) {
+            isKeyboardVisible = isKeyboardNowVisible
+            onKeyboardVisibilityChanged(isKeyboardVisible, keypadHeight)
+        }
+    }
+
+
+    private fun onKeyboardVisibilityChanged(visible: Boolean, keypadHeight: Int) {
+        if (view == null || !isAdded) return
+
+        val params = binding.ll.layoutParams as ViewGroup.MarginLayoutParams
+        if (visible) {
+            params.bottomMargin = keypadHeight + binding.ll.height
+        } else {
+            params.bottomMargin = 20.dpToPx()
+        }
+        binding.ll.layoutParams = params
+    }
+
+    private fun Int.dpToPx(): Int {
+        val density = Resources.getSystem().displayMetrics.density
+        return (this * density).toInt()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+            .viewTreeObserver.removeOnGlobalLayoutListener(on)
     }
 
     override fun onDestroy() {

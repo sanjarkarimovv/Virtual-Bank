@@ -139,6 +139,7 @@ class HistoryAdapter(
     }
 
 
+
     fun findHeaderViewForPosition1(position: Int, parent: RecyclerView): View? {
         if (position < 0 || position >= itemCount) {
             return null
@@ -156,6 +157,9 @@ class HistoryAdapter(
             return binding.root
         }
         return null
+    }
+    fun getItemAt(position: Int): HistoryItem? {
+        return getItem(position)
     }
 
 

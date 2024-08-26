@@ -1,145 +1,258 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.profile.update_info
 
-import android.app.DatePickerDialog
+import android.annotation.SuppressLint
 import android.os.Build
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.DatePicker
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqUIModel
 import uz.androbeck.virtualbank.databinding.FragmentUpdateInfoBinding
 import uz.androbeck.virtualbank.domain.ui_models.home.FullInfoUIModel
+import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.pxToDp
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 import uz.androbeck.virtualbank.utils.extentions.visible
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
     private val binding by viewBinding(FragmentUpdateInfoBinding::bind)
     private val vm by viewModels<UpdateFullInfoViewModel>()
     private var uiModel: FullInfoUIModel? = null
+    private var genderValue = -1
+
+    @Inject
+    lateinit var prefsProvider: PreferencesProvider
 
     override fun setup(): Unit = with(binding) {
         getBundleData()
-        onCreateMenu()
-        listenings()
         setBundleDataToViews()
+        listenChanges()
+        genderChangerProgress()
     }
 
     override fun clicks() = with(binding) {
-
-        binding.toolbar.onClickLeftIcon = {
+        toolbar.onClickLeftIcon = {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
-
-        btnUndo.setOnClickListener {
-            setBundleDataToViews()
-            changingButtonsMakeInvisible()
+        btnDatePick.setOnClickListener {
+            showCustomScrollableDialog()
         }
-        btnChangeDate.setOnClickListener {
-            datePicker()
-        }
-        btnChangeGender.setOnClickListener {
-            when (genderInfoReceiver.text) {
-                getString(R.string.str_male) -> {
-                    genderInfoReceiver.text = getString(R.string.str_female)
-                }
-
-                getString(R.string.str_female) -> {
-                    genderInfoReceiver.text = getString(R.string.str_male)
-                }
-
-                else -> {
-                    genderInfoReceiver.text = getString(R.string.str_no_data)
-                }
+        genderInput.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                genderInput.clearFocus()
             }
         }
-        btnSaverChanges.setOnClickListener {
-            updateChanges()
+        btnSaveChanges.singleClickable {
+            if (etDate.text?.length!! == 10) {
+                val name = etName.text.toString()
+                val lastname = etLastName.text.toString()
+                val date = updatedDate()
+                val gender = updatedGender()
+                updateUserInformations(name, lastname, date, gender)
+            } else {
+                toast(getString(R.string.str_date_is_wrong))
+            }
         }
     }
 
-    private fun updateChanges() = with(binding) {
-        val firstName = etFirstName.text.toString()
-        val lastName = etLastName.text.toString()
-        val date = dateBirthReceiver.text.toString()
-        var gender: String? = null
-        if (genderInfoReceiver.text == getString(R.string.str_male)) {
-            gender = "1"
-        } else if (genderInfoReceiver.text == getString(R.string.str_male)) {
-            gender = "0"
+    private fun updatedGender(): String {
+        val updatedGender: String
+        binding.run {
+            updatedGender = if (genderInput.text.toString() == getString(R.string.str_male)) {
+                "0"
+            } else {
+                "1"
+            }
         }
-        val reqDate = dateToMillis(date)
-        println("::: -> $firstName $lastName $reqDate $gender")
+        return updatedGender
+    }
 
+    private fun updatedDate(): String {
+        val milliseconds: String
+        binding.run {
+            milliseconds = dateToMillis(etDate.text.toString())
+        }
+        return milliseconds
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateUserInformations(
+        firstName: String,
+        lastName: String,
+        bornDate: String,
+        gender: String
+    ) = with(binding) {
+        binding.btnSaveChanges.isEnabled = false
         viewLifecycleOwner.lifecycleScope.launch {
             vm.updateUserInfo(
                 UpdateInfoReqUIModel(
                     firstName = firstName,
                     lastName = lastName,
-                    bornDate = reqDate.toString(),
+                    bornDate = bornDate,
                     gender = gender
                 )
             ).collect { event ->
                 when (event) {
                     is UpdateFullInfoEvent.Error -> {
-                        progressSaverBar.gone()
-                        println("Error buttons make invisible !")
+                        btnSaveChanges.text = getString(R.string.str_save_changes)
+                        progressBar.gone()
                         toast(event.error)
-                        btnSaverChanges.text = getString(R.string.str_save_changes)
-                        changingButtonsMakeInvisible()
                     }
 
                     UpdateFullInfoEvent.Loading -> {
-                        progressSaverBar.visible()
-                        println("Update info Loading...")
-                        changingButtonsMakeInvisible()
+                        btnSaveChanges.text = ""
+                        progressBar.visible()
                     }
 
                     is UpdateFullInfoEvent.Success -> {
+                        btnSaveChanges.text = getString(R.string.str_save_changes)
+                        toast(getString(R.string.str_updated_information_success))
+                        progressBar.visibility = View.GONE
                         requireActivity().onBackPressedDispatcher.onBackPressed()
-                        toast(event.successMessage)
-                        progressSaverBar.gone()
-                        println("Success buttons make invisible !")
-                        changingButtonsMakeInvisible()
-                        btnSaverChanges.text = getString(R.string.str_save_changes)
                     }
                 }
             }
         }
     }
 
-    private fun setBundleDataToViews() = with(binding) {
-        if (uiModel != null) {
-            if (uiModel?.gender?.toInt() == 1) {
-                genderInfoReceiver.text = getString(R.string.str_male)
-            } else {
-                genderInfoReceiver.text = getString(R.string.str_female)
-            }
-            etFirstName.setText(uiModel?.firstName)
-            etLastName.setText(uiModel?.lastName)
-            val oneDayInMills = 86400000L
-            val formattedDate =
-                millisToDate((uiModel?.bornDate?.toLong()?.minus(oneDayInMills)) ?: 0L)
-            dateBirthReceiver.text = formattedDate
-            tvPhoneNumber.text = uiModel?.phone
+    @SuppressLint("ClickableViewAccessibility")
+    private fun genderChangerProgress() = with(binding) {
+        val genderOptions = listOf(getString(R.string.str_male), getString(R.string.str_female))
+        val adapter = ArrayAdapter(
+            requireContext(), android.R.layout.simple_dropdown_item_1line, genderOptions
+        )
+        genderInput.setAdapter(adapter)
+        genderInput.setOnTouchListener { _, _ ->
+            genderInput.showDropDown()
+            true
         }
+        genderInput.setOnItemClickListener { _, _, position, _ ->
+            val selectedGender = genderOptions[position]
+            genderValue = when (selectedGender) {
+                getString(R.string.str_male) -> 0
+                getString(R.string.str_female) -> 1
+                else -> -1
+            }
+            when (position) {
+                0 -> genderImage.setImageResource(R.drawable.avatar_male)
+                1 -> genderImage.setImageResource(R.drawable.avatar_female)
+            }
+        }
+    }
+
+    private fun listenChanges() = with(binding) {
+        var isNameEqual: Boolean
+        var isLastNameEqual: Boolean
+        val name = uiModel?.firstName
+        val lastName = uiModel?.lastName
+        binding.etName.addTextChangedListener {
+            isNameEqual = it.toString() == name
+            btnSaveChanges.isEnabled = !isNameEqual
+        }
+        binding.etLastName.addTextChangedListener {
+            isLastNameEqual = it.toString() == lastName
+            btnSaveChanges.isEnabled = !isLastNameEqual
+        }
+        etDate.addTextChangedListener {
+            btnSaveChanges.isEnabled = it.toString() != prefsProvider.dateOFBirth
+        }
+        genderInput.addTextChangedListener {
+            if (uiModel?.gender?.toInt() == 0) {
+                btnSaveChanges.isEnabled = it.toString() != getString(R.string.str_male)
+            } else {
+                btnSaveChanges.isEnabled = it.toString() != getString(R.string.str_female)
+            }
+        }
+        etName.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                nameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorPrimary
+                )
+            } else {
+                nameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorOutlineVariant
+                )
+            }
+        }
+        etLastName.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lastNameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorPrimary
+                )
+            } else {
+                lastNameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorOutlineVariant
+                )
+            }
+        }
+    }
+
+    private fun showCustomScrollableDialog() = with(binding) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(R.layout.custom_scrollable_date_picker_dialog)
+            .setCancelable(true)
+        val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
+        val selectButton = dialog.findViewById<MaterialButton>(R.id.btn_select)
+        val datePicker = dialog.findViewById<DatePicker>(R.id.scrollable_date_picker)
+        selectButton?.setOnClickListener {
+            val day = datePicker?.dayOfMonth
+            val month = datePicker?.month?.plus(1)
+            val year = datePicker?.year
+            val dayStr = if (day!! < 10) "0$day" else day.toString()
+            val monthStr = if (month!! < 10) "0$month" else month.toString()
+            val formattedDate = "$dayStr$monthStr$year"
+            etDate.setText(formattedDate)
+            dialog.dismiss()
+        }
+    }
+
+    private fun setBundleDataToViews() = with(binding) {
+        uiModel?.let {
+            uiModel?.run {
+                etName.setText(firstName)
+                etLastName.setText(lastName)
+                etDate.setText(bornDate?.let { millisecond -> millisToDate(millisecond.toLong() - 86_400_000L) })
+                phoneNumberReceiver.setText(phone.toString())
+                if (gender?.toInt() == 0) {
+                    genderInput.setText(getString(R.string.str_male))
+                    genderImage.setImageResource(R.drawable.avatar_male)
+                } else {
+                    genderImage.setImageResource(R.drawable.avatar_female)
+                    genderInput.setText(getString(R.string.str_female))
+                }
+            }
+        }
+        prefsProvider.dateOFBirth = binding.etDate.text.toString()
     }
 
     private fun getBundleData() {
         uiModel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arguments?.getSerializable(
-                Constants.ArgumentKey.USER_FULL_INFO,
-                FullInfoUIModel::class.java
+                Constants.ArgumentKey.USER_FULL_INFO, FullInfoUIModel::class.java
             )
         } else {
             arguments?.getSerializable(Constants.ArgumentKey.USER_FULL_INFO) as? FullInfoUIModel
@@ -147,140 +260,20 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
         println(uiModel)
     }
 
-    private fun onCreateMenu() = with(binding) {
-        toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menu_change_info_option -> {
-                    changingButtonsMakeVisible()
-                    true
-                }
-
-                else -> false
-            }
-        }
-    }
-
-    private fun listenings() = with(binding) {
-        etFirstName.addTextChangedListener {
-            val text = it.toString()
-            if (text.contains(" ")) {
-                val newText = text.replace(" ", "")
-                etFirstName.setText(newText)
-                etFirstName.setSelection(newText.length)
-            }
-        }
-
-        etLastName.addTextChangedListener {
-            val text = it.toString()
-            if (text.contains(" ")) {
-                val newText = text.replace(" ", "")
-                etLastName.setText(newText)
-                etLastName.setSelection(newText.length)
-            }
-        }
-
-        etFirstName.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                etFirstName.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorPrimary
-                    )
-                )
-                helperFirstNameTitle.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorPrimary
-                    )
-                )
-                helperFirstNameTitle.textSize = 16f
-            } else {
-                etFirstName.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorInverseSurface
-                    )
-                )
-                helperFirstNameTitle.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorInverseSurface
-                    )
-                )
-                helperFirstNameTitle.textSize = 14f
-            }
-        }
-        etLastName.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                etLastName.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorPrimary
-                    )
-                )
-                helperLastNameTitle.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorPrimary
-                    )
-                )
-                helperLastNameTitle.textSize = 16f
-            } else {
-                etLastName.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorInverseSurface
-                    )
-                )
-                helperLastNameTitle.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(),
-                        R.color.colorInverseSurface
-                    )
-                )
-                helperLastNameTitle.textSize = 14f
-            }
-        }
-    }
-
-    private fun changingButtonsMakeVisible() = with(binding) {
-        icDateIv.gone()
-        updateButtonsRoot.visible()
-        btnChangeDateParent.visible()
-        btnChangeGenderParent.visible()
-    }
-
-    private fun changingButtonsMakeInvisible() = with(binding) {
-        icDateIv.visible()
-        updateButtonsRoot.gone()
-        btnChangeDateParent.gone()
-        btnChangeGenderParent.gone()
-    }
-
-    private fun datePicker() = with(binding) {
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            { _, year, month, dayOfMonth ->
-                val selectedDate = "$year.${month + 1}.$dayOfMonth"
-                dateBirthReceiver.text = selectedDate
-            },
-            2000,
-            0,
-            1
-        )
-        datePickerDialog.setCancelable(true)
-        datePickerDialog.show()
-    }
-
-    private fun dateToMillis(dateString: String): Long {
-        val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+    private fun dateToMillis(dateString: String): String {
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
         val date = dateFormat.parse(dateString)
-        return date?.time ?: 0
+        return date?.time.toString()
     }
 
     private fun millisToDate(milliseconds: Long): String {
-        val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
         val date = Date(milliseconds)
         return dateFormat.format(date)
+    }
+
+    override fun onDestroy() {
+        prefsProvider.dateOFBirth = ""
+        super.onDestroy()
     }
 }
