@@ -72,4 +72,8 @@ object Constants {
         const val SELECT_CARD_STROKE_WIDTH = 2
         const val DEFAULT_CARD_STROKE_WIDTH = 1
     }
+    object Transfer {
+
+    const val CAMERA_REQUEST_CODE = 100
+    }
 }

@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.play.services.mlkit.text.recognition.common)
+    implementation(libs.play.services.mlkit.text.recognition)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -127,4 +129,7 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.2.3")
     implementation("androidx.camera:camera-view:1.2.3")
     implementation("androidx.camera:camera-extensions:1.2.3")
+
+    //
+    implementation("com.google.mlkit:text-recognition-bundled-common:17.0.0")
 }

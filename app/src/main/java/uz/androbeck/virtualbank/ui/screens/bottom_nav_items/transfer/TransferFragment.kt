@@ -1,7 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewTreeObserver
@@ -17,7 +16,7 @@ import uz.androbeck.virtualbank.databinding.FragmentTransferBinding
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.domain.ui_models.transfer.GetCardOwnerByPanReqUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.customViews.inputs.CustomViewEnterCardOrPhoneNumber
+import uz.androbeck.virtualbank.ui.dialogs.card_scanner.CardScannerBottomDialog
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
@@ -25,13 +24,20 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
     private val binding by viewBinding(FragmentTransferBinding::bind)
     private val vm: TransferFragmentViewModel by viewModels()
     private lateinit var usersInfoAdapter: TransferUsersAdapter
+
+
     override fun setup() {
+
 
         usersInfoAdapter = TransferUsersAdapter { item ->
 
         }
         adjustButtonPositionForKeyboard()
         with(binding) {
+            etCardOrPhoneNumber.onScannerClick = {
+                showCardScannerDialog()
+            }
+            btnContinue.isEnable = false
             etCardOrPhoneNumber.addTextChangedListener { enterNumber->
                 println("enterNumber $enterNumber")
                 if(enterNumber?.length == 19){
@@ -42,6 +48,8 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
                         if (it) {
                             btnContinue.isEnable = true
                             findNavController().navigate(R.id.action_transferFragment_to_secondaryTransferFragment)
+                        }else{
+                            //(activity as MainActivity).showSnackBar("Карта не найдена")()
                         }
                     }
                     vm.isGetCardOwnerByPanEvent.observe(viewLifecycleOwner) {
@@ -106,6 +114,7 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
 
         setupOnBackPressed()
     }
+
     val listgetCard: List<CardUIModel> = listOf()
 
     override fun observe() {
@@ -137,12 +146,7 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        val etCardNumber = view?.findViewById<CustomViewEnterCardOrPhoneNumber>(R.id.et_card_number)
-        etCardNumber?.onActivityResult(requestCode, resultCode, data)
 
-    }
 
     private fun setupOnBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -169,6 +173,14 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
         super.onDestroyView()
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
         rootView.viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener)
+    }
+
+    private fun showCardScannerDialog() {
+        CardScannerBottomDialog().show(
+            childFragmentManager,
+            CardScannerBottomDialog::class.java.simpleName
+        )
+        println("Scan")
     }
 
 }

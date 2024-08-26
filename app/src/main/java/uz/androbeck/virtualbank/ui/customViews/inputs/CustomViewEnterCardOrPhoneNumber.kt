@@ -3,6 +3,7 @@ package uz.androbeck.virtualbank.ui.customViews.inputs
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -14,6 +15,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -25,6 +27,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomViewEnterCardNumberBinding
 import uz.androbeck.virtualbank.ui.enums.CardType
 import uz.androbeck.virtualbank.ui.enums.PhoneNumberType
+import uz.androbeck.virtualbank.utils.Constants.Transfer.CAMERA_REQUEST_CODE
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
@@ -34,15 +37,19 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val CAMERA_REQUEST_CODE = 100
+
     private val binding by lazy {
         CustomViewEnterCardNumberBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
     var onClickEditText: () -> Unit = {}
+    var onScannerClick: () -> Unit = {}
 
     init {
         setUpView()
+        binding.ivScanCard.singleClickable {
+            onScannerClick
+        }
         Log.d("TAG", "CustomViewEnterCardOrPhoneNumber:${setUpView()} ")
     }
 
@@ -177,7 +184,7 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
                 } else {
                     ivScanCard.singleClickable {
                         //TODO() Permesion yozishkerak va kamera ochlishi kerak kartani scanb kilishi kerak
-                        checkCameraPermission()
+                        onScannerClick
                         println("Scan")
                     }
 
@@ -185,8 +192,8 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
 
             }
             ivScanCard.singleClickable {
+                onScannerClick
                 //TODO() Permesion yozishkerak va kamera ochlishi kerak kartani scanb kilishi kerak
-                checkCameraPermission()
                 println("Scan")
             }
         }
@@ -201,20 +208,35 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
     }
 
     private fun checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                (context as Activity),
-                arrayOf(Manifest.permission.CAMERA),
-                CAMERA_REQUEST_CODE
-            )
+        val context = this.context
+        val activity = if (context is Activity) {
+            context
         } else {
-            openCamera()
+            (context as? ContextWrapper)?.baseContext as? Activity
+        }
+
+        activity?.let {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    (context as Activity),
+                    arrayOf(Manifest.permission.CAMERA),
+                    CAMERA_REQUEST_CODE
+                )
+            } else {
+                openCamera()
+            }
+        } ?: run {
+            Toast.makeText(context, "Ошибка", Toast.LENGTH_SHORT).show()
+
         }
     }
 
-    private fun openCamera() {
+
+
+     fun openCamera() {
+
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (cameraIntent.resolveActivity(context.packageManager) != null) {
             (context as Activity).startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
@@ -250,5 +272,6 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
             println("Распознанный текст: $blockText")
         }
     }
+
 }
 
