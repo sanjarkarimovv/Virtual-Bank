@@ -1,5 +1,6 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -15,8 +16,13 @@ import uz.androbeck.virtualbank.utils.extentions.toast
 class MainFragment : BaseFragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private val binding: FragmentMainBinding by viewBinding()
-    override fun setup() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         viewModel.getUiData()
+    }
+
+    override fun setup() {
         onClick()
     }
 
@@ -70,6 +76,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 when (it) {
                     is HomeBodyModels.Card -> {
                         // customBody.cardsDefIconShow(it.data.isEmpty())
+                        println(":::cards -> ${it.data}")
                         customBody.cardsAdapterSubmitList(it.data)
                     }
 
@@ -98,5 +105,15 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        println("::AAAA OnDestroyView")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("::AAAA OnDestroy")
     }
 }
