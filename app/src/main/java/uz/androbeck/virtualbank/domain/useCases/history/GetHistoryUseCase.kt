@@ -26,6 +26,7 @@ class GetHistoryUseCase @Inject constructor(
                         getHistoryMapper.toUIModel(historyDto)
                     }
                     .map { uiModel ->
+                        println("GetHistoryUseCase Mapping: $uiModel")
                         calculateAmounts(uiModel)
                         HistoryItem.Content(uiModel)
                     }
@@ -45,9 +46,9 @@ class GetHistoryUseCase @Inject constructor(
 
 
     private fun isSameDate(time1: Long, time2: Long): Boolean {
-       // val oneDayMillis = 24 * 60 * 60 * 1000
-      //  val days1 = time1 / oneDayMillis
-       // val days2 = time2 / oneDayMillis
+        // val oneDayMillis = 24 * 60 * 60 * 1000
+        //  val days1 = time1 / oneDayMillis
+        // val days2 = time2 / oneDayMillis
         //return days1 == days2
         return time1.toStartOfDay() == time2.toStartOfDay()
     }
@@ -72,7 +73,16 @@ class GetHistoryUseCase @Inject constructor(
     }
 
     fun getTotalAmounts(): Pair<String?, String?> {
-        return Pair(formatAmountWithSpaces( totalAmountOutcome), formatAmountWithSpaces(totalAmountIncome))
+
+        return Pair(
+            formatAmountWithSpaces(totalAmountOutcome),
+            formatAmountWithSpaces(totalAmountIncome)
+        )
+
+    }
+
+    fun isTotalBalanceEmpty(): Boolean {
+        return totalAmountIncome == 0L && totalAmountOutcome == 0L
     }
 
 }

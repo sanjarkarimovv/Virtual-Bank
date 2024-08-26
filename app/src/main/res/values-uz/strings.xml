@@ -77,8 +77,8 @@
     <string name="str_transfer_cofir">Muvaffaqiyatli</string>
     <string name="str_transfer_cencle">Amalga oshmadi</string>
     <string name="str_history_toolbar_title">Kirim-Chiqim</string>
-    <string name="str_histiry_sort_name_income">Tushum</string>
-    <string name="str_histiry_sort_name_outcome">Chiqim</string>
+    <string name="str_histiry_sort_name_income">Umumiy tushum</string>
+    <string name="str_histiry_sort_name_outcome">Umumiy chiqim</string>
     <string name="str_localization_eng">Inglizcha</string>
     <string name="str_widget_settings">Vidjet sozlamalari</string>
     <string name="str_hint_phone_number">+998 Telefon raqami</string>
@@ -117,7 +117,7 @@
     <string name="str_no_data">Ma`lumot yo`q</string>
     <string name="str_camera_by_scanner">Kamera orqali skanerlash</string>
     <string name="str_nfc_by_scanner">NFC orqali skanerlash</string>
-    <string name="str_select">Tanlash</string>
+    <string name="str_select">Select</string>
     <string name="str_show_amount">Ballansni Ko\'rsatish</string>
     <string name="str_show_cost_in_home">Harajatlarni asosiy sahifada ko\'rsatish</string>
     <string name="str_show_amount_in_home">Karta balansni asosiy sahifada ko\'rsatish</string>
@@ -137,6 +137,8 @@
     <string name="str_select_date">Sanani tanlang</string>
     <string name="str_date_is_wrong">Tug`ilgan sana ma`lumotini to`g`ri kiriting !</string>
     <string name="str_updated_information_success">Sizni ma`lumotlaringiz muvafaqiyatli yangilandi!</string>
+    <string name="str_kirim_chikimlar">Kirim chikimlar</string>
+    <string name="str_tramsfer_history_is_empty">Hali amalga oshirilmagan</string>
     <string name="security_settings">Xavfsizlik sozlamalari</string>
     <string name="change_pin_code">Pin-kodni o\'zgartirish</string>
     <string name="login_with_fingerprint_or_face_id">Barmoq izi yoki yuz yordamida kirish</string>

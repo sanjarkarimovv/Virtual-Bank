@@ -129,6 +129,12 @@
     <string name="str_select_date">Выберите дату</string>
     <string name="str_date_is_wrong">Напишите дату рождения правильно</string>
     <string name="str_updated_information_success">Ваша информация успешно обновлена!</string>
+    <string name="str_kirim_chikimlar">Исторя переводов</string>
+    <string name="str_histiry_sort_name_income">Обший Прибыль</string>
+    <string name="str_histiry_sort_name_outcome">Обший Расходы</string>
+    <string name="str_tramsfer_history_is_empty">Ещё не осуществлено</string>
+    <string name="str_transfer_cofir">Успешно</string>
+    <string name="str_money_type_uzb">сум</string>
     <string name="security_settings">Настройки безопасности</string>
     <string name="change_pin_code">Изменить PIN-код</string>
     <string name="login_with_fingerprint_or_face_id">Войти биометрически</string>
