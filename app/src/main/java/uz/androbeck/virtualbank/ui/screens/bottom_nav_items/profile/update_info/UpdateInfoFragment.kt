@@ -116,13 +116,11 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                     }
 
                     UpdateFullInfoEvent.Loading -> {
-                        println("::: -> Loading")
                         btnSaveChanges.text = ""
                         progressBar.visible()
                     }
 
                     is UpdateFullInfoEvent.Success -> {
-                        println("::: -> Success")
                         btnSaveChanges.text = getString(R.string.str_save_changes)
                         toast(getString(R.string.str_updated_information_success))
                         progressBar.visibility = View.GONE
