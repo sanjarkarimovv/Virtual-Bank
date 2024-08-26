@@ -131,6 +131,12 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">DD/MM/YYYY</string>
     <string name="str_bracket">(</string>
+    <string name="transfer_to_my_card">Transfer to my card</string>
+    <string name="where_to_transfer">Where to transfer</string>
+    <string name="transfer_amount">Transfer amount</string>
+    <string name="from_1_000_to_15_000_000_sum">from 1 000 to 15 000 000 sum</string>
+    <string name="next">next</string>
+    <string name="select_receiving_card">Select receiving card</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
     <string name="str_kirim_chikimlar">Transaction history</string>\

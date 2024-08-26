@@ -36,7 +36,8 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                     )
                 },
                 toTransferScreen = {
-//                    findNavController().navigate(R.id.action_myCardsFragment_to_transferFragment)
+                    val bundle = bundleOf("card" to it)
+                    findNavController().navigate(R.id.action_myCardsFragment_to_depositCardFragment,bundle)
                 },
                 card
             ).show(parentFragmentManager, "")
@@ -62,21 +63,20 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                     binding.viewPager.adapter = pagingAdapter
 
                     pagingAdapter.load(cardSortedList)
-                    }
+                }
 
                 MyCardsUIEvent.Loading -> {}
-                }
-            }.launchIn(lifecycleScope)
-        }
+            }
+        }.launchIn(lifecycleScope)
+    }
 
 
-
-    override fun clicks()= with(binding){
+    override fun clicks() = with(binding) {
         swipeRefreshLayout.setOnRefreshListener {
             vm.getCards()
         }
 
-        customToolbar.onClickLeftIcon={
+        customToolbar.onClickLeftIcon = {
             findNavController().popBackStack()
         }
 
@@ -104,6 +104,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                 "9860" -> {
                     humoList.add(cardUIModel)
                 }
+
                 else -> {}
             }
 
