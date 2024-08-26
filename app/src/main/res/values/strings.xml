@@ -135,4 +135,18 @@
     <string name="str_minus">- </string>
     <string name="str_kirim_chikimlar">Transaction history</string>\
     <string name="str_tramsfer_history_is_empty">Not implemented yet</string>
+    <string name="security_settings">Security settings</string>
+    <string name="change_pin_code">Change PIN-code</string>
+    <string name="login_with_fingerprint_or_face_id">Login with fingerprint or Face ID</string>
+    <string name="lock_app_when_closed">Lock app when closed</string>
+    <string name="confirm_payment">Confirm payment</string>
+    <string name="str_security_time">%1$d sec</string>
+    <string name="str_new_pin_code">Enter a new PIN code</string>
+    <string name="str_confirm_new_pin_code">Confirm the new PIN code</string>
+    <string name="close">Close</string>
+    <string name="snackbar_icon">Snackbar icon</string>
+    <string name="str_pin_code_same">New PIN code should not coincide with the old one</string>
+
+    <string name="str_nfc">Nfc</string>
+    <string name="str_qrd">QR</string>
 </resources>

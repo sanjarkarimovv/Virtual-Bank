@@ -17,12 +17,27 @@ class CardsAdapter : ListAdapter<CardUIModel, CardsAdapter.CardsHolder>(diffUtil
         fun bind(cardModel: CardUIModel) = with(binding) {
             cardModel.run {
                 tvOwnerName.text = name
-                tvAmount.text = amount.toString()
-                tvCardNumber.text = pan.toString()
-                tvCardExpired.text = expiredYear.toString() + "/" + expiredMonth.toString()
-                //tvAmount.text = amount
-                // ...
+                val str = (amount?.toLong() ?: 0).toString()
+                tvAmount.text = toSum(str)
+                tvCardNumber.text = "$pan **** **** ****"
+                tvCardExpired.text =
+                    ((expiredYear ?: 1) % 100).toString() + "/" + expiredMonth.toString()
             }
+        }
+
+        private fun toSum(str: String): CharSequence {
+            var sum = StringBuilder()
+            var count = 0
+            for (c in str.reversed()) {
+                sum.append(c)
+                count++
+                if (count == 3) {
+                    count = 0
+                    sum.append(" ")
+                }
+            }
+            sum = sum.reverse()
+            return sum.append(" so'm").toString()
         }
     }
 

@@ -29,7 +29,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         binding.viewPager.adapter = pagingAdapter
     }
 
-    override fun observe(): Unit = with(viewLifecycleOwner.lifecycleScope) {
+    override fun observe(): Unit {
         vm.getCardsEvent.onEach {
             when (it) {
                 is MyCardsUIEvent.Error -> {
@@ -44,13 +44,14 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
 
                     pagingAdapter.load(cardSortedList)
                     }
+
+                MyCardsUIEvent.Loading -> {}
             }
-        }.launchIn(this)
+        }.launchIn(lifecycleScope)
 
     }
 
     override fun clicks()= with(binding){
-
         swipeRefreshLayout.setOnRefreshListener {
             vm.getCards()
         }

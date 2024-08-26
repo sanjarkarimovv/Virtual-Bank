@@ -43,13 +43,10 @@ class WidgetSettingsFragment : BaseFragment(R.layout.fragment_widget_settings) {
     private fun setRv() = with(binding) {
         rvSelected.apply {
             adapter = adapterSelected
-            ItemTouchHelper(ItemTouch(adapterSelected)).attachToRecyclerView(this)
         }
         rvNotSelect.apply {
             adapter = adapterNotSelect
-            ItemTouchHelper(ItemTouch(adapterNotSelect)).attachToRecyclerView(this)
         }
-
     }
 
     override fun observe() {

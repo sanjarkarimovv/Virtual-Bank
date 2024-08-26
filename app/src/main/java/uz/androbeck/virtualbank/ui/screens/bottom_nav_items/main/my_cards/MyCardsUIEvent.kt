@@ -6,4 +6,6 @@ import uz.androbeck.virtualbank.ui.screens.auth.login.LoginUiEvent
 
 sealed class MyCardsUIEvent {
     data class Success(val cards: List<CardUIModel>) : MyCardsUIEvent()
-    data class Error(val massage: String?): MyCardsUIEvent()}
+    data class Error(val massage: String?): MyCardsUIEvent()
+    data object Loading: MyCardsUIEvent()
+}

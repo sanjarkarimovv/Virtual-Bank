@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true">
 
-    <!--Top Right corner action buttons bu action back bo'ladi va chap tarafga o'tadi icon bo'lib-->
     <ImageView
-        android:id="@+id/actionBack"
+        android:id="@+id/action_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
@@ -18,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/actionConfirm"
+        android:id="@+id/action_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
@@ -28,9 +27,9 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--    Bu yerga confirm pin code qo'yamiz-->
+
     <TextView
-        android:id="@+id/pinCodePageConfirmPin"
+        android:id="@+id/pin_action_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
@@ -41,9 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Fill dots-->
     <LinearLayout
-        android:id="@+id/pinCodePagePINField"
+        android:id="@+id/pin_dot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -52,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pinCodePageConfirmPin">
+        app:layout_constraintTop_toBottomOf="@+id/pin_action_text">
 
         <View
             android:id="@+id/view_01"
@@ -85,9 +83,8 @@
 
     </LinearLayout>
 
-    <!--Num field-->
     <LinearLayout
-        android:id="@+id/pinCodePageNumField"
+        android:id="@+id/pin_number_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
@@ -269,6 +266,5 @@
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

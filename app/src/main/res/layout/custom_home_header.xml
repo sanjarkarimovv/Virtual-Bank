@@ -20,24 +20,39 @@
             android:padding="5dp"
             android:src="@drawable/ic_not_visible" />
 
-        <TextView
-            android:id="@+id/tv_text_amount"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
-            android:text="0.0"
-            android:textColor="@color/colorOnSecondary"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="@string/str_currency"
-            android:textColor="@color/colorOnSecondary"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_text_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorOnSecondary"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/loading_total_balance"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:indeterminateTint="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tv_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="5dp"
+                android:paddingBottom="2.5dp"
+                android:text="@string/str_currency"
+                android:textColor="@color/colorOnSecondary"
+                android:textSize="20sp" />
+        </LinearLayout>
+
 
         <ImageView
             android:id="@+id/btn_more"
@@ -75,29 +90,55 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/layout_amount_root"
         android:gravity="center"
         android:paddingHorizontal="30dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btn_card"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="20dp"
-            app:cardCornerRadius="50dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp"
-                android:src="@drawable/ic_cards" />
-        </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_card"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_marginHorizontal="20dp"
+                app:cardCornerRadius="50dp">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_cards" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo2_medium"
+                android:text="@string/str_cards"
+                android:textColor="@color/colorScrim"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_nfsee"
             android:layout_width="50dp"
+            android:layout_margin="5dp"
             android:layout_height="50dp"
             android:layout_marginHorizontal="20dp"
             app:cardCornerRadius="50dp">
@@ -109,9 +150,26 @@
                 android:src="@drawable/ic_nfc" />
         </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo2_medium"
+                android:text="@string/str_nfc"
+                android:textColor="@color/colorScrim"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_qr_code"
+
             android:layout_width="50dp"
+            android:layout_margin="5dp"
             android:layout_height="50dp"
             android:layout_marginHorizontal="20dp"
             app:cardCornerRadius="50dp">
@@ -123,6 +181,15 @@
                 android:src="@drawable/ic_qr_code" />
         </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/exo2_medium"
+                android:text="@string/str_qrd"
+                android:textColor="@color/colorScrim"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

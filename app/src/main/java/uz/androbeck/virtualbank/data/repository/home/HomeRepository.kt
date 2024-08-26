@@ -7,6 +7,7 @@ import uz.androbeck.virtualbank.data.dto.request.home.UpdateInfoReqDto
 import uz.androbeck.virtualbank.data.dto.response.home.BasicInfoResDto
 import uz.androbeck.virtualbank.data.dto.response.home.FullInfoResDto
 import uz.androbeck.virtualbank.data.dto.response.home.TotalBalanceResDto
+import uz.androbeck.virtualbank.data.dto.response.home.fireBaseResDto.GetTvBannerResEvent
 
 interface HomeRepository {
     fun getFullInfo(): Flow<FullInfoResDto>
@@ -16,4 +17,5 @@ interface HomeRepository {
     suspend fun putComponents(homeEntity: HomeEntity)
     suspend fun updateComponents(id: Int, isVisibility: Boolean)
     fun getTotalBalance():Flow<TotalBalanceResDto>
+    fun getTvBannerFromFirebase(): Flow<GetTvBannerResEvent>
 }
