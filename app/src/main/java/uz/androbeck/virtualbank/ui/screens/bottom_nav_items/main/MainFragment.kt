@@ -31,6 +31,10 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
             findNavController().navigate(R.id.action_mainFragment_to_widgetSettingsFragment)
         }
+         toolbar.clickNotification = {
+
+            findNavController().navigate(R.id.action_mainFragment_to_notificationFragment)
+        }
         customHeader.clicks = {
             when (it) {
                 HeaderUiEvent.ClickCards -> {

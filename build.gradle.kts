@@ -7,3 +7,9 @@ plugins {
     alias(libs.plugins.dagger.hilt) apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
+buildscript {
+    dependencies {
+        // Add this line
+        classpath("com.google.gms:google-services:4.3.15")
+    }
+}

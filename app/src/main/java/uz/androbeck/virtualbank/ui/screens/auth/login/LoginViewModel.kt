@@ -43,7 +43,7 @@ class LoginViewModel @Inject constructor(
                 _accessLogin.trySend(Triple(false, "Password empty", null))
             }
 
-            signInReqUIModel.phone.isNullOrEmpty() -> {
+            signInReqUIModel.phone?.length!! < 13 -> {
                 _accessLogin.trySend(Triple(false, "phone number empty", null))
             }
 

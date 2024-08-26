@@ -20,6 +20,7 @@ import uz.androbeck.virtualbank.ui.events.NavGraphEvent
 import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.visible
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.Locale
 import javax.inject.Inject
 
@@ -46,6 +47,15 @@ class MainActivity : AppCompatActivity() {
         vm.setNavGraphEvent()
         setupObservers(navHostFragment)
         bottomNavigationVisibility(navHostFragment.navController)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                println("FCM Token: $token")
+            } else {
+                println("FCM Token Error: ${task.exception?.message}")
+            }
+        }
     }
 
     private fun bottomNavigationVisibility(navController: NavController) {

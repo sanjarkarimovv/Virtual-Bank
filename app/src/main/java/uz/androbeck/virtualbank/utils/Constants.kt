@@ -3,13 +3,12 @@ package uz.androbeck.virtualbank.utils
 object Constants {
     object FileName {
         const val SHARED_PREFS = "virtual_bank"
-        const val DATABASE_NAME= "virtual_bank_database"
+        const val DATABASE_NAME = "virtual_bank_database"
     }
 
     object Endpoint {
         const val SIGN_UP = "auth/sign-up"
         const val SIGN_IN_VERIFY = "auth/sign-in/verify"
-
         const val SIGN_IN = "auth/sign-in"
         const val SIGN_UP_VERIFY = "auth/sign-up/verify"
         const val UPDATE_TOKEN = "auth/update-token"
@@ -20,12 +19,12 @@ object Constants {
         const val SIGN_UP_RESEND = "auth/sign-up/resend"
         const val LAST_TRANSFERS = "home/last-transfers"
         const val TOTAL_BALANCE = "home/total-balance"
-        const val GET_HISTORY="transfer/transfer"
-        const val DELETE_CARD="card"
-        const val ADD_CARD="card"
-        const val GET_CARD="card"
-        const val GET_FEE="transfer/fee"
-        const val TRANSFER="transfer/transfer"
+        const val GET_HISTORY = "transfer/transfer"
+        const val DELETE_CARD = "card"
+        const val ADD_CARD = "card"
+        const val GET_CARD = "card"
+        const val GET_FEE = "transfer/fee"
+        const val TRANSFER = "transfer/transfer"
 
     }
 
@@ -50,6 +49,8 @@ object Constants {
     object String {
         const val EMPTY = ""
         const val ADD_HOME = "Uy qo'shish"
+        const val INCOME = "income"
+        const val TO_PLAY_STORE_URL="https://play.google.com/store"
     }
 
     object Localization {
@@ -66,5 +67,14 @@ object Constants {
         const val OFFSCREEN_PAGE_LIMIT = 1
         const val SELECT_CARD_STROKE_WIDTH = 2
         const val DEFAULT_CARD_STROKE_WIDTH = 1
+        const val NUM_NOTIFICATION_TABS = 2
+    }
+
+    object Firebase {
+        const val FIREBASE_REAL_TIME_DATABASE_URL =
+            "https://virtual-bank-20dcc-default-rtdb.firebaseio.com/"
+        const val FIREBASE_NOTIFICATION = "notifications"
+        const val CHANNEL_ID = "uz.androbeck.virtualbank.notifications"
+        const val DEFAULT_CHANNEL_NAME = "Default Channel"
     }
 }

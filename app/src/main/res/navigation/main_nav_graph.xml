@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_mainFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/transferFragment"
@@ -58,7 +61,7 @@
         tools:layout="@layout/fragment_update_info" />
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.AddCardFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.add_card.AddCardFragment"
         android:label="AddCardFragment"
         tools:layout="@layout/fragment_add_card">
         <action
@@ -67,6 +70,28 @@
     </fragment>
     <fragment
         android:id="@+id/cardScannerFragment"
-        android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card.CardScannerFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.add_card.CardScannerFragment"
         android:label="CardScannerFragment" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="uz.androbeck.virtualbank.ui.screens.notification.NotificationFragment"
+        android:label="NotificationFragment" >
+        <action
+            android:id="@+id/action_notificationFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_transferFragment"
+            app:destination="@id/transferFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/notificationInfoBottomDialog"
+        android:name="uz.androbeck.virtualbank.ui.dialogs.notification_info.NotificationInfoBottomDialog"
+        android:label="NotificationInfoBottomDialog" >
+        <action
+            android:id="@+id/action_notificationInfoBottomDialog_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_notificationInfoBottomDialog_to_transferFragment"
+            app:destination="@id/transferFragment" />
+    </dialog>
 </navigation>

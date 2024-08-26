@@ -1,10 +1,14 @@
-package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.add_card
+package uz.androbeck.virtualbank.ui.screens.add_card
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.Rect
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -18,6 +22,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
@@ -28,7 +33,6 @@ import uz.androbeck.virtualbank.domain.ui_models.card.AddCardReqUIModel
 import uz.androbeck.virtualbank.network.message.MessageController
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.card_scanner.CardScannerBottomDialog
-import uz.androbeck.virtualbank.ui.screens.auth.login.LoginUiEvent
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
 import uz.androbeck.virtualbank.utils.extentions.toast
@@ -39,6 +43,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
 
     private val binding by viewBinding(FragmentAddCardBinding::bind)
     private val vm: AddCardViewModel by viewModels()
+    private var isKeyboardVisible = false
 
     @Inject
     lateinit var messageController: MessageController
@@ -56,6 +61,9 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
             }
 
             metValidityPeriod.addTextChangedListener {
+                validateFields()
+            }
+            etCardName.addTextChangedListener {
                 validateFields()
             }
 
@@ -77,6 +85,9 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
                 }
             }
         }
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content).viewTreeObserver.addOnGlobalLayoutListener(
+            on
+        )
     }
 
     private fun showCardScannerDialog() {
@@ -106,6 +117,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
         }
     }
 
+
     override fun observe() {
         vm.isAddCard.observe(viewLifecycleOwner) {
             if (it) {
@@ -123,7 +135,7 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
         }
         messageController.observeMessage().onEach {
             toast(it)
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun editTextFocus(hasFocus: Boolean, cardView: MaterialCardView, helperText: TextView) {
@@ -191,16 +203,20 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
         }
     }
 
-    private fun showProgress() {
-        binding.btnAddCard.isProgress = true
+    private fun showProgress() = with(binding) {
+        btnAddCard.isProgress = true
     }
 
-    private fun hideProgress() {
-        binding.btnAddCard.isProgress = false
+    private fun hideProgress() = with(binding) {
+        btnAddCard.isProgress = false
     }
 
     private fun validateFields() = with(binding) {
-        vm.validateFields(etCardNumber.getCardNumber(), metValidityPeriod.text.toString())
+        vm.validateFields(
+            etCardNumber.getCardNumber(),
+            metValidityPeriod.text.toString(),
+            etCardName.text.toString()
+        )
     }
 
     private fun addCardError() = with(binding) {
@@ -213,5 +229,47 @@ class AddCardFragment : BaseFragment(R.layout.fragment_add_card) {
         mcvValidityPeriod.strokeWidth = strokeWidthInPx
         mcvValidityPeriod.strokeColor = ContextCompat.getColor(requireContext(), R.color.colorError)
         validityPeriodHelperText.setTextColorRes(R.color.colorError)
+    }
+
+    private val on = ViewTreeObserver.OnGlobalLayoutListener {
+        if (view == null || !isAdded) return@OnGlobalLayoutListener
+
+        val rect = Rect()
+        val rootView =
+            requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+        rootView.getWindowVisibleDisplayFrame(rect)
+        val screenHeight = rootView.height
+        val keypadHeight = screenHeight - rect.bottom
+
+        val isKeyboardNowVisible = keypadHeight > screenHeight * 0.15
+
+        if (isKeyboardNowVisible != isKeyboardVisible) {
+            isKeyboardVisible = isKeyboardNowVisible
+            onKeyboardVisibilityChanged(isKeyboardVisible, keypadHeight)
+        }
+    }
+
+
+    private fun onKeyboardVisibilityChanged(visible: Boolean, keypadHeight: Int) {
+        if (view == null || !isAdded) return
+
+        val params = binding.btnAddCard.layoutParams as ViewGroup.MarginLayoutParams
+        if (visible) {
+            params.bottomMargin = keypadHeight + binding.btnAddCard.height
+        } else {
+            params.bottomMargin = 20.dpToPx()
+        }
+        binding.btnAddCard.layoutParams = params
+    }
+
+    private fun Int.dpToPx(): Int {
+        val density = Resources.getSystem().displayMetrics.density
+        return (this * density).toInt()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().window.decorView.findViewById<ViewGroup>(android.R.id.content)
+            .viewTreeObserver.removeOnGlobalLayoutListener(on)
     }
 }

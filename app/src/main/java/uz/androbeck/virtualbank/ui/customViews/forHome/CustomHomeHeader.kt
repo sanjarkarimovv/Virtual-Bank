@@ -14,7 +14,7 @@ class CustomHomeHeader @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
-    private val binding = CustomHomeHeaderBinding.inflate(LayoutInflater.from(context), this, true)
+     val binding = CustomHomeHeaderBinding.inflate(LayoutInflater.from(context), this, true)
 
     var clicks: ((HeaderUiEvent) -> Unit)? = null
     private var isShowAmount = true
