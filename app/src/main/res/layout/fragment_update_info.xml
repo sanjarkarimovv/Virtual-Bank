@@ -18,6 +18,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="30dp"
         app:cardBackgroundColor="@color/static_white"
+        app:strokeColor="@color/colorOutlineVariant"
         app:strokeWidth="1dp">
 
         <EditText
@@ -41,6 +42,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         app:cardBackgroundColor="@color/static_white"
+        app:strokeColor="@color/colorOutlineVariant"
         app:strokeWidth="1dp">
 
         <EditText
@@ -115,7 +117,6 @@
                     android:layout_height="match_parent"
                     android:layout_toStartOf="@+id/avatar_root"
                     android:clickable="false"
-                    android:hint="@string/str_gender"
                     app:boxStrokeWidth="0dp">
 
                     <AutoCompleteTextView
@@ -127,7 +128,8 @@
                         android:fontFamily="@font/exo2_medium"
                         android:inputType="none"
                         android:paddingHorizontal="12dp"
-                        android:textSize="14sp" />
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.cardview.widget.CardView
@@ -155,7 +157,7 @@
     <RelativeLayout
         android:id="@+id/rl_phone_info_root"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/gen_and_date_root"
         android:layout_marginTop="40dp">
 
@@ -163,7 +165,7 @@
             android:id="@+id/iv_ic_telephone"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:padding="10dp"
+            android:padding="14dp"
             android:src="@drawable/ic_telephone" />
 
         <TextView
@@ -176,16 +178,18 @@
             android:textColor="@color/colorSecondary"
             android:textSize="15sp" />
 
-        <TextView
+        <com.vicmikhailau.maskededittext.MaskedEditText
             android:id="@+id/phone_number_receiver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title_telephone_number"
             android:layout_toStartOf="@+id/iv_ic_next"
             android:layout_toEndOf="@+id/iv_ic_telephone"
-            android:text="+998"
+            android:backgroundTint="@android:color/transparent"
+            android:editable="false"
             android:textColor="@color/colorSecondary"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:mask="+### (##) ###-##-##" />
 
         <ImageView
             android:id="@+id/iv_ic_next"

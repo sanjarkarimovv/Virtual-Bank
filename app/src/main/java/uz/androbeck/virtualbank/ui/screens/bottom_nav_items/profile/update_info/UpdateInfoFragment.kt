@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,7 @@ import uz.androbeck.virtualbank.preferences.PreferencesProvider
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.Constants
 import uz.androbeck.virtualbank.utils.extentions.gone
+import uz.androbeck.virtualbank.utils.extentions.pxToDp
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 import uz.androbeck.virtualbank.utils.extentions.visible
@@ -179,6 +181,32 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                 btnSaveChanges.isEnabled = it.toString() != getString(R.string.str_female)
             }
         }
+        etName.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                nameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorPrimary
+                )
+            } else {
+                nameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorOutlineVariant
+                )
+            }
+        }
+        etLastName.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lastNameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorPrimary
+                )
+            } else {
+                lastNameRoot.strokeColor = ContextCompat.getColor(
+                    requireContext(),
+                    R.color.colorOutlineVariant
+                )
+            }
+        }
     }
 
     private fun showCustomScrollableDialog() = with(binding) {
@@ -208,7 +236,7 @@ class UpdateInfoFragment : BaseFragment(R.layout.fragment_update_info) {
                 etName.setText(firstName)
                 etLastName.setText(lastName)
                 etDate.setText(bornDate?.let { millisecond -> millisToDate(millisecond.toLong() - 86_400_000L) })
-                phoneNumberReceiver.text = phone.toString()
+                phoneNumberReceiver.setText(phone.toString())
                 if (gender?.toInt() == 0) {
                     genderInput.setText(getString(R.string.str_male))
                     genderImage.setImageResource(R.drawable.avatar_male)
