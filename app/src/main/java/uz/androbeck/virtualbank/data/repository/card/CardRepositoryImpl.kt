@@ -10,6 +10,8 @@ class CardRepositoryImpl @Inject constructor(
     private val cardRemoteDataSource: CardRemoteDataSource,
     private val cardsLocalDataSource: CardsLocalDataSource
 ) : CardRepository {
+
+    override fun deleteCard(id:String) = cardRemoteDataSource.deleteCard(id)
     override fun deleteCard() = cardRemoteDataSource.deleteCard()
 
     override fun addCard(addCardReqDto: AddCardReqDto) =

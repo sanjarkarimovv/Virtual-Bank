@@ -148,8 +148,8 @@ object UseCaseModule {
     @Provides
     fun provideDeleteCardUseCase(
         cardRepository: CardRepository,
-        deleteCardMapper: DeleteCardMapper
-    ) = DeleteCardUseCase(cardRepository, deleteCardMapper)
+        messageMapper: MessageMapper
+    ) = DeleteCardUseCase(cardRepository,messageMapper)
 
     @Provides
     fun provideAddCardUseCase(

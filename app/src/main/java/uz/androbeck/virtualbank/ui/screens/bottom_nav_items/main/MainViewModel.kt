@@ -14,10 +14,14 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.R
+import uz.androbeck.virtualbank.data.dto.request.card.DeleteCardReqDto
+import uz.androbeck.virtualbank.domain.mapper.card.DeleteCardMapper
+import uz.androbeck.virtualbank.domain.ui_models.card.DeleteCardReqUIModel
 import uz.androbeck.virtualbank.data.dto.response.home.fireBaseResDto.GetTvBannerResEvent
 import uz.androbeck.virtualbank.domain.ui_models.home.HomeBodyModels
 import uz.androbeck.virtualbank.domain.ui_models.home.PaymentsModel
 import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
+import uz.androbeck.virtualbank.domain.useCases.card.DeleteCardUseCase
 import uz.androbeck.virtualbank.domain.useCases.card.GetCardsUseCase
 import uz.androbeck.virtualbank.domain.useCases.history.LastTransfersUseCase
 import uz.androbeck.virtualbank.domain.useCases.home.GetComponentsFromCacheUseCase
@@ -31,6 +35,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
+    private val deleteCardUseCase: DeleteCardUseCase,
     private val getFullInfoUseCase: GetFullInfoUseCase,
     private val putUpdateInfoUseCase: PutUpdateInfoUseCase,
     private val getComponentsFromCacheUseCase: GetComponentsFromCacheUseCase,
