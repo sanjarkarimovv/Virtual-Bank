@@ -1,12 +1,16 @@
+@file:Suppress("DEPRECATION")
+
 package uz.androbeck.virtualbank.ui.screens.deposit_card
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentTransferMyCardBinding
+import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.utils.extentions.color
 import uz.androbeck.virtualbank.utils.extentions.colorStateList
@@ -15,8 +19,11 @@ class TransferMyCardFragment : BaseFragment(R.layout.fragment_transfer_my_card) 
     private val binding: FragmentTransferMyCardBinding by viewBinding()
     @SuppressLint("SetTextI18n")
     override fun setup() = with(binding) {
+        val cardUiModel = arguments?.getParcelable<CardUIModel>("card")
+        tvCardName.text=cardUiModel?.name
+        tvCardBalance.text=cardUiModel?.amount.toString()
+        tvCardNumber.text=cardUiModel?.pan
         cvTransferCard.setOnClickListener {
-
             CardsDialog{item->
                 tvCardName.text=item.name
                 tvCardBalance.text=item.amount.toString()
@@ -40,7 +47,6 @@ class TransferMyCardFragment : BaseFragment(R.layout.fragment_transfer_my_card) 
                     tvTransferAmount.setTextColor(color(R.color.colorSecondary))
                     etInputTransferSum.textInputLayout.boxStrokeColor = color(R.color.colorSecondary)
                 }
-
             }
         })
         toolbar.onClickLeftIcon={
@@ -60,7 +66,12 @@ class TransferMyCardFragment : BaseFragment(R.layout.fragment_transfer_my_card) 
         }
 
     }
-
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        val sharedPreferences = requireContext().getSharedPreferences("shared", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putInt("selected_position", -1)
+        editor.remove("shared")
+        editor.apply()
+    }
 }
