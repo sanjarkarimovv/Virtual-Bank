@@ -1,11 +1,13 @@
 package uz.androbeck.virtualbank.ui.customViews.forHome
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.ItemLastTransferBinding
 import uz.androbeck.virtualbank.domain.ui_models.history.InComeAndOutComeUIModel
 import java.text.SimpleDateFormat
@@ -17,9 +19,14 @@ class LastTransferAdapter :
         @SuppressLint("SetTextI18n", "SimpleDateFormat")
         fun bind(lastTransferModel: InComeAndOutComeUIModel) = with(binding) {
             lastTransferModel.run {
-                tvAmount.text = "+$amount"
+                if (type == "income") {
+                    icIncomeOrOutcome.setImageResource(R.drawable.ic_income)
+                    tvAmount.text = "+$amount"
+                } else {
+                    icIncomeOrOutcome.setImageResource(R.drawable.ic_outcome)
+                    tvAmount.text = "-$amount"
+                }
                 tvDate.text = SimpleDateFormat("dd MMMM").format(time)
-                // ...
             }
         }
     }

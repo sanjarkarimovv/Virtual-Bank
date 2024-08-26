@@ -6,6 +6,7 @@ enum class ApiErrorType(
     USER_NOT_VERIFIED(101),
     ERROR_404(404),
     ERROR_401(401),
+    ERROR_400(400),
     INCORRECT_CREDENTIALS(102),
     INCORRECT_END_TIME_PROVIDED(103),
     ERROR_RESPONSE_EMPTY(-101);
@@ -42,7 +43,13 @@ class ParseErrorResponseException(
     val response: String
 ) : HttpResponseException(-100, "Unable to parse the error response: $response")
 
-class ErrorResponseEmptyException : HttpResponseException(ApiErrorType.ERROR_RESPONSE_EMPTY.code, "Error body is empty")
+class ErrorResponseEmptyException :
+    HttpResponseException(ApiErrorType.ERROR_RESPONSE_EMPTY.code, "Error body is empty")
+
 class Error404Exception(
-    errorMessage: String?=null
+    errorMessage: String? = null
 ) : HttpResponseException(ApiErrorType.ERROR_404.code, errorMessage.orEmpty())
+
+class Error400Exception(
+    errorMessage: String? = null
+) : HttpResponseException(ApiErrorType.ERROR_400.code, errorMessage.orEmpty())

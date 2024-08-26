@@ -10,8 +10,8 @@ import android.widget.LinearLayout
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomHomeBodyBinding
+import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.domain.ui_models.home.AdvertisingModel
 import uz.androbeck.virtualbank.domain.ui_models.home.UiComponents
 import uz.androbeck.virtualbank.ui.screens.HomeComponents
@@ -23,25 +23,7 @@ class CustomHomeBody @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
-    private var binding = CustomHomeBodyBinding.inflate(LayoutInflater.from(context), this, true)
-
-    private var isCounter = true
-    private val counter = object : CountDownTimer(21000L, 3000) {
-        private var count = 0
-        override fun onTick(p0: Long) {
-            if (count < 5) {
-                binding.rvAdvertising.currentItem = count
-                count++
-            } else {
-                count = 0
-            }
-        }
-        override fun onFinish() {
-            count = 0
-            isCounter = true
-            startCounter()
-        }
-    }
+    var binding = CustomHomeBodyBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
@@ -66,16 +48,22 @@ class CustomHomeBody @JvmOverloads constructor(
         }
     }
 
-    fun cardsDefIconShow(isShow: Boolean) {
-        binding.icCardNotFound.isShow(isShow)
-    }
-
     fun lastTransferDefIconShow(isShow: Boolean) {
         binding.icLastTransferInNotFound.isShow(isShow)
     }
 
+    fun cardsAdapterSubmitList(list: List<CardUIModel>) {
+        cardsAdapter.submitList(list)
+        if (list.isEmpty()) {
+            binding.icCardNotFound.visible()
+            binding.icLoadingCards.gone()
+        } else {
+            binding.icCardNotFound.gone()
+            binding.icLoadingCards.gone()
+        }
+    }
 
-    val cardsAdapter by lazy {
+    private val cardsAdapter by lazy {
         CardsAdapter()
     }
     val paymentsAdapter by lazy {
@@ -84,15 +72,17 @@ class CustomHomeBody @JvmOverloads constructor(
     val lastTransferAdapter by lazy {
         LastTransferAdapter()
     }
+
+    fun advertisingAdapterLoadList(list: List<AdvertisingModel>) {
+        advertisingAdapter.submitList(list)
+    }
+
     private val advertisingAdapter by lazy {
+        val action:()->Unit = {
+            binding.icLoading.gone()
+        }
         AdvertisingAdapter(
-            listOf(
-                AdvertisingModel(R.drawable.bg_banner_image4),
-                AdvertisingModel(R.drawable.bg_banner_image2),
-                AdvertisingModel(R.drawable.bg_banner_image5),
-                AdvertisingModel(R.drawable.bg_banner_image),
-                AdvertisingModel(R.drawable.bg_banner_image1),
-            )
+            action,binding.rvAdvertising
         )
     }
 
@@ -138,7 +128,6 @@ class CustomHomeBody @JvmOverloads constructor(
                 HomeComponents.ForAdvertising -> {
                     layoutAdvertising.isShow(it.isShow)
                     rvAdvertising.adapter = advertisingAdapter
-                    startCounter()
                 }
             }
         }
@@ -151,16 +140,6 @@ class CustomHomeBody @JvmOverloads constructor(
         } else this.gone()
     }
 
-    fun stopCounter() {
-        counter.cancel()
-    }
-
-    private fun startCounter() {
-        if (isCounter){
-            counter.start()
-            isCounter = false
-        }
-    }
 
 
 }

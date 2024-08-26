@@ -125,4 +125,17 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
     <string name="str_bracket">(</string>
+    <string name="security_settings">Настройки безопасности</string>
+    <string name="change_pin_code">Изменить PIN-код</string>
+    <string name="login_with_fingerprint_or_face_id">Войти биометрически</string>
+    <string name="lock_app_when_closed">Блокировка при сворачивании</string>
+    <string name="confirm_payment">Подтвердить оплату</string>
+    <string name="str_security_time">%1$d сек</string>
+    <string name="str_new_pin_code">Введите новый ПИН код</string>
+    <string name="str_confirm_new_pin_code">Подтвердите новый ПИН код</string>
+    <string name="close">Закрыть</string>
+    <string name="snackbar_icon">Snackbar icon</string>
+    <string name="str_pin_code_same">Новый ПИН должен отличаться от старого</string>
+    <string name="str_nfc">Nfc</string>
+    <string name="str_qrd">QR</string>
 </resources>

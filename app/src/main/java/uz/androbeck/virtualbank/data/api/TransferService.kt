@@ -2,6 +2,8 @@ package uz.androbeck.virtualbank.data.api
 
 import retrofit2.http.Body
 import retrofit2.http.POST
+import uz.androbeck.virtualbank.data.dto.common.request.CodeVerifyReqDto
+import uz.androbeck.virtualbank.data.dto.common.response.MessageResDto
 import uz.androbeck.virtualbank.data.dto.common.response.TokenResDto
 import uz.androbeck.virtualbank.data.dto.request.transfer.GetCardOwnerByPanReqDto
 import uz.androbeck.virtualbank.data.dto.request.transfer.GetFeeReqDto
@@ -23,4 +25,8 @@ interface TransferService {
     suspend fun getCardOwner(
         @Body request: GetCardOwnerByPanReqDto
     ):GetCardOwnerByPanResDto
+    @POST(Constants.Endpoint.TRANSFER_VERIFY)
+    suspend fun transferVerify(
+        @Body request: CodeVerifyReqDto
+    ): MessageResDto
 }
