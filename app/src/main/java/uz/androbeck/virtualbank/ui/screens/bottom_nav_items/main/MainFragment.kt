@@ -28,7 +28,6 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         onClick()
 
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getUiData()
