@@ -26,6 +26,7 @@
         <action
             android:id="@+id/action_mainFragment_to_depositCardFragment"
             app:destination="@id/depositCardFragment" />
+        <action
             android:id="@+id/action_mainFragment_to_myCardsFragment"
             app:destination="@id/myCardsFragment" />
     </fragment>
