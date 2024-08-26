@@ -17,6 +17,7 @@ import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.domain.ui_models.transfer.GetCardOwnerByPanReqUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.card_scanner.CardScannerBottomDialog
+import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
@@ -46,8 +47,7 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
                     vm.getCardOwnerByPan(getCardOwnerByPanReqUIModel)
                     vm.cardOwnerResponse.observe(viewLifecycleOwner) {
                         if (it) {
-                            btnContinue.isEnable = true
-                            findNavController().navigate(R.id.action_transferFragment_to_secondaryTransferFragment)
+                            btnContinue.isEnable = false
                         }else{
                             //(activity as MainActivity).showSnackBar("Карта не найдена")()
                         }
@@ -58,6 +58,9 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
                 } else{
                     btnContinue.isEnable = false
                 }
+            }
+            btnContinue.singleClickable{
+                findNavController().navigate(R.id.action_transferFragment_to_secondaryTransferFragment)
             }
             etCardOrPhoneNumber.onClickEditText = {
                 btnContinue.visibility = View.VISIBLE
