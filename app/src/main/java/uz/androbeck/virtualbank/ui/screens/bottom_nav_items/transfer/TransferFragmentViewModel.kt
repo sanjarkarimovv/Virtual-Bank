@@ -44,7 +44,7 @@ class TransferFragmentViewModel @Inject constructor(
 
     private fun getCards() {
         viewModelScope.launch {
-            getCardsUseCase.invoke().onEach {
+            getCardsUseCase.getCardsFromNetwork().onEach {
                 _cardsResponse.value = it
             }.launchIn(this)
         }

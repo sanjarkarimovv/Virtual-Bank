@@ -1,13 +1,6 @@
 package uz.androbeck.virtualbank.ui.customViews.inputs
 
-import android.Manifest
-import android.app.Activity
 import android.content.Context
-import android.content.ContextWrapper
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.provider.MediaStore
 import android.text.Editable
 import android.text.InputFilter
 import android.util.AttributeSet
@@ -15,19 +8,12 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.text.Text
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.CustomViewEnterCardNumberBinding
 import uz.androbeck.virtualbank.ui.enums.CardType
 import uz.androbeck.virtualbank.ui.enums.PhoneNumberType
-import uz.androbeck.virtualbank.utils.Constants.Transfer.CAMERA_REQUEST_CODE
 import uz.androbeck.virtualbank.utils.extentions.setTextColorRes
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 
@@ -105,6 +91,10 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
                         }
 
                         CardType.UNKNOWN -> {
+                            ivCardType.setImageResource(R.drawable.ic_card)
+                        }
+
+                        CardType.AllCARDS -> {
                             ivCardType.setImageResource(R.drawable.ic_card)
                         }
                     }
@@ -207,71 +197,7 @@ class CustomViewEnterCardOrPhoneNumber @JvmOverloads constructor(
         binding.metCardPhoneNumber.addTextChangedListener(afterTextChanged = afterTextChanged)
     }
 
-    private fun checkCameraPermission() {
-        val context = this.context
-        val activity = if (context is Activity) {
-            context
-        } else {
-            (context as? ContextWrapper)?.baseContext as? Activity
-        }
 
-        activity?.let {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    (context as Activity),
-                    arrayOf(Manifest.permission.CAMERA),
-                    CAMERA_REQUEST_CODE
-                )
-            } else {
-                openCamera()
-            }
-        } ?: run {
-            Toast.makeText(context, "Ошибка", Toast.LENGTH_SHORT).show()
-
-        }
-    }
-
-
-
-     fun openCamera() {
-
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (cameraIntent.resolveActivity(context.packageManager) != null) {
-            (context as Activity).startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
-        }
-    }
-
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            scanCard(imageBitmap)
-        }
-    }
-
-    private fun scanCard(imageBitmap: Bitmap) {
-        val inputImage = InputImage.fromBitmap(imageBitmap, 0)
-        val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
-
-        recognizer.process(inputImage)
-            .addOnSuccessListener { visionText ->
-                parseCardData(visionText)
-            }
-            .addOnFailureListener { e ->
-                // Обработка ошибок
-                println("Ошибка распознавания: ${e.message}")
-            }
-    }
-
-    private fun parseCardData(visionText: Text) {
-        // Пример простого парсинга текста
-        for (block in visionText.textBlocks) {
-            val blockText = block.text
-            // Используйте регулярные выражения для поиска номера карты, имени и фамилии
-            println("Распознанный текст: $blockText")
-        }
-    }
 
 }
 

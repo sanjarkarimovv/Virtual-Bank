@@ -15,6 +15,7 @@ import uz.androbeck.virtualbank.data.dto.request.card.AddCardReqDto
 import uz.androbeck.virtualbank.databinding.FragmentTransferBinding
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.domain.ui_models.transfer.GetCardOwnerByPanReqUIModel
+import uz.androbeck.virtualbank.ui.MainActivity
 import uz.androbeck.virtualbank.ui.base.BaseFragment
 import uz.androbeck.virtualbank.ui.dialogs.card_scanner.CardScannerBottomDialog
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
@@ -49,7 +50,7 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
                         if (it) {
                             btnContinue.isEnable = false
                         }else{
-                            //(activity as MainActivity).showSnackBar("Карта не найдена")()
+                            (activity as MainActivity).showActionSnackBar(R.color.colorError, R.drawable.ic_warning, "Карта не найдена")
                         }
                     }
                     vm.isGetCardOwnerByPanEvent.observe(viewLifecycleOwner) {

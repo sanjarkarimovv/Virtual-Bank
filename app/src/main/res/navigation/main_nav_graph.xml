@@ -107,8 +107,6 @@
         android:id="@+id/secondaryTransferFragment"
         android:name="uz.androbeck.virtualbank.ui.screens.bottom_nav_items.transfer.SecondaryTransferFragment"
         android:label="SecondaryTransferFragment"
-        app:popUpTo="@id/transferFragment"
-        app:popUpToSaveState="true"
         tools:layout="@layout/fragment_secondary_transfer">
         <action
             android:id="@+id/action_secondaryTransferFragment_to_transferFragment"

@@ -59,8 +59,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.play.services.mlkit.text.recognition.common)
-    implementation(libs.play.services.mlkit.text.recognition)
     implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -137,6 +135,4 @@ dependencies {
     // swiperefreshlayout
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
-    //
-    implementation("com.google.mlkit:text-recognition-bundled-common:17.0.0")
 }
