@@ -25,17 +25,17 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
    @Inject
    lateinit var messageController: MessageController
     override fun setup() {
+        onClick()
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getUiData()
     }
 
-    override fun setup() {
-        onClick()
-    }
 
-    private fun onClick() = with(binding) {
+     fun onClick() = with(binding) {
         llSwipe.setOnRefreshListener {
             viewModel.getUiData()
         }
