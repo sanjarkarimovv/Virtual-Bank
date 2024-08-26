@@ -43,6 +43,7 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
             etCardOrPhoneNumber.addTextChangedListener { enterNumber->
                 println("enterNumber $enterNumber")
                 if(enterNumber?.length == 19){
+                    postReqvest(enterNumber.toString())
                     println("______________ ${enterNumber.toString().replace(" ", "")}")
                     val getCardOwnerByPanReqUIModel = GetCardOwnerByPanReqUIModel(enterNumber.toString().replace(" ", ""))
                     vm.getCardOwnerByPan(getCardOwnerByPanReqUIModel)
@@ -117,6 +118,10 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
         }
 
         setupOnBackPressed()
+    }
+
+    private fun postReqvest(toString: String) {
+
     }
 
     val listgetCard: List<CardUIModel> = listOf()
