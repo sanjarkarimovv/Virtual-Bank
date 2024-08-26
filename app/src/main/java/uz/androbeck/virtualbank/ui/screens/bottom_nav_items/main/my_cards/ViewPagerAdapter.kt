@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.androbeck.virtualbank.databinding.MyCardsItemViewPagerBinding
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 
-class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.MyCardsViewHolder>() {
+class ViewPagerAdapter(
+    private val listener:(CardUIModel)->Unit
+) : RecyclerView.Adapter<ViewPagerAdapter.MyCardsViewHolder>() {
 
     private val cardsList= mutableListOf<List<CardUIModel>>()
 
@@ -23,7 +25,7 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.MyCardsViewHolder
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: List<CardUIModel>) {
-            val  adapter = ItemsAdapter()
+            val  adapter = ItemsAdapter(listener)
             adapter.loadCards(item)
             binding.recyclerView.adapter = adapter
         }
@@ -47,4 +49,5 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.MyCardsViewHolder
     override fun onBindViewHolder(holder: MyCardsViewHolder, position: Int) {
         holder.bind(cardsList[position])
     }
+
 }

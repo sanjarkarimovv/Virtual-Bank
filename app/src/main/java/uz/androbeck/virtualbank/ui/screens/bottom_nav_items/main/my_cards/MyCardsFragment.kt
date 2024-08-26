@@ -1,10 +1,10 @@
 package uz.androbeck.virtualbank.ui.screens.bottom_nav_items.main.my_cards
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -12,7 +12,7 @@ import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.databinding.FragmentMyCardsBinding
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.enums.CardType
+import uz.androbeck.virtualbank.ui.dialogs.card_options.CardOptionBottomDialog
 
 @AndroidEntryPoint
 class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
@@ -20,10 +20,29 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
     private val binding: FragmentMyCardsBinding by viewBinding()
     private val vm: MyCardsViewModel by viewModels()
     private lateinit var pagingAdapter: ViewPagerAdapter
+    private lateinit var itemsAdapter: ItemsAdapter
+
     override fun setup() {
 
-        pagingAdapter = ViewPagerAdapter()
+        val listener: (CardUIModel) -> Unit = { card ->
+            CardOptionBottomDialog(
+                toHistoryScreen = {
+                    findNavController().navigate(R.id.action_myCardsFragment_to_cardHistoryFragment)
+                },
+                toRequisitionScreen = {
+                    val bundle = bundleOf("card" to it)
+                    findNavController().navigate(
+                        R.id.action_myCardsFragment_to_requisitionFragment, bundle
+                    )
+                },
+                toTransferScreen = {
+//                    findNavController().navigate(R.id.action_myCardsFragment_to_transferFragment)
+                },
+                card
+            ).show(parentFragmentManager, "")
+        }
 
+        pagingAdapter = ViewPagerAdapter(listener)
         binding.swipeRefreshLayout.isRefreshing = false
 
         binding.viewPager.adapter = pagingAdapter
@@ -46,10 +65,11 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
                     }
 
                 MyCardsUIEvent.Loading -> {}
-            }
-        }.launchIn(lifecycleScope)
+                }
+            }.launchIn(lifecycleScope)
+        }
 
-    }
+
 
     override fun clicks()= with(binding){
         swipeRefreshLayout.setOnRefreshListener {
@@ -63,7 +83,9 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         btnAddCard.setOnClickListener {
             findNavController().navigate(R.id.action_myCardsFragment_to_addCardFragment)
         }
+
     }
+
 
     private fun cardSortedList(list: List<CardUIModel>): List<List<CardUIModel>> {
         val allList = mutableListOf<CardUIModel>()
@@ -104,6 +126,7 @@ class MyCardsFragment : BaseFragment(R.layout.fragment_my_cards) {
         return mainList
     }
 }
+
 
 
 

@@ -135,6 +135,15 @@
     <string name="str_tramsfer_history_is_empty">Ещё не осуществлено</string>
     <string name="str_transfer_cofir">Успешно</string>
     <string name="str_money_type_uzb">сум</string>
+    <string name="str_history_toolbar_title">Kirim-Chiqim</string>
+    <string name="str_transfer_type_income">Daromad</string>
+    <string name="str_transfer_type_outcome">To\'lov</string>
+    <string name="str_transfer_cencle">Amalga oshmadi</string>
+    <string name="str_fill_card">Заполнить карту</string>
+    <string name="str_history">История</string>
+    <string name="str_delete">Удалить</string>
+    <string name="str_requisites">Реквизит</string>
+
     <string name="security_settings">Настройки безопасности</string>
     <string name="change_pin_code">Изменить PIN-код</string>
     <string name="login_with_fingerprint_or_face_id">Войти биометрически</string>
@@ -148,6 +157,12 @@
     <string name="str_pin_code_same">Новый ПИН должен отличаться от старого</string>
     <string name="str_nfc">Nfc</string>
     <string name="str_qrd">QR</string>
+    <string name="str_f.i.ish">И.Ф.О</string>
+    <string name="str_date_card">Срок действия карты</string>
+    <string name="str_card_nuber">Номер карты</string>
+    <string name="str_name_of_card">Имя карты</string>
+
+
     <string name="str_notifications">Bildirishnomalar</string>
     <string name="str_you_money_transfer">Sizga pul o\'tkazildi</string>
     <string name="str_open_chek">Chekni ochish</string>
@@ -159,4 +174,5 @@
     <string name="str_from">от</string>
     <string name="str_soums_transfer_received">поступил перевод сумов</string>
     <string name="str_logout_from_account">Выйти из этого аккаунта</string>
+
 </resources>

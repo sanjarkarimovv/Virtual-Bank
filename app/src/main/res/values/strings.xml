@@ -163,4 +163,15 @@
     <string name="str_if_dont_account">If you don\'t have an account</string>
     <string name="str_from">from</string>
     <string name="str_soums_transfer_received">a transfer of soums was received</string>
+    <string name="str_fill_card">To\'ldirish</string>
+    <string name="str_history">Tarix</string>
+    <string name="str_delete">Olib tashlash</string>
+    <string name="str_requisites">Rekvizitlar</string>
+
+    <string name="str_f.i.ish">F.S.L</string>
+    <string name="str_date_card">Card expiration date</string>
+    <string name="str_card_nuber">Pan</string>
+    <string name="str_name_of_card">Card name</string>
+
+
 </resources>
