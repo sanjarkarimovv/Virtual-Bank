@@ -31,22 +31,43 @@ class TransferMyCardFragment : BaseFragment(R.layout.fragment_transfer_my_card) 
             }.show(childFragmentManager, "CardsDialog")
         }
         etInputTransferSum.textInputEditText.addTextChangedListener(object : TextWatcher {
+            private var isFormatting: Boolean = false
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                val inputNumber = s.toString().toIntOrNull() ?: 0
+                if (isFormatting) return
+
+                isFormatting = true
+
+                val formattedText = s.toString().replace(" ", "")
+                val formattedWithSpaces = StringBuilder()
+                for (i in formattedText.indices) {
+                    formattedWithSpaces.append(formattedText[i])
+                    if ((i + 1) % 3 == 0 && i != formattedText.length - 1) {
+                        formattedWithSpaces.append(" ")
+                    }
+                }
+
+                if (formattedWithSpaces.toString() != s.toString()) {
+                    etInputTransferSum.textInputEditText.setText(formattedWithSpaces.toString())
+                    etInputTransferSum.textInputEditText.setSelection(formattedWithSpaces.length)
+                }
+
+                val inputNumber = formattedWithSpaces.toString().replace(" ", "").toIntOrNull() ?: 0
                 if ((inputNumber in 0..999) || inputNumber > 15000000) {
-                    etInputTransferSum.textInputLayout.hintTextColor=colorStateList(R.color.colorError)
+                    etInputTransferSum.textInputLayout.hintTextColor = colorStateList(R.color.colorError)
                     tvTransferAmount.setTextColor(color(R.color.colorError))
-                    etInputTransferSum.textInputLayout.boxStrokeColor  = color(R.color.colorError)
+                    etInputTransferSum.textInputLayout.boxStrokeColor = color(R.color.colorError)
                     nextBtn.setOnClickListener {
-//                        Next Translate Fragment
+                        // Next Translate Fragment
                     }
                 } else {
-                    etInputTransferSum.textInputLayout.hintTextColor=colorStateList(R.color.colorSecondary)
+                    etInputTransferSum.textInputLayout.hintTextColor = colorStateList(R.color.colorSecondary)
                     tvTransferAmount.setTextColor(color(R.color.colorSecondary))
                     etInputTransferSum.textInputLayout.boxStrokeColor = color(R.color.colorSecondary)
                 }
+
+                isFormatting = false
             }
         })
         toolbar.onClickLeftIcon={

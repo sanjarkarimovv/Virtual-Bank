@@ -194,6 +194,7 @@
                         android:layout_centerInParent="true"
                         app:boxBackgroundColor="@color/colorSurfaceContainer"
                         app:clearable="true"
+                        android:inputType="number"
                         app:hintText="@string/from_1_000_to_15_000_000_sum"
                         app:scrollHorizontally="true"/>
                 </RelativeLayout>
@@ -312,7 +313,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="26dp"
                     android:layout_marginHorizontal="16dp"
-                    android:enabled="true"
                     android:text="@string/next"/>
         </RelativeLayout>
     </LinearLayout>
