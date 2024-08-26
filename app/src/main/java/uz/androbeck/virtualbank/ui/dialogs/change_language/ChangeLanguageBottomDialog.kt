@@ -74,7 +74,6 @@ class ChangeLanguageBottomDialog : BaseBottomDialog(R.layout.dialog_bottom_chang
             vm.setLanguage(Language.ENGLISH.code)
         }
     }
-
     companion object {
         fun show(fragmentManager: FragmentManager) = ChangeLanguageBottomDialog().apply {
             show(fragmentManager, this::class.java.simpleName)

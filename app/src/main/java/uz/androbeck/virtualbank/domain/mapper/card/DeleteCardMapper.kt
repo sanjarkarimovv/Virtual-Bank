@@ -1,22 +1,21 @@
 package uz.androbeck.virtualbank.domain.mapper.card
 
-import uz.androbeck.virtualbank.data.dto.common.response.MessageResDto
+import uz.androbeck.virtualbank.data.dto.request.card.DeleteCardReqDto
 import uz.androbeck.virtualbank.domain.mapper.BaseMapper
-import uz.androbeck.virtualbank.domain.mapper.home.MessageMapper
-import uz.androbeck.virtualbank.domain.ui_models.common.MessageUIModel
+import uz.androbeck.virtualbank.domain.ui_models.card.DeleteCardReqUIModel
 import javax.inject.Inject
 
-class DeleteCardMapper @Inject constructor():BaseMapper<MessageResDto,MessageUIModel> {
+class DeleteCardMapper @Inject constructor():BaseMapper<DeleteCardReqDto,DeleteCardReqUIModel> {
 
-    override fun toUIModel(dto: MessageResDto)=dto.run {
-        MessageUIModel(
-            message=message
+    override fun toUIModel(dto: DeleteCardReqDto)=dto.run {
+        DeleteCardReqUIModel(
+           id=id
         )
     }
 
-    override fun toDTO(uiModel: MessageUIModel)=uiModel.run {
-        MessageResDto(
-            message=message
+    override fun toDTO(uiModel: DeleteCardReqUIModel)=uiModel.run {
+        DeleteCardReqDto(
+          id=id
         )
     }
 }
