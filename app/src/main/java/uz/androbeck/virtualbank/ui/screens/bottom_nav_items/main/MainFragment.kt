@@ -27,8 +27,6 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     override fun setup() {
         viewModel.getUiData()
         onClick()
-
-        viewModel.deleteCardById("5")
     }
 
     private fun onClick() = with(binding) {
@@ -69,15 +67,6 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     }
 
     override fun observe() {
-        println(":::::::::::::: observe")
-
-        viewModel.deleteCard.observe(viewLifecycleOwner){
-            println(":::::::::::::: viewModel deleteCard.observe $it")
-        }
-
-        messageController.observeMessage().onEach {
-            toast("Message: $it")
-        }
 
         viewModel.homeComponents.observe(this) {
             when (it) {

@@ -45,12 +45,7 @@ class MainViewModel @Inject constructor(
     private val _uiData = MutableLiveData<HomeBodyModels>()
     val uiData: LiveData<HomeBodyModels> = _uiData
 
-    private val _deleteCard = MutableLiveData<String>()
-    val deleteCard get() = _deleteCard
-
-
-    init {
-        deleteCardById(String())
+        init {
 
         viewModelScope.launch(Dispatchers.IO) {
             getComponentsFromCacheUseCase().onEach { it ->
@@ -99,11 +94,6 @@ class MainViewModel @Inject constructor(
                 }
             }.launchIn(this)
         }
-    }
-    fun deleteCardById(id:String) {
-        deleteCardUseCase(id)
-        println(":::::::::::::: deleteCardById id $id")
-        println( "AAAAAAAAAAAAAAAAAAAAAA::: " + deleteCardUseCase.invoke(id))
     }
 
     fun getUiData() {
