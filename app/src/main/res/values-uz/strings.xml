@@ -77,8 +77,8 @@
     <string name="str_transfer_cofir">Muvaffaqiyatli</string>
     <string name="str_transfer_cencle">Amalga oshmadi</string>
     <string name="str_history_toolbar_title">Kirim-Chiqim</string>
-    <string name="str_histiry_sort_name_income">Tushum</string>
-    <string name="str_histiry_sort_name_outcome">Chiqim</string>
+    <string name="str_histiry_sort_name_income">Umumiy tushum</string>
+    <string name="str_histiry_sort_name_outcome">Umumiy chiqim</string>
     <string name="str_localization_eng">Inglizcha</string>
     <string name="str_widget_settings">Vidjet sozlamalari</string>
     <string name="str_hint_phone_number">+998 Telefon raqami</string>
@@ -133,4 +133,6 @@
     <string name="str_bracket">(</string>
     <string name="str_plus">+ </string>
     <string name="str_minus">- </string>
+    <string name="str_kirim_chikimlar">Kirim chikimlar</string>
+    <string name="str_tramsfer_history_is_empty">Hali amalga oshirilmagan</string>
 </resources>
