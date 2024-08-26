@@ -13,6 +13,8 @@ import uz.androbeck.virtualbank.databinding.ItemNotificationBinding
 import uz.androbeck.virtualbank.domain.ui_models.notification.NotificationTransferUIModel
 import uz.androbeck.virtualbank.domain.ui_models.notification.NotificationUIModel
 import uz.androbeck.virtualbank.domain.ui_models.notification.TimeBasedItem
+import uz.androbeck.virtualbank.utils.Constants.Number.VIEW_TYPE_GENERAL
+import uz.androbeck.virtualbank.utils.Constants.Number.VIEW_TYPE_TRANSFER
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.visible
@@ -28,8 +30,6 @@ class NotificationAdapter(
 ) : ListAdapter<TimeBasedItem, RecyclerView.ViewHolder>(diffUtil) {
 
     companion object {
-        private const val VIEW_TYPE_TRANSFER = 1
-        private const val VIEW_TYPE_GENERAL = 2
 
         private val diffUtil = object : DiffUtil.ItemCallback<TimeBasedItem>() {
             override fun areItemsTheSame(oldItem: TimeBasedItem, newItem: TimeBasedItem): Boolean {

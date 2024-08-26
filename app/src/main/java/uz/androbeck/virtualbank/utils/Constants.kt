@@ -75,6 +75,8 @@ object Constants {
         const val SELECT_CARD_STROKE_WIDTH = 2
         const val DEFAULT_CARD_STROKE_WIDTH = 1
         const val NUM_NOTIFICATION_TABS = 2
+        const val VIEW_TYPE_TRANSFER = 1
+        const val VIEW_TYPE_GENERAL = 2
     }
 
     object Firebase {
