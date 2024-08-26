@@ -10,8 +10,62 @@ import androidx.recyclerview.widget.RecyclerView
 class StickyHeaderDecoration(private val adapter: HistoryAdapter) : RecyclerView.ItemDecoration() {
 
     private var currentHeader: View? = null
+    private var previousScrollY = 0
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+        var previousHeader: View? = null
+        var previousHeaderBottom: Int = Int.MIN_VALUE
+        var nextHeader: View? = null
+        var nextHeaderTop: Int = Int.MAX_VALUE
+        val currentScrollY = parent.computeVerticalScrollOffset()
+
+        for (i in 0 until parent.childCount) {
+            val child = parent.getChildAt(i)
+            val position = parent.getChildAdapterPosition(child)
+
+            val header = adapter.findHeaderViewForPosition1(position, parent)
+
+            if (header != null) {
+                if (currentHeader == null) {
+                    currentHeader = header
+                    fixLayoutSize(parent, header)
+                } else if (header !== currentHeader) {
+                    if (child.top < nextHeaderTop && child.top > currentHeader!!.height) {
+                        nextHeader = header
+                        nextHeaderTop = child.top
+                    } else if (child.bottom > previousHeaderBottom && child.bottom <= currentHeader!!.height) {
+                        previousHeader = header
+                        previousHeaderBottom = child.bottom
+                    }
+                }
+            }
+        }
+
+
+        if (previousHeader != null && previousHeaderBottom > 0) {
+            currentHeader = previousHeader
+            fixLayoutSize(parent, currentHeader!!)
+        }
+
+
+        if (nextHeader != null && nextHeaderTop <= currentHeader!!.height) {
+            currentHeader = nextHeader
+            fixLayoutSize(parent, currentHeader!!)
+        }
+
+        if (currentHeader != null) {
+            c.save()
+            if (nextHeader != null && nextHeaderTop <= currentHeader!!.height) {
+                val translationY = (nextHeaderTop - currentHeader!!.height).toFloat()
+                c.translate(0f, translationY)
+            }
+            currentHeader!!.draw(c)
+            c.restore()
+        }
+    }
+
+
+    /*override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         var nextHeader: View? = null
         var nextHeaderTop: Int = Int.MAX_VALUE
 
@@ -26,9 +80,13 @@ class StickyHeaderDecoration(private val adapter: HistoryAdapter) : RecyclerView
                     currentHeader = header
                     fixLayoutSize(parent, header)
                 } else if (header !== currentHeader) {
+                    println("if (header !== currentHeader)")
                     if (child.top < nextHeaderTop) {
+
                         nextHeader = header
                         nextHeaderTop = child.top
+                    }else{
+
                     }
                 }
             }
@@ -42,7 +100,7 @@ class StickyHeaderDecoration(private val adapter: HistoryAdapter) : RecyclerView
 
         if (currentHeader != null) {
             c.save()
-            if (nextHeader != null && nextHeaderTop <= currentHeader!!.height) {
+            if (nextHeader != null && nextHeaderTop < currentHeader!!.height) {
 
                 val translationY = (nextHeaderTop - currentHeader!!.height).toFloat()
                 println("uz.androbeck.virtualbank.ui.screens.bottom_nav_items.history.StickyHeaderDecoration Translation Y: $translationY")
@@ -52,7 +110,7 @@ class StickyHeaderDecoration(private val adapter: HistoryAdapter) : RecyclerView
             currentHeader!!.draw(c)
             c.restore()
         }
-    }
+    }*/
 
     private fun fixLayoutSize(parent: RecyclerView, view: View) {
         val widthSpec = View.MeasureSpec.makeMeasureSpec(parent.width, View.MeasureSpec.EXACTLY)

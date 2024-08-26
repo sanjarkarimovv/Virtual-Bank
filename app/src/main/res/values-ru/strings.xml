@@ -125,6 +125,12 @@
     <string name="str_phone_region_code">+998</string>
     <string name="str_enter_born_date_format">ДД/ММ/ГГГГ</string>
     <string name="str_bracket">(</string>
+    <string name="str_kirim_chikimlar">Исторя переводов</string>
+    <string name="str_histiry_sort_name_income">Обший Прибыль</string>
+    <string name="str_histiry_sort_name_outcome">Обший Расходы</string>
+    <string name="str_tramsfer_history_is_empty">Ещё не осуществлено</string>
+    <string name="str_transfer_cofir">Успешно</string>
+    <string name="str_money_type_uzb">сум</string>
     <string name="security_settings">Настройки безопасности</string>
     <string name="change_pin_code">Изменить PIN-код</string>
     <string name="login_with_fingerprint_or_face_id">Войти биометрически</string>
