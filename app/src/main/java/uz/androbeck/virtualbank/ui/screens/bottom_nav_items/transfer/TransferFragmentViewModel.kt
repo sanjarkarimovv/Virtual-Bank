@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.domain.ui_models.transfer.GetCardOwnerByPanReqUIModel
-import uz.androbeck.virtualbank.domain.ui_models.transfer.GetCardOwnerByPanResUIModel
 import uz.androbeck.virtualbank.domain.useCases.card.GetCardsUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.GetCardOwnerByPanUseCase
 import uz.androbeck.virtualbank.domain.useCases.transfer.TransferUseCase
@@ -35,8 +34,8 @@ class TransferFragmentViewModel @Inject constructor(
     private val _isErrorEvent = MutableLiveData(false)
     val isErrorEvent: LiveData<Boolean> get() = _isErrorEvent
 
-    private val _isGetCardOwnerByPanEvent = MutableLiveData<GetCardOwnerByPanResUIModel>()
-    val isGetCardOwnerByPanEvent: LiveData<GetCardOwnerByPanResUIModel> get() = _isGetCardOwnerByPanEvent
+    private val _isGetCardOwnerByPanEvent = MutableLiveData<String>()
+    val isGetCardOwnerByPanEvent: LiveData<String> get() = _isGetCardOwnerByPanEvent
 
     init {
         getCards()
@@ -44,23 +43,34 @@ class TransferFragmentViewModel @Inject constructor(
 
     private fun getCards() {
         viewModelScope.launch {
-            getCardsUseCase.getCardsFromNetwork().onEach {
-                _cardsResponse.value = it
-            }.launchIn(this)
+            getCardsUseCase.getCardsFromNetwork()
+                .catch { th -> errorHandler.handleError(th) }
+                .collect { cards -> _cardsResponse.value = cards }
         }
     }
-
+    private var user:String? = null
+    internal var isRequestInProgress = false
     fun getCardOwnerByPan(reqUIModel: GetCardOwnerByPanReqUIModel) {
-        val reqModel = GetCardOwnerByPanReqUIModel(
-            pan = reqUIModel.pan
-        )
-        getCardOwnerByPanUseCase(reqModel).onEach {
+        if (isRequestInProgress) {
+            return
+        }
+        isRequestInProgress = true
+        getCardOwnerByPanUseCase(reqUIModel).onEach {
             _cardOwnerResponse.value = true
-            _isGetCardOwnerByPanEvent.value = it
+            _isGetCardOwnerByPanEvent.value = it.pan.toString()
+            user = it.pan.toString()
+            isRequestInProgress = false
         }.catch { th ->
             _isErrorEvent.value = true
             errorHandler.handleError(th)
+            _isGetCardOwnerByPanEvent.value = th.message.toString()
+
+            isRequestInProgress = false
         }.launchIn(viewModelScope)
     }
+    fun getOwnerName(): String? {
+     return  user
+    }
+
 
 }

@@ -7,18 +7,13 @@ import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.androbeck.virtualbank.R
 import uz.androbeck.virtualbank.data.dto.request.card.AddCardReqDto
 import uz.androbeck.virtualbank.databinding.FragmentTransferBinding
-import uz.androbeck.virtualbank.domain.ui_models.cards.CardUIModel
 import uz.androbeck.virtualbank.domain.ui_models.transfer.GetCardOwnerByPanReqUIModel
-import uz.androbeck.virtualbank.ui.MainActivity
 import uz.androbeck.virtualbank.ui.base.BaseFragment
-import uz.androbeck.virtualbank.ui.dialogs.card_scanner.CardScannerBottomDialog
-import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.toast
 
 @AndroidEntryPoint
@@ -26,43 +21,23 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
     private val binding by viewBinding(FragmentTransferBinding::bind)
     private val vm: TransferFragmentViewModel by viewModels()
     private lateinit var usersInfoAdapter: TransferUsersAdapter
-
-
     override fun setup() {
-
 
         usersInfoAdapter = TransferUsersAdapter { item ->
 
         }
         adjustButtonPositionForKeyboard()
         with(binding) {
-            etCardOrPhoneNumber.onScannerClick = {
-                showCardScannerDialog()
-            }
-            btnContinue.isEnable = false
-            etCardOrPhoneNumber.addTextChangedListener { enterNumber->
-                println("enterNumber $enterNumber")
-                if(enterNumber?.length == 19){
-                    postReqvest(enterNumber.toString())
-                    println("______________ ${enterNumber.toString().replace(" ", "")}")
-                    val getCardOwnerByPanReqUIModel = GetCardOwnerByPanReqUIModel(enterNumber.toString().replace(" ", ""))
-                    vm.getCardOwnerByPan(getCardOwnerByPanReqUIModel)
-                    vm.cardOwnerResponse.observe(viewLifecycleOwner) {
-                        if (it) {
-                            btnContinue.isEnable = false
-                        }else{
-                            (activity as MainActivity).showActionSnackBar(R.color.colorError, R.drawable.ic_warning, "Карта не найдена")
-                        }
-                    }
-                    vm.isGetCardOwnerByPanEvent.observe(viewLifecycleOwner) {
-                        toast("it ${it.pan}")
-                    }
-                } else{
+            etCardOrPhoneNumber.addTextChangedListener { enterNumber ->
+                if (enterNumber?.length == 19) {
+                    postReq(enterNumber.toString())
+                    println("enterNumber: $enterNumber")
+
+                } else {
                     btnContinue.isEnable = false
+                    tvUserInfo.visibility = View.GONE
+                    tvUserInfo.text = ""
                 }
-            }
-            btnContinue.singleClickable{
-                findNavController().navigate(R.id.action_transferFragment_to_secondaryTransferFragment)
             }
             etCardOrPhoneNumber.onClickEditText = {
                 btnContinue.visibility = View.VISIBLE
@@ -77,6 +52,8 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
                 etCardOrPhoneNumber.clearFocus()
                 btnContinue.visibility = View.GONE
                 ivBack.visibility = View.GONE
+                tvUserInfo.visibility = View.GONE
+                tvUserInfo.text = ""
                 mcvTransferHimself.visibility = View.VISIBLE
                 mcvGallery.visibility = View.VISIBLE
                 mcvTransferContacts.visibility = View.VISIBLE
@@ -120,19 +97,40 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
         setupOnBackPressed()
     }
 
-    private fun postReqvest(toString: String) {
+    private  fun postReq(enterNumber: String) = with(binding) {
+        val getCardOwnerByPanReqUIModel =
+            GetCardOwnerByPanReqUIModel(enterNumber.replace(" ", ""))
+        vm.apply {
+            if (!isRequestInProgress) {
+                getCardOwnerByPan(getCardOwnerByPanReqUIModel)
 
-    }
+                isRequestInProgress = true
+            } else {
 
-    val listgetCard: List<CardUIModel> = listOf()
-
-    override fun observe() {
-        vm.cardsResponse.observe(viewLifecycleOwner) {
-            listgetCard.plus(it)
+                toast("Запрос уже отправляется")
+            }
         }
+
     }
-
-
+    override fun observe() = with(binding) {
+        vm.cardOwnerResponse.observe(viewLifecycleOwner) {
+            if (it) {
+                vm.isGetCardOwnerByPanEvent.observe(viewLifecycleOwner) { ownerName ->
+                tvUserInfo.visibility = View.VISIBLE
+                    if (ownerName.equals("Karta Mavjud emas")) {
+                        btnContinue.isEnable = false
+                        tvUserInfo.text = ownerName
+                    } else {
+                        tvUserInfo.text = ownerName
+                        btnContinue.isEnable = true
+                    }
+                }
+            } else {
+                tvUserInfo.visibility = View.GONE
+                btnContinue.isEnable = false
+            }
+        }
+   }
 
     private val onGlobalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
         val rect = Rect()
@@ -155,8 +153,6 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
     }
 
 
-
-
     private fun setupOnBackPressed() {
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
@@ -166,6 +162,8 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
                         binding.etCardOrPhoneNumber.clearFocus()
                         binding.btnContinue.visibility = View.GONE
                         binding.ivBack.visibility = View.GONE
+                        binding.tvUserInfo.visibility = View.GONE
+                        binding.tvUserInfo.text = ""
                         binding.mcvTransferHimself.visibility = View.VISIBLE
                         binding.mcvGallery.visibility = View.VISIBLE
                         binding.mcvTransferContacts.visibility = View.VISIBLE
@@ -182,14 +180,6 @@ class TransferFragment : BaseFragment(R.layout.fragment_transfer) {
         super.onDestroyView()
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
         rootView.viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener)
-    }
-
-    private fun showCardScannerDialog() {
-        CardScannerBottomDialog().show(
-            childFragmentManager,
-            CardScannerBottomDialog::class.java.simpleName
-        )
-        println("Scan")
     }
 
 }
