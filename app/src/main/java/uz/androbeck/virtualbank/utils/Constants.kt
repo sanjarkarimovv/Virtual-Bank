@@ -25,6 +25,7 @@ object Constants {
         const val GET_CARD="card"
         const val GET_FEE="transfer/fee"
         const val TRANSFER="transfer/transfer"
+        const val Get_CARD_OWNER_BY_PAN="transfer/card-owner"
         const val TRANSFER_VERIFY="transfer/transfer/verify"
     }
     object History {
@@ -85,5 +86,9 @@ object Constants {
         const val FIREBASE_NOTIFICATION = "notifications"
         const val CHANNEL_ID = "uz.androbeck.virtualbank.notifications"
         const val DEFAULT_CHANNEL_NAME = "Default Channel"
+    }
+    object Transfer {
+
+    const val CAMERA_REQUEST_CODE = 100
     }
 }

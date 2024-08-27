@@ -20,7 +20,7 @@
             android:layout_marginEnd="16dp"
             android:padding="5dp"
             android:src="@drawable/ic_arrow_left_short"
-            android:visibility="gone" />
+             />
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,29 +45,14 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <TextView
+            <ImageView
                 android:id="@+id/tv_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/exo2_medium"
-                android:text="Кому:"
-                android:textSize="14sp"
-                android:textColor="@color/colorOnSurface"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tv_user_info"
-                android:layout_marginTop="30dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/tv_text"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/exo2_medium"
-                android:text="Пользователь"
-                android:visibility="gone"
-                android:textSize="14sp"
-                android:textColor="@color/colorOnPrimaryFixedVariant"
-                android:textStyle="bold" />
+                android:src="@drawable/ic_card_transfer_self"
+                 />
 
 
             <uz.androbeck.virtualbank.ui.customViews.inputs.CustomViewEnterCardOrPhoneNumber
@@ -76,45 +61,37 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_text"
                 android:layout_marginTop="20dp" />
-
-
+            <uz.androbeck.virtualbank.ui.customViews.inputs.CustomViewInputCardView
+               android:id="@+id/et_enter_summ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:masHintText="Сумма"
+                app:editTextInCus="Сумма"
+                android:layout_below="@id/et_card_or_phone_number"
+                android:layout_marginTop="20dp" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_saved_users"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@id/et_card_or_phone_number"
+                android:layout_height="16dp"
+                android:layout_below="@id/et_enter_summ"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <TextView
-                android:id="@+id/tv_saved_users"
-                android:layout_width="wrap_content"
+            <uz.androbeck.virtualbank.ui.customViews.inputs.CustomViewInputCardView
+                android:id="@+id/et_comment"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:masHintText="Комментарий"
+                app:editTextInCus="Комментарий"
                 android:layout_below="@id/rv_saved_users"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
-                android:padding="10dp"
-                android:fontFamily="@font/exo2_semi_bold"
-                android:textSize="14sp"
-                android:text="Все получатли:"
-                android:textColor="@color/colorPrimaryFixedDim"
-                android:textStyle="bold" />
-            <ProgressBar
-                android:id="@+id/pb_saved_users"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_saved_users"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"
-                android:layout_centerHorizontal="true"
-                android:indeterminateTint="@color/colorOnSurface" />
+                android:layout_marginTop="20dp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/mcv_gallery"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_below="@+id/pb_saved_users"
+                android:layout_below="@+id/et_comment"
                 android:layout_marginTop="200dp"
                 android:backgroundTint="@color/static_white"
                 app:cardCornerRadius="10dp"
@@ -180,7 +157,7 @@
                             android:layout_weight="0.12">
 
                             <ImageView
-                                android:id="@+id/iv_scan_card"
+                                android:id="@+id/iv_lets"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -195,119 +172,6 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcv_transfer_himself"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_below="@+id/mcv_gallery"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:backgroundTint="@color/static_white"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="2dp"
-                app:strokeColor="@color/static_white"
-                app:strokeWidth="2dp">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="10dp">
-
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@android:color/transparent"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="@color/colorInverseOnSurface">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_card_transfer_self" />
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@android:color/transparent"
-                        android:fontFamily="@font/exo2_regular"
-                        android:gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:text="Перевод на\n свою карту"
-                        android:textColor="@color/colorOnSurface"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/mcv_transfer_contacts"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_below="@id/mcv_gallery"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/mcv_transfer_himself"
-                android:backgroundTint="@color/static_white"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="2dp"
-                app:strokeColor="@color/static_white"
-                app:strokeWidth="2dp">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="10dp">
-
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@android:color/transparent"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="@color/colorInverseOnSurface"
-                        app:strokeWidth="0dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:padding="5dp"
-                            android:src="@drawable/contacts" />
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@android:color/transparent"
-                        android:fontFamily="@font/exo2_regular"
-                        android:gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:text="Перевод на\n свою карту"
-                        android:textColor="@color/colorOnSurface"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
             <uz.androbeck.virtualbank.ui.customViews.buttons.VirtualBankProgressButton
                 android:id="@+id/btn_continue"
                 android:layout_width="match_parent"
@@ -317,7 +181,6 @@
                 android:fontFamily="@font/exo2_semi_bold"
                 android:gravity="center"
                 android:text="Продолжить"
-                android:saveEnabled="false"
                 android:textSize="20sp"
                 android:visibility="gone" />
         </RelativeLayout>

@@ -1,18 +1,18 @@
 package uz.androbeck.virtualbank.ui
 
 import android.os.Bundle
-import android.view.View
+import android.widget.EditText
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -27,7 +27,6 @@ import uz.androbeck.virtualbank.utils.extentions.getLanguageByCode
 import uz.androbeck.virtualbank.utils.extentions.gone
 import uz.androbeck.virtualbank.utils.extentions.singleClickable
 import uz.androbeck.virtualbank.utils.extentions.visible
-import com.google.firebase.messaging.FirebaseMessaging
 import java.util.Locale
 import javax.inject.Inject
 
@@ -54,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         vm.setNavGraphEvent()
         setupObservers(navHostFragment)
         bottomNavigationVisibility(navHostFragment.navController)
+        onBack()
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -64,6 +64,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    private fun onBack() {
+        onBackPressedDispatcher.addCallback(this) {
+            val currentFocus = currentFocus
+            if (currentFocus is EditText) {
+                currentFocus.clearFocus()
+            } else {
+                finish()
+            }
+        }
+    }
+
 
     private fun bottomNavigationVisibility(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->

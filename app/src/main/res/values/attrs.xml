@@ -55,4 +55,10 @@
     <declare-styleable name="CustomSearchEditText">
         <attr name="editText" format="string" />
     </declare-styleable>
+    <declare-styleable name="CustomViewInputCardView">
+
+        <attr name="masHintText" format="string" />
+        <attr name="editTextInCus" format="string" />
+
+    </declare-styleable>
 </resources>
